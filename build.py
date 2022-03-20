@@ -38,6 +38,8 @@ SEO_REPORT = True
 
 DISPLAY_PAGES_ON_MENU = DISPLAY_CATEGORIES_ON_MENU = True
 
+ARTICLE_SAVE_AS = ARTICLE_URL = 'posts/{category}/{slug}.html'
+
 # Blogroll
 LINKS = (
     ('Conwaylife', 'https://www.conwaylife.com/'),

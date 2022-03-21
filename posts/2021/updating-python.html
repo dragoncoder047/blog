@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en_us">
     <head>
-                <title>dragoncoder047&rsquo;s blog - Test Post</title>
+                <title>dragoncoder047&rsquo;s blog - Updating Python</title>
             <meta charset="utf-8" />
             <meta name="generator" content="Pelican" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,17 +20,20 @@
 
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
-    <meta property="og:title" content="dragoncoder047&rsquo;s blog - Test Post" />
-    <meta property="og:description" content="This is a test." />
+    <meta property="og:title" content="dragoncoder047&rsquo;s blog - Updating Python" />
+    <meta property="og:description" content="After I bought myself my Raspberry Pi, I soon figured out that the only version of Python available on the Debian package repositories was 3.7.2, but as of when I wrote this it is already on 3.9.7. So, I was forced to compile from source. The …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://dragoncoder047.github.io/blog/posts/2022/test-post.html" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/posts/2021/updating-python.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Test Post" />
-    <meta name="twitter:description" content="This is a test." />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Updating Python" />
+    <meta name="twitter:description" content="After I bought myself my Raspberry Pi, I soon figured out that the only version of Python available on the Debian package repositories was 3.7.2, but as of when I wrote this it is already on 3.9.7. So, I was forced to compile from source. The …" />
     <meta name="twitter:image" content="/images/patrick.svg" />
-    
+            <!-- PrismJS -->
+<script src="/static/prism.js"></script>
+<script src="/static/prism-runbutton.js"></script>        <!-- /PrismJS -->
+
     </head>
 
     <body class="match-braces rainbow-braces">
@@ -54,27 +57,38 @@
                         </li>
                         <li><a href="https://dragoncoder047.github.io/blog/about/categories.html">Categories</a>
                             <ul>
-                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/about/category/misc.html">misc</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/about/category/misc.html">misc</a></li>
                                     <li><a href="https://dragoncoder047.github.io/blog/about/category/phoo.html">phoo</a></li>
-                                    <li><a href="https://dragoncoder047.github.io/blog/about/category/python.html">python</a></li>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/about/category/python.html">python</a></li>
                             </ul>
                         </li>
                 </ul>
             </nav>
         </header>
         <main>
-    <h1><a href="https://dragoncoder047.github.io/blog/posts/2022/test-post.html" rel="bookmark" title="Permalink to this page">Test Post</a></h1>
+    <h1><a href="https://dragoncoder047.github.io/blog/posts/2021/updating-python.html" rel="bookmark" title="Permalink to this page">Updating Python</a></h1>
     
     <div class="post-info">
-        Posted <time class="published" datetime="2022-03-20T00:00:00-04:00">Sun 20 March 2022</time>
+        Posted <time class="published" datetime="2021-09-15T00:00:00-04:00">Wed 15 September 2021</time>
             <address>By
                     <a href="https://dragoncoder047.github.io/blog/about/author/dragoncoder047.html">dragoncoder047</a>
             </address>
             <div class="categories">Categories:
-                    <a href="https://dragoncoder047.github.io/blog/about/category/misc.html">misc</a>
+                    <a href="https://dragoncoder047.github.io/blog/about/category/python.html">python</a>
             </div>
     </div>
-    <p>This is a test.</p>
+    <p>After I bought myself my Raspberry Pi, I soon figured out that the only version of Python available on the Debian package repositories was 3.7.2, but as of when I wrote this it is already on 3.9.7. So, I was forced to compile from source.</p>
+<p>The process to do this is very time consuming, so I made a shell script to do it automatically, as per the instructions on the Python website.</p>
+<p>Here&rsquo;s the script: <a download="update-python.sh" href="https://dragoncoder047.github.io/blog/posts/2021/update-python.sh">update-python.sh</a></p>
+<p>Save it in someplace convenient (like <code>~/.local/bin/update-python.sh</code>). Then, run the following in your terminal to add the file as a command:</p>
+<!-- cSpell:ignore raspberrypi chmod -->
+
+<pre class="highlight"><code class="language-bash">chmod +x ~/.local/bin/update-python.sh #make it executable
+echo 'alias update-python=". ~/.local/bin/update-python.sh"' &gt; ~/.bashrc #let your shell find it
+. ~/.bashrc #re-initialize the shell</code></pre>
+<p>The first argument to the script is the version of Python you want to install, such as 3.9.7:</p>
+<pre class="highlight"><code class="language-bash">update-python 3.9.7</code></pre>
+<p>This will install Python 3.9.7 as <code>python3</code>.</p>
             <section id="extras">
                     <div class="blogroll">
                         <ul>

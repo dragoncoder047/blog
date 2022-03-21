@@ -40,6 +40,8 @@ DISPLAY_PAGES_ON_MENU = DISPLAY_CATEGORIES_ON_MENU = True
 
 ARTICLE_SAVE_AS = ARTICLE_URL = 'posts/{date:%Y}/{slug}.html'
 AUTHOR_SAVE_AS = AUTHOR_URL = 'about/author/{slug}.html'
+DRAFT_URL  = DRAFT_SAVE_AS = 'posts/drafts/{slug}.html'
+DRAFT_PAGE_URL = DRAFT_PAGE_SAVE_AS = 'posts/drafts/pages/{slug}.html'
 AUTHORS_SAVE_AS = 'about/authors.html'
 CATEGORY_SAVE_AS = CATEGORY_URL = 'about/category/{slug}.html'
 CATEGORIES_SAVE_AS = 'about/categories.html'

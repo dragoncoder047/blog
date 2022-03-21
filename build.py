@@ -38,7 +38,14 @@ SEO_REPORT = True
 
 DISPLAY_PAGES_ON_MENU = DISPLAY_CATEGORIES_ON_MENU = True
 
-ARTICLE_SAVE_AS = ARTICLE_URL = 'posts/{category}/{slug}.html'
+ARTICLE_SAVE_AS = ARTICLE_URL = 'posts/{date:%Y}/{slug}.html'
+AUTHOR_SAVE_AS = AUTHOR_URL = 'about/author/{slug}.html'
+AUTHORS_SAVE_AS = 'about/authors.html'
+CATEGORY_SAVE_AS = CATEGORY_URL = 'about/category/{slug}.html'
+CATEGORIES_SAVE_AS = 'about/categories.html'
+TAG_SAVE_AS = TAG_URL = 'about/tag/{slug}.html'
+TAGS_SAVE_AS = 'about/tags.html'
+ARCHIVES_SAVE_AS = 'posts/archive.html'
 
 # Blogroll
 LINKS = (
@@ -52,7 +59,7 @@ SOCIAL = (
 )
 
 MENUITEMS = (
-    ('Archives', f'{SITEURL}/archives.html'),
+    ('Archives', f'{SITEURL}/{ARCHIVES_SAVE_AS}'),
     ('Site root', '/'),
     ('Projects', '#', (
         ('Phoo', f'https://github.com/{AUTHOR}/phoo'),

@@ -22,6 +22,8 @@ This one was completely new:
 
 What happened *here* is that I just typed the text (in red), and then pressed enter. With the cursor **on the last line**, it works (the top part), it works fine. But with the cursor ***not* on the last line** (I put it in the middle of the b's) it assumes it *is* on the last line and in doing so clobbers over however many lines of input on the subsequent lines. This is *baaaaaad*. To be honest I actually spent more time trying to fix this than working on the actual web app for a day or two.
 
+As a side note I also noticed another issue ([#51](https://github.com/wavesoft/local-echo/issues/51)) where the up/down keys didn't behave as I expected and changed the history regardless of what line you were on. Really annoying and takes some time to get used to, but not a priority.
+
 These two issues practically make the entire interface totally unusable and I'm back to square zero.
 
 Not to mention that there hasn't been an official release of local-echo since 2018, so I had to manually cobble together a pseudo-'build' that works with xterm.js version 4. I probably broke something in there.

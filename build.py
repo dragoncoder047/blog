@@ -49,6 +49,8 @@ TAG_SAVE_AS = TAG_URL = 'about/tag/{slug}.html'
 TAGS_SAVE_AS = 'about/tags.html'
 ARCHIVES_SAVE_AS = 'posts/archive.html'
 
+PATH_METADATA = r'(?P<category>.*)/.*'
+
 # Blogroll
 LINKS = (
     ('Conwaylife', 'https://www.conwaylife.com/'),

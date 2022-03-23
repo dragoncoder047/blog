@@ -10,7 +10,7 @@ It took me a while to set up the terminal so that it came up properly. I then ha
 
 ## Issue [#25](https://github.com/wavesoft/local-echo/issues/25)
 
-![xterm_typetypetype.png]({filename}/images/xterm_typetypetype.png)
+![xterm_typetypetype.png]({static}/images/xterm_typetypetype.png)
 
 The first line is being duplicated in the view every time you press a key, but the actual input buffer is fine, as shown by the red text. I think this is just some off-by-one typo, but it has been quite a problem.
 
@@ -18,7 +18,7 @@ The first line is being duplicated in the view every time you press a key, but t
 
 This one was completely new:
 
-![xterm_clobber.png]({filename}/images/xterm_clobber.png)
+![xterm_clobber.png]({static}/images/xterm_clobber.png)
 
 What happened *here* is that I just typed the text (in red), and then pressed enter. With the cursor **on the last line**, it works (the top part), it works fine. But with the cursor ***not* on the last line** (I put it in the middle of the b's) it assumes it *is* on the last line and in doing so clobbers over however many lines of input on the subsequent lines. This is *baaaaaad*. To be honest I actually spent more time trying to fix this than working on the actual web app for a day or two.
 

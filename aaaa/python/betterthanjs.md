@@ -26,6 +26,6 @@ ReferenceError: Must call super constructor in derived class before accessing 't
 structor
 ```
 
-Well, I'll be! Really?? Python would allow this. I thought Javascript was a duck-typed language which would allow this.
+Well, I'll be! Really?? Python would allow this. I thought Javascript was a duck-typed language which would similarly allow this.
 
 Oh well...

@@ -41,11 +41,11 @@ DISPLAY_PAGES_ON_MENU = DISPLAY_CATEGORIES_ON_MENU = True
 ARTICLE_SAVE_AS = ARTICLE_URL = 'p/{date:%Y}/{slug}.html'
 PAGE_URL = PAGE_SAVE_AS = 'pg/{slug}.html'
 AUTHOR_SAVE_AS = AUTHOR_URL = 'a/auth/{slug}.html'
-DRAFT_URL  = DRAFT_SAVE_AS = 'p/d/{slug}.html'
+DRAFT_URL = DRAFT_SAVE_AS = 'p/d/{slug}.html'
 DRAFT_PAGE_URL = DRAFT_PAGE_SAVE_AS = 'p/d/pg/{slug}.html'
 AUTHORS_SAVE_AS = 'a/authors.html'
 CATEGORY_SAVE_AS = CATEGORY_URL = 'a/c/{slug}.html'
-CATEGORIES_SAVE_AS = 'a/catg.html' #cSpell:ignore catg
+CATEGORIES_SAVE_AS = 'a/catg.html'  # cSpell:ignore catg
 TAG_SAVE_AS = TAG_URL = 'a/t/{slug}.html'
 TAGS_SAVE_AS = 'a/tags.html'
 ARCHIVES_SAVE_AS = 'p/archive.html'
@@ -68,7 +68,8 @@ MENUITEMS = (
     ('Site root', '/'),
     ('Projects', '#', (
         ('Phoo', f'https://github.com/{AUTHOR}/phoo'),
-        ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste')
+        ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste'),
+        ('Armdroid', f'https://{AUTHOR}.github.io/armdroid')
     )),
 )
 

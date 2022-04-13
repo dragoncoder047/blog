@@ -1,6 +1,5 @@
 Title: New Site!
 Date: 2022-04-12
-Status: draft
 
 A few months ago I stumbled upon two old 1990s-era Armdroid 1000s in the back of my engineering teacher's storage closet. Naturally, being someone interested in robotics, I wanted to see if I could get them to operate.
 

@@ -2,6 +2,7 @@
 import base64
 import zlib
 import pymdownx.superfences
+import re
 
 PORT = 8080
 BIND = '192.168.1.158'
@@ -86,6 +87,22 @@ READERS = {'html': None}
 
 
 def lv_fence(source, language, css_class, options, md, **kwargs):
+    m = re.search(r'rule\s+=\s+(\S+)', source, re.MULTILINE)
+    if m is not None:
+        rulename = m.group(1)
+        ruletext = ''
+        try:
+            with open(f'~/.golly/Rules/{rulename}.rule') as f:
+                ruletext = f.read()
+            print("Found rule in local rules:", rulename)
+        except FileNotFoundError:
+            try:
+                with open(f'/usr/share/golly/Rules/{rulename}.rule') as f:
+                    ruletext = f.read()
+                print("Found rule in builtin rules", rulename)
+            except FileNotFoundError:
+                print('could not load rule', rulename,
+                      'assuming it\'s built-in')
     return f'<div class="lifeviewer"><textarea>{source}</textarea><canvas height="{options.get("height", 400)}" width="{options.get("width", 600)}"></canvas></div>'
 
 
@@ -148,6 +165,10 @@ MARKDOWN = {
         'attr_list': {},
         'markdown_figcap': {},
         'python_markdown_comments:CommentsExtension': {},
+        'mdx_include': {
+            'syntax_left': r'<{2,}\s+i(?:nc(?:lude))',
+            'syntax_right': r'>{2,}',
+        }
     },
     'output_format': 'html5',
 }

@@ -27,7 +27,7 @@ I cobbled together a small Wireworld simulator in [Processing](https://www.proce
 
 Unfortunately, the Quinapalus guys did a pretty darn good job of optimizing their computer. Dissatisfied with the massive loops of electrons I searched for another computer in Wireworld and instead discovered another rule. The Wireworld++ rule, as described in [the paper by Gladkikh et al](https://wpmedia.wolfram.com/uploads/sites/13/2018/07/27-1-2.pdf) ([local copy]({attach}wireworld++.pdf)), is a fusion of two "flavors" of Wireworld into one another: a "strong" wireworld and a "weak" wireworld. With one flavor only it behaves exactly like regular Wireworld. But where the two flavors touch it enables creating some very tiny logic gates -- two strong wires touching a weak wire form an XOR gate, and two weak wires into a strong wire form an AND gate.
 
-Here is the Wireworld++ rule file for running it in Golly: [wireworld++]({attach}../../../../.golly/Rules/Wireworld++.rule){download="Wireworld++.rule"} The top also contains a Python function that was used to generate it.
+Here is the Wireworld++ rule file for running it in Golly: [Wireworld++.rule](https://raw.githubusercontent.com/dragoncoder047/wiki/main/Rule%3AWireworld%2B%2B){download="Wireworld++.rule"} The top also contains a Python function that was used to generate it.
 
 And here is a comparison of the Wireworld++ AND and XOR gates along with their conventional Wireworld counterparts:
 

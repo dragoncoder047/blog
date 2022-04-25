@@ -22,8 +22,7 @@ The superclass (`Importer`) has no constructor, so I naturally figured I would n
 Then I got this:
 
 ```txt
-ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived con
-structor
+ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor
 ```
 
 Well, I'll be! Really?? Python would allow this. I thought Javascript was a duck-typed language which would similarly allow this.

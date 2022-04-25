@@ -20,8 +20,6 @@ jobs:
           python3 -m pip install -r requirements.txt
       - name: clean old outputs
         run: |
-          rm index.html
-          rm 404.html
           rm -rf a/
           rm -rf p/
           rm -rf images/

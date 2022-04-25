@@ -29,4 +29,4 @@ jobs:
         uses: ad-m/github-push-action@40bf560936a8022e68a3c00e7d2abefaf01305a6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          branch: ${{ github.ref }}

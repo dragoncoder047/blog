@@ -20,3 +20,8 @@ jobs:
           python3 -m pip install -r requirements.txt
       - name: build
         run: python3 build.py
+      - name: push built files
+        uses: ad-m/github-push-action@40bf560936a8022e68a3c00e7d2abefaf01305a6
+        with:
+          github-token: ${{ GITHUB_TOKEN }}
+          branch: main

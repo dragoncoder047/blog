@@ -21,6 +21,7 @@ Here it is, using displayed using Chris Rowett's LifeViewer: (and the RLE file f
 
 ```lifeviewer
 << include aaaa/cellular automata/quinapalus_primes.rle >>
+[[ X 335 Y 95 STEP 64 ZOOM 1.0 ]]
 ```
 
 I cobbled together a small Wireworld simulator in [Processing](https://www.processing.org), and made some investigations and modifications to the Quinapalus computer. I am not going to bother posting that anywhere because it is really slow, the graphics are laggy, and you can't make edits mid-simulation. I ended up converting everything to [Golly](http://golly.sourceforge.net) format. (If you don't know what Golly is, it's a cross-platform general purpose cellular automata simulator that uses Bill Gosper's ingenious [Hashlife](https://johnhw.github.io/hashlife/index.md.html) algorithm to run patterns insanely fast. Highly recommend it.)
@@ -36,6 +37,38 @@ x = 42, y = 16, rule = Wireworld++
 34.2C.4C$.C2.C2.C.2C22.C2.C$C.C.2C.C.C.C3.A3C2F12.C.3C$3C.C.2C.C.C9.
 5C7.C2.C$C.C.C2.C.2C4.A3C2F9.A2C.7CA$36.C4$30.A4C$C.C.3C.2C5.A5C.F12.
 C$.C2.C.C.C.C10.2F3C8.4C$C.C.3C.C6.A5C13.C2.5C$34.4C$35.C$30.A4C!
+[[ T 0 PAUSE 1 LOOP 15 ]]
 ```
 
 Notice how much smaller the Wireworld++ gates are compared to their Wireworld counterparts. All of the constructions discussed in the original paper work, and are smaller than their Wireworld counterparts.
+
+Now, the next thing I noticed with Wireworld++ is the tiny wire crossover. However, it isn't a double channel crossing, meaning that if two signals come in at the same time, they will crash into each other, and one or both will be lost. The equivalent Wireworld crossing is the double-ANDNOT gate, and while bulkier, it still suffers from the same problems:
+
+```lifeviewer
+x = 19, y = 14, rule = Wireworld++
+A8C$9.C$A7C2F$8.2F9C$8.C$9.10C2$A6C$7.C.C$6.13C$6.C2.C$6.13C$7.C.C$A6C!
+[[ T 0 PAUSE 1 LOOP 20 ]]
+```
+
+A true double-channel crossing is made with three XOR gates like so:
+
+```{.kroki type="svgbob"}
+
+A ---*-----------\\---.
+     |           ||   +--------> B
+     '-\\---.  .-//---'
+       ||   +--*
+     .-//---'  '-\\---.
+     |           ||   +--------> A
+B ---*-----------//---'
+```
+
+and in Wireworld:
+
+```lifeviewer
+x = 24, y = 19, rule = WireWorld
+.10CAB10C$C22.C$C22.C$C10.2C10.C$C8.2C2.C9.C$C7.C3.4C7.C$.5CBA4.C2.8C
+$8.C3.4C$7.4C2.C$7.C2.3C$7.4C2.C$8.C3.4C$.7C4.C2.8C$C7.C3.4C7.C$C8.2C
+2.C9.C$C10.2C10.C$C22.C$C22.C$.10CAB10C!
+[[ AUTOSTART GPS 15 ]]
+```

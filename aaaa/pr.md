@@ -1,5 +1,5 @@
 Title: First Pull Request
-Date: 2020-04-26
+Date: 2022-04-26
 
 Today I managed to submit my first ever Github pull request. In develpoing Phoo I made some changes to the meta-words from its predecessor Quackery, and they seemed backportable to Quackery. So I forked Quackery and submitted a [pull request](https://github.com/GordonCharlton/Quackery/pull/6) with those changes.
 

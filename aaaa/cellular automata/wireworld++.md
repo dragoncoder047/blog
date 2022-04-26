@@ -54,13 +54,13 @@ A true double-channel crossing is made with three XOR gates like so:
 
 ```{.kroki type="svgbob"}
 
-A ---*-----------\\---.
-     |           ||   +--------> B
-     '-\\---.  .-//---'
-       ||   +--*
-     .-//---'  '-\\---.
-     |           ||   +--------> A
-B ---*-----------//---'
+A ---*-----------.----.
+     |           |XOR +--------> B
+     '-.----.  .-'----'
+       |XOR +--*
+     .-'----'  '-.----.
+     |           |XOR +--------> A
+B ---*-----------'----'
 ```
 
 and in Wireworld:
@@ -70,5 +70,5 @@ x = 24, y = 19, rule = WireWorld
 .10CAB10C$C22.C$C22.C$C10.2C10.C$C8.2C2.C9.C$C7.C3.4C7.C$.5CBA4.C2.8C
 $8.C3.4C$7.4C2.C$7.C2.3C$7.4C2.C$8.C3.4C$.7C4.C2.8C$C7.C3.4C7.C$C8.2C
 2.C9.C$C10.2C10.C$C22.C$C22.C$.10CAB10C!
-[[ AUTOSTART GPS 15 ]]
+[[ AUTOSTART GPS 15 LOOP 108 ]]
 ```

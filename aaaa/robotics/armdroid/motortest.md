@@ -1,5 +1,6 @@
 title: Motor Test
 date: 2022-04-27
+Series: armdroid-testing
 
 After my [investigation]({filename}investigation.md) with the conveyor belt, I thought that the board inside the conveyor would be able to drive any stepper motor. It had the same plug connecting to the motor as all the others and appeared to be wired up the same way.
 

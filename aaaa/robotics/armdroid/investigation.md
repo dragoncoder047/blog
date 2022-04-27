@@ -1,5 +1,6 @@
 Title: Investigation
 Date: 2022-04-22
+Series: armdroid-testing
 
 A couple days ago it finally dawned on me that I hadn't tested the power supply inside the [conveyor belt](/armdroid/p/images/conveyor.html) that came with the Armdroid. So I plugged everything together and turned it on.
 

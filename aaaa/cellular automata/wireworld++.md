@@ -83,10 +83,9 @@ $19.C2.3C$.10C8.4C2.C$A10.7C2.C3.4C.8C$.B4CAB3C7.2C4.C2.2C$20.C3.4C$
 Knowing how small the XOR gate is in Wireworld++, I figured the crossover could be made much smaller -- and indeed it can:
 
 ```lifeviewer
-x = 37, y = 13, rule = Wireworld++
-23.2C$21.2C2.C$20.C3.4C$.9CB7.2C4.C2.2C$A10.A6C2.C3.4C.8C$.B9C8.4C2.C
-$19.C2.3C$.10C8.4C2.C$A10.7C2.C3.4C.8C$.B4CAB3C7.2C4.C2.2C$20.C3.4C$
-21.2C2.C$23.2C!
+x = 37, y = 7, rule = Wireworld++
+.9CB9.5C.F$A10.A8C5.F.10C$.B9C9.C.F.C.F$21.F.C$.10C9.C.F.C.F$A10.9C5.
+F.10C$.B4CAB3C9.6CF!
 [[ THUMBNAIL AUTOSTART GPS 10 ]]
 ```
 

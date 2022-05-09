@@ -53,8 +53,13 @@
 <script src="/static/lv-plugin.js"></script>
 <style>
 .lifeviewer textarea {
-	position: absolute;
-	top: -1000px;
+    position: absolute;
+    top: -1000px;
+}
+
+.lifeviewer canvas {
+    margin-left: auto;
+    margin-right: auto;
 }
 </style>        <!-- /Lifeviewer -->
 
@@ -114,7 +119,7 @@
 </details>
 <p>After some Googling I discovered a cellular automata called Wireworld that is designed to simulate electronic circuits. Each of its square cells can be in one of four states, &ldquo;empty&rdquo; (which always stays empty, and is shown here in black), &ldquo;electron head&rdquo; (which subsequently turns to a tail, and is shown in blue), &ldquo;electron tail&rdquo; (which subsequently turns to wire), and &ldquo;empty wire&rdquo; (which remains wire unless exactly 1 or 2 of the 8 neighbors is a &ldquo;head&rdquo;, and is shown in orange.) <a href="https://en.wikipedia.org/wiki/Wireworld">Wikipedia page on Wireworld</a></p>
 <p>Almost simultaneously with that I discovered a magnificent computer constructed in Wireworld by David Moore and Mark Owen. They also have a rudimentary introduction to Wireworld construction on their website along with an overview of their computer &ndash; <a href="http://quinapalus.com/wi-index.html">http://quinapalus.com/wi-index.html</a>. The link to Julien Thevenon&rsquo;s reverse engineering is down, but after some more Googling I found it buried at pages 120-164 of <a href="http://1010.co.uk/org/erdsir_modes_reader.pdf">http://1010.co.uk/org/erdsir_modes_reader.pdf</a>. I have extracted the relevant pages <a href="https://dragoncoder047.github.io/blog/p/d/quinapalus_computer_reverse_engineering.pdf">here</a> so you don&rsquo;t have to scroll, and in case that goes down too.</p>
-<p>Here it is, using displayed using Chris Rowett&rsquo;s LifeViewer: (and the RLE file for Golly: <a download="quinapalus_primes.rle" href="https://dragoncoder047.github.io/blog/p/d/quinapalus_primes.rle">quinapalus_primes.rle</a>)</p>
+<p>Here it is, displayed using Chris Rowett&rsquo;s LifeViewer: (and the RLE file for Golly: <a download="quinapalus_primes.rle" href="https://dragoncoder047.github.io/blog/p/d/quinapalus_primes.rle">quinapalus_primes.rle</a>)</p>
 <div class="lifeviewer"><textarea>#CXRLE Pos=34,27
 x = 568, y = 903, rule = WireWorld
 150.25C66.BACBACBACBACBACBACBACBACB66.BACBACBACBACBACBACBACBACB66.BAC
@@ -1242,29 +1247,76 @@ C$36.C2.C6.C2.C6.C2.C6.C2.C6.C2.C6.C2.C6.C2.C6.C2.C6.C2.C6.C2.C$36.C
 2.C6.C2.C6.C2.C6.C2.C6.C2.C6.C2.C6.C2.C6.C2.C6.C2.C6.C2.C$37.2C8.2C8.
 2C8.2C8.2C8.2C8.2C8.2C8.2C8.2C!
 
-[[ X 335 Y 95 STEP 64 ZOOM 1.0 ]]</textarea><canvas height="400" width="600"></canvas></div>
+[[ STEP 64 ZOOM 1.0 ]]</textarea><canvas height="400" width="600"></canvas></div>
 <p>I cobbled together a small Wireworld simulator in <a href="https://www.processing.org">Processing</a>, and made some investigations and modifications to the Quinapalus computer. I am not going to bother posting that anywhere because it is really slow, the graphics are laggy, and you can&rsquo;t make edits mid-simulation. I ended up converting everything to <a href="http://golly.sourceforge.net">Golly</a> format. (If you don&rsquo;t know what Golly is, it&rsquo;s a cross-platform general purpose cellular automata simulator that uses Bill Gosper&rsquo;s ingenious <a href="https://johnhw.github.io/hashlife/index.md.html">Hashlife</a> algorithm to run patterns insanely fast. Highly recommend it.)</p>
 <p>Unfortunately, the Quinapalus guys did a pretty darn good job of optimizing their computer. Dissatisfied with the massive loops of electrons I searched for another computer in Wireworld and instead discovered another rule. The Wireworld++ rule, as described in <a href="https://wpmedia.wolfram.com/uploads/sites/13/2018/07/27-1-2.pdf">the paper by Gladkikh et al</a> (<a href="https://dragoncoder047.github.io/blog/p/d/wireworld++.pdf">local copy</a>), is a fusion of two &ldquo;flavors&rdquo; of Wireworld into one another: a &ldquo;strong&rdquo; wireworld and a &ldquo;weak&rdquo; wireworld. With one flavor only it behaves exactly like regular Wireworld. But where the two flavors touch it enables creating some very tiny logic gates &ndash; two strong wires touching a weak wire form an XOR gate, and two weak wires into a strong wire form an AND gate.</p>
 <p>Here is the Wireworld++ rule file for running it in Golly: <a download="Wireworld++.rule" href="https://raw.githubusercontent.com/dragoncoder047/wiki/main/Rule%3AWireworld%2B%2B">Wireworld++.rule</a> The top also contains a Python function that was used to generate it.</p>
-<p>And here is a comparison of the Wireworld++ AND and XOR gates along with their conventional Wireworld counterparts:</p>
-<div class="lifeviewer"><textarea>x = 42, y = 16, rule = Wireworld++
-34.2C.4C$.C2.C2.C.2C22.C2.C$C.C.2C.C.C.C3.A3C2F12.C.3C$3C.C.2C.C.C9.
-5C7.C2.C$C.C.C2.C.2C4.A3C2F9.A2C.7CA$36.C4$30.A4C$C.C.3C.2C5.A5C.F12.
-C$.C2.C.C.C.C10.2F3C8.4C$C.C.3C.C6.A5C13.C2.5C$34.4C$35.C$30.A4C!
-[[ T 0 PAUSE 1 LOOP 15 ]]</textarea><canvas height="400" width="600"></canvas></div>
+<p>And here is a comparison of the Wireworld++ AND and XOR gates (on the left) along with their conventional Wireworld counterparts (on the right), hooked up to period-24 loops that test all the possible inputs (00, 01, 10, and 11) at period 6:</p>
+<div class="lifeviewer"><textarea>x = 58, y = 33, rule = Wireworld++
+17.C23.C$17.C23.C$17.C23.C$17.C4.2C2.C3.C.3C6.C$17.C3.C2.C.2C2.C.C2.C
+5.C$17.C3.4C.C.C.C.C2.C5.C$17.C3.C2.C.C2.2C.C2.C5.C$17.C3.C2.C.C3.C.
+3C6.C$17.C23.C$17.C20.2C.C$17.C19.C2.C$17.C19.C.3C$.10C6.C6.9CB3.C2.C
+5.10C$A10.5CF.F4CA10.A2C.7CA10.C$.B4CAB3C13.B9C6.C5.B4CAB3C4$17.C22.C
+$17.C22.C$17.C22.C$17.C3.C3.C2.2C2.3C5.C$17.C4.C.C2.C2.C.C2.C4.C$17.C
+5.C3.C2.C.3C5.C$17.C4.C.C2.C2.C.C.C5.C$17.C3.C3.C2.2C2.C2.C4.C$17.C
+22.C$17.C22.C$17.C22.C$16.2F21.3C$.10C6.F6.9CB5.C.C5.10C$A10.6C.5CA
+10.A5C.5CA10.C$.B4CAB3C13.B9C5.3C5.B4CAB3C!
+[[ THUMBNAIL AUTOSTART GPS 10 ]]</textarea><canvas height="400" width="600"></canvas></div>
 <p>Notice how much smaller the Wireworld++ gates are compared to their Wireworld counterparts. All of the constructions discussed in the original paper work, and are smaller than their Wireworld counterparts.</p>
-<p>Now, the next thing I noticed with Wireworld++ is the tiny wire crossover. However, it isn&rsquo;t a double channel crossing, meaning that if two signals come in at the same time, they will crash into each other, and one or both will be lost. The equivalent Wireworld crossing is the double-ANDNOT gate, and while bulkier, it still suffers from the same problems:</p>
-<div class="lifeviewer"><textarea>x = 19, y = 14, rule = Wireworld++
-A8C$9.C$A7C2F$8.2F9C$8.C$9.10C2$A6C$7.C.C$6.13C$6.C2.C$6.13C$7.C.C$A6C!
-[[ T 0 PAUSE 1 LOOP 20 ]]</textarea><canvas height="400" width="600"></canvas></div>
+<h2 id="crossovers">Crossovers</h2>
+<p>One of the focal points in the Wireworld++ paper is the tiny wire crossover. However, it isn&rsquo;t a double channel crossing, meaning that if two signals come in at the same time, they will crash into each other, and one or both will be lost. The equivalent Wireworld crossing is the double-ANDNOT gate, and while bulkier, it still suffers from the same problems:</p>
+<div class="lifeviewer"><textarea>x = 50, y = 7, rule = Wireworld++
+9.C9.9CB7.2C$6C2.C.8CA10.A6C2.C.C.8C$6.C2F10.B9C8.5C$7.2FC27.C2.C$7.C
+2.C8.10C8.5C$7C4.7CA10.7C2.C.C.8C$19.B4CAB3C7.2C!
+[[ THUMBNAIL AUTOSTART GPS 10 ]]</textarea><canvas height="400" width="600"></canvas></div>
 <p>A true double-channel crossing is made with three XOR gates like so:</p>
-<p><img src="https://kroki.io/svgbob/svg/eNrjclTQ1dXV0kUAPTDBpQACNQoIUBPhH6SgDVNlp-AEUaIO1aCgoKerDmKpc6Fp0IIIwKQRWgjb4cjlhO48iCEAJ18fSQ==" /></p>
+<p><img src="https://kroki.io/svgbob/svg/eNpzVNC109XShQA7MKkHIbkUQKBGARnUKET4Bylo68LUKzhBVKnDNAHZerrqYLY6F5omoD0QIbgKZJ1EWefI5YTpXqhhAK6KIqM=" /></p>
 <p>and in Wireworld:</p>
-<div class="lifeviewer"><textarea>x = 24, y = 19, rule = WireWorld
-.10CAB10C$C22.C$C22.C$C10.2C10.C$C8.2C2.C9.C$C7.C3.4C7.C$.5CBA4.C2.8C
-$8.C3.4C$7.4C2.C$7.C2.3C$7.4C2.C$8.C3.4C$.7C4.C2.8C$C7.C3.4C7.C$C8.2C
-2.C9.C$C10.2C10.C$C22.C$C22.C$.10CAB10C!
-[[ AUTOSTART GPS 15 LOOP 108 ]]</textarea><canvas height="400" width="600"></canvas></div>
+<div class="lifeviewer"><textarea>x = 37, y = 13, rule = Wireworld++
+23.2C$21.2C2.C$20.C3.4C$.9CB7.2C4.C2.2C$A10.A6C2.C3.4C.8C$.B9C8.4C2.C
+$19.C2.3C$.10C8.4C2.C$A10.7C2.C3.4C.8C$.B4CAB3C7.2C4.C2.2C$20.C3.4C$
+21.2C2.C$23.2C!
+[[ THUMBNAIL AUTOSTART GPS 10 ]]</textarea><canvas height="400" width="600"></canvas></div>
+<p>Knowing how small the XOR gate is in Wireworld++, I figured the crossover could be made much smaller &ndash; and indeed it can:</p>
+<div class="lifeviewer"><textarea>x = 37, y = 13, rule = Wireworld++
+23.2C$21.2C2.C$20.C3.4C$.9CB7.2C4.C2.2C$A10.A6C2.C3.4C.8C$.B9C8.4C2.C
+$19.C2.3C$.10C8.4C2.C$A10.7C2.C3.4C.8C$.B4CAB3C7.2C4.C2.2C$20.C3.4C$
+21.2C2.C$23.2C!
+[[ THUMBNAIL AUTOSTART GPS 10 ]]</textarea><canvas height="400" width="600"></canvas></div>
+<p>However after playing around a little more I made two iterations that were successively smaller:</p>
+<div class="lifeviewer"><textarea>x = 37, y = 7, rule = Wireworld++
+.9CB13.2C.F$A10.A8C2.FC2.F.9C$.B9C9.C2F2.C.F$22.F2C$.10C9.C2F2.C.F$A
+10.9C2.FC2.F.9C$.B4CAB3C13.2C.F!
+[[ THUMBNAIL AUTOSTART GPS 10 ]]</textarea><canvas height="400" width="600"></canvas></div>
+<div class="lifeviewer"><textarea>x = 35, y = 7, rule = Wireworld++
+.9CB$A10.A8C.2F.11C$.B9C9.C.FC$21.2F$.10C9.C.FC$A10.9C.2F.11C$.B4CAB
+3C!
+[[ THUMBNAIL AUTOSTART GPS 10 ]]</textarea><canvas height="400" width="600"></canvas></div>
+<h2 id="multiplexers">Multiplexers</h2>
+<p>Looking back at the Quinapalus computer, I saw one big place where it could be optimized: the multiplexer that loads the new data into the memory loops.</p>
+<p>The multiplexer they used was wired like this:</p>
+<p><img src="https://kroki.io/svgbob/svg/eNp9kEEOhCAMRfec4u9IJoEDGGNCRnfGGmW2HmNWjWe3w0AEJb4N_PSX8gsII9Gs7P6EVQ2uWBOxAGdKrEG0xoA-HnJluKmfyIPbmwqgd95JI19m6GTQQJMpsX5xZ4vn_7Nb5cEfXLi44sqjna44vktF6aIlFFOOlynAOozD21d2V-RS-nH3-gBBklvG" /></p>
+<p>In this demo, you can see the loop starts out originally with 1100 in it, and then 1010 is written to it.</p>
+<div class="lifeviewer"><textarea>x = 48, y = 9, rule = Wireworld++
+9C.7CAB$9.C9.C.C$9.C10.3C$.C.C.C.C2.7C2.C.C.C.C$17.B.C4.41C2B4CAB4C2B
+4CA$16.3A3.2C.C$17.C3.C$18.4C$22.36CAB4CAB4CAB4CA!
+[[ GPS 10 T 24 PAUSE 1 T 72 PAUSE 1 LOOP 120 THUMBNAIL ]]</textarea><canvas height="400" width="600"></canvas></div>
+<p><em>(The loop was originally period 96, to fit 16 bits, but I shortened to to period 24, for the sake of brevity.)</em></p>
+<p>After some work, I reworked the multiplexer to use this design:</p>
+<p><img src="https://kroki.io/svgbob/svg/eNp9kEEKhDAMRfc9xd8VhPYAIgNF3YkRp8KsPIarMGefqC22TvFt2k9_kv4AwkA0Kft9wqoad6wJWIATJdZDNMaAFg-5MvChWWq4OZUbu6gO0DnvpJBvM3Q0aKBOlFg3_LOG8_zsWmi4w5mLC6402uUK41_xkfcYI_krR2Uy8O6HvvWF3WW5lH7cvf4BVJFbbQ==" /></p>
+<p>and the multiplexer was able to be shrunk to this:</p>
+<div class="lifeviewer"><textarea>x = 64, y = 5, rule = Wireworld++
+19.4C.F20CAB4C2B4CAB4CB$17.2F4.C$8C.8CF.C.C2.F$8.C11.25CAB4CAB4CAB4CA
+$9.3CBA4CBA.C!
+[[ GPS 10 T 24 PAUSE 1 T 72 PAUSE 1 LOOP 120 THUMBNAIL ]]</textarea><canvas height="400" width="600"></canvas></div>
+<p>While I was at it I also made a tiny demultiplexer too:</p>
+<div class="lifeviewer"><textarea>x = 44, y = 9, rule = Wireworld++
+29.2C.2C.C$2C15.9CB2.C2.2C.C$.C10.4CA10.A2.C.C2.C$3C.6C.F5.B9C2.2C.2C
+.2C$10.C$3C.4C2F.F5.10C2.2C3.C2.3C2.C$C.C5.F.6CA10.C.C.C.C.C2.C2.C.C$
+3C14.B4CAB3C2.C.C.3C2.C2.3C$29.2C2.C.C2.C2.C.C!
+[[ THUMBNAIL AUTOSTART GPS 10 ]]</textarea><canvas height="400" width="600"></canvas></div>
+<h1 id="adder-and-incrementor">Adder and Incrementor</h1>
+<p>The next part of the computer that I improved was the serial adder.</p>
             <section id="extras">
                     <div class="blogroll">
                         <ul>

@@ -183,7 +183,7 @@ x = 71, y = 13, rule = Wireworld++
 3C3.C.C6.CAB4CAB4C2B4CB$30.2C2.2C.C.C5.C4.C$32.C7.A.A.C.C.4C$30.4C2.A
 C3.BAC3.2C2.C$31C2.C.B2.3C.A3.C.4C$30.4C2.2C7.C4.C$32.C6.6C6.C2B4CAB
 4CAB4CB$33.6C!
-[[ AUTOSTART T 0 PAUSE 1 GPS 20 T 48 PAUSE 1 LOOP 48 ]]
+[[ AUTOSTART T 0 PAUSE 1 GPS 20 T 48 PAUSE 1 LOOP 49 ]]
 ```
 
 The only problem with this is because the carry clock has an ANDNOT gate to clear it, a NOT gate is needed in the middle -- which requires an always-1 producer, so input signals must be synchronized with the loop. Here's what happens if they don't get synchronized -- the carry clock gets 'stuck' on and produces 1111111111111111111... infinitely:
@@ -194,7 +194,7 @@ x = 71, y = 13, rule = Wireworld++
 3C3.C.C6.CAB4CAB4C2B4CB$30.2C2.2C.C.C5.C4.C$32.C7.C.C.C.C.4C$30.4C2.
 2C3.3C3.2C2.C$31C2.C.C2.CBA.C3.C.4C$30.4C2.AB7.C4.C$32.C6.6C6.C2B4CAB
 4CAB4CB$33.6C!
-[[ AUTOSTART T 0 PAUSE 1 GPS 20 T 120 PAUSE 1 LOOP 120 ]]
+[[ AUTOSTART T 0 PAUSE 1 GPS 20 T 120 PAUSE 1 LOOP 121 ]]
 ```
 
 My improved adder, of course, takes advantage of the tiny 3-cell AND gate of Wireworld++ that can be welded into the carry loop:
@@ -204,7 +204,7 @@ x = 70, y = 9, rule = Wireworld++
 45.2C$36.3C5.C2.C$35.C3.C2.4C2.C$32.6C2.C.C2.C3.C$31.C3.C2.F2.5C4.C$
 32.2C2.2C4.C.C3.2C.AB4CAB4C2B4CB$34.C3.F6.C2F$32C2F5.6C.F.3C2B4CAB4CA
 B4CB$32.F.5C!
-[[ AUTOSTART T 0 PAUSE 1 GPS 20 T 48 PAUSE 1 LOOP 48 ]]
+[[ AUTOSTART T 0 PAUSE 1 GPS 20 T 48 PAUSE 1 LOOP 49 ]]
 ```
 
 Because there is no loop, the signals only need to by synchronized with each other, and not also the adder itself.
@@ -218,7 +218,7 @@ x = 38, y = 18, rule = Wireworld++
 2.AC$.B2.C$2.3C.B$5.CB2C.B4CAB$3.AB.B2.A7.C$2.C6.C7.C$.3C6.2C5.C$2.C
 2.3C4.C4.C$.C.3C.5C5.A$.C.C.C.C9.B$3C2.3C9.C$.C4.C2.8C$.C5.2C$.C$.C$.
 C$.C$2.35CA!
-[[ AUTOSTART T 0 PAUSE 1 GPS 20 T 72 PAUSE 1 LOOP 72 ]]
+[[ AUTOSTART T 0 PAUSE 1 GPS 20 T 72 PAUSE 1 LOOP 73 ]]
 ```
 
 Naturally, the Wireworld++ version is smaller:
@@ -227,7 +227,7 @@ Naturally, the Wireworld++ version is smaller:
 x = 42, y = 12, rule = Wireworld++
 .3CAB4CAB4CAB$C17.C$.7C.F8C$2.F5.2F$3.2C2.C$2.F2.C2.2C$3.4C3.C$5.C.3C
 $5.C$5.C$5.C$6.35CA!
-[[ AUTOSTART T 0 PAUSE 1 GPS 20 T 72 PAUSE 1 LOOP 72 ]]
+[[ AUTOSTART T 0 PAUSE 1 GPS 20 T 72 PAUSE 1 LOOP 73 ]]
 ```
 
 And combined with loop that repeatedly increments the value in the loop, it makes a very compact high-period clock, outputting a signal whenever the carry overflows on the most significant bit. For period-6 data, a loop of $n$ bits will form a clock with a period of $6n2^{n-1}$, so with a 6-bit loop, it forms a period-1152 clock:

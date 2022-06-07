@@ -18,14 +18,14 @@
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
     <meta property="og:title" content="dragoncoder047&rsquo;s blog - Wireworld++" />
-    <meta property="og:description" content="Several years ago I discovered the wonderful world of cellular automata. What’s a cellular automaton? (open this if you don’t know) If you don’t know what a cellular automaton is, it is simply a geometric tiling of some mathematical space, where each shape is called a “cell …" />
+    <meta property="og:description" content="Several years ago I discovered the wonderful world of cellular automata. After some Googling I discovered a cellular automata called Wireworld that is designed to simulate electronic circuits. Each of its square cells can be in one of four states, “empty” (which always stays empty, and is shown here in …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://dragoncoder047.github.io/blog/p/2022/wireworld.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Wireworld++" />
-    <meta name="twitter:description" content="Several years ago I discovered the wonderful world of cellular automata. What’s a cellular automaton? (open this if you don’t know) If you don’t know what a cellular automaton is, it is simply a geometric tiling of some mathematical space, where each shape is called a “cell …" />
+    <meta name="twitter:description" content="Several years ago I discovered the wonderful world of cellular automata. After some Googling I discovered a cellular automata called Wireworld that is designed to simulate electronic circuits. Each of its square cells can be in one of four states, “empty” (which always stays empty, and is shown here in …" />
     <meta name="twitter:image" content="/images/patrick.svg" />
             <!-- Katex -->
 
@@ -111,6 +111,7 @@
                 <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/a/c/cellular-automata.html">cellular automata</a></div>
     </div>
     <p>Several years ago I discovered the wonderful world of cellular automata.</p>
+<p>After some Googling I discovered a cellular automata called Wireworld that is designed to simulate electronic circuits. Each of its square cells can be in one of four states, &ldquo;empty&rdquo; (which always stays empty, and is shown here in black), &ldquo;electron head&rdquo; (which subsequently turns to a tail, and is shown in blue), &ldquo;electron tail&rdquo; (which subsequently turns to wire), and &ldquo;empty wire&rdquo; (which remains wire unless exactly 1 or 2 of the 8 neighbors is a &ldquo;head&rdquo;, and is shown in orange.) Have a look at the <a href="https://en.wikipedia.org/wiki/Wireworld">Wikipedia page on Wireworld</a> for more details.</p>
 <details class="note">
 <summary>What&rsquo;s a cellular automaton? (open this if you don&rsquo;t know)</summary>
 <p>If you don&rsquo;t know what a cellular automaton is, it is simply a geometric tiling of some mathematical space, where each shape is called a &ldquo;cell&rdquo; and can be in one of a number of &ldquo;states&rdquo;, and every time step (called a &ldquo;generation&rdquo;) each cell looks at the cells around it in some predefined relation (called the &ldquo;neighborhood&rdquo;) and updates its state according to some set rules.</p>
@@ -118,7 +119,6 @@
 <p>The most heavily-studied one is called <strong>Conway&rsquo;s Game of Life</strong> (due to its creator, the mathematician John Conway) and is on a square grid where each cell can be in one of two states, &ldquo;alive&rdquo; or &ldquo;dead&rdquo;. A dead cell will be &ldquo;born&rdquo; and become alive in the next generation if exactly 3 of its 8 neighbors touching it are alive, and an alive cell will remain alive if 2 or 3 of its neighbors are alive.</p>
 <p>I won&rsquo;t bore you with the details of this specific cellular automaton because it has so heavily been researched. Nathaniel Johnston has set up an entire website to host a wiki, forums, several old pages of discoveries from the 1970s-1990s, and even a book he co-authored. That site is <a href="https://conwaylife.com/">https://conwaylife.com/</a> &ndash; go there if you are interested. You can also find that link at the bottom of every page.</p>
 </details>
-<p>After some Googling I discovered a cellular automata called Wireworld that is designed to simulate electronic circuits. Each of its square cells can be in one of four states, &ldquo;empty&rdquo; (which always stays empty, and is shown here in black), &ldquo;electron head&rdquo; (which subsequently turns to a tail, and is shown in blue), &ldquo;electron tail&rdquo; (which subsequently turns to wire), and &ldquo;empty wire&rdquo; (which remains wire unless exactly 1 or 2 of the 8 neighbors is a &ldquo;head&rdquo;, and is shown in orange.) Have a look at the <a href="https://en.wikipedia.org/wiki/Wireworld">Wikipedia page on Wireworld</a> for more details.</p>
 <p>Almost simultaneously with that I discovered a magnificent computer constructed in Wireworld by David Moore and Mark Owen. They also have a rudimentary introduction to Wireworld construction on their website along with an overview of their computer &ndash; <a href="http://quinapalus.com/wi-index.html">http://quinapalus.com/wi-index.html</a>. The link to Julien Thevenon&rsquo;s reverse engineering is down, but after some more Googling I found it buried at pages 120-164 of <a href="http://1010.co.uk/org/erdsir_modes_reader.pdf">http://1010.co.uk/org/erdsir_modes_reader.pdf</a>. I have extracted the relevant pages <a href="https://dragoncoder047.github.io/blog/p/2022/quinapalus_computer_reverse_engineering.pdf">here</a> so you don&rsquo;t have to scroll, and in case that goes down too.</p>
 <p>Here it is, displayed using Chris Rowett&rsquo;s LifeViewer: (and the RLE file for Golly: <a download="quinapalus_primes.rle" href="https://dragoncoder047.github.io/blog/p/2022/quinapalus_primes.rle">quinapalus_primes.rle</a>)</p>
 <div class="lifeviewer"><textarea>#CXRLE Pos=34,27

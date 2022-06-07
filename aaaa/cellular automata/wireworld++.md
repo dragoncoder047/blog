@@ -3,6 +3,8 @@ Date: 2022-05-09
 
 Several years ago I discovered the wonderful world of cellular automata.
 
+After some Googling I discovered a cellular automata called Wireworld that is designed to simulate electronic circuits. Each of its square cells can be in one of four states, "empty" (which always stays empty, and is shown here in black), "electron head" (which subsequently turns to a tail, and is shown in blue), "electron tail" (which subsequently turns to wire), and "empty wire" (which remains wire unless exactly 1 or 2 of the 8 neighbors is a "head", and is shown in orange.) Have a look at the [Wikipedia page on Wireworld](https://en.wikipedia.org/wiki/Wireworld) for more details.
+
 ??? note "What's a cellular automaton? (open this if you don't know)"
     If you don't know what a cellular automaton is, it is simply a geometric tiling of some mathematical space, where each shape is called a "cell" and can be in one of a number of "states", and every time step (called a "generation") each cell looks at the cells around it in some predefined relation (called the "neighborhood") and updates its state according to some set rules.
 
@@ -11,8 +13,6 @@ Several years ago I discovered the wonderful world of cellular automata.
     The most heavily-studied one is called **Conway's Game of Life** (due to its creator, the mathematician John Conway) and is on a square grid where each cell can be in one of two states, "alive" or "dead". A dead cell will be "born" and become alive in the next generation if exactly 3 of its 8 neighbors touching it are alive, and an alive cell will remain alive if 2 or 3 of its neighbors are alive.
 
     I won't bore you with the details of this specific cellular automaton because it has so heavily been researched. Nathaniel Johnston has set up an entire website to host a wiki, forums, several old pages of discoveries from the 1970s-1990s, and even a book he co-authored. That site is <https://conwaylife.com/> -- go there if you are interested. You can also find that link at the bottom of every page.
-
-After some Googling I discovered a cellular automata called Wireworld that is designed to simulate electronic circuits. Each of its square cells can be in one of four states, "empty" (which always stays empty, and is shown here in black), "electron head" (which subsequently turns to a tail, and is shown in blue), "electron tail" (which subsequently turns to wire), and "empty wire" (which remains wire unless exactly 1 or 2 of the 8 neighbors is a "head", and is shown in orange.) Have a look at the [Wikipedia page on Wireworld](https://en.wikipedia.org/wiki/Wireworld) for more details.
 
 Almost simultaneously with that I discovered a magnificent computer constructed in Wireworld by David Moore and Mark Owen. They also have a rudimentary introduction to Wireworld construction on their website along with an overview of their computer -- <http://quinapalus.com/wi-index.html>. The link to Julien Thevenon's reverse engineering is down, but after some more Googling I found it buried at pages 120-164 of <http://1010.co.uk/org/erdsir_modes_reader.pdf>. I have extracted the relevant pages [here]({attach}quinapalus_computer_reverse_engineering.pdf) so you don't have to scroll, and in case that goes down too.
 

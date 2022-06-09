@@ -11,4 +11,6 @@ Oh well. Suffice to say I have other ideas I should be working and not hemming a
 
 Here's the current version of Phoo, embedded:
 
-<iframe src="/phoo/" style="width: 100%"></iframe>
+<iframe src="https://phoo-lang.github.io/" style="width: 100%"></iframe>
+
+EDIT: fixed URL.

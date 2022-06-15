@@ -1,5 +1,6 @@
 Title: Generalized Wire Cellular Automata
-Date: 2022-06-14
+Date: 2022-06-16
+Status: draft
 
 In fooling around with different variants of the Wireworld cellular automaton I was wondering if Wireworld and its variants can be generalized.
 
@@ -16,6 +17,10 @@ While this is useful, it gets old real fast, and especially clumsy and large the
 
 Let me begin by defining what exactly a generalized wire cellular automaton is:
 
-1. State 0 (the background) always remains the background. This eliminates construction rules such as WWEJ3 (but as that is an extension of Wireworld, a universal-construction GWCA would naturally also be an extension).
-2. There exists a subset of states $S$ such that $S\subset U$.
-3. If there are multiple subsets (multiple types of wire), the multiple sets $S_1, S_2, ... S_n$ are partitioned such that all sets are mutually disjoint, that is,
+1. State $0$ (the background) always remains the background. This forbids patterns from expanding and eliminates construction rules such as WWEJ3 (but as that is an extension of Wireworld, a universal-construction GWCA would naturally also be an extension).
+2. If there are multiple types of wire, the multiple subsets of states $S_1, S_2,...S_n$ are partitioned such that all sets are mutually disjoint from each other, that is, $S_1\cup S_2 ...\cup S_n\equiv U$ and $S_p\cap S_q \equiv\emptyset\Longleftrightarrow p\not = q$.
+3. No cell in a state $s_1$ where $s_1\in S_k$ will ever transition to a state $s_2$, $s_2 \not\in S_k$ -- that is, a cell in some wire type will always remain the same wire type.
+4. Each subset $S$ can each be partitioned into $n$ sets of types $T_n$, $1\le n\le 4$.
+5. If a cell in state $p$, $p\in T_k$, changes state to a new state $q$, then $q\in T_{k+1}$. Alternatively, if $x$ and $y$ are states, $x\in T_k$, and $y\in T_k$, a cell cannot transition from $x$ to $y$ without going through one or more additional states.
+
+The Wireworld++ rule I discovered fits these rules: States 1, 2, and 3 are the "strong" wire type, and 4, 5, and 6 are the "weak" type. The strong type always stays the strong type and the weak type always stays the weak type. 1 always changes to 2, 2 always changes to 3, and 3 changes back to 1. Likewise, 4 changes to 5, 5 to 6, and 6 back to 4. State 0 remains 0.

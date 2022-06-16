@@ -18,12 +18,12 @@ While this is useful, it gets old real fast, and especially clumsy and large the
 Let me begin by defining what exactly a generalized wire cellular automaton is:
 
 1. State $0$ (the background) always remains the background. This forbids patterns from expanding and eliminates construction rules such as WWEJ3 (but as that is an extension of Wireworld, a universal-construction GWCA would naturally also be an extension).
-2. If there are multiple types of wire, the multiple subsets of states $S_1, S_2,...S_n$ are partitioned such that all sets are mutually disjoint from each other, that is, $S_1\cup S_2 ...\cup S_n\equiv U$ and $S_p\cap S_q \equiv\emptyset\Longleftrightarrow p\not = q$.
+2. If there are multiple types of wire, the multiple subsets of states $S_1, S_2,...S_n$ are partitioned such that all sets are mutually disjoint from each other, that is, $S_1\cup S_2 ...\cup S_n\equiv U$ and $S_p\cap S_q \equiv\emptyset\longleftrightarrow p\not = q$.
 3. No cell in a state $s_1$ where $s_1\in S_k$ will ever transition to a state $s_2$, $s_2 \not\in S_k$ -- that is, a cell in some wire type will always remain the same wire type.
 4. Each subset $S$ can each be partitioned into $n$ subsets of types $T_n$, $1\le n\le 4$.
 5. If a cell in state $p$, $p\in T_k$, changes state to a new state $q$, then $q\in T_{k+1}$. Alternatively, if $x$ and $y$ are states, $x\in T_k$, and $y\in T_k$, a cell cannot transition from $x$ to $y$ without going through one or more additional states.
 
-GWCA: Generalized Wire Cellular Automata
+*[GWCA]: Generalized Wire Cellular Automata
 
 The Wireworld++ rule I discovered fits these rules: States 1, 2, and 3 are the "strong" wire type, and 4, 5, and 6 are the "weak" type. The strong type always stays the strong type and the weak type always stays the weak type. 1 always changes to 2, 2 always changes to 3, and 3 changes back to 1. Likewise, 4 changes to 5, 5 to 6, and 6 back to 4. State 0 remains 0.
 
@@ -31,6 +31,12 @@ Now, under those constraints, how to serialize this into a rule string?
 
 My first idea was simply an extension of the B/S notation used above: repeat a rule for each wire type separated by commas, and for the asymmetric transitions insert `+N:` (N being the index of the extra wire type, starting from 0) and followed by the transitions from that wire. The whole rule stars with `GW` do designate it as a GWCA rulestring.
 
-Using that notation, Wireworld is `GWB12/S/G3`. Wireworld++ is `GWB12/S/3+1:B2,B12/S/3+0:B1`. Pushing it even further, Lode Vandevenne's [WireWorldRgb](https://lodev.org/ca/wireworldrgb.html) is `GWB12/S/3+2:B12,B1/S/3+0:B1,B2/S/3+1:B1`. WireWorldRYGB (same page) is `GWB12/S/3+2:B01234567+3:B1+1:B2,B12/S/3+3:B01234567+0:B12,B12/S/3+0:B01234567+0:B1+3:B2,B12/S/3+1:B01234567` (Whew!)
+Using that notation, Wireworld is `GWB12/S/G3`. Wireworld++ is `GWB12/S/3+1:B2,B12/S/3+0:B1`. Pushing it even further, Lode Vandevenne's [WireWorldRgb](https://lodev.org/ca/wireworldrgb.html) is `GWB12/S/3+2:B12,B1/S/3+0:B1,B2/S/3+1:B1`. WireWorldRYGB (same page) is `GWB12/S/3+3:B1+1:B2,B12/S/3+0:B12,B12/S/3+0:B1+3:B2,B12/S/3+2:B12` (Whew!)
 
-Now, that is getting a little cumbersome even for only three or four types of wire.
+Now, that is getting a little cumbersome even for only three or four types of wire. [LLLL](https://lodev.org/ca/llll.html) has *eight* -- I'm not going to even try that one.
+
+And this notation also doesn't cover four-state rules that have separate "on" and "off" wires (such as LLLL) or multiple different types of "head" or "tail", i.e. some $T$ sets have more than one element, or where the "tail" lasts longer than one generation (such as NoTimeAtAll).
+
+My next idea was a sparse square matrix structure. Each row/line would be the rule for a particular type of wire, and the comma-separated subrules would be the rule for the sub-state (head, on, tail, off), `B` now meaning turning on from the previous sub-state in the cycle, and `S` means remaining this state. The `+N:` reference is extended to `+N.M` where N is the row and M is the column (again, the topmost row and leftmost column are 0), and M and the dot can be omitted if M is 0.
+
+To be able to support rules like NTAA where the "head" (or any of the substates, for that matter) can carry data in the form of sub-sub-states, 

@@ -87,7 +87,7 @@ READERS = {'html': None}
 
 
 def lv_fence(source, language, css_class, options, md, **kwargs):
-    return f'<div class="lifeviewer"><textarea>{source}\n[[ EXCLUSIVEPLAY ]]</textarea><canvas height="{options.get("height", 400)}" width="{options.get("width", 600)}"></canvas></div>'
+    return f'<div class="lifeviewer"><textarea>{source.replace("AUTOSTART", "")}\n[[ EXCLUSIVEPLAY ]]</textarea><canvas height="{options.get("height", 400)}" width="{options.get("width", 600)}"></canvas></div>'
 
 
 def kroki_fence(source, language, css_class, options, md, **kwargs):

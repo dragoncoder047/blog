@@ -87,23 +87,7 @@ READERS = {'html': None}
 
 
 def lv_fence(source, language, css_class, options, md, **kwargs):
-    m = re.search(r'rule\s+=\s+(\S+)', source, re.MULTILINE)
-    if m is not None:
-        rulename = m.group(1)
-        ruletext = ''
-        try:
-            with open(f'~/.golly/Rules/{rulename}.rule') as f:
-                ruletext = f.read()
-            print("Found rule in local rules:", rulename)
-        except FileNotFoundError:
-            try:
-                with open(f'/usr/share/golly/Rules/{rulename}.rule') as f:
-                    ruletext = f.read()
-                print("Found rule in builtin rules", rulename)
-            except FileNotFoundError:
-                print('could not load rule', rulename,
-                      'assuming it\'s built-in')
-    return f'<div class="lifeviewer"><textarea>{source}</textarea><canvas height="{options.get("height", 400)}" width="{options.get("width", 600)}"></canvas></div>'
+    return f'<div class="lifeviewer"><textarea>{source}\n[[ EXCLUSIVEPLAY ]]</textarea><canvas height="{options.get("height", 400)}" width="{options.get("width", 600)}"></canvas></div>'
 
 
 def kroki_fence(source, language, css_class, options, md, **kwargs):

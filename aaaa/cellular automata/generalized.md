@@ -4,14 +4,14 @@ Status: draft
 
 In fooling around with different variants of the Wireworld cellular automaton I was wondering if Wireworld and its variants can be generalized.
 
-Vanilla Conway's Game of Life and its variants has been generalized, up to the point of being able to express a rule concisely in a single line following a standard format as described [here](https://conwaylife.com/wiki/Cellular_automaton#Life-like_cellular_automata):
+Vanilla Conway's Game of Life and its variants has been generalized, up to the point of being able to express a rule concisely in a single line following a standard format (called Hensel notation after the guy who invented it, Alan Hensel) as described [here](https://conwaylife.com/wiki/Cellular_automaton#Life-like_cellular_automata):
 
 * `B3/S23` (Life) -- a dead cell is born if it has 3 live neighbors (`B3`) and a live cell survives if it has 2 or 3 (`S23`).
 * `B2-a/S12` (Just Friends) -- born if there are 2 live neighbors (`B2`) except (`-`) if they are adjacent (`a`), and survives if there are 1 or 2 live neighbors (`S12`).
-* `B2/S345/4` (Star Wars) -- cells are born if there are 2 neighbors (`B2`), survive if there are 3, 4, or 5 (`S345`) and upon dying, pass through two additional 'dying' states before returning to 'dead' (`/4`).
+* `B2/S345/G4` (Star Wars) -- cells are born if there are 2 neighbors (`B2`), survive if there are 3, 4, or 5 (`S345`) and upon dying, pass through two additional 'dying' states before returning to 'dead' (`/4`).
 * `B3aijn4cw5cek6n/S2-in3-ky4ejntwy5ijnr6cen7c` (Wildfire) -- I'm not going to explain this one here!
 
-Now, Wireworld is obviously not one of these rules as stae 0 never changes; but when it is seen as one of those rules confined to a wire (state 3 -- wire -- as the "background", state 1 as "live", state 2 as "dying"), it can be seen that the rule emulated by the wire is `B12/S/3`. Going in that vein (some rule confined to a wire) there has been [Wire2](https://conwaylife.com/forums/viewtopic.php?f=11&t=3380) (`B2/S/G3` -- Brian's Brain -- confined to a wire), [wireweird](https://conwaylife.com/forums/viewtopic.php?f=11&t=5502&) (`B3/S/G3`), and [Bliptile](https://conwaylife.com/forums/viewtopic.php?f=11&t=907) (`B1/S/G3V`, the `V` deoting the von Neumann neighborhood).
+Now, Wireworld is obviously not one of these rules as stae 0 never changes; but when it is seen as one of those rules confined to a wire (state 3 -- wire -- as the "background", state 1 as "live", state 2 as "dying"), it can be seen that the rule emulated by the wire is `B12/S/G3`. Going in that vein (some rule confined to a wire) there has been [Wire2](https://conwaylife.com/forums/viewtopic.php?f=11&t=3380) (`B2/S/G3` -- Brian's Brain -- confined to a wire), [wireweird](https://conwaylife.com/forums/viewtopic.php?f=11&t=5502&) (`B13/S/G3`), and [Bliptile](https://conwaylife.com/forums/viewtopic.php?f=11&t=907) (`B1/S/G3V`, the `V` deoting the von Neumann neighborhood).
 
 While this is useful, it gets old real fast, and especially clumsy and large the more transitions are restricted. This also doesn't cover hybrid rules such as [Wireworld++]({file}wireworld++.md), which includes two separate and largely independent Wireworld universes, and the transition between the two is asymmetric.
 
@@ -29,14 +29,10 @@ The Wireworld++ rule I discovered fits these rules: States 1, 2, and 3 are the "
 
 Now, under those constraints, how to serialize this into a rule string?
 
-My first idea was simply an extension of the B/S notation used above: repeat a rule for each wire type separated by commas, and for the asymmetric transitions insert `+N:` (N being the index of the extra wire type, starting from 0) and followed by the transitions from that wire. The whole rule stars with `GW` do designate it as a GWCA rulestring.
+My first idea was simply an extension of the B/S notation used above: repeat a rule for each wire type separated by commas, and for the asymmetric transitions insert `+N:` (N being the index of the extra wire type, starting from 0) and followed by the addidtional transitions from that wire. The whole rule stars with `GW` do designate it as a GWCA rulestring.
 
-Using that notation, Wireworld is `GWB12/S/G3`. Wireworld++ is `GWB12/S/3+1:B2,B12/S/3+0:B1`. Pushing it even further, Lode Vandevenne's [WireWorldRgb](https://lodev.org/ca/wireworldrgb.html) is `GWB12/S/3+2:B12,B1/S/3+0:B1,B2/S/3+1:B1`. WireWorldRYGB (same page) is `GWB12/S/3+3:B1+1:B2,B12/S/3+0:B12,B12/S/3+0:B1+3:B2,B12/S/3+2:B12` (Whew!)
+Using that notation, Wireworld is `GWB12/S/3`. Wireworld++ is `GWB12/S/3+1:B2,B12/S/3+0:B1`. Pushing it even further, Lode Vandevenne's [WireWorldRgb](https://lodev.org/ca/wireworldrgb.html) is `GWB12/S/3+2:B12,B1/S/3+0:B1,B2/S/3+1:B1`. WireWorldRYGB (same page) is `GWB12/S/3+3:B1+1:B2,B12/S/3+0:B12,B12/S/3+3:B1+3:B2,B12/S/3+2:B12` (Whew!)
 
 Now, that is getting a little cumbersome even for only three or four types of wire. [LLLL](https://lodev.org/ca/llll.html) has *eight* -- I'm not going to even try that one.
 
-And this notation also doesn't cover four-state rules that have separate "on" and "off" wires (such as LLLL) or multiple different types of "head" or "tail", i.e. some $T$ sets have more than one element, or where the "tail" lasts longer than one generation (such as NoTimeAtAll).
-
-My next idea was a sparse square matrix structure. Each row/line would be the rule for a particular type of wire, and the comma-separated subrules would be the rule for the sub-state (head, on, tail, off), `B` now meaning turning on from the previous sub-state in the cycle, and `S` means remaining this state. The `+N:` reference is extended to `+N.M` where N is the row and M is the column (again, the topmost row and leftmost column are 0), and M and the dot can be omitted if M is 0.
-
-To be able to support rules like NTAA where the "head" (or any of the substates, for that matter) can carry data in the form of sub-sub-states, 
+And this notation also doesn't cover four-state wire types that have separate "on" and "off" wires (such as LLLL) or multiple different types of "head" or "tail", i.e. some $T$ sets have more than one element, or where the "tail" lasts longer than one generation (such as NoTimeAtAll).

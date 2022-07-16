@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en_us">
     <head>
-                <title>dragoncoder047&rsquo;s blog - Investigation</title>
+                <title>dragoncoder047&rsquo;s blog - Page Moved</title>
             <meta charset="utf-8" />
             <meta name="generator" content="Pelican" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,15 +17,15 @@
 
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
-    <meta property="og:title" content="dragoncoder047&rsquo;s blog - Investigation" />
-    <meta property="og:description" content="A couple days ago it finally dawned on me that I hadn’t tested the power supply inside the conveyor belt that came with the Armdroid. So I plugged everything together and turned it on. The motor started making a “d-d-d-d-d-d-d-d-d-d-d-d” sound like it was trying to move, and when …" />
+    <meta property="og:title" content="dragoncoder047&rsquo;s blog - Page Moved" />
+    <meta property="og:description" content="This page has been moved, please click here." />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://dragoncoder047.github.io/blog/p/2022/investigation.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Investigation" />
-    <meta name="twitter:description" content="A couple days ago it finally dawned on me that I hadn’t tested the power supply inside the conveyor belt that came with the Armdroid. So I plugged everything together and turned it on. The motor started making a “d-d-d-d-d-d-d-d-d-d-d-d” sound like it was trying to move, and when …" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Page Moved" />
+    <meta name="twitter:description" content="This page has been moved, please click here." />
     <meta name="twitter:image" content="/images/patrick.svg" />
     
     </head>
@@ -66,7 +66,7 @@
             </nav>
         </header>
         <main>
-    <h1><a href="https://dragoncoder047.github.io/blog/p/2022/investigation.html" rel="bookmark" title="Permalink to this page">Investigation</a></h1>
+    <h1><a href="https://dragoncoder047.github.io/blog/p/2022/investigation.html" rel="bookmark" title="Permalink to this page">Page Moved</a></h1>
     
     <div class="post-info">
         Posted <time class="published" datetime="2022-04-22T00:00:00-04:00">Fri 22 April 2022</time>
@@ -75,21 +75,7 @@
             </address>
                 <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/a/c/robotics/armdroid.html">armdroid</a></div>
     </div>
-        <p><em>This post is part 1 of the armdroid-testing series:</em></p>
-        <ol class="series">
-                <li class="active">
-                    <a href='https://dragoncoder047.github.io/blog/p/2022/investigation.html'>Investigation</a>
-                </li>
-                <li >
-                    <a href='https://dragoncoder047.github.io/blog/p/2022/motor-test.html'>Motor Test</a>
-                </li>
-        </ol>
-    <p>A couple days ago it finally dawned on me that I hadn&rsquo;t tested the power supply inside the <a href="/armdroid/p/images/conveyor.html">conveyor belt</a> that came with the Armdroid. So I plugged everything together and turned it on.</p>
-<p>The motor started making a &ldquo;d-d-d-d-d-d-d-d-d-d-d-d&rdquo; sound like it was trying to move, and when I (carefully!) removed the cover with the motor on, I could see that it was indeed trying to move, but something was wrong and it was jumping backwards every cycle. I didn&rsquo;t really know what was going on, but unfortunately the bell rang at the end of lunch and I had to go to fifth period.</p>
-<p>Today I pulled the little circuit board off the plastic standoffs it was attached to and had a look at it. Back when I opened the front cover to get the pictures of it, the heatsunk chip popped out of its socket, and so I absentmindedly smushed it back in. It turns out that one of its pins had missed the hole in the socket when I had done that and was not connected, hence the missing step in the driver cycle. And the out-of-place pin was hiding between the socket and the stepper motor&rsquo;s plug next to it, where I could not see without taking the board out. Sneaky sneaky.</p>
-<p>After fixing the chip&rsquo;s pin, the motor ran just fine. On &ldquo;high&rdquo; it ran about 60 RPM (and with 200 steps per revolution, that&rsquo;s 200 Hz for the clock if each step takes one oscillation of the clock), on &ldquo;medium&rdquo; it ran about 40 RPM, and &ldquo;low&rdquo; was 20 RPM (3 seconds per revolution).</p>
-<p>Pulling the board out of its enclosure also allowed me to get a look at the chips on it. And it turns out my hunch was right &ndash; the small 8-pin chip was indeed a 555 timer, the heatsunk chip was the same ULN2003A quad Darlington switch used in the Armdroid itself, and the third one is a 74LS175 quad D flip-flop that I assume is wired into itself to turn the pulses from the 555 into quadrature control signals for the motor. I updated the conveyor&rsquo;s page on the Armdroid website to actually list these part numbers instead of just my hunch.</p>
-<p>See how much you can learn when you <em>actually look at stuff closely</em>? That&rsquo;s a lesson that I really need to learn.</p>
+    <p>This page has been moved, please click <a href="/armdroid/updates/2022/investigation.html">here</a>.</p>
             <section id="extras">
                     <div class="blogroll">
                         <ul>

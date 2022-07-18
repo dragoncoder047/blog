@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>dragoncoder047&rsquo;s blog - Terminal Troubles</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+
+
+
+    
+
+
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="dragoncoder047&rsquo;s blog - Terminal Troubles" />
+    <meta property="og:description" content="I have finally gotten to the point in Phoo’s development that I am ready to set up the web interface. I chose xterm.js for the terminal interface because I intend for Phoo to be able to be run in Nodejs as well as in the browser, but I …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/p/2022/terminal-troubles.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Terminal Troubles" />
+    <meta name="twitter:description" content="I have finally gotten to the point in Phoo’s development that I am ready to set up the web interface. I chose xterm.js for the terminal interface because I intend for Phoo to be able to be run in Nodejs as well as in the browser, but I …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+    
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts abut nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/p/archive.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://github.com/dragoncoder047/phoo">Phoo</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/a/catg.html">Categories</a>
+                            <ul>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/cellular-automata.html">cellular automata</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/electronics.html">electronics</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/javascript.html">javascript</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/misc.html">misc</a></li>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/a/c/phoo.html">phoo</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/python.html">python</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/robotics.html">robotics</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/robotics/armdroid.html">robotics/armdroid</a></li>
+                            </ul>
+                        </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/p/2022/terminal-troubles.html" rel="bookmark" title="Permalink to this page">Terminal Troubles</a></h1>
+    
+    <div class="post-info">
+        Posted <time class="published" datetime="2022-03-23T00:00:00-04:00">Wed 23 March 2022</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/a/auth/dragoncoder047.html">dragoncoder047</a>
+            </address>
+            <div class="category">Categories:
+                    <a href="https://dragoncoder047.github.io/blog/a/c/phoo.html">phoo</a>, 
+                    <a href="https://dragoncoder047.github.io/blog/a/c/javascript.html">javascript</a>
+            </div>
+    </div>
+    <p>I have finally gotten to the point in Phoo&rsquo;s development that I am ready to set up the web interface.</p>
+<p>I chose xterm.js for the terminal interface because I intend for Phoo to be able to be run in Nodejs as well as in the browser, but I don&rsquo;t really use Nodejs much, so I wanted to have a simulated terminal to run it in.</p>
+<p>It took me a while to set up the terminal so that it came up properly. I then had the problem of how to get input from the user. I searched around for xterm.js addons and I found <a href="https://github.com/wavesoft/local-echo">local-echo</a>, made by a guy named Ioannis Charalampidis. With a few patches (<a href="https://github.com/wavesoft/local-echo/issues/24">#24</a>, <a href="https://github.com/wavesoft/local-echo/issues/30">#30</a>, and <a href="https://github.com/wavesoft/local-echo/issues/34">#34</a>) I had a little shell running. It seemed to work well enough with just a simple echo backend (not actually invoking Phoo), but I quickly encountered a few more problems:</p>
+<h2 id="issue-25">Issue <a href="https://github.com/wavesoft/local-echo/issues/25">#25</a></h2>
+<p><img alt="xterm_typetypetype.png" src="https://dragoncoder047.github.io/blog/images/xterm_typetypetype.png"></p>
+<p>The first line is being duplicated in the view every time you press a key, but the actual input buffer is fine, as shown by the red text. I think this is just some off-by-one typo, but it has been quite a problem.</p>
+<h2 id="issue-50">Issue <a href="https://github.com/wavesoft/local-echo/issues/50">#50</a></h2>
+<p>This one was completely new:</p>
+<p><img alt="xterm_clobber.png" src="https://dragoncoder047.github.io/blog/images/xterm_clobber.png"></p>
+<p>What happened <em>here</em> is that I just typed the text (in red), and then pressed enter. With the cursor <strong>on the last line</strong>, it works (the top part), it works fine. But with the cursor <strong>not on the last line</strong> (I put it in the middle of the b&rsquo;s) it assumes it <em>is</em> on the last line and in doing so clobbers over however many lines of input on the subsequent lines. This is <em>baaaaaad</em>. To be honest I actually spent more time trying to fix this than working on the actual web app for a day or two.</p>
+<p>As a side note I also noticed another issue (<a href="https://github.com/wavesoft/local-echo/issues/51">#51</a>) where the up/down keys didn&rsquo;t behave as I expected and changed the history regardless of what line you were on. Really annoying and takes some time to get used to, but not a priority.</p>
+<p>These two issues practically make the entire interface totally unusable and I&rsquo;m back to square zero.</p>
+<p>Not to mention that there hasn&rsquo;t been an official release of local-echo since 2018, so I had to manually cobble together a pseudo-&lsquo;build&rsquo; that works with xterm.js version 4. I probably broke something in there.</p>
+<p>Hoefully either me or someone else will fix these issues.</p>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, and hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

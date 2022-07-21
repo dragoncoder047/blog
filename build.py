@@ -10,7 +10,7 @@ SITEURL = f'http://{BIND}:{PORT}'
 
 AUTHOR = 'dragoncoder047'
 SITENAME = 'dragoncoder047&rsquo;s blog'
-SITESUBTITLE = 'random thoughts abut nonrandom things'
+SITESUBTITLE = 'random thoughts about nonrandom things'
 SITEURL = 'https://dragoncoder047.github.io/blog'
 LOGO = '/images/patrick.svg'
 LOGO_AREA_HTML = f'<a href="{SITEURL}"><div class="flex-row"><img src="{LOGO}" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>{SITENAME}</h1><h2>{SITESUBTITLE}</h2></div></div></a>'

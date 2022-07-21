@@ -87,7 +87,7 @@
 <!-- cSpell:ignore raspberrypi chmod -->
 
 <pre class="highlight"><code class="language-bash">chmod +x ~/.local/bin/update-python.sh #make it executable
-echo 'alias update-python=". ~/.local/bin/update-python.sh"' &gt; ~/.bashrc #let your shell find it
+echo 'alias update-python=". ~/.local/bin/update-python.sh"' &gt;&gt; ~/.bashrc #let your shell find it
 . ~/.bashrc #re-initialize the shell</code></pre>
 <p>The first argument to the script is the version of Python you want to install, such as 3.9.7:</p>
 <pre class="highlight"><code class="language-bash">update-python 3.9.7</code></pre>

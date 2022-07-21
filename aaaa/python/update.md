@@ -13,7 +13,7 @@ Save it in someplace convenient (like `~/.local/bin/update-python.sh`). Then, ru
 
 ```bash
 chmod +x ~/.local/bin/update-python.sh #make it executable
-echo 'alias update-python=". ~/.local/bin/update-python.sh"' > ~/.bashrc #let your shell find it
+echo 'alias update-python=". ~/.local/bin/update-python.sh"' >> ~/.bashrc #let your shell find it
 . ~/.bashrc #re-initialize the shell
 ```
 

@@ -11,7 +11,7 @@ I decided I would redesign everything to fix these problems. In total, I made qu
 2. I replaced the plain old `:::html <textarea>` with an [Ace editor](https://ace.c9.io/) to allow syntax highliting and other helpful features for working with XML.
 3. I made extensive use of CSS flexboxes to position buttons and controls in neat rows that wrap around when they get full.
 4. I added some Javascript to the drag manager class that automatically resizes the canvas to fill its parent element and maintain the 1:1 aspect ratio and prevent blurry drawing. There's an (intentional?) but in the HTML5 `:::html <canvas>` that cases the drawing to become distorted if the `:::html <canvas>`'s `width` and `height` attributes aren't the same (or proportional to) its CSS `width` and `height`. No CSS will fix this, so I had to resort to Javascript.
-5. I moved the ~~textarea~~Ace to a separate popup window so that both it and the canvas could take up the entire screen without the user having to scroll. This, surprisingly, required absolutely no Javascript.
+5. I moved the ~~textarea~~ Ace to a separate popup window so that both it and the canvas could take up the entire screen without the user having to scroll. This, surprisingly, required absolutely no Javascript.
 
 #5 I am the most proud of, and here's how I did it:
 

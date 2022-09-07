@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>dragoncoder047&rsquo;s blog - (Almost) No Javascript!</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+
+
+
+    
+
+
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="dragoncoder047&rsquo;s blog - (Almost) No Javascript!" />
+    <meta property="og:description" content="I did a total redesign of my Langton’s Ant simulator last week – and most of the formatting I was able to do with pure CSS - no Javascript needed for layout control. Previously I had a rather crude layout consisting of a fixed-size canvas and a textbox below it. The …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/p/2022/almost-no-javascript.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - (Almost) No Javascript!" />
+    <meta name="twitter:description" content="I did a total redesign of my Langton’s Ant simulator last week – and most of the formatting I was able to do with pure CSS - no Javascript needed for layout control. Previously I had a rather crude layout consisting of a fixed-size canvas and a textbox below it. The …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://www.jsdelivr.com/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="https://phoo-lang.github.io/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/p/archive.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://github.com/dragoncoder047/phoo">Phoo</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/a/catg.html">Categories</a>
+                            <ul>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/cellular-automata.html">cellular automata</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/electronics.html">electronics</a></li>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/a/c/javascript.html">javascript</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/misc.html">misc</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/phoo.html">phoo</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/python.html">python</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/robotics.html">robotics</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/robotics/armdroid.html">robotics/armdroid</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/p/2022/almost-no-javascript.html" rel="bookmark" title="Permalink to this page">(Almost) No Javascript!</a></h1>
+    
+    <div class="post-info">
+        Posted <time class="published" datetime="2022-09-07T00:00:00-04:00">Wed 07 September 2022</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/a/auth/dragoncoder047.html">dragoncoder047</a>
+            </address>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/a/c/javascript.html">javascript</a></div>
+    </div>
+    <p>I did a total redesign of my Langton&rsquo;s Ant simulator last week &ndash; and most of the formatting I was able to do with pure CSS - no Javascript needed for layout control.</p>
+<p>Previously I had a rather crude layout consisting of a fixed-size canvas and a textbox below it. The canvas was defined to be 1280x640 no matter the screen size, and my fear was that on smartphones it would spill over off the screen, and the image would be cut off. Additionally, the touch drag action on the canvas pans around, and so it effectively prevents the user from scrolling down and reaching the text box as well.</p>
+<p>I decided I would redesign everything to fix these problems. In total, I made quite a few major changes:</p>
+<ol>
+<li>I redesigned the parser to use XML instead of a impossible-to-maintain custom parser. It&rsquo;s quite more verbose than the original format, but by nature of the &ldquo;X&rdquo; in XML, it is extensible.</li>
+<li>I replaced the plain old <code class="language-html highlight">&lt;textarea&gt;</code> with an <a href="https://ace.c9.io/">Ace editor</a> to allow syntax highliting and other helpful features for working with XML.</li>
+<li>I made extensive use of CSS flexboxes to position buttons and controls in neat rows that wrap around when they get full.</li>
+<li>I added some Javascript to the drag manager class that automatically resizes the canvas to fill its parent element and maintain the 1:1 aspect ratio and prevent blurry drawing. There&rsquo;s an (intentional?) but in the HTML5 <code class="language-html highlight">&lt;canvas&gt;</code> that cases the drawing to become distorted if the <code class="language-html highlight">&lt;canvas&gt;</code>&lsquo;s <code>width</code> and <code>height</code> attributes aren&rsquo;t the same (or proportional to) its CSS <code>width</code> and <code>height</code>. No CSS will fix this, so I had to resort to Javascript.</li>
+<li>I moved the <sub>~textarea</sub>~Ace to a separate popup window so that both it and the canvas could take up the entire screen without the user having to scroll. This, surprisingly, required absolutely no Javascript.</li>
+</ol>
+<p>#5 I am the most proud of, and here&rsquo;s how I did it:</p>
+<p>First, everything tha is <em>not</em> the popup (what would noramlly just be the <code class="language-html highlight">&lt;body&gt;</code>) gets put in the <code class="language-html highlight">&lt;main&gt;</code> element.</p>
+<p>The body&rsquo;s scroll is disabled:</p>
+<pre class="highlight"><code class="language-css">body { overflow: hidden }</code></pre>
+<p>And the <code class="language-html highlight">&lt;main&gt;</code> is expanded to fill the entire window:</p>
+<pre class="highlight"><code class="language-css">main { width: 100%; height: 100%; position: absolute; top: 0; left: 0; margin: 0 }</code></pre>
+<p>Then, the popover is added adjacent to (not in) the <code class="language-html highlight">&lt;main&gt;</code> element:</p>
+<pre class="highlight"><code class="language-html">&lt;main&gt;
+    &lt;!-- main content --&gt;
+&lt;/main&gt;
+&lt;div id="dump" class="popover"&gt;
+    &lt;div&gt;
+        &lt;!-- popover content- notice the nested &lt;div&gt; --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>Notice the popover has two nested <code class="language-html highlight">&lt;div&gt;</code>s &ndash; the outer is the &ldquo;greyed-out&rdquo; background, and the inner is the actual popover content. Here&rsquo;s the CSS that does that:</p>
+<pre class="highlight"><code class="language-css">.popover {
+    background: rgba(0, 0, 0, 50%); z-index: 999999; position: absolute; top: 150vh; left: 0; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center
+}</code></pre>
+<p>The first line is pretty much the same as the CSS that was applied to the <code class="language-html highlight">&lt;main&gt;</code> element &ndash; it makes it fill the screen. Notice, however, that the <code>top</code> is <code class="language-css highlight">150vh</code> instead of <code class="language-css highlight">0</code> &ndash; this pushes it down off the screen where it can&rsquo;t be viewed.</p>
+<p>The second line centers the nested <code class="language-html highlight">&lt;div&gt;</code>, which is styled with this CSS:</p>
+<pre class="highlight"><code class="language-css">.popover&gt;div { background: white; width: 80%; height: 80%; border: 2px solid black; padding: 1em }</code></pre>
+<p>There&rsquo;s one last thing that is missing from this:</p>
+<pre class="highlight"><code class="language-css">.popover:target { top: 0 }</code></pre>
+<p>The <code class="language-css highlight">:target</code> pseudoclass is relatively new, and matches only when the hash of the URL (everything after the <code>#</code>) is equal to the selected element&rsquo;s <code>id</code>. This allows the popup to be shown and hid by using only simple <code class="language-html highlight">&lt;a&gt;</code> links that change the hash!</p>
+<p>I added a link to <code>#dump</code> (which shows the popup) on the main screen, and within the popup a link to <code>#</code> (clearing the hash and hiding the popup). With this, no Javascript is needed (except to make the popup close or open automatically).</p>
+<p>I haven&rsquo;t had any pure CSS solution as elegant as this since I got the sticky header on this site working (yes, no Javascript on that too). I don&rsquo;t know who should be prouder: me, or the CSS Working Group!</p>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, and hosted by <a href="https://pages.github.com/">GitHub Pages</a>.
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

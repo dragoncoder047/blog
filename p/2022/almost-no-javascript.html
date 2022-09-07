@@ -95,7 +95,7 @@
 <li>I replaced the plain old <code class="language-html highlight">&lt;textarea&gt;</code> with an <a href="https://ace.c9.io/">Ace editor</a> to allow syntax highliting and other helpful features for working with XML.</li>
 <li>I made extensive use of CSS flexboxes to position buttons and controls in neat rows that wrap around when they get full.</li>
 <li>I added some Javascript to the drag manager class that automatically resizes the canvas to fill its parent element and maintain the 1:1 aspect ratio and prevent blurry drawing. There&rsquo;s an (intentional?) but in the HTML5 <code class="language-html highlight">&lt;canvas&gt;</code> that cases the drawing to become distorted if the <code class="language-html highlight">&lt;canvas&gt;</code>&lsquo;s <code>width</code> and <code>height</code> attributes aren&rsquo;t the same (or proportional to) its CSS <code>width</code> and <code>height</code>. No CSS will fix this, so I had to resort to Javascript.</li>
-<li>I moved the <sub>~textarea</sub>~Ace to a separate popup window so that both it and the canvas could take up the entire screen without the user having to scroll. This, surprisingly, required absolutely no Javascript.</li>
+<li>I moved the <del>textarea</del> Ace to a separate popup window so that both it and the canvas could take up the entire screen without the user having to scroll. This, surprisingly, required absolutely no Javascript.</li>
 </ol>
 <p>#5 I am the most proud of, and here&rsquo;s how I did it:</p>
 <p>First, everything tha is <em>not</em> the popup (what would noramlly just be the <code class="language-html highlight">&lt;body&gt;</code>) gets put in the <code class="language-html highlight">&lt;main&gt;</code> element.</p>

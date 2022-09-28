@@ -6,7 +6,7 @@ For a while I have been trying to work out some bugs in David Johnson-Davies' uL
 Now, I really want to be able to use those extensions to write concise macros. The easiest example is that I need to be able to dynamically inject variables into a scope, and then evaluate a form in that scope so it has access to those variables. Unfortunately, uLisp doesn't have the `:::lisp declare` functionality to make a variable `:::lisp special` so that `:::lisp eval` will pull it into scope. I eventually figured out I can use a quasiquote to contruct a `:::lisp let` block on the fly and then evaluate the form inside the `:::lisp let` block. Sort of like this:
 
 ```lisp
-(defun eval-in-scope (forms vars) (eval `(let ,vars ,forms)))
+(defun eval-in-scope (forms vars) (eval `(let ,vars ,@forms)))
 ;; then use it like so:
 (defvar var1 4)
 (defvar var2 5)

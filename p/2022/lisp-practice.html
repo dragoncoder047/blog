@@ -117,7 +117,7 @@
          (dotimes (k n)
              (setq result (+ (* (nth k a) (expt x (- n k 1))) result)))
          result))</code></pre>
-<p>And here&rsquo;s using it to evaluate the polynomial $2x<sup>3-x</sup>2+5x-10$ at $x=3$:</p>
+<p>And here&rsquo;s using it to evaluate the polynomial $2x^3 - x^2 + 5x - 10$ at $x=3$:</p>
 <pre class="highlight"><code class="language-lisp">(poly 3 '(2 -1 5 -10))</code></pre>
 <p>Then I thought how to turn each of those points into an ASCII-art graph.</p>
 <p>The polt function uses two nested <code class="language-lisp highlight">dolist</code> loops iterating over a list of x-values and y-values, and then at each point, it has to decide domehow whether to plot a point (by returning &ldquo;#&rdquo; insread of the background character). The simplest solution is to only plot it if $y = f(x)$ and don&rsquo;t otherwise, but this only works when lines cross exactly over the gridline.</p>

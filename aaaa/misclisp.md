@@ -74,7 +74,7 @@ Now all that's left to do is iterate over the provided ranges and call `zerocros
 
 If you're interested in the whole code, here it is: [plot.lisp]({attach}plot.lisp){download="plot.lisp"}
 
-Here's using it to plot the function $y^3-x^2-10x-70=0$:
+Here's using it to plot the function $y^3 + x^2 - 10x - 70=0$:
 
 ```lisp
 (princ

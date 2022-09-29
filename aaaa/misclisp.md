@@ -13,7 +13,7 @@ I started off with a function that takes an $x$-value and a list of coefficients
          result))
 ```
 
-And here's using it to evaluate the polynomial $2x^3-x^2+5x-10$ at $x=3$:
+And here's using it to evaluate the polynomial $2x^3 - x^2 + 5x - 10$ at $x=3$:
 
 ```lisp
 (poly 3 '(2 -1 5 -10))

@@ -152,7 +152,7 @@
                 (princ (if (zerocross fun x y s) "#" (axis x y)) out))
             (terpri out))))</code></pre>
 <p>If you&rsquo;re interested in the whole code, here it is: <a download="plot.lisp" href="https://dragoncoder047.github.io/blog/p/2022/plot.lisp">plot.lisp</a></p>
-<p>Here&rsquo;s using it to plot the function $y<sup>3-x</sup>2-10x-70=0$:</p>
+<p>Here&rsquo;s using it to plot the function $y^3 + x^2 - 10x - 70=0$:</p>
 <pre class="highlight"><code class="language-lisp">(princ
     (plot
         -20 20 ; x-values

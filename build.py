@@ -24,6 +24,11 @@ USE_FOLDER_AS_CATEGORY = True
 PATH = 'aaaa/'
 OUTPUT_PATH = './'
 
+GISCUS = {
+    'repo': 'dragoncoder047/blog',
+    'category': 'Post Comments'
+}
+
 TIMEZONE = 'America/New_York'
 
 DEFAULT_LANG = 'en_US'
@@ -167,7 +172,8 @@ PLUGINS = [
     'pelican.plugins.read_more',
     'jinja2content',
     'series',
-    'pelican.plugins.more_categories'
+    'pelican.plugins.more_categories',
+    'pelican.plugins.neighbors'
 ]
 
 if __name__ == '__main__':

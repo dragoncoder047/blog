@@ -30,6 +30,7 @@ GISCUS = {
     'category': 'Post Comments',
     'category-id': 'DIC_kwDOHCL6084CRxCW',
     'mapping': 'og:title',
+    'lang': 'en',
 }
 
 TIMEZONE = 'America/New_York'

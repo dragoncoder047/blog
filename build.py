@@ -26,7 +26,10 @@ OUTPUT_PATH = './'
 
 GISCUS = {
     'repo': 'dragoncoder047/blog',
-    'category': 'Post Comments'
+    'repo-id': 'R_kgDOHCL60w',
+    'category': 'Post Comments',
+    'category-id': 'DIC_kwDOHCL6084CRxCW',
+    'mapping': 'og:title',
 }
 
 TIMEZONE = 'America/New_York'

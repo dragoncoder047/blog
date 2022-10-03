@@ -114,6 +114,16 @@
 <p>My <a href="https://github.com/dragoncoder047/QuackeryFork/blob/a21709138de87326603f2686ffa44b166d113b65/webapp_start.py#L26-L77">second attempt</a> was to use the regular expression module to find all the non-<code class="language-py3 highlight">async</code> functions that have <code class="language-py3 highlight">await</code> inside of them, and insert <code class="language-py3 highlight">async</code> onto the definition, then find their references and insert <code class="language-py3 highlight">await</code>. This proved tricky using regular expressions and often produced absurd (and incorrect) results such as <code class="language-py3 highlight">async async def</code> (until I checked and removed all occurrences of <code class="language-py3 highlight">async async</code> and <code class="language-py3 highlight">await await</code> manually) or even <code class="language-py3 highlight">self.string_await from_stack()</code> (because <code>from_stack</code> happened to be processed before <code>string_from_stack</code> and their names overlapped).</p>
 <p>My <a href="https://github.com/dragoncoder047/QuackeryFork/blob/9bb91407bddebfa69297a7f9315ad8350e06189c/quackery_OOP_ASYNC.py">third attempt</a> was to simply manually go through and make the edits. The tricky thing here is, even though I am sure I have asynced and awaited everything I need to, Quackery operators (Python functions) are passed by reference to the interpreter, and some must be made async and some are not. And that wreaks havoc on the entire program, because it is impossible to predict whether that passed-by-reference function is async or not and whether it should be awaited. Whereas in Javascript &ndash; and Phoo, too &ndash; <code class="language-js highlight">await undefined</code> works, simply returning <code class="language-js highlight">undefined</code> immediately, <code class="language-py3 highlight">await None</code> throws <code>TypeError: object NoneType can't be used in 'await' expression</code> and crashes the whole program. So the <code class="language-py3 highlight">TypeError</code> must be suppressed with a try-catch block. Unfortunately, this causes some other problems, which I don&rsquo;t really understand and so I can&rsquo;t fix them.</p>
 <p>I sure hope the Pyodide people can get the async input fixed soon!</p>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-category="Post Comments"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en_us"
+        crossorigin="anonymous"
+    ></script>
             <section id="extras">
                     <div class="blogroll">
                         <ul>
@@ -128,16 +138,6 @@
                         </ul>
                     </div>
             </section>
-    <script src="https://giscus.app/client.js"
-        data-repo="dragoncoder047/blog"
-        data-category="Post Comments"
-        data-mapping="pathname"
-        data-reactions-enabled="1"
-        data-input-position="top"
-        data-theme="dark"
-        data-lang="en_us"
-        crossorigin="anonymous"
-    ></script>
         </main>
         <footer>
             <address>

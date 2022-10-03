@@ -105,6 +105,16 @@
 <p>From Sparkfun I ordered an <a href="https://www.sparkfun.com/products/18018">ESP32 Thing Plus C</a> and a bunch of <a href="https://www.sparkfun.com/products/9378">ATtiny85s</a>, plus supporting components, and my idea is to use the ESP32 as the main processor and &ldquo;talk&rdquo; to all the ATtiny85s uing I<sup>2</sup>C. The ATtiny85s would handle tasks that must be continuously monitored (such as watching the encoders&rsquo; positions and turning the motors on when they&rsquo;re not where they&rsquo;re supposed to be) that, if done on the ESP32, would at best cause the otherwise fast ESP32 to bog down under a ton of interrupts, and at worst causing janky audio sounds and glitching.</p>
 <p>I also ordered an <a href="https://www.sparkfun.com/products/14809">I<sup>2</sup>S DAC</a> so I can play dragon sound effects from the ESP32. I also found <a href="https://github.com/pschatzmann/arduino-SAM">three</a> <a href="https://github.com/pschatzmann/TTS">text-to-speech</a> <a href="https://github.com/pschatzmann/arduino-flite">libraries</a> that I could add to the ESP32, as well as a <a href="http://www.ulisp.com/show?3TQF">tiny Lisp interpreter</a> that I could use as a scripting language.</p>
 <p>Who knows where this is going to end up? I certainly don&rsquo;t.</p>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-category="Post Comments"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en_us"
+        crossorigin="anonymous"
+    ></script>
             <section id="extras">
                     <div class="blogroll">
                         <ul>
@@ -119,16 +129,6 @@
                         </ul>
                     </div>
             </section>
-    <script src="https://giscus.app/client.js"
-        data-repo="dragoncoder047/blog"
-        data-category="Post Comments"
-        data-mapping="pathname"
-        data-reactions-enabled="1"
-        data-input-position="top"
-        data-theme="dark"
-        data-lang="en_us"
-        crossorigin="anonymous"
-    ></script>
         </main>
         <footer>
             <address>

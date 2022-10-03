@@ -120,6 +120,16 @@
 <p>Actually, &ldquo;control&rdquo; would be a but of a misnomer here, because all the control this library does is set the power applied to the motor, and can&rsquo;t regulate speed or position out-of-the-box. I tried to do this using one of the many PID libraries out there, and had a bit of success regulating the speed (amid my mother shouting &ldquo;You&rsquo;re going to break your motor grabbing it like that!&rdquo;), but not much luck regulating the position. It always resulted in oscillation around the setpoint, but never actually stopping. I eventually figured out that the Feedback 360&rsquo;s internal driver circuit has a delay between when the input control signal changes and when the motor actually responds, and I never was able to tune the PID&rsquo;s constants to work with this or even with other methods (feeding the speed into the PID loop as well, having one PID loop modulate another sub-loop controlling speed, etc). If you have success controlling the position of a Feedback 360 servo with no oscillation, PLEASE let me know!</p>
 <p>That&rsquo;s only two pieces of the puzzle that is my hacked Roboraptor. There&rsquo;s also converting the other motors into servos (which involves a magnet, a Hall effect sensor, and an ATtiny85), re-wiring the head and tail to add more sensors and glowing LED eyes, cramming a small micro servo into the body compartment in order to separate the head and jaw motion, and hooking up the two microphones and a DAC to be able to play sound effects and listen to the environment. Whew! That&rsquo;s a lot. Will probably take me a while.</p>
 <p>Not to mention the fact that the ATtiny85&rsquo;s and H-bridges that I ordered are <em>still</em> on back-order&hellip; Damn this chip shortage!</p>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-category="Post Comments"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en_us"
+        crossorigin="anonymous"
+    ></script>
             <section id="extras">
                     <div class="blogroll">
                         <ul>
@@ -134,16 +144,6 @@
                         </ul>
                     </div>
             </section>
-    <script src="https://giscus.app/client.js"
-        data-repo="dragoncoder047/blog"
-        data-category="Post Comments"
-        data-mapping="pathname"
-        data-reactions-enabled="1"
-        data-input-position="top"
-        data-theme="dark"
-        data-lang="en_us"
-        crossorigin="anonymous"
-    ></script>
         </main>
         <footer>
             <address>

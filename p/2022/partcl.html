@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en_us">
     <head>
-                <title>First Pull Request</title>
+                <title>ParTcl</title>
             <meta charset="utf-8" />
             <meta name="generator" content="Pelican" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,15 +17,15 @@
 
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
-    <meta property="og:title" content="First Pull Request" />
-    <meta property="og:description" content="Today I managed to submit my first ever Github pull request. In develpoing Phoo I made some changes to the meta-words from its predecessor Quackery, and they seemed backportable to Quackery. So I forked Quackery and submitted a pull request with those changes. In the name of trying to bootstrap …" />
+    <meta property="og:title" content="ParTcl" />
+    <meta property="og:description" content="C headers are annoying. I was getting fed up with uLisp/Yisp and so I decided to run another Google search for “embeddable scripting language for Arduino”. It turned up mruby-arduino – poorly documented, and a little too big for my needs. It turned up eLua – which unfortunately is just a …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://dragoncoder047.github.io/blog/p/2022/first-pull-request.html" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/p/2022/partcl.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - First Pull Request" />
-    <meta name="twitter:description" content="Today I managed to submit my first ever Github pull request. In develpoing Phoo I made some changes to the meta-words from its predecessor Quackery, and they seemed backportable to Quackery. So I forked Quackery and submitted a pull request with those changes. In the name of trying to bootstrap …" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - ParTcl" />
+    <meta name="twitter:description" content="C headers are annoying. I was getting fed up with uLisp/Yisp and so I decided to run another Google search for “embeddable scripting language for Arduino”. It turned up mruby-arduino – poorly documented, and a little too big for my needs. It turned up eLua – which unfortunately is just a …" />
     <meta name="twitter:image" content="/images/patrick.svg" />
             <!-- PrismJS -->
 <script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
@@ -60,9 +60,9 @@
                         <li><a href="https://dragoncoder047.github.io/blog/a/catg.html">Categories</a>
                             <ul>
                                     <li><a href="https://dragoncoder047.github.io/blog/a/c/cellular-automata.html">cellular automata</a></li>
-                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/electronics.html">electronics</a></li>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/a/c/electronics.html">electronics</a></li>
                                     <li><a href="https://dragoncoder047.github.io/blog/a/c/javascript.html">javascript</a></li>
-                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/a/c/misc.html">misc</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/misc.html">misc</a></li>
                                     <li><a href="https://dragoncoder047.github.io/blog/a/c/phoo.html">phoo</a></li>
                                     <li><a href="https://dragoncoder047.github.io/blog/a/c/python.html">python</a></li>
                                     <li><a href="https://dragoncoder047.github.io/blog/a/c/robotics.html">robotics</a></li>
@@ -80,30 +80,56 @@
             </nav>
         </header>
         <main>
-    <h1><a href="https://dragoncoder047.github.io/blog/p/2022/first-pull-request.html" rel="bookmark" title="Permalink to this page">First Pull Request</a></h1>
+    <h1><a href="https://dragoncoder047.github.io/blog/p/2022/partcl.html" rel="bookmark" title="Permalink to this page">ParTcl</a></h1>
     
     <div class="flex-row">
             <span style="flex: 1">&larr; Previous:
-                <a href="https://dragoncoder047.github.io/blog/p/2022/partcl.html">
-                    ParTcl
+                <a href="https://dragoncoder047.github.io/blog/p/2022/new-site.html">
+                    New Site!
                 </a>
             </span>
             <span>Next:
-                <a href="https://dragoncoder047.github.io/blog/p/2022/wireworld.html">
-                    Wireworld++
+                <a href="https://dragoncoder047.github.io/blog/p/2022/first-pull-request.html">
+                    First Pull Request
                 </a> &rarr;
             </span>
     </div>
     <div class="post-info">
-        Posted <time class="published" datetime="2022-04-26T00:00:00-04:00">Tue 26 April 2022</time>
+        Posted <time class="published" datetime="2022-04-14T00:00:00-04:00">Thu 14 April 2022</time>
             <address>By
                     <a href="https://dragoncoder047.github.io/blog/a/auth/dragoncoder047.html">dragoncoder047</a>
             </address>
-                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/a/c/misc.html">misc</a></div>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/a/c/electronics.html">electronics</a></div>
     </div>
-    <p>Today I managed to submit my first ever Github pull request. In develpoing Phoo I made some changes to the meta-words from its predecessor Quackery, and they seemed backportable to Quackery. So I forked Quackery and submitted a <a href="https://github.com/GordonCharlton/Quackery/pull/6">pull request</a> with those changes.</p>
-<p>In the name of trying to bootstrap Phoo as much as possible, I had substituted the limited <code class="language-phoo highlight">]if[</code>, <code class="language-phoo highlight">]iff[</code>, and <code class="language-phoo highlight">]else[</code> with what Gordon later called a &lsquo;relative GOTO&rsquo; in <code class="language-phoo highlight">]cjump[</code> which can be (ab)used to jump backwards. I like being able to do that at least with Phoo. Of course with the Quackery system you can have all sorts of <code class="language-phoo highlight">' if take</code> fun (which is prevented easily by Phoo&rsquo;s dynamic resolution - but <code class="language-phoo highlight">' if resolve take</code> would work too), but a <code class="language-phoo highlight">]cjump[</code> also seemed useful in a sense to be able to look ahead with <code class="language-phoo highlight">]'[</code> and then jump back and allow it to be executed with <code class="language-phoo highlight">false -1 ]cjump[</code> if it didn&rsquo;t turn out to be what was expected.</p>
-<p>Well, at the very least I got some syntax fixes to my name there. I have another couple of ideas, and I&rsquo;ll add a pull request and/or another post here when I get around to them.</p>
+        <p><em>This post is part 1 of the arduino-scripting series:</em></p>
+        <ol class="series">
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/p/2022/partcl.html'>ParTcl</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/p/2022/ulisp-thoughts.html'>uLisp Thoughts</a>
+                </li>
+        </ol>
+    <p>C headers are annoying. I was getting fed up with uLisp/Yisp and so I decided to run another Google search for &ldquo;embeddable scripting language for Arduino&rdquo;.</p>
+<p>It turned up <a href="https://github.com/kyab/mruby-arduino">mruby-arduino</a> &ndash; poorly documented, and a little too big for my needs.</p>
+<p>It turned up <a href="http://www.eluaproject.net/">eLua</a> &ndash; which unfortunately is just a flashable firmware with no C interface for custom functions (just like with MicroPython).</p>
+<p>And it turned up Serge Zaitsev&rsquo;s <a href="https://zserge.com/posts/tcl-interpreter/">ParTcl interpreter</a>. It&rsquo;s a bare-bones interpreter for the <a href="https://en.wikipedia.org/wiki/Tcl">Tcl</a> programming language which implements only 5 core functions (<code class="language-tcl highlight">subst</code>, <code class="language-tcl highlight">set</code>, <code class="language-tcl highlight">while</code>, <code class="language-tcl highlight">if</code>, and <code class="language-tcl highlight">proc</code>) as well as <code class="language-tcl highlight">puts</code> and some math functions.</p>
+<p>Despite this minimalism, it is simple to understand as most things are abstracted away into functions and datatypes &ndash; and, leveraging the fact that &ldquo;everything in Tcl is a string,&rdquo; <code class="language-c highlight">malloc</code> and <code class="language-c highlight">free</code> can be used easily for dynamic memory management.</p>
+<p>Additionally, from the Github readme:</p>
+<blockquote>
+<ul>
+<li>Can be extended with custom Tcl commands</li>
+<li>Runs well on bare metal embedded MCUs (~10k of flash is required)</li>
+</ul>
+</blockquote>
+<p>&hellip;which is exactly what I need to use it as an Arduino library!</p>
+<p>There are a few bugs &ndash; namely this one:</p>
+<blockquote>
+<p>In the default implementation lists are implemented as raw strings that add some escaping (braces) around each iterm. It&rsquo;s a simple solution that also reduces the code, but in some exotic cases the escaping can become wrong and invalid results will be returned.</p>
+</blockquote>
+<p>Using my experience from Lisp lists, I saw that Tcl lists could be implemented as a linked list as well. I <a href="https://github.com/zserge/partcl/issues/14">proposed it</a> and we&rsquo;ll see what Serge says. I could probably fork ParTcl and add it myself anyway.</p>
+<p>This seems like the best solution so far, and what I&rsquo;ll probably go with.</p>
+<p>One last thing, with the regard to the name &ndash; do you think ParTcl would run on a <a href="https://www.sparkfun.com/products/13774">Particle</a>?</p>
     <script src="https://giscus.app/client.js"
         data-repo="dragoncoder047/blog"
         data-repo-id="R_kgDOHCL60w"

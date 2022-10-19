@@ -1,4 +1,4 @@
-Title: Scartching My Head Again
+Title: Scratching My Head Again
 Date: 2022-10-19
 Series: arduino-scripting
 

@@ -18,7 +18,7 @@ uLisp -- unline other Lisps -- also implements tail-call optimization, which sav
 
 ```lisp
 (defun factorial (x) (if (< 0 x) 1 (factorial (1- x))))
-````
+```
 
 `:::lisp if` supports tail-recursion, and so does the "implicit `:::lisp progn`" performed by the function body. Normally, if the stack limit was X, trying to get the factorial of anything greater than X would overflow the stack. The way `:::lisp if` eliminates that looks like this:
 

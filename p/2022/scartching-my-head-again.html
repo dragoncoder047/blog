@@ -115,15 +115,10 @@
 <p>uLisp takes advantage of the fact that a valid pointer will always be aligned to even byte boundaries, so the low bit will always be 0. This is set as the &ldquo;mark bit&rdquo; for the garbage collector. The other types are identified by a specific low pointer in the <code>car</code> half, which would normally point to an invalid address. For example, a <code>SYMBOL</code> contains <code class="language-c highlight">0x00000002</code> for the <code>car</code> pointer, an <code>INTEGER</code> contains <code class="language-c highlight">0x00000006</code>, and  a <code>STRING</code> contains <code class="language-c highlight">0x00000100</code>, for example. Structures that can&rsquo;t be represented as one single cell (i.e. strings, arrays, long symbols) are represented as a chunk of the value in one field and a pointer to the next chunk in the other field.</p>
 <p>uLisp&rsquo;s memory allocation scheme is a little weird, admittedly. uLisp begins by statically allocating a huge (~10,000 item) array of empty cells, and then running up from the far end, setting the pointers of each cell to make a large linked list containg all of the free cells; this is called the <code>Freelist</code>. When a new object is needed the pointer to the <code>Freelist</code> is updated to the second cell in the <code>Freelist</code>, and the first one is returned to be used. During the sweep phase of grabage collection, the <code>Freelist</code> is simply re-constructed using the unmarked cells &ndash; and at the beginning, everything&rsquo;s unmarked, so this is effectively the same action. It skips over the marked cells.</p>
 <p>uLisp &ndash; unline other Lisps &ndash; also implements tail-call optimization, which saves an entry on the call stack when a function ends by immediately returning the call of another function. The way this is done is any forms which do an &ldquo;implicit <code class="language-lisp highlight">progn</code>&rdquo;, instead of evalutating the last statement in the <code class="language-lisp highlight">progn</code>, they simply return it unevaluated, and then signal to <code class="language-lisp highlight">eval</code> that the returned form should be evaluated again. For example, consider the factorial function:</p>
-<pre class="highlight"><code class="language-lisp">(defun factorial (x) (if (&lt; 0 x) 1 (factorial (1- x))))
-````
-
-`:::lisp if` supports tail-recursion, and so does the "implicit `:::lisp progn`" performed by the function body. Normally, if the stack limit was X, trying to get the factorial of anything greater than X would overflow the stack. The way `:::lisp if` eliminates that looks like this:
-
-Without tail recursion:
-
-```txt
-eval(factorial(5))
+<pre class="highlight"><code class="language-lisp">(defun factorial (x) (if (&lt; 0 x) 1 (factorial (1- x))))</code></pre>
+<p><code class="language-lisp highlight">if</code> supports tail-recursion, and so does the &ldquo;implicit <code class="language-lisp highlight">progn</code>&rdquo; performed by the function body. Normally, if the stack limit was X, trying to get the factorial of anything greater than X would overflow the stack. The way <code class="language-lisp highlight">if</code> eliminates that looks like this:</p>
+<p>Without tail recursion:</p>
+<pre class="highlight"><code class="language-txt">eval(factorial(5))
                   --calls--&gt;
                             if_function()
                                          --calls--&gt;

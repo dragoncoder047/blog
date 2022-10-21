@@ -19,6 +19,7 @@ ICON_MIMETYPE = 'image/svg+xml'
 THEME_CSS_FILE = '/static/css/theme.css'
 THEME_MAIN_CSS = '/static/css/main.css'
 THEME_STATIC_DIR = 'static/'
+EXTRA_JS = '/static/misc.js'
 USE_FOLDER_AS_CATEGORY = True
 
 PATH = 'aaaa/'

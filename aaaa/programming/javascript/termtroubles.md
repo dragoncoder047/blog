@@ -1,6 +1,6 @@
 Title: Terminal Troubles
 Date: 2022-3-23
-Category: phoo, javascript
+Category: programming/phoo, programming/javascript
 
 I have finally gotten to the point in Phoo's development that I am ready to set up the web interface.
 

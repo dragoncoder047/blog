@@ -60,11 +60,13 @@
                         <li><a href="https://dragoncoder047.github.io/blog/a/catg.html">Categories</a>
                             <ul>
                                     <li><a href="https://dragoncoder047.github.io/blog/a/c/cellular-automata.html">cellular automata</a></li>
-                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/a/c/electronics.html">electronics</a></li>
-                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/javascript.html">javascript</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/electronics.html">electronics</a></li>
                                     <li><a href="https://dragoncoder047.github.io/blog/a/c/misc.html">misc</a></li>
-                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/phoo.html">phoo</a></li>
-                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/python.html">python</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/programming.html">programming</a></li>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/a/c/programming/c.html">programming/c</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/programming/javascript.html">programming/javascript</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/programming/phoo.html">programming/phoo</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/a/c/programming/python.html">programming/python</a></li>
                                     <li><a href="https://dragoncoder047.github.io/blog/a/c/robotics.html">robotics</a></li>
                                     <li><a href="https://dragoncoder047.github.io/blog/a/c/robotics/armdroid.html">robotics/armdroid</a></li>
                             </ul>
@@ -99,7 +101,7 @@
             <address>By
                     <a href="https://dragoncoder047.github.io/blog/a/auth/dragoncoder047.html">dragoncoder047</a>
             </address>
-                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/a/c/electronics.html">electronics</a></div>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/a/c/programming/c.html">c</a></div>
     </div>
         <p><em>This post is part 3 of the arduino-scripting series:</em></p>
         <ol class="series">
@@ -153,7 +155,7 @@ eval(factorial(4))
 }</code></pre>
 <p>This isn&rsquo;t some special compiler construct; becuase the braces trigger the tokenizer to group everything inside of it as one literal (escaped) string, Tcl treats that snippet as <em>one line</em>. When the <code class="language-tcl highlight">if</code> procedure is called, it <code class="language-tcl highlight">eval</code>&lsquo;s the condition, and if it is true, it <code class="language-tcl highlight">eval</code>&lsquo;s the true block, otherwise it <code class="language-tcl highlight">eval</code>&lsquo;s the false block. In Tcl, valid code is represented no differently than a raw string.</p>
 <p>The tiny implementation of Tcl I found &ndash; <a href="https://github.com/zserge/partcl">Serge Zaitsev&rsquo;s ParTcl</a> &ndash; takes the Everything Is A String mantra to the extreme, <code class="language-c highlight">sprintf()</code>&lsquo;ing numbers back to strings after arithmetic is done on them and (in my opinion) wasting precious memory. It stores <em>everything</em> &ndash; strings, commands, numbers, lists, you name it &ndash; as C <code class="language-c highlight">char*</code> strings delimited in the same way as commands, and to access an item of a list, it <code class="language-c highlight">malloc()</code>&lsquo;s enough memory and then <em>copies</em> the chunk of that string representing the requested item into a new string. When you&rsquo;re done with it, you can <code class="language-c highlight">free()</code> the string withut having to worry about corrupting where you got it from. (I did; perhaps that&rsquo;s why my extensions have memory leaks.)</p>
-<p>The memory management strategy of ParTcl could probably be called the &ldquo;No-GC&rdquo; approach to GC: instead of having one object with multiple pointers to it, you have multiple identical objects that each only ever have one pointer to them (i.e. the C variable). Because each object is only ever pointed to in one place, and the VM knows what it&rsquo;s doing with each object and when it&rsquo;s done with them, it also knows when to <code class="language-c highlight">free()</code> each object. This, unfortunately, means that objects are inherently immutable, and wastes memory making copies of objects. </p>
+<p>The memory management strategy of ParTcl could probably be called the &ldquo;No-GC&rdquo; approach to GC: instead of having one object with multiple pointers to it, you have multiple identical objects that each only ever have one pointer to them (i.e. the C variable). Because each object is only ever pointed to in one place, and the VM knows what it&rsquo;s doing with each object and when it&rsquo;s done with them, it also knows when to <code class="language-c highlight">free()</code> each object. This, unfortunately, means that objects are inherently immutable, and wastes memory making copies of objects.</p>
 <p>ParTcl&rsquo;s approach to variables, however, looks a lot like &hellip; drumroll please &hellip; Lisp! The ParTcl VM maintains a pointer to a linked list of all the global variables, and each variable cell contains a pointer to the next variable cell, its name (a string), and its value (another string). The <code class="language-tcl highlight">set</code> command mutates these pointers.</p>
 <p>Tcl also has an interesting approach to return values. Each procedure, instead of returning a value, instead sets it on the Tcl VM&rsquo;s <code>result</code> field, and returns instead one of the standard Tcl &ldquo;return codes&rdquo; which are numbers, not strings &ndash; one of <code>TCL_OK</code> for a normal call, <code>TCL_ERROR</code> if something went wrong (and then the <code>result</code> field is an error message), <code>TCL_RETURN</code> which is returned by the <code class="language-tcl highlight">return</code> command to signal that a procedure is returning and subsequent commands should be skipped, and <code>TCL_BREAK</code> / <code>TCL_AGAIN</code> which are returned by the <code class="language-tcl highlight">break</code> and <code class="language-tcl highlight">continue</code> commands to signal to loops that the appropriate action should be taken.</p>
 <h2 id="other-thoughts">Other Thoughts</h2>

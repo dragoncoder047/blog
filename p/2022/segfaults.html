@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en_us">
     <head>
-                <title>ParTcl</title>
+                <title>Segfaults</title>
             <meta charset="utf-8" />
             <meta name="generator" content="Pelican" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,15 +17,15 @@
 
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
-    <meta property="og:title" content="ParTcl" />
-    <meta property="og:description" content="C headers are annoying. I was getting fed up with uLisp/Yisp and so I decided to run another Google search for “embeddable scripting language for Arduino”. It turned up mruby-arduino – poorly documented, and a little too big for my needs. It turned up eLua – which unfortunately is just a …" />
+    <meta property="og:title" content="Segfaults" />
+    <meta property="og:description" content="Today I did a little more work on my programming language TEHSSL. And in testing it, I discovered some anomalies. The first one is that – because of a typo on my part – testing TEHSSL will occasionally segfault when it tries to print the type of the “next” object after freeing …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://dragoncoder047.github.io/blog/p/2022/partcl.html" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/p/2022/segfaults.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - ParTcl" />
-    <meta name="twitter:description" content="C headers are annoying. I was getting fed up with uLisp/Yisp and so I decided to run another Google search for “embeddable scripting language for Arduino”. It turned up mruby-arduino – poorly documented, and a little too big for my needs. It turned up eLua – which unfortunately is just a …" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Segfaults" />
+    <meta name="twitter:description" content="Today I did a little more work on my programming language TEHSSL. And in testing it, I discovered some anomalies. The first one is that – because of a typo on my part – testing TEHSSL will occasionally segfault when it tries to print the type of the “next” object after freeing …" />
     <meta name="twitter:image" content="/images/patrick.svg" />
             <!-- PrismJS -->
 <script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
@@ -83,33 +83,28 @@
             </nav>
         </header>
         <main>
-    <h1><a href="https://dragoncoder047.github.io/blog/p/2022/partcl.html" rel="bookmark" title="Permalink to this page">ParTcl</a></h1>
+    <h1><a href="https://dragoncoder047.github.io/blog/p/2022/segfaults.html" rel="bookmark" title="Permalink to this page">Segfaults</a></h1>
     
     <div class="flex-row">
             <span style="flex: 1">&larr; Previous:
-                <a href="https://dragoncoder047.github.io/blog/p/2022/lisp-practice.html">
-                    Lisp Practice
+                <a href="https://dragoncoder047.github.io/blog/p/2022/tehssl.html">
+                    TEHSSL
                 </a>
-            </span>
-            <span>Next:
-                <a href="https://dragoncoder047.github.io/blog/p/2022/scratching-my-head-again.html">
-                    Scratching My Head Again
-                </a> &rarr;
             </span>
     </div>
     <div class="post-info">
-        Posted <time class="published" datetime="2022-10-14T00:00:00-04:00">Fri 14 October 2022</time>
+        Posted <time class="published" datetime="2022-11-16T00:00:00-05:00">Wed 16 November 2022</time>
             <address>By
                     <a href="https://dragoncoder047.github.io/blog/a/auth/dragoncoder047.html">dragoncoder047</a>
             </address>
                 <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/a/c/programming/c.html">c</a></div>
     </div>
-        <p><em>This post is part 2 of the arduino-scripting series:</em></p>
+        <p><em>This post is part 5 of the arduino-scripting series:</em></p>
         <ol class="series">
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/p/2022/ulisp-thoughts.html'>uLisp Thoughts</a>
                 </li>
-                <li class="active">
+                <li >
                     <a href='https://dragoncoder047.github.io/blog/p/2022/partcl.html'>ParTcl</a>
                 </li>
                 <li >
@@ -118,30 +113,16 @@
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/p/2022/some-unrelated-ideas.html'>Some Unrelated Ideas</a>
                 </li>
-                <li >
+                <li class="active">
                     <a href='https://dragoncoder047.github.io/blog/p/2022/segfaults.html'>Segfaults</a>
                 </li>
         </ol>
-    <p>C headers are annoying. I was getting fed up with uLisp/Yisp and so I decided to run another Google search for &ldquo;embeddable scripting language for Arduino&rdquo;.</p>
-<p>It turned up <a href="https://github.com/kyab/mruby-arduino">mruby-arduino</a> &ndash; poorly documented, and a little too big for my needs.</p>
-<p>It turned up <a href="http://www.eluaproject.net/">eLua</a> &ndash; which unfortunately is just a flashable firmware with no C interface for custom functions (just like with MicroPython).</p>
-<p>And it turned up Serge Zaitsev&rsquo;s <a href="https://zserge.com/posts/tcl-interpreter/">ParTcl interpreter</a>. It&rsquo;s a bare-bones interpreter for the <a href="https://en.wikipedia.org/wiki/Tcl">Tcl</a> programming language which implements only 5 core functions (<code class="language-tcl highlight">subst</code>, <code class="language-tcl highlight">set</code>, <code class="language-tcl highlight">while</code>, <code class="language-tcl highlight">if</code>, and <code class="language-tcl highlight">proc</code>) as well as <code class="language-tcl highlight">puts</code> and some math functions.</p>
-<p>Despite this minimalism, it is simple to understand as most things are abstracted away into functions and datatypes &ndash; and, leveraging the fact that &ldquo;everything in Tcl is a string,&rdquo; <code class="language-c highlight">malloc</code> and <code class="language-c highlight">free</code> can be used easily for dynamic memory management.</p>
-<p>Additionally, from the Github readme:</p>
-<blockquote>
-<ul>
-<li>Can be extended with custom Tcl commands</li>
-<li>Runs well on bare metal embedded MCUs (~10k of flash is required)</li>
-</ul>
-</blockquote>
-<p>&hellip;which is exactly what I need to use it as an Arduino library!</p>
-<p>There are a few bugs &ndash; namely this one:</p>
-<blockquote>
-<p>In the default implementation lists are implemented as raw strings that add some escaping (braces) around each iterm. It&rsquo;s a simple solution that also reduces the code, but in some exotic cases the escaping can become wrong and invalid results will be returned.</p>
-</blockquote>
-<p>Using my experience from Lisp lists, I saw that Tcl lists could be implemented as a linked list as well. I <a href="https://github.com/zserge/partcl/issues/14">proposed it</a> and we&rsquo;ll see what Serge says. I could probably fork ParTcl and add it myself anyway.</p>
-<p>This seems like the best solution so far, and what I&rsquo;ll probably go with.</p>
-<p>One last thing, with the regard to the name &ndash; do you think ParTcl would run on a <a href="https://www.sparkfun.com/products/13774">Particle</a>?</p>
+    <p>Today I did a little more work on my programming language TEHSSL. And in testing it, I discovered some anomalies.</p>
+<p>The first one is that &ndash; because of a typo on my part &ndash; testing TEHSSL will occasionally segfault when it tries to print the type of the &ldquo;next&rdquo; object after freeing the last one &ndash; there is no &ldquo;next object&rdquo;, so it dereferences a null pointer and crashes. I fixed that, and it appears to work. However, it worked just fine when I pasted it into <a href="https://cpp.sh">cpp.sh</a>, and didn&rsquo;t hang or anything, so I&rsquo;m not sure what&rsquo;s up with that.</p>
+<p>Valgrind reports no memory leaks from the garpage collector after I fixed things (woohoo!), so that&rsquo;s good. However, in testing those bugs, I discovered another anomaly: when the tests de-allocate and free everything at the end, it prints out how many objects it freed. This count varies based on the compiler &ndash; without me changing any code at all!!</p>
+<p>When I run <code class="language-bash highlight">make test</code> (i.e. running it natively on my computer, using <code class="language-bash highlight">g++</code>), the output shows <a href="https://github.com/dragoncoder047/tehssl/blob/ea16652/test_reports/output.txt#L271">56 objects freed</a> at the end.</p>
+<p>When I paste it into cpp.sh (which uses Emscripten), it says there are 51 objects freed.</p>
+<p>What happened to the other 5 objects? Is it something to do with Emscripten vs <code class="language-bash highlight">g++</code>? I&rsquo;m not sure. But it has no memory leaks, and that&rsquo;s what I am really happy about.</p>
     <script src="https://giscus.app/client.js"
         data-repo="dragoncoder047/blog"
         data-repo-id="R_kgDOHCL60w"

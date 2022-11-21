@@ -57,8 +57,8 @@ DRAFT_PAGE_URL = DRAFT_PAGE_SAVE_AS = 'p/d/pg/{slug}.html'
 AUTHORS_SAVE_AS = 'a/authors.html'
 CATEGORY_SAVE_AS = CATEGORY_URL = 'a/c/{slug}.html'
 CATEGORIES_SAVE_AS = 'a/catg.html'  # cSpell:ignore catg
-TAG_SAVE_AS = TAG_URL = 'a/t/{slug}.html'
-TAGS_SAVE_AS = 'a/tags.html'
+TAG_SAVE_AS = TAG_URL = ''#'a/t/{slug}.html'
+TAGS_SAVE_AS = ''#'a/tags.html' # I don't use tags
 ARCHIVES_SAVE_AS = 'p/archive.html'
 
 PATH_METADATA = r'(?P<category>.*)/.*'
@@ -78,7 +78,7 @@ MENUITEMS = (
     ('Archives', f'{SITEURL}/{ARCHIVES_SAVE_AS}'),
     ('Site root', '/'),
     ('Projects', '#', (
-        ('Phoo', f'https://github.com/{AUTHOR}/phoo'),
+        ('Phoo', f'https://github.com/phoo-lang/phoo'),
         ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste'),
         ('Armdroid', f'https://{AUTHOR}.github.io/armdroid'),
         ('Langton\'s Ant Music', f'https://{AUTHOR}.github.io/langton-music')

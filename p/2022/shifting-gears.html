@@ -42,7 +42,7 @@
                         </li>
                         <li><a href="#">Projects</a>
                                 <ul>
-                                                            <li><a href="https://github.com/phoo-lang/phoo">Phoo</a>
+                                                            <li><a href="https://phoo-lang.github.io/">Phoo</a>
                         </li>
                         <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
                         </li>
@@ -101,12 +101,21 @@
             </address>
                 <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/a/c/electronics.html">electronics</a></div>
     </div>
+        <p><em>This post is part 1 of the roboraptor-upgrade series:</em></p>
+        <ol class="series">
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/p/2022/shifting-gears.html'>Shifting Gears</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/p/2022/systems-tested.html'>Systems Tested</a>
+                </li>
+        </ol>
     <p>Aaah, that&rsquo;s been a nice break from coding. Four weeks with no commits pushed to Phoo. It&rsquo;s a shame I left it in a broken state. I haven&rsquo;t the slightest idea why it&rsquo;s broken &mdash; but then again, all the other times Phoo broke, I never knew why either, and it just &ldquo;fixed itself&rdquo; after a while. Hopefully that will happen again.</p>
 <p>Lately, I&rsquo;ve worked on a different one of my interests: electronics. I ordered a bunch of interesting parts from <a href="https://www.sparkfun.com">Sparkfun</a> and they arrived yesterday. Before I explain what those were for, let&rsquo;s rewind.</p>
 <p>About eight years ago ago (wow, it was that long!) my parents bought me a <a href="https://wowwee.com/roboraptor-x">Roboraptor</a> for Christmas. I like robots and dragons, so a dragon(ish) robot was the perfect gift for me. I played with that thing so much it eventually broke a couple years ago. It has been sitting on the shelf collecting dust and making me think ever since.</p>
 <p>The only thing that I do not like is that the Roboraptor can&rsquo;t be programmed. And for a programmer and computer geek like me, that is the most annoying thing ever.</p>
-<p>I had opened it up to try to fix the problem, and unfortunately. I couldn&rsquo;t. But while I had the Roboraptor in pieces on my workbench, I noticed that the motor mechanism is stupid simple: while I expected <a href="https://www.sparkfun.com/products/11884">standard servos</a> or some similar kind of closed-loop control, it was actually open-loop, just a cheap <a href="https://www.adafruit.com/product/3777">TT gearmotor</a> and some return springs to bring the motor back to center when power was turned off, a &ldquo;poor man&rsquo;s servo&rdquo; of sorts. This mechanism is incredibly wasteful of batteries &ndash; the motor must be stalled and drawing maximum current to maintain any position other than middle &ndash; and so I wanted to fix that, too.</p>
-<p>From Sparkfun I ordered an <a href="https://www.sparkfun.com/products/18018">ESP32 Thing Plus C</a> and a bunch of <a href="https://www.sparkfun.com/products/9378">ATtiny85s</a>, plus supporting components, and my idea is to use the ESP32 as the main processor and &ldquo;talk&rdquo; to all the ATtiny85s uing I<sup>2</sup>C. The ATtiny85s would handle tasks that must be continuously monitored (such as watching the encoders&rsquo; positions and turning the motors on when they&rsquo;re not where they&rsquo;re supposed to be) that, if done on the ESP32, would at best cause the otherwise fast ESP32 to bog down under a ton of interrupts, and at worst causing janky audio sounds and glitching.</p>
+<p>I had opened it up to try to fix the problem, and unfortunately. I couldn&rsquo;t. But while I had the Roboraptor in pieces on my workbench, I noticed that the motor mechanism is stupid simple: while I expected standard servos or some similar kind of closed-loop control, it was actually open-loop, just a cheap 96:1 gearmotor and some return springs to bring the motor back to center when power was turned off, a &ldquo;poor man&rsquo;s servo&rdquo; of sorts. This mechanism is incredibly wasteful of batteries &ndash; the motor must be stalled and drawing maximum current to maintain any position other than middle &ndash; and so I wanted to fix that, too.</p>
+<p>From Sparkfun I ordered an <a href="https://www.sparkfun.com/products/18018">ESP32 Thing Plus C</a> and a bunch of <a href="https://www.sparkfun.com/products/9378">ATtiny85s</a>, plus supporting components, and my idea is to use the ESP32 as the main processor and &ldquo;talk&rdquo; to all the ATtiny85s using I<sup>2</sup>C. The ATtiny85s would handle tasks that must be continuously monitored (such as watching the encoders&rsquo; positions and turning the motors on when they&rsquo;re not where they&rsquo;re supposed to be) that, if done on the ESP32, would at best cause the otherwise fast ESP32 to bog down under a ton of interrupts, and at worst cause janky audio sounds and glitching.</p>
 <p>I also ordered an <a href="https://www.sparkfun.com/products/14809">I<sup>2</sup>S DAC</a> so I can play dragon sound effects from the ESP32. I also found <a href="https://github.com/pschatzmann/arduino-SAM">three</a> <a href="https://github.com/pschatzmann/TTS">text-to-speech</a> <a href="https://github.com/pschatzmann/arduino-flite">libraries</a> that I could add to the ESP32, as well as a <a href="http://www.ulisp.com/show?3TQF">tiny Lisp interpreter</a> that I could use as a scripting language.</p>
 <p>Who knows where this is going to end up? I certainly don&rsquo;t.</p>
     <script src="https://giscus.app/client.js"

@@ -2,7 +2,6 @@
 import base64
 import zlib
 import pymdownx.superfences
-import re
 
 PORT = 8080
 BIND = '192.168.1.158'
@@ -57,8 +56,8 @@ DRAFT_PAGE_URL = DRAFT_PAGE_SAVE_AS = 'p/d/pg/{slug}.html'
 AUTHORS_SAVE_AS = 'a/authors.html'
 CATEGORY_SAVE_AS = CATEGORY_URL = 'a/c/{slug}.html'
 CATEGORIES_SAVE_AS = 'a/catg.html'  # cSpell:ignore catg
-TAG_SAVE_AS = TAG_URL = ''#'a/t/{slug}.html'
-TAGS_SAVE_AS = ''#'a/tags.html' # I don't use tags
+TAG_SAVE_AS = TAG_URL = ''  # 'a/t/{slug}.html'
+TAGS_SAVE_AS = ''  # 'a/tags.html' # I don't use tags
 ARCHIVES_SAVE_AS = 'p/archive.html'
 
 PATH_METADATA = r'(?P<category>.*)/.*'
@@ -78,7 +77,7 @@ MENUITEMS = (
     ('Archives', f'{SITEURL}/{ARCHIVES_SAVE_AS}'),
     ('Site root', '/'),
     ('Projects', '#', (
-        ('Phoo', f'https://github.com/phoo-lang/phoo'),
+        ('Phoo', f'https://phoo-lang.github.io/'),
         ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste'),
         ('Armdroid', f'https://{AUTHOR}.github.io/armdroid'),
         ('Langton\'s Ant Music', f'https://{AUTHOR}.github.io/langton-music')
@@ -111,6 +110,12 @@ def kroki_fence(source, language, css_class, options, md, **kwargs):
     return f'<img src="https://kroki.io/{lang}/svg/{data}"{attr} />'
 
 
+def named_kroki(name):
+    def named_fence(source, language, css_class, options, md, **kwargs):
+        return kroki_fence(source, language, css_class, options | {'type': name}, md, **kwargs)
+    return {'name': name, 'class': name, 'format': named_fence}
+
+
 def circuit_fence(source, language, css_class, options, md, **kwargs):
     return '<span style="color: red; background: yellow;">TODO</span>'
 
@@ -127,11 +132,9 @@ MARKDOWN = {
         'pymdownx.inlinehilite': {},
         "pymdownx.superfences": {
             "custom_fences": [
-                {
-                    'name': 'mermaid',
-                    'class': 'mermaid',
-                    'format': pymdownx.superfences.fence_div_format
-                },  # covered by kroki, but needed for compatibility with github
+                # covered by kroki, but needed for compatibility with github
+                named_kroki('mermaid'),
+                named_kroki('svgbob'),
                 {
                     'name': 'lifeviewer',
                     'class': 'lifeviewer',

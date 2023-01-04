@@ -122,6 +122,9 @@
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/p/2022/segfaults.html'>Segfaults</a>
                 </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/p/2023/lilduino.html'>LILduino</a>
+                </li>
         </ol>
     <p>For a while I have been trying to work out some bugs in David Johnson-Davies&rsquo; uLisp interpreter for Arduinos. I ported some macro and quasiquote extensions for an older version of uLisp to the current version, and apparently I did not do something right &ndash; it crashes whenever I try to use those extensions.</p>
 <p>Now, I really want to be able to use those extensions to write concise macros. The easiest example is that I need to be able to dynamically inject variables into a scope, and then evaluate a form in that scope so it has access to those variables. Unfortunately, uLisp doesn&rsquo;t have the <code class="language-lisp highlight">declare</code> functionality to make a variable <code class="language-lisp highlight">special</code> so that <code class="language-lisp highlight">eval</code> will pull it into scope. I eventually figured out I can use a quasiquote to contruct a <code class="language-lisp highlight">let</code> block on the fly and then evaluate the form inside the <code class="language-lisp highlight">let</code> block. Sort of like this:</p>

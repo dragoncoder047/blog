@@ -39,7 +39,7 @@ J2:GND
 
 So far, my program is able to run aroud and grab all of the components off the diagram, and also grab the "BOM data" that I placed at the bottom. It ends up in this big dictionary:
 
-```python3
+```py3
 {   Cbox(p1=(3+0j), p2=(7+0j), type='BAT', id=1): [   Terminal(pt=(7+0j), flag='+', side=<Side.RIGHT: 1>),
                                                       Terminal(pt=(2+0j), flag=None, side=<Side.LEFT: 3>)],
     Cbox(p1=(16+2j), p2=(21+10j), type='U', id=1): [   Terminal(pt=(21+3j), flag=None, side=<Side.RIGHT: 1>),
@@ -70,7 +70,7 @@ So far, my program is able to run aroud and grab all of the components off the d
 ```
 
 !!! info "Note on the complex numbers"
-    I am (ab)using Python's `:::python3 complex` number as a point or vector, but this kind of makes sense -- think the complex plane. The rationale for this is a lot of the mathematical operations I need to do with points are already built-in on `:::python3 complex` objects, such as finding the midpoint (`:::python3 (p1 + p2) / 2`), finding the length (`:::python3 abs(pt)`), finding the angle (`:::python3 cmath.phase(pt)`), etc. [`svgpathtools` takes the same approach.](https://github.com/mathandy/svgpathtools#:~:text=%23%20Coordinates%20are%20given%20as%20points%20in%20the%20complex%20plane)
+    I am (ab)using Python's `:::py3 complex` number as a point or vector, but this kind of makes sense -- think the complex plane. The rationale for this is a lot of the mathematical operations I need to do with points are already built-in on `:::py3 complex` objects, such as finding the midpoint (`:::py3 (p1 + p2) / 2`), finding the length (`:::py3 abs(pt)`), finding the angle (`:::py3 cmath.phase(pt)`), etc. [`svgpathtools` takes the same approach.](https://github.com/mathandy/svgpathtools#:~:text=%23%20Coordinates%20are%20given%20as%20points%20in%20the%20complex%20plane)
 
 The code for the wire finding is also able to render the wires to SVG, and produces this output on the same circuit:
 

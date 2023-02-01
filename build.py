@@ -81,8 +81,8 @@ MENUITEMS = (
         ('Phoo', f'https://phoo-lang.github.io/'),
         ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste'),
         ('Armdroid', f'https://{AUTHOR}.github.io/armdroid'),
-        ('Langton\'s Ant Music', f'https://{AUTHOR}.github.io/langton-music')
-        ('Schemascii', f'https://github.com/dragoncoder047/schemascii')
+        ('Langton\'s Ant Music', f'https://{AUTHOR}.github.io/langton-music'),
+        ('Schemascii', f'https://github.com/dragoncoder047/schemascii'),
     )),
 )
 

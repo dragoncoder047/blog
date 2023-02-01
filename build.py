@@ -2,6 +2,7 @@
 import base64
 import zlib
 import pymdownx.superfences
+import schemascii
 
 PORT = 8080
 BIND = '192.168.1.158'
@@ -116,8 +117,13 @@ def named_kroki(name):
     return {'name': name, 'class': name, 'format': named_fence}
 
 
-def circuit_fence(source, language, css_class, options, md, **kwargs):
-    return '<span style="color: red; background: yellow;">TODO</span>'
+def schemascii_fence(source, language, css_class, options, md, attrs, **kwargs):
+    try:
+        return schemascii.render("markdown-block", source, **attrs)
+    except (schemascii.Error, Exception) as err:
+        import traceback
+        traceback.print_exception(err)
+        return f"<code style=\"color: red\">Schemascii error:\n{err!r}</code>"
 
 
 MARKDOWN = {
@@ -144,6 +150,11 @@ MARKDOWN = {
                     'name': 'kroki',
                     'class': 'kroki',
                     'format': kroki_fence
+                },
+                {
+                    'name': 'schemascii',
+                    'class': 'schemascii',
+                    'format': schemascii_fence
                 }
             ]
         },

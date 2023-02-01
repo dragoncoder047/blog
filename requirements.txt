@@ -16,3 +16,4 @@ pelican-series
 #pygments-ipython-console
 pelican-more-categories
 pelican-neighbors
+git+https://github.com/dragoncoder047/schemascii

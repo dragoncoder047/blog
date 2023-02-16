@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 import base64
 import zlib
-import pymdownx.superfences
 import schemascii
 
 PORT = 8080
@@ -49,17 +48,17 @@ SEO_REPORT = True
 
 DISPLAY_PAGES_ON_MENU = DISPLAY_CATEGORIES_ON_MENU = True
 
-ARTICLE_SAVE_AS = ARTICLE_URL = 'p/{date:%Y}/{slug}.html'
-PAGE_URL = PAGE_SAVE_AS = 'pg/{slug}.html'
-AUTHOR_SAVE_AS = AUTHOR_URL = 'a/auth/{slug}.html'
-DRAFT_URL = DRAFT_SAVE_AS = 'p/d/{slug}.html'
-DRAFT_PAGE_URL = DRAFT_PAGE_SAVE_AS = 'p/d/pg/{slug}.html'
-AUTHORS_SAVE_AS = 'a/authors.html'
-CATEGORY_SAVE_AS = CATEGORY_URL = 'a/c/{slug}.html'
-CATEGORIES_SAVE_AS = 'a/catg.html'  # cSpell:ignore catg
-TAG_SAVE_AS = TAG_URL = ''  # 'a/t/{slug}.html'
-TAGS_SAVE_AS = ''  # 'a/tags.html' # I don't use tags
-ARCHIVES_SAVE_AS = 'p/archive.html'
+ARTICLE_SAVE_AS = ARTICLE_URL = 'post/{date:%Y-%m-%d}-{slug}.html'
+PAGE_URL = PAGE_SAVE_AS = 'page/{slug}.html'
+AUTHOR_SAVE_AS = AUTHOR_URL = 'author/{slug}.html'
+DRAFT_URL = DRAFT_SAVE_AS = 'draft/{slug}.html'
+DRAFT_PAGE_URL = DRAFT_PAGE_SAVE_AS = 'page/draft/{slug}.html'
+AUTHORS_SAVE_AS = 'authors.html'
+CATEGORY_SAVE_AS = CATEGORY_URL = 'category/{slug}.html'
+CATEGORIES_SAVE_AS = 'categories.html'  # cSpell:ignore catg
+TAG_SAVE_AS = TAG_URL = ''  # 'tag/{slug}.html'
+TAGS_SAVE_AS = ''  # 'tags.html' # I don't use tags
+ARCHIVES_SAVE_AS = 'archives.html'
 
 PATH_METADATA = r'(?P<category>.*)/.*'
 

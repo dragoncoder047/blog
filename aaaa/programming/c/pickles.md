@@ -74,7 +74,40 @@ $baz
 
 prints "global text" -- the passed-in value of "closed text" is lost.
 
-But, `func` is a function itself, that creates functions when executed. Couldn't the returned function have a pointer to the enclosing scope it was declared in, so that it could use closures? That's what I'm going to do in my program.
+But, `func` is a function itself, that creates functions when executed. Couldn't the returned function have a pointer to the enclosing scope it was declared in, so that it could use closed-over variables? That's what I'm going to do in my program.
+
+Bob Nystron's [*Crafting Interpreters* book](https://craftinginterpreters.com/closures.html) utilizes the Lua-like method of storing "upvalues" in a special closure wrapper of a plain function, which has the advantage that closures only close over the values they actually will use, saving memory (maybe). But because of Tcl's `:::tcl upeval` (and LIL's extension `downeval`) those "possibly-untouched" closure values may actually be used after all. The semantics of `:::tcl upeval` and closures I'll figure out when I get there. Storing the entire scope seems like an easy way to allow `:::tcl upeval` to work okay.
+
+## Colon blocks
+
+Python is probably the first scripting language to use indentation to delimit blocks of code. Python is also bytecode-compiled, so every single function, if statement, loop, etc. is compiled into bytecode and as such all the "colon plus indent" blocks must be valid code. Also, only certain constructs can take a block after them, and those cannot be added to.
+
+However, I realized it would be more than simple to add colon-delimited blocks to a Tcl-like language. The way it would work is that when the compiler sees a colon followed by a newline, it treats it like a `{` and begins collecting a string. Except instead of counting the nesting depth of the `{`-`}` pairs, it would simply look at each line's indent level and stop when it detects a dedent. The final string would have the leading indentation stripped from each line. So these two pieces of code would be equivalent:
+
+```tcl
+while {foo} {
+  bar
+}
+baz
+```
+
+And:
+
+```tcl
+while {foo}:
+  bar
+baz
+```
+
+This saves a line, and it looks a lot cleaner. An interesting side effect is that you can append a "block" to the end of any function, and it will take it as a string. So you coule write this:
+
+```tcl
+print:
+  foo
+  bar
+```
+
+Which would print `foo bar` each on their own line, and with no indentation.
 
 ## Naming it
 

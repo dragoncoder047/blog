@@ -1,5 +1,5 @@
 Title: Pickles!
-Date: 2023-02-21
+Date: 2023-02-23
 
 I've been playing around a little bit with LIL on my ESP32 arduino. It works, but there are a few things I don't like. LIL isn't object-oriented by default, so I can't do a lot of what I am used to writing code in Javascript and Python. LIL also forces the result of every expression (the `:::tcl expr` command) to be a number (so I can't do a `:::python "foo" * 3` to repeat a string), has no operator overloading because nothing is an object and supports overloading anyway, and (most importantly) doesn't support lexical closures.
 
@@ -82,7 +82,7 @@ Bob Nystron's [*Crafting Interpreters* book](https://craftinginterpreters.com/cl
 
 Python is probably the first scripting language to use indentation to delimit blocks of code. Python is also bytecode-compiled, so every single function, if statement, loop, etc. is compiled into bytecode and as such all the "colon plus indent" blocks must be valid code. Also, only certain constructs can take a block after them, and those cannot be added to.
 
-However, I realized it would be more than simple to add colon-delimited blocks to a Tcl-like language. The way it would work is that when the compiler sees a colon followed by a newline, it treats it like a `{` and begins collecting a string. Except instead of counting the nesting depth of the `{`-`}` pairs, it would simply look at each line's indent level and stop when it detects a dedent. The final string would have the leading indentation stripped from each line. So these two pieces of code would be equivalent:
+However, I realized it would be more than simple to add colon-delimited blocks to a Tcl-like language. The way it would work is that when the compiler sees a colon followed by a newline, it treats it like a `{`, ends the previous string if any, and begins collecting a new string. Except instead of counting the nesting depth of the `{`-`}` pairs, it would simply look at each line's indent level and stop when it detects a dedent. The final string would have the leading indentation stripped from each line. So these two pieces of code would be equivalent:
 
 ```tcl
 while {foo} {
@@ -99,7 +99,7 @@ while {foo}:
 baz
 ```
 
-This saves a line, and it looks a lot cleaner. An interesting side effect is that you can append a "block" to the end of any function, and it will take it as a string. So you coule write this:
+This saves a line, and it looks a lot cleaner (and a lot more like Python). An interesting side effect is that you can append a "block" to the end of any function, and it will take it as a string. So you coule write this:
 
 ```tcl
 print:
@@ -107,8 +107,8 @@ print:
   bar
 ```
 
-Which would print `foo bar` each on their own line, and with no indentation.
+Which would print `foo` and `bar` each on their own line, and with no indentation. Neat!
 
 ## Naming it
 
-
+I'm not exactly sure what I'm going to call it. It's inspired by all of Python, Tcl, and Javascript, simultaneously. I had originally though of calling it PICL -- for "Python Inspired Command Language" -- but that name is already taken. Seeing that PICL is pronounced like "pickle", I might just end up calling it PICKLE. I could also call it something competely different. I'll figure it out when I get there.

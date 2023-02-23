@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Pickles!</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Pickles!" />
+    <meta property="og:description" content="I’ve been playing around a little bit with LIL on my ESP32 arduino. It works, but there are a few things I don’t like. LIL isn’t object-oriented by default, so I can’t do a lot of what I am used to writing code in Javascript and …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/post/2023-02-23-pickles.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Pickles!" />
+    <meta name="twitter:description" content="I’ve been playing around a little bit with LIL on my ESP32 arduino. It works, but there are a few things I don’t like. LIL isn’t object-oriented by default, so I can’t do a lot of what I am used to writing code in Javascript and …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="https://phoo-lang.github.io/prism-phoo.js"></script>        <!-- /PrismJS -->
+        <!-- Katex -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.css" type="text/css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/mhchem.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        renderMathInElement(document.body,
+            {
+                delimiters: [
+                    {left: '$$', right:'$$', display: true},
+                    {left: '$',  right:'$',  display: false},
+                    {left: '\\begin{align}', right: '\\end{align}', display: true},
+                ]
+            }
+        );
+    });
+</script>        <!-- /Katex -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://phoo-lang.github.io/">Phoo</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://github.com/dragoncoder047/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/categories.html">Categories</a>
+                            <ul>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/cellular-automata.html">cellular automata</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/electronics.html">electronics</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/misc.html">misc</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/programming.html">programming</a></li>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/category/programming/c.html">programming/c</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/programming/javascript.html">programming/javascript</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/programming/lisp.html">programming/lisp</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/programming/phoo.html">programming/phoo</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/programming/python.html">programming/python</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/robotics.html">robotics</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/robotics/armdroid.html">robotics/armdroid</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/robotics/reverse-engineering.html">robotics/reverse-engineering</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/post/2023-02-23-pickles.html" rel="bookmark" title="Permalink to this page">Pickles!</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/post/2023-02-01-schemascii-0.html">
+                    Schemascii &pm; 0
+                </a>
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2023-02-23T00:00:00-05:00">Thu 23 February 2023</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/author/dragoncoder047.html">dragoncoder047</a>
+            </address>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/category/programming/c.html">c</a></div>
+    </div>
+    <p>I&rsquo;ve been playing around a little bit with LIL on my ESP32 arduino. It works, but there are a few things I don&rsquo;t like. LIL isn&rsquo;t object-oriented by default, so I can&rsquo;t do a lot of what I am used to writing code in Javascript and Python. LIL also forces the result of every expression (the <code class="language-tcl highlight">expr</code> command) to be a number (so I can&rsquo;t do a <code class="language-python highlight">"foo" * 3</code> to repeat a string), has no operator overloading because nothing is an object and supports overloading anyway, and (most importantly) doesn&rsquo;t support lexical closures.</p>
+<p>LIL also does not have what I think is a really useful operator: the <code>|&gt;</code> pipe operator, for function chaining. Javascript is working on one (it was <a href="https://github.com/tc39/proposal-pipeline-operator">proposed</a> and it will be incredibly useful if and when it actually goes through.</p>
+<p>There are several things about LIL that I do like, though: it has a nice recursive parser, a very simple hashmap implementation, and the use of arrays of pointers to implement list types. Back when I was working on TEHSSL, I actually decided against the last one because I (erroneously) feared that if I had to <code class="language-c highlight">realloc()</code> the array, it would move objects and corrupt the pointers of every object that pointed to them. When I looked at LIL, it finally dawned on me that the array was an array of <em>pointers</em> to the objects, and <code class="language-c highlight">realloc()</code>&lsquo;ing the array would only move the <em>pointers</em>, not the objects, and so it&rsquo;s okay to use as long as you don&rsquo;t overrun your array before you <code class="language-c highlight">realloc()</code> it. </p>
+<p>LIL also forces the use of curly brackets (<code class="language-tcl highlight">{ }</code>) for delimiting code blocks (which are really just strings), which as a Python programmer, I don&rsquo;t like. One modification I would like to add is the use of a &ldquo;:&rdquo; to delimit a block of code.</p>
+<p>As-is, there is one feature that I want in my scripting language that I don&rsquo;t see in any other language. It is the ability to <strong>define custom operators</strong>.</p>
+<p>Suppose I am writing a little DSL for routing audio nodes (which seems a possibility in the future, I&rsquo;m not sure why). Albeit, with a Tcl-like language, I can just have the user pass in a string of the code, and process it as the DSL. But then I&rsquo;d be stuck writing the parser, interpreter, etc. for that all over again and I&rsquo;d probably take away half of the features of the enclosing language in the process.</p>
+<p>The code would be, I don&rsquo;t know, using the <code>&lt;-</code> operator to link the node input to the node output. The <code>&lt;-</code> operator wouldn&rsquo;t mean a darn thing to number objects (like 14 and 23.5), or anything else, for that matter, so a language that isn&rsquo;t designed with this in mind would probably never implement the <code>&lt;-</code> operator.</p>
+<p>However, if I can define a new operator, <code>&lt;-</code>, with a specific precedence, and then link it to a special &ldquo;magic method&rdquo; (taking inspiration from Python) that gets called on the objects when they are operated on by that operator (such as <code>__left_arrow__</code> for <code>&lt;-</code>), it would allow this DSL to be made in native code, and not sacrifice anything.</p>
+<p>So, I think I&rsquo;m at least going to try to implement my own language. I&rsquo;ll be able to fall back on LIL if all goes horribly wrong, but if it works, I&rsquo;ll have something that works better for me, and maybe for someone else.</p>
+<p>Here are my goals:</p>
+<ul>
+<li>Be small enough to fit on an Arduino &ndash; specifically, an ESP32, with 16MB of program storage space and 124KB of RAM.</li>
+<li>Be thread-safe and re-entrant (except for stuff like global variables, which are shared via mutexes) so I can use FreeRTOS tasks to implement co-operative threading</li>
+<li>Have the aforementioned user-definable operators</li>
+<li>Be object-oriented</li>
+<li>Have closures, classes, lambdas, etc. that a good high-level scripting language like Python or Javascript has</li>
+<li>Allow operator overloading on objects</li>
+<li>Utilize dynamic typing</li>
+<li>Utilize dynamic memory allocation and a garbage collector</li>
+<li>Include code&harr;data interoperability</li>
+<li>Possibly implement syntactic macros</li>
+</ul>
+<h2 id="objects-and-inheritance">Objects and inheritance</h2>
+<p>The inheritance system I&rsquo;m probably going to go with is Javascript&rsquo;s primitive prototype-based inheritance, even though the only way it supports multiple inheritance is through monkey-patching. The easy way I see to allow multiple inheritance is to allow an object to have, well, multiple prototypes, which are searched recursively. That would also circumvent an (intentional) bug in Python where this code would crash because it creates an ambiguous inheritance order (see if you can spot why):</p>
+<pre class="highlight"><code class="language-python3">class A: pass
+class B: pass
+class X(A, B): pass
+class Y(B, A): pass
+class Crash(X, Y): pass</code></pre>
+<p>Paste it into a Python console &ndash; you&rsquo;ll get <code>TypeError: Cannot create a consistent MRO for bases A, B</code>. The reason why Python crashes is because <code>Crash</code> inherits from <code>X</code> and <code>Y</code>, and each of those inherit from <code>A</code> and <code>B</code>, but in a different order, so Python doesn&rsquo;t know whether to look at <code>A</code> or <code>B</code> first. How my new language would go about it is that because <code>Crash</code> listed <code>X</code>, first, it would search in the order <code>Crash, X, A, B, Y, B, A</code>.</p>
+<p>Another thing I am going to take from Javascript is that everything in the &ldquo;global&rdquo; scope is really properties of a global object (called <code>globalThis</code> for some reason, per the spec) and so that simplifies scope management a whole lot.</p>
+<p>One thing I am <em>not</em> going to take from Javascript is the indistinction of items and properties of objects. Think of a Python dictionary: it has methods such as <code>copy()</code>, but you cannot access them by writing <code class="language-python highlight">mydict["copy"]()</code> like would work if it was Javascript. Neither can you access dictionary items stored with <code class="language-python highlight">mydict["foobar"]</code> using the <code>mydict.foobar</code> syntax.</p>
+<h2 id="the-garbage-collector">The garbage collector</h2>
+<p>When I was working on TEHSSL, I had implemented a pure mark-and-sweep garbage collector. Mark-and-sweep collectors are <em>perfect</em>, that is, they always collect all the unreachable objects and never leak memory, but this got really hard to manage in TEHSSL. For example, specifically when I create a whole bunch of intermediate objects that are used once and then never again (like during compilation) causing the number of objects to hit the high-water mark and activate the garbage collector, freeing all those objects that I am done with, but also the ones I&rsquo;m <em>not</em> done with, corrupting my pointers. The common way to prevent that (used by uLisp) is to use a temporary garbage collector stack to store those objects on, but that made it even more confusing.</p>
+<p>The approach Python takes is a little different: Python uses a reference counting garbage collector. That is, each object maintains a count of how many C pointers and other objects point to it, and when it drops to zero the object is immediately freed. This does suffer from problems when objects point to each other and create a reference cycle, preventing those objects from ever being freed. Python does have a &ldquo;cycle-busting&rdquo; mechanism in place, but as far as I know, it isn&rsquo;t described very thouroughly. Perhaps it&rsquo;s just a mark-and sweep collector.</p>
+<p>The garbage collector I am going to implement will use reference-counting for most things, and then only call a mark-and-sweep at strategic times to clean up the reference cycles, when I am sure there aren&rsquo;t any intermediate objects that are still in use being pointed to by C variables.</p>
+<h2 id="closures">Closures</h2>
+<p>LIL does not have closures. That is, this code:</p>
+<pre class="highlight"><code class="language-tcl">set bar "global text"
+func foo {bar} {
+  set closure [func {} {print $bar}]
+  return $closure
+}
+set baz [foo "closed text"]
+$baz</code></pre>
+<p>prints &ldquo;global text&rdquo; &ndash; the passed-in value of &ldquo;closed text&rdquo; is lost.</p>
+<p>But, <code>func</code> is a function itself, that creates functions when executed. Couldn&rsquo;t the returned function have a pointer to the enclosing scope it was declared in, so that it could use closed-over variables? That&rsquo;s what I&rsquo;m going to do in my program.</p>
+<p>Bob Nystron&rsquo;s <a href="https://craftinginterpreters.com/closures.html"><em>Crafting Interpreters</em> book</a> utilizes the Lua-like method of storing &ldquo;upvalues&rdquo; in a special closure wrapper of a plain function, which has the advantage that closures only close over the values they actually will use, saving memory (maybe). But because of Tcl&rsquo;s <code class="language-tcl highlight">upeval</code> (and LIL&rsquo;s extension <code>downeval</code>) those &ldquo;possibly-untouched&rdquo; closure values may actually be used after all. The semantics of <code class="language-tcl highlight">upeval</code> and closures I&rsquo;ll figure out when I get there. Storing the entire scope seems like an easy way to allow <code class="language-tcl highlight">upeval</code> to work okay.</p>
+<h2 id="colon-blocks">Colon blocks</h2>
+<p>Python is probably the first scripting language to use indentation to delimit blocks of code. Python is also bytecode-compiled, so every single function, if statement, loop, etc. is compiled into bytecode and as such all the &ldquo;colon plus indent&rdquo; blocks must be valid code. Also, only certain constructs can take a block after them, and those cannot be added to.</p>
+<p>However, I realized it would be more than simple to add colon-delimited blocks to a Tcl-like language. The way it would work is that when the compiler sees a colon followed by a newline, it treats it like a <code>{</code>, ends the previous string if any, and begins collecting a new string. Except instead of counting the nesting depth of the <code>{</code>-<code>}</code> pairs, it would simply look at each line&rsquo;s indent level and stop when it detects a dedent. The final string would have the leading indentation stripped from each line. So these two pieces of code would be equivalent:</p>
+<pre class="highlight"><code class="language-tcl">while {foo} {
+  bar
+}
+baz</code></pre>
+<p>And:</p>
+<pre class="highlight"><code class="language-tcl">while {foo}:
+  bar
+baz</code></pre>
+<p>This saves a line, and it looks a lot cleaner (and a lot more like Python). An interesting side effect is that you can append a &ldquo;block&rdquo; to the end of any function, and it will take it as a string. So you coule write this:</p>
+<pre class="highlight"><code class="language-tcl">print:
+  foo
+  bar</code></pre>
+<p>Which would print <code>foo</code> and <code>bar</code> each on their own line, and with no indentation. Neat!</p>
+<h2 id="naming-it">Naming it</h2>
+<p>I&rsquo;m not exactly sure what I&rsquo;m going to call it. It&rsquo;s inspired by all of Python, Tcl, and Javascript, simultaneously. I had originally though of calling it PICL &ndash; for &ldquo;Python Inspired Command Language&rdquo; &ndash; but that name is already taken. Seeing that PICL is pronounced like &ldquo;pickle&rdquo;, I might just end up calling it PICKLE. I could also call it something competely different. I&rsquo;ll figure it out when I get there.</p>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

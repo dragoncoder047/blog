@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en_us">
     <head>
-                <title>Shifting Gears</title>
+                <title>Well, I Got Something...</title>
             <meta charset="utf-8" />
             <meta name="generator" content="Pelican" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,17 +17,21 @@
 
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
-    <meta property="og:title" content="Shifting Gears" />
-    <meta property="og:description" content="Aaah, that’s been a nice break from coding. Four weeks with no commits pushed to Phoo. It’s a shame I left it in a broken state. I haven’t the slightest idea why it’s broken — but then again, all the other times Phoo broke, I never knew …" />
+    <meta property="og:title" content="Well, I Got Something..." />
+    <meta property="og:description" content="Today I did a quick test of my little ATtiny85 microcontrollers’ capabilities. I had them sitting in a jar for a while, and I wanted to see if I could use them in conjunction as a coprocessor to manage some mundane task like regulating a motor. I have previously written …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://dragoncoder047.github.io/blog/post/2022-07-18-shifting-gears.html" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/post/2023-03-05-well-i-got-something.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Shifting Gears" />
-    <meta name="twitter:description" content="Aaah, that’s been a nice break from coding. Four weeks with no commits pushed to Phoo. It’s a shame I left it in a broken state. I haven’t the slightest idea why it’s broken — but then again, all the other times Phoo broke, I never knew …" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Well, I Got Something..." />
+    <meta name="twitter:description" content="Today I did a quick test of my little ATtiny85 microcontrollers’ capabilities. I had them sitting in a jar for a while, and I wanted to see if I could use them in conjunction as a coprocessor to manage some mundane task like regulating a motor. I have previously written …" />
     <meta name="twitter:image" content="/images/patrick.svg" />
-    
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="https://phoo-lang.github.io/prism-phoo.js"></script>        <!-- /PrismJS -->
+
     </head>
 
     <body class="match-braces rainbow-braces">
@@ -82,30 +86,25 @@
             </nav>
         </header>
         <main>
-    <h1><a href="https://dragoncoder047.github.io/blog/post/2022-07-18-shifting-gears.html" rel="bookmark" title="Permalink to this page">Shifting Gears</a></h1>
+    <h1><a href="https://dragoncoder047.github.io/blog/post/2023-03-05-well-i-got-something.html" rel="bookmark" title="Permalink to this page">Well, I Got Something...</a></h1>
     
     <div class="flex-row">
             <span style="flex: 1">&larr; Previous:
-                <a href="https://dragoncoder047.github.io/blog/post/2022-06-22-langtons-ant-music.html">
-                    Langton's Ant Music
+                <a href="https://dragoncoder047.github.io/blog/post/2023-02-23-pickles.html">
+                    Pickles!
                 </a>
-            </span>
-            <span>Next:
-                <a href="https://dragoncoder047.github.io/blog/post/2022-08-06-two-down-a-zillion-more-to-go.html">
-                    Two Down, A Zillion More To Go
-                </a> &rarr;
             </span>
     </div>
     <div class="post-info">
-        Posted <time class="published" datetime="2022-07-18T00:00:00-04:00">Mon 18 July 2022</time>
+        Posted <time class="published" datetime="2023-03-05T00:00:00-05:00">Sun 05 March 2023</time>
             <address>By
                     <a href="https://dragoncoder047.github.io/blog/author/dragoncoder047.html">dragoncoder047</a>
             </address>
                 <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/category/electronics.html">electronics</a></div>
     </div>
-        <p><em>This post is part 1 of the roboraptor-upgrade series:</em></p>
+        <p><em>This post is part 4 of the roboraptor-upgrade series:</em></p>
         <ol class="series">
-                <li class="active">
+                <li >
                     <a href='https://dragoncoder047.github.io/blog/post/2022-07-18-shifting-gears.html'>Shifting Gears</a>
                 </li>
                 <li >
@@ -114,18 +113,105 @@
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/post/2023-01-17-hairy-circuit-layout-issues.html'>Hairy Circuit Layout Issues</a>
                 </li>
-                <li >
+                <li class="active">
                     <a href='https://dragoncoder047.github.io/blog/post/2023-03-05-well-i-got-something.html'>Well, I Got Something...</a>
                 </li>
         </ol>
-    <p>Aaah, that&rsquo;s been a nice break from coding. Four weeks with no commits pushed to Phoo. It&rsquo;s a shame I left it in a broken state. I haven&rsquo;t the slightest idea why it&rsquo;s broken &mdash; but then again, all the other times Phoo broke, I never knew why either, and it just &ldquo;fixed itself&rdquo; after a while. Hopefully that will happen again.</p>
-<p>Lately, I&rsquo;ve worked on a different one of my interests: electronics. I ordered a bunch of interesting parts from <a href="https://www.sparkfun.com">Sparkfun</a> and they arrived yesterday. Before I explain what those were for, let&rsquo;s rewind.</p>
-<p>About eight years ago ago (wow, it was that long!) my parents bought me a <a href="https://wowwee.com/roboraptor-x">Roboraptor</a> for Christmas. I like robots and dragons, so a dragon(ish) robot was the perfect gift for me. I played with that thing so much it eventually broke a couple years ago. It has been sitting on the shelf collecting dust and making me think ever since.</p>
-<p>The only thing that I do not like is that the Roboraptor can&rsquo;t be programmed. And for a programmer and computer geek like me, that is the most annoying thing ever.</p>
-<p>I had opened it up to try to fix the problem, and unfortunately. I couldn&rsquo;t. But while I had the Roboraptor in pieces on my workbench, I noticed that the motor mechanism is stupid simple: while I expected standard servos or some similar kind of closed-loop control, it was actually open-loop, just a cheap 96:1 gearmotor and some return springs to bring the motor back to center when power was turned off, a &ldquo;poor man&rsquo;s servo&rdquo; of sorts. This mechanism is incredibly wasteful of batteries &ndash; the motor must be stalled and drawing maximum current to maintain any position other than middle &ndash; and so I wanted to fix that, too.</p>
-<p>From Sparkfun I ordered an <a href="https://www.sparkfun.com/products/18018">ESP32 Thing Plus C</a> and a bunch of <a href="https://www.sparkfun.com/products/9378">ATtiny85s</a>, plus supporting components, and my idea is to use the ESP32 as the main processor and &ldquo;talk&rdquo; to all the ATtiny85s using I<sup>2</sup>C. The ATtiny85s would handle tasks that must be continuously monitored (such as watching the encoders&rsquo; positions and turning the motors on when they&rsquo;re not where they&rsquo;re supposed to be) that, if done on the ESP32, would at best cause the otherwise fast ESP32 to bog down under a ton of interrupts, and at worst cause janky audio sounds and glitching.</p>
-<p>I also ordered an <a href="https://www.sparkfun.com/products/14809">I<sup>2</sup>S DAC</a> so I can play dragon sound effects from the ESP32. I also found <a href="https://github.com/pschatzmann/arduino-SAM">three</a> <a href="https://github.com/pschatzmann/TTS">text-to-speech</a> <a href="https://github.com/pschatzmann/arduino-flite">libraries</a> that I could add to the ESP32, as well as a <a href="http://www.ulisp.com/show?3TQF">tiny Lisp interpreter</a> that I could use as a scripting language.</p>
-<p>Who knows where this is going to end up? I certainly don&rsquo;t.</p>
+    <p>Today I did a quick test of my little ATtiny85 microcontrollers&rsquo; capabilities. I had them sitting in a jar for a while, and I wanted to see if I could use them in conjunction as a coprocessor to manage some mundane task like regulating a motor. I have previously written I do not like the way the motors are mounted in my old Roboraptor, and I was thinking if I removed the springs and added a position sensor, I could operate the motors as if they were servos. Unfortunately, although I can find analog Hall-effect position sensors for dirt cheap, I&rsquo;m not even sure it one can just buy a bare servo controller chip without also buying the motor and gearbox it goes in. At any rate, I never found one!</p>
+<p>The ATtiny85&rsquo;s I had bought seem like a logical solution: They have ADC pins for reading the position sensor, and PWM pins for controlling the speed of a motor. Additionally, there is <a href="https://github.com/rambo/TinyWire/">a library</a> that can implement I<sub>2</sub>C in software, so the ATtiny85 can communicate with the master.</p>
+<p>I also bought some L293D motor drivers, and they seemed simple to wire up to the ATtiny85: One pin for forward, one pin for backward, and the enable pin permanently pulled high.</p>
+<p>Unfortunately, the only available pins for the I<sub>2</sub>C library occupied one of the only two available PWM pins on the ATtiny85, so I got creative. Instead of having a forward and backward, pin, I had a speed and direction pin. The direction pin, which can&rsquo;t do PWM, is connected to the forward input of the L293D, and through an inverter into the backward input. The speed control pin feeds into the enable input.</p>
+<p>Just to test if the ATtiny85 could also handle reading the ADC while it is handling the I2C bus at the same time, I connected a potentiometer to the last open pin, which happened to be an ADC pin (whew!) and reprogrammed the ATtiny85 to read the ADC. The master code simply reads the ADC register of the ATtiny85, translates it into a speed and direction, and sends it back to the ATtiny85 which then controls the motor.</p>
+<p>Here&rsquo;s the code for both, as reference:</p>
+<div class="tabbed-set" data-tabs="1:2"><input checked id="__tabbed_1_1" name="__tabbed_1" type="radio"><label for="__tabbed_1_1">ATtiny85</label><div class="tabbed-content">
+<pre class="highlight"><code class="language-ino">#define I2C_SLAVE_ADDRESS 0x4 // the 7-bit address (remember to change this when adapting this example)
+// Get this from https://github.com/rambo/TinyWire
+#include &lt;TinyWireS.h&gt;
+// The default buffer size, though we cannot actually affect it by defining it in the sketch
+#ifndef TWI_RX_BUFFER_SIZE
+#define TWI_RX_BUFFER_SIZE (16)
+#endif
+
+// The "registers" we expose to I2C
+volatile uint8_t i2c_regs[] = {
+    0x0, // Speed
+    0x0, // Direction
+    0x0  // ADC
+};
+const byte reg_size = sizeof(i2c_regs);
+// Tracks the current register pointer position
+volatile byte reg_position;
+void requestEvent() {  
+    TinyWireS.send(i2c_regs[reg_position]);
+    // Increment the reg position on each read, and loop back to zero
+    reg_position++;
+    if (reg_position &gt;= reg_size) {
+        reg_position = 0;
+    }
+}
+void receiveEvent(uint8_t howMany) {
+    if (howMany &lt; 1) return; // Sanity-check
+    if (howMany &gt; TWI_RX_BUFFER_SIZE) return; // Also insane number
+    reg_position = TinyWireS.receive();
+    howMany--;
+    if (!howMany) return; // This write was only to set the buffer for next read
+    while (howMany--) {
+        i2c_regs[reg_position] = TinyWireS.receive();
+        reg_position++;
+        if (reg_position &gt;= reg_size) reg_position = 0;
+    }
+}
+void setup() {
+    pinMode(4, OUTPUT); // Dir control
+    pinMode(1, OUTPUT); // Speed control
+    digitalWrite(1, LOW);
+    pinMode(3, INPUT);
+    TinyWireS.begin(I2C_SLAVE_ADDRESS);
+    TinyWireS.onReceive(receiveEvent);
+    TinyWireS.onRequest(requestEvent);
+}
+
+void loop() {
+    TinyWireS_stop_check();
+    digitalWrite(4, !!i2c_regs[1]);
+    analogWrite(1, i2c_regs[0]);
+    i2c_regs[2] = analogRead(3) &gt;&gt; 2;
+}</code></pre>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio"><label for="__tabbed_1_2">Master</label><div class="tabbed-content">
+<pre class="highlight"><code class="language-ino">#include &lt;Wire.h&gt;
+void setup() {
+    Wire.begin();
+    Serial.begin(115200);
+}
+void loop() {
+    byte x, d, s;
+    Wire.beginTransmission(0x04);
+    Wire.write(2);
+    Wire.endTransmission();
+    delay(10);
+    Wire.requestFrom(0x04, 1);
+    x = Wire.read();
+    Serial.println(x);
+    if (x &lt;= 127) {
+        d = 1;
+        s = (127 - x) &lt;&lt; 1;
+    } else {
+        d = 0;
+        s = (x - 128) &lt;&lt; 1;
+    }
+    Wire.beginTransmission(0x04);
+    Wire.write(0);
+    Wire.write(s);
+    Wire.write(d);
+    Wire.endTransmission();
+    delay(10);
+}</code></pre>
+</div>
+</div>
+<p>And at long last, after much <code class="language-ino highlight">delay()</code> tomfoolery, I got something to work.</p>
+<p>I quickly discovered that the ADC read (i.e. the <code class="language-ino highlight">analogRead()</code> call) takes a bit of time, and during that interval, the ATtiny85 effectively drops off the I<sub>2</sub>C bus. Weird, but workable.</p>
+<p>Oh well. I don&rsquo;t have half the parts I need to finish anything, so I&rsquo;ll have to wait.</p>
     <script src="https://giscus.app/client.js"
         data-repo="dragoncoder047/blog"
         data-repo-id="R_kgDOHCL60w"

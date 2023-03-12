@@ -16,21 +16,21 @@ Number 2) necessitates abstracting the common characteristics of story elements 
 After a lot of thinking (and consulting the [Interactive Fiction Wiki](https://www.ifwiki.org/Building_a_New_Interactive_Fiction_System)) I came up with a simple method of defining objects based on a few simple attributes:
 
 * Physical attributes:
-  * Size: how much space the object takes up. For example, a glass bottle might have a size of 1, and a brick might have a size of 2.
-  * Volume: the amount of space is empty inside and can be filled with other objects. The bottle's volume might be 1 as well, and the brick's is of course 0 because it isn't a container. This can also be greater than the size for fictional objects that can hold more objects than the visible volume.
-  * Weight: How heavy an object is. The player character has a limit to how much you can carry (which could be changed by a magic strength potion or such).
-  * Entrance size: irrespective of volume, the largest item that will fit into or out of the object. For example, while a lime could probably fit inside a glass pop bottle, it wouldn't fit though the neck and so could not be put in the bottle, or could not be taken out if it was magically moved inside the bottle.
+    * Size: how much space the object takes up. For example, a glass bottle might have a size of 1, and a brick might have a size of 2.
+    * Volume: the amount of space is empty inside and can be filled with other objects. The bottle's volume might be 1 as well, and the brick's is of course 0 because it isn't a container. This can also be greater than the size for fictional objects that can hold more objects than the visible volume.
+    * Weight: How heavy an object is. The player character has a limit to how much you can carry (which could be changed by a magic strength potion or such).
+    * Entrance size: irrespective of volume, the largest item that will fit into or out of the object. For example, while a lime could probably fit inside a glass pop bottle, it wouldn't fit though the neck and so could not be put in the bottle, or could not be taken out if it was magically moved inside the bottle.
 * Visual attributes:
-  * Opacity: how easy it is to see objects inside of it. Things inside that are smaller than this percentage of the object's size are reduced to "and something else inside" when describing the object, and not mentioned at all if the opacity is 100%. For example, for a plastic jug with a size of 10 and an opacity of 90%, objects inside the jug that have a size less than 9 would have to be removed to be described clearly.
-  * Luminosity: how much light the object emits; additionally, if the object does not have an opacity of 100% and there are light-emitting objects inside, they also change the luminosity.
-  * Light color: an arbitrary string that usually serves no purpose, but it could be useful for color-coded hidden messages (such as a paper that reads "puasjeftbhveibernaasgskkjefy" normally but when viewed under red light it reads "usethebrasskey").
-  * Fuel: how long the object will continue to emit light for. A match might only last for 2 turns, while a flashlight might last for 100 turns before the batteries die.
-  * Switch state: a flashlight could be turned off, in which case it would stop emitting light, but the battery would stop draining too.
+    * Opacity: how easy it is to see objects inside of it. Things inside that are smaller than this percentage of the object's size are reduced to "and something else inside" when describing the object, and not mentioned at all if the opacity is 100%. For example, for a plastic jug with a size of 10 and an opacity of 90%, objects inside the jug that have a size less than 9 would have to be removed to be described clearly.
+    * Luminosity: how much light the object emits; additionally, if the object does not have an opacity of 100% and there are light-emitting objects inside, they also change the luminosity.
+    * Light color: an arbitrary string that usually serves no purpose, but it could be useful for color-coded hidden messages (such as a paper that reads "puasjeftbhveibernaasgskkjefy" normally but when viewed under red light it reads "usethebrasskey").
+    * Fuel: how long the object will continue to emit light for. A match might only last for 2 turns, while a flashlight might last for 100 turns before the batteries die.
+    * Switch state: a flashlight could be turned off, in which case it would stop emitting light, but the battery would stop draining too.
 * Presentation attributes:
-  * The usual name, description, and long description.
-  * Whether the object is unique: if so, it will be printed as `the brass key` rather than `a brass key`, if not, multiple instances will be coalesced into one entry when listing inventory (so it will show `5 apples` rather than `an apple, an apple, an apple, an apple, and an apple`.)
-  * Whether the object is a proper noun: if so, it will be printed as `John` rather than `the John`.
-  * Whether the object is hidden: if so, it will never be printed when listing inventory, it will not appear in descriptions, and the game will always act as though the player doesn't have it. This is useful for intangible things like passwords, combinations, or incantations that must be learned or figured out before they can be used (the object can be silently inserted into the player's inventory when all the information necessary has been discovered) or "under" regions due to the limitation of the model that a table must be put over an under-the-table for other things to be able to be put under the table (which is really in the under-the-table).
+    * The usual name, description, and long description.
+    * Whether the object is unique: if so, it will be printed as `the brass key` rather than `a brass key`, if not, multiple instances will be coalesced into one entry when listing inventory (so it will show `5 apples` rather than `an apple, an apple, an apple, an apple, and an apple`.)
+    * Whether the object is a proper noun: if so, it will be printed as `John` rather than `the John`.
+    * Whether the object is hidden: if so, it will never be printed when listing inventory, it will not appear in descriptions, and the game will always act as though the player doesn't have it. This is useful for intangible things like passwords, combinations, or incantations that must be learned or figured out before they can be used (the object can be silently inserted into the player's inventory when all the information necessary has been discovered) or "under" regions due to the limitation of the model that a table must be put over an under-the-table for other things to be able to be put under the table (which is really in the under-the-table).
 
 From this, special objects can be made with sentinel value of zero or infinity:
 

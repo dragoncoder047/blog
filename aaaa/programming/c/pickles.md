@@ -1,13 +1,14 @@
 Title: Pickles!
 Date: 2023-02-23
+Series: pickle
 
-I've been playing around a little bit with LIL on my ESP32 arduino. It works, but there are a few things I don't like. LIL isn't object-oriented by default, so I can't do a lot of what I am used to writing code in Javascript and Python. LIL also forces the result of every expression (the `:::tcl expr` command) to be a number (so I can't do a `:::python "foo" * 3` to repeat a string), has no operator overloading because nothing is an object and supports overloading anyway, and (most importantly) doesn't support lexical closures.
+I've been playing around a little bit with LIL on my ESP32 arduino. It works, but there are a few things I don't like. LIL isn't object-oriented by default, so I can't do a lot of what I am used to writing code in Javascript and Python. LIL also forces the result of every expression (the `:::tcl expr` command) to be a number (so I can't do a Python-esque `:::python "foo" * 3` to repeat a string), has no operator overloading because nothing is an object and supports overloading anyway, and (most importantly) doesn't support lexical closures.
 
-LIL also does not have what I think is a really useful operator: the `|>` pipe operator, for function chaining. Javascript is working on one (it was [proposed](https://github.com/tc39/proposal-pipeline-operator) and it will be incredibly useful if and when it actually goes through.
+LIL also does not have what I think is a really useful operator: the `|>` pipe operator, for function chaining. Javascript is working on one (it was [proposed](https://github.com/tc39/proposal-pipeline-operator)) and it will be incredibly useful if and when it actually goes through.
 
-There are several things about LIL that I do like, though: it has a nice recursive parser, a very simple hashmap implementation, and the use of arrays of pointers to implement list types. Back when I was working on TEHSSL, I actually decided against the last one because I (erroneously) feared that if I had to `:::c realloc()` the array, it would move objects and corrupt the pointers of every object that pointed to them. When I looked at LIL, it finally dawned on me that the array was an array of *pointers* to the objects, and `:::c realloc()`'ing the array would only move the *pointers*, not the objects, and so it's okay to use as long as you don't overrun your array before you `:::c realloc()` it. 
+There are several things about LIL that I do like, though: it has a nice recursive parser, a very simple hashmap implementation, and the use of native C arrays (i.e. double-pointer-indirection, two asterisks) to implement list types. Back when I was working on TEHSSL, I actually decided against the last one because I (erroneously) feared that if I had to `:::c realloc()` the array, it would move objects and corrupt the pointers of every object that pointed to them. When I looked at LIL, it finally dawned on me that the array was an array of *pointers* to the objects, and `:::c realloc()`'ing the array would only move the *pointers*, not the objects, and so it's okay to use as long as you don't overrun your array before you `:::c realloc()` it.
 
-LIL also forces the use of curly brackets (`:::tcl { }`) for delimiting code blocks (which are really just strings), which as a Python programmer, I don't like. One modification I would like to add is the use of a ":" to delimit a block of code.
+LIL also forces the use of curly brackets (`:::tcl { }`) for delimiting code blocks (which are really just strings), which as a Python programmer, I don't like. I really like the cleanness of the colon-plus-indent of Python.
 
 As-is, there is one feature that I want in my scripting language that I don't see in any other language. It is the ability to **define custom operators**.
 
@@ -29,7 +30,7 @@ Here are my goals:
 * Allow operator overloading on objects
 * Utilize dynamic typing
 * Utilize dynamic memory allocation and a garbage collector
-* Include code<-->data interoperability
+* Is homoiconic (code<-->data interoperability)
 * Possibly implement syntactic macros
 
 ## Objects and inheritance
@@ -44,39 +45,39 @@ class Y(B, A): pass
 class Crash(X, Y): pass
 ```
 
-Paste it into a Python console -- you'll get `TypeError: Cannot create a consistent MRO for bases A, B`. The reason why Python crashes is because `Crash` inherits from `X` and `Y`, and each of those inherit from `A` and `B`, but in a different order, so Python doesn't know whether to look at `A` or `B` first. How my new language would go about it is that because `Crash` listed `X`, first, it would search in the order `Crash, X, A, B, Y, B, A`.
+Paste it into a Python console -- you'll get `TypeError: Cannot create a consistent MRO for bases A, B`. The reason why Python crashes is because `Crash` inherits from `X` and `Y`, and each of those inherit from `A` and `B`, but in a different order, so Python doesn't know whether to look at `A` or `B` first. How my new language would go about it is by recursively searching the superclasses in the order they were specified - in the case of `Crash`, which listed `X` first, it would search in the order `Crash, X, A, B, Y, B, A` (and in theory, could automatically skip searching A and B the second time, but that's an optimization and I'm not concerned with speed).
 
-Another thing I am going to take from Javascript is that everything in the "global" scope is really properties of a global object (called `globalThis` for some reason, per the spec) and so that simplifies scope management a whole lot.
+Another thing I am going to take from Javascript is that everything in the "global" scope is really properties of a global object (called `:::js globalThis` in Javascript for some reason, per the spec) and so that simplifies scope management a whole lot.
 
-One thing I am *not* going to take from Javascript is the indistinction of items and properties of objects. Think of a Python dictionary: it has methods such as `copy()`, but you cannot access them by writing `:::python mydict["copy"]()` like would work if it was Javascript. Neither can you access dictionary items stored with `:::python mydict["foobar"]` using the `mydict.foobar` syntax.
+One thing I am *not* going to take from Javascript is the indistinction of items and properties of objects. Think of a Python dictionary: it has methods such as `copy()`, but you cannot access them by writing `:::python mydict["copy"]()` like would work if it was Javascript. Neither can you access dictionary items stored with `:::python mydict["foobar"]` using the `mydict.foobar` syntax as you can in Javascript.
 
 ## The garbage collector
 
-When I was working on TEHSSL, I had implemented a pure mark-and-sweep garbage collector. Mark-and-sweep collectors are *perfect*, that is, they always collect all the unreachable objects and never leak memory, but this got really hard to manage in TEHSSL. For example, specifically when I create a whole bunch of intermediate objects that are used once and then never again (like during compilation) causing the number of objects to hit the high-water mark and activate the garbage collector, freeing all those objects that I am done with, but also the ones I'm *not* done with, corrupting my pointers. The common way to prevent that (used by uLisp) is to use a temporary garbage collector stack to store those objects on, but that made it even more confusing.
+When I was working on TEHSSL, I had implemented a pure stop-the-world mark-and-sweep garbage collector. Mark-and-sweep collectors are *perfect*, that is, they always collect all the unreachable objects and never leak memory, but this got really hard to manage in TEHSSL. For example, the evaluator creates a lot of intermediate objects it uses once and then throws out (garbage!), and this quickly causes the number of objects to hit the high-water mark and activate the garbage collector, freeing all those objects that it's done with, but also the ones it's *not* done with, corrupting pointers. The common way to prevent that (used by uLisp) is to use a temporary garbage collector stack to store those objects on, but knowing when and whether to push an pop objects from that that made it extremely confusing.
 
-The approach Python takes is a little different: Python uses a reference counting garbage collector. That is, each object maintains a count of how many C pointers and other objects point to it, and when it drops to zero the object is immediately freed. This does suffer from problems when objects point to each other and create a reference cycle, preventing those objects from ever being freed. Python does have a "cycle-busting" mechanism in place, but as far as I know, it isn't described very thouroughly. Perhaps it's just a mark-and sweep collector.
+The approach Python takes is a little different -- a reference counting garbage collector. That is, each object maintains a count of how many C pointers and other objects point to it, and when it drops to zero the object is immediately freed. This does suffer from problems when objects point to each other and create a reference cycle, preventing those objects from ever being freed. Python does have a "cycle-busting" mechanism in place, but as far as I know, it isn't described very thouroughly. Perhaps it's just a mark-and sweep collector.
 
-The garbage collector I am going to implement will use reference-counting for most things, and then only call a mark-and-sweep at strategic times to clean up the reference cycles, when I am sure there aren't any intermediate objects that are still in use being pointed to by C variables.
+The garbage collector I am going to try to implement will use reference-counting for most things, and then only call a mark-and-sweep at strategic times to clean up the reference cycles, when I am sure there aren't any intermediate objects that are still in use being pointed to by C variables. This scheme has the benefit of being able to quickly recycle memory -- when the object loses all its references, it gets finalized (free system data, decrement the references of all other object it points to, etc) but doesn't actually get freed (that is the job of the mark-and-sweep). Then when a new object is allocated, the allocator can recycle a finalized "corpse" object instead of allocating new memory. And because of the way new allocations are made known to the virtual machine, recently allocated objects are towards the top of this list and so objects with short lifetimes are recycled quickly.
 
 ## Closures
 
 LIL does not have closures. That is, this code:
 
 ```tcl
-set bar "global text"
-func foo {bar} {
-  set closure [func {} {print $bar}]
+set foo "global text"
+func make-closure {foo} {
+  set closure [func {} {print $foo}]
   return $closure
 }
-set baz [foo "closed text"]
+set bar [make-closure "closed text"]
 $baz
 ```
 
 prints "global text" -- the passed-in value of "closed text" is lost.
 
-But, `func` is a function itself, that creates functions when executed. Couldn't the returned function have a pointer to the enclosing scope it was declared in, so that it could use closed-over variables? That's what I'm going to do in my program.
+But, `func` is a function itself, that creates functions when executed. Couldn't the returned function have a pointer to the enclosing scope it was declared in, so that it could use closed-over variables? Seems like that would work, so that's what I'm going to do in my language.
 
-Bob Nystron's [*Crafting Interpreters* book](https://craftinginterpreters.com/closures.html) utilizes the Lua-like method of storing "upvalues" in a special closure wrapper of a plain function, which has the advantage that closures only close over the values they actually will use, saving memory (maybe). But because of Tcl's `:::tcl upeval` (and LIL's extension `downeval`) those "possibly-untouched" closure values may actually be used after all. The semantics of `:::tcl upeval` and closures I'll figure out when I get there. Storing the entire scope seems like an easy way to allow `:::tcl upeval` to work okay.
+Bob Nystrom's [*Crafting Interpreters* book](https://craftinginterpreters.com/closures.html) utilizes the Lua-like method of storing "upvalues" in a special closure wrapper of a plain function, which has the advantage that closures only close over the values they actually will use, saving memory (maybe). But because of Tcl's `:::tcl upeval` (and LIL's extension `downeval`) those "possibly-untouched" closure values may actually be used after all. The semantics of `:::tcl upeval` and closures I'll figure out when I get there. Storing the entire scope seems like an easy way to allow `:::tcl upeval` to work okay.
 
 ## Colon blocks
 
@@ -99,7 +100,7 @@ while {foo}:
 baz
 ```
 
-This saves a line, and it looks a lot cleaner (and a lot more like Python). An interesting side effect is that you can append a "block" to the end of any function, and it will take it as a string. So you coule write this:
+This saves a line, and it looks a lot cleaner (and a lot more like Python). An interesting side effect is that you can append a "block" to the end of any function, and it will take it as a string. So you could write this:
 
 ```tcl
 print:

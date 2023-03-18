@@ -54,6 +54,35 @@ Wren, however, allows *operator* overloading as well, and its implementation is 
 
 Unfortunately, this model doesn't quite work for PICKLE: the operators are baked into the Wren grammar, and you can't define more.
 
-However, one idea I had myself in the process of thinking about how to implement custom operators is to simply have a second hashmap on each scope, alongside the normal one for variables, and use it to map operator symbols to their associativity and precedence. Lookup would be recursive as with variables, so 
+However, one idea I had myself in the process of thinking about how to implement custom operators is to simply have a second hashmap on each object, alongside the normal one for attributes, and use it to map operator symbols the object responds to to their associativity, arity, and precedence. Lookup would recurse through the prototype tree as with any other object property.
 
-Operators would be parsed identically to symbols, and if they aren't registered in the operator table
+Operators would be parsed identically to symbols, and if they aren't next to any object that responds to that operator, they would behave identically to one.
+
+When an expression is evaluated:
+
+1. Each element in the expression is evaluated (recursively). Most literals evaluate to themselves, so this really doesn't change much. The result of this is a list of values, some of which may be operator symbols.
+2. PICKLE scans each of the elements and looks to either side of it and makes a note when the middle object responds to either of the symbols on the left and right as operators.
+3. From these, if any are unary (prefix or postfix), it picks the highest precedence one and evaluates it by calling the appropriate method on the object and then splices the result back in to the in-progress list of values.
+4. Once the unary operators are exhausted, PICKLE picks the highest-precedence binary operator according to associativity rules and then calls the method on one object, passing the other object as a parameter, and splices in the return value to the list of values.
+5. It then checks that return value for operators it responds to and goes back to step 2.
+6. Once all the operators are exhausted, it simply calls the first object with the rest as arguments.
+
+This, conveniently, would simplify parsing, quite a lot, and allow for me to use Python style infix assignment operators instead of an annoying `:::tcl set` command. The way it would work is variable names are parsed as symbols, and symbols would respond to the `$` dereferencing operator. When the operator is applied to the symbol, it responds by looking up the variable with the same name. Similarly, objects would respond to the `.` operator, which would perform attribute lookup, and the `=` operator, which would create a temporary set-attribute object, which, when combined with the `.` operator, would signal to an object to set the property to the computed value.
+
+This, however, does have some issues. Consider this (hypothetical) code:
+
+```pickle
+class A:
+    postfix 3 !!:
+        do_something
+class B:
+    prefix 3 !!:
+        do_something_else
+let x = A.new
+let y = B.new
+x!!y
+```
+
+Here, it creates two objects, one that responds to `!!` as a prefix operator, and the other to the same operator as postfix. The key here is that both operators have the *same precedence*. When PICKLE tries to execute the last line, it runs into an ambiguity problem: does the `!!` apply to `x` or `y`? I'm not sure what I'll do here, whether it's just bail and throw an error, or define some sort of deterministic left-to-right order, but hopefully it will be something that makes sense.
+
+That's it for now. I'm going to try to rewrite PICKLE in C++ and see if that makes things any easier.

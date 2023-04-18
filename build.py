@@ -77,7 +77,6 @@ MENUITEMS = (
     ('Archives', f'{SITEURL}/{ARCHIVES_SAVE_AS}'),
     ('Site root', '/'),
     ('Projects', '#', (
-        ('Phoo', f'https://phoo-lang.github.io/'),
         ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste'),
         ('Armdroid', f'https://{AUTHOR}.github.io/armdroid'),
         ('Langton\'s Ant Music', f'https://{AUTHOR}.github.io/langton-music'),

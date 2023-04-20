@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Pickle Tokenizer</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Pickle Tokenizer" />
+    <meta property="og:description" content="I’m starting to work on my Pickle programming language, this time in Javascript. After only a few days’ work, I’m surprised I got so much working. Currently I have both the tokenizer and the inheritance system working. Tokenizer In contrast to my previous attempt in C, I actually …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/post/2023-04-20-pickle-tokenizer.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Pickle Tokenizer" />
+    <meta name="twitter:description" content="I’m starting to work on my Pickle programming language, this time in Javascript. After only a few days’ work, I’m surprised I got so much working. Currently I have both the tokenizer and the inheritance system working. Tokenizer In contrast to my previous attempt in C, I actually …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+        <!-- Katex -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.css" type="text/css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/mhchem.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        renderMathInElement(document.body,
+            {
+                delimiters: [
+                    {left: '$$', right:'$$', display: true},
+                    {left: '$',  right:'$',  display: false},
+                    {left: '\\begin{align}', right: '\\end{align}', display: true},
+                ]
+            }
+        );
+    });
+</script>        <!-- /Katex -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://github.com/dragoncoder047/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/categories.html">Categories</a>
+                            <ul>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/cellular-automata.html">cellular automata</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/electronics.html">electronics</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/misc.html">misc</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/programming.html">programming</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/programming/c.html">programming/c</a></li>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/category/programming/javascript.html">programming/javascript</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/programming/lisp.html">programming/lisp</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/programming/phoo.html">programming/phoo</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/programming/python.html">programming/python</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/robotics.html">robotics</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/robotics/armdroid.html">robotics/armdroid</a></li>
+                                    <li><a href="https://dragoncoder047.github.io/blog/category/robotics/reverse-engineering.html">robotics/reverse-engineering</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/post/2023-04-20-pickle-tokenizer.html" rel="bookmark" title="Permalink to this page">Pickle Tokenizer</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/post/2023-04-18-phooey-phooey-phooey.html">
+                    Phooey! Phooey! Phooey!
+                </a>
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2023-04-20T00:00:00-04:00">Thu 20 April 2023</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/author/dragoncoder047.html">dragoncoder047</a>
+            </address>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/category/programming/javascript.html">javascript</a></div>
+    </div>
+    <p>I&rsquo;m starting to work on my Pickle programming language, this time in Javascript. After only a few days&rsquo; work, I&rsquo;m surprised I got so much working. Currently I have both the tokenizer and the inheritance system working.</p>
+<h2 id="tokenizer">Tokenizer</h2>
+<p>In contrast to my previous attempt in C, I actually wrote a tokenizer. But in all honesty, the tokenizer really does 90% of the parsing &ndash; it just doesn&rsquo;t recursively build up a tree of expressions using the parens (that will be done by the parser).</p>
+<p>I got the tokenizer working in a little demo page I dubbed the &ldquo;seeder&rdquo; for some reason. Currently it is able to tokenize this code</p>
+<pre class="highlight"><code class="language-pickle">defun fib(x):
+    if $x == 0 or $x == 1:
+        return 1
+    else:
+        return (fib $x - 1) + (fib $x - 2)
+print (fib 10)</code></pre>
+<p>into this stream or tokens:</p>
+<pre class="highlight"><code class="language-txt">[1:1 - 1:6] symbol  "defun" 
+[1:7 - 1:11]    symbol  "fib"   
+[1:11 - 1:12]   paren   "(" 
+[1:12 - 1:13]   symbol  "x" 
+[1:13 - 1:14]   paren   ")" 
+[1:14 - 6:1]    string (block)  "if $x == 0 or $x == 1:\n    return 1\nelse:\n    return (fib $x - 1) + (fib $x - 2)"   
+[6:1 - 6:6] symbol  "print" 
+[6:7 - 6:8] paren   "(" 
+[6:8 - 6:12]    symbol  "fib"   
+[6:13 - 6:15]   number (integer)    "10"    
+[6:15 - 6:16]   paren   ")" </code></pre>
+<p>The only bug I can see here is that the colon-block string part consumes the newline at the end of the block, so the <code>print</code> is considered to be on the same logical line, but it shouldn&rsquo;t be. A simple <code>;</code> before the <code>print</code> would fix that, but I feel that this kind of indented block structure where an unindent ends both the block and the line, would be more common than having the string continue the line &ndash; in other words, having the default be to continue it and adding punctuation to end it would result in more &ldquo;punctuation overload&rdquo; versus having a special punctuation character mean continue the line and the default be to end it. Unfortunately, the former appears to be whet is implemented in the Javascript tokenizer.</p>
+<h2 id="inheritance">Inheritance</h2>
+<p>In <a href="https://dragoncoder047.github.io/blog/post/2023-02-23-pickles.html">my earlier post about Pickle</a>, I mentioned that Pickle would have a multiprototype-based inheritance system, a strange mix of Python and Javascript. Python supports multiple inheritance, but chokes on &ldquo;ambiguous&rdquo; inheritance trees, while Javascript only supports single inheritance through prototypes. But I think I&rsquo;ve found a simple solution that implements multiprototype-based inheritance. Here&rsquo;s a pared-down example:</p>
+<pre class="highlight"><code class="language-js">class PickleObject {
+    constructor(name, ...prototypes) {
+        this.name = name;
+        this.prototypes = prototypes;
+    }
+    toJSON() {
+        return this.name;
+    }
+    getMRO() {
+        var fun = x =&gt; [x].concat(x.prototypes.map(fun));
+        return fun(this).flat(Infinity);
+    }
+}
+
+var A = new PickleObject("A");
+var B = new PickleObject("B");
+var X = new PickleObject("X", A, B);
+var Y = new PickleObject("Y", B, A);
+var Crash = new PickleObject("Crash", X, Y);
+alert(JSON.stringify(Crash.getMRO()));
+// -&gt; ["Crash","X","A","B","Y","B","A"]</code></pre>
+<p>This is exactly the same code that I posted earlier that Python can&rsquo;t handle &ndash; but here, <code class="language-js highlight">Crash.getMRO()</code> simply returns a flat array that can be searched linearly. I&rsquo;m not sure how fast this is, but I do have some optimization tricks that I could apply.</p>
+<h2 id="whats-next">What&rsquo;s next?</h2>
+<p>I don&rsquo;t know exactly what, but Pickle is still only half-written. After I write the parser, I&rsquo;ll need to then write the evaluator. And the evaluator is going to be extremely complicated and probably very slow, although I do hope it will be somewhat readable due to Javascript&rsquo;s built-in functional programming constructs that C doesn&rsquo;t have natively.</p>
+<p>Pickle does look like it&rsquo;s going to be simpler than Phoo, certainly. Although Phoo did get complicated because I split everything into a zillion different files. One huge file for everything may be a bit much, but having a bazillion files and none have any more than 100 lines apiece is also a bit much. Aside from the weird operator semantics, I do hope Pickle&rsquo;s flow will be easier to follow.</p>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

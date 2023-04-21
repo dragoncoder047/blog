@@ -1,7 +1,8 @@
 Title: Pickle Tokenizer
 Date: 2023-04-20
+Modified: 2023-04-21
 
-I'm starting to work on my Pickle programming language, this time in Javascript. After only a few days' work, I'm surprised I got so much working. Currently I have both the tokenizer and the inheritance system working.
+I'm starting to work on my Pickle programming language, this time in Javascript. After only a few days' work, I'm surprised I got so much working. Currently I have both the tokenizer and the inheritance system working. The syntax of Pickle is pretty much in place now, and I just have a few tweaks left for the tokenizer, and hooking it up to a parser, before I am able to write the evaluator.
 
 ## Tokenizer
 
@@ -34,7 +35,9 @@ into this stream or tokens:
 [6:15 - 6:16]	paren 	")"	
 ```
 
-The only bug I can see here is that the colon-block string part consumes the newline at the end of the block, so the `print` is considered to be on the same logical line, but it shouldn't be. A simple `;` before the `print` would fix that, but I feel that this kind of indented block structure where an unindent ends both the block and the line, would be more common than having the string continue the line -- in other words, having the default be to continue it and adding punctuation to end it would result in more "punctuation overload" versus having a special punctuation character mean continue the line and the default be to end it. Unfortunately, the former appears to be whet is implemented in the Javascript tokenizer.
+The tokenizer is also a bit unique in that it can recover from a syntax error and keep scanning, allowing you to see and fix multiple syntax errors all at once. And it's also nice that the [Ace.js](https://ace.c9.io) code editor allows you to place annotation markers in the gutter, which is what I did in the "seeder".
+
+The only bug I can see here with this example is that the colon-block string part consumes the newline at the end of the block, so the `print` is considered to be on the same logical line, but it shouldn't be. A simple `;` before the `print` would fix that, but I feel that this kind of indented block structure where an unindent ends both the block and the line, would be more common than having the string continue the line -- in other words, having the default be to continue it and adding punctuation to end it would result in more "punctuation overload" versus having a special punctuation character mean continue the line and the default be to end it. Unfortunately, the former appears to be whet is implemented in the Javascript tokenizer.
 
 ## Inheritance
 

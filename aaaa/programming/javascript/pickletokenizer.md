@@ -68,6 +68,7 @@ Pickle does look like it's going to be simpler than Phoo, certainly. Although Ph
 
 <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.10.0/src-noconflict/ace.min.js"></script>
 <script>
+(function() {
 function pickleUnescapeChar(c) {
     switch (c) {
         case 'b': return '\b';
@@ -191,8 +192,8 @@ class PickleTokenizer {
             return this.makeToken("string.block", lines.join("\n"));
         }
         const TOKEN_REGEXES = [
+            { type: "comment.block", re: /^(?<!#)(###+)(?!#)[\s\S\n\r]*?(?<!#)\1(?!#)/, significant: false },
             { type: "comment.line", re: /^#[^\n]*/, significant: false },
-            { type: "comment.block", re: /^###[\s\S]*###/, significant: false },
             { type: "paren", re: /^[\(\)\[\]]/, significant: true, groupNum: 0 },
             { type: "space", re: /^(?!\n)\s+/, significant: false },
             { type: "eol", re: /^[;\n]/, significant: true, groupNum: 0 },
@@ -251,7 +252,7 @@ class PickleTokenizer {
 }
 const SEL = s => document.querySelector(s);
 ace.config.set('basePath', 'https://cdn.jsdelivr.net/npm/ace-builds@1.10.0/src-noconflict/');
-var editor = ace.edit("picklecode");
+var editor = ace.edit("picklecode", { maxLines: 20 });
 function output(x) {
     SEL("#outputtokens").innerHTML += x;
 }
@@ -268,7 +269,6 @@ function foobar() {
             var tok = tokenizer.nextToken();
             if (tok) {
                 if (tok.type == "error") {
-                    gotErrors = true;
                     annotations.push({
                         row: tok.start.line - 1,
                         column: tok.start.col,
@@ -296,4 +296,5 @@ function darkLight() {
 }
 darkLight();
 dmmq.addEventListener("change", darkLight);
+})();
 </script>

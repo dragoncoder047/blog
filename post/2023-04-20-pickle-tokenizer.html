@@ -113,6 +113,11 @@
                     Phooey! Phooey! Phooey!
                 </a>
             </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/post/2023-05-18-yet-another-garbage-collector.html">
+                    Yet Another Garbage Collector
+                </a> &rarr;
+            </span>
     </div>
     <div class="post-info">
         Posted <time class="published" datetime="2023-04-20T00:00:00-04:00">Thu 20 April 2023</time>
@@ -122,6 +127,21 @@
             </address>
                 <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/category/programming/javascript.html">javascript</a></div>
     </div>
+        <p><em>This post is part 3 of the pickle series:</em></p>
+        <ol class="series">
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/post/2023-02-23-pickles.html'>Pickles!</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/post/2023-03-17-manual-memory-management-madness.html'>Manual Memory Management Madness</a>
+                </li>
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/post/2023-04-20-pickle-tokenizer.html'>Pickle Tokenizer</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/post/2023-05-18-yet-another-garbage-collector.html'>Yet Another Garbage Collector</a>
+                </li>
+        </ol>
     <p>I&rsquo;m starting to work on my Pickle programming language, this time in Javascript. After only a few days&rsquo; work, I&rsquo;m surprised I got so much working. Currently I have both the tokenizer and the inheritance system working. The syntax of Pickle is pretty much in place now, and I just have a few tweaks left for the tokenizer, and hooking it up to a parser, before I am able to write the evaluator.</p>
 <h2 id="tokenizer">Tokenizer</h2>
 <p>In contrast to my previous attempt in C, I actually wrote a tokenizer. But in all honesty, the tokenizer really does 90% of the parsing &ndash; it just doesn&rsquo;t recursively build up a tree of expressions using the parens (that will be done by the parser).</p>

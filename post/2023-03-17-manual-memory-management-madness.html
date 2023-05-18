@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en_us">
     <head>
-                <title>I Keep Getting Stuck on the Garbage Collector...</title>
+                <title>Manual Memory Management Madness</title>
             <meta charset="utf-8" />
             <meta name="generator" content="Pelican" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,14 +17,14 @@
 
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
-    <meta property="og:title" content="I Keep Getting Stuck on the Garbage Collector..." />
+    <meta property="og:title" content="Manual Memory Management Madness" />
     <meta property="og:description" content="I’ve been working quite a lot on my second programming language attempt, PICKLE. Admittedly, programming it in C has been a real chore. I started following the Make-A-Lisp tutorial to try to give myself some plan for executing PICKLE. Mal, unfortunately, recommends dynamically typed languages; that unfortunately is a …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://dragoncoder047.github.io/blog/post/2023-03-17-i-keep-getting-stuck-on-the-garbage-collector.html" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/post/2023-03-17-manual-memory-management-madness.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - I Keep Getting Stuck on the Garbage Collector..." />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Manual Memory Management Madness" />
     <meta name="twitter:description" content="I’ve been working quite a lot on my second programming language attempt, PICKLE. Admittedly, programming it in C has been a real chore. I started following the Make-A-Lisp tutorial to try to give myself some plan for executing PICKLE. Mal, unfortunately, recommends dynamically typed languages; that unfortunately is a …" />
     <meta name="twitter:image" content="/images/patrick.svg" />
             <!-- PrismJS -->
@@ -105,7 +105,7 @@
             </nav>
         </header>
         <main>
-    <h1><a href="https://dragoncoder047.github.io/blog/post/2023-03-17-i-keep-getting-stuck-on-the-garbage-collector.html" rel="bookmark" title="Permalink to this page">I Keep Getting Stuck on the Garbage Collector...</a></h1>
+    <h1><a href="https://dragoncoder047.github.io/blog/post/2023-03-17-manual-memory-management-madness.html" rel="bookmark" title="Permalink to this page">Manual Memory Management Madness</a></h1>
     
     <div class="flex-row">
             <span style="flex: 1">&larr; Previous:
@@ -132,7 +132,13 @@
                     <a href='https://dragoncoder047.github.io/blog/post/2023-02-23-pickles.html'>Pickles!</a>
                 </li>
                 <li class="active">
-                    <a href='https://dragoncoder047.github.io/blog/post/2023-03-17-i-keep-getting-stuck-on-the-garbage-collector.html'>I Keep Getting Stuck on the Garbage Collector...</a>
+                    <a href='https://dragoncoder047.github.io/blog/post/2023-03-17-manual-memory-management-madness.html'>Manual Memory Management Madness</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/post/2023-04-20-pickle-tokenizer.html'>Pickle Tokenizer</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/post/2023-05-18-yet-another-garbage-collector.html'>Yet Another Garbage Collector</a>
                 </li>
         </ol>
     <p>I&rsquo;ve been working quite a lot on my second programming language attempt, PICKLE. Admittedly, programming it in C has been a real chore. I started following the <a href="https://github.com/kanaka/mal/blob/master/process/guide.md">Make-A-Lisp</a> tutorial to try to give myself some plan for executing PICKLE. Mal, unfortunately, recommends dynamically typed languages; that unfortunately is a no-go because I have to write it in C/C++ so I can compile it onto a microcontroller.</p>
@@ -152,7 +158,7 @@ decref(foo);</code></pre>
 <pre class="highlight"><code class="language-cpp">decref(foo-&gt;bar);
 foo-&gt;bar = baz;
 incref(baz);</code></pre>
-<p>Both of these are just confusing, and because there is no C equivalent of Python&rsquo;s <code class="language-python highlight">with</code> block or a C++ <code class="language-cpp highlight">try</code>/<code class="language-cpp highlight">finally</code> construct (and I&rsquo;ve yet to try any kind of C preprocessor macro hack) I have to explicitly stop, decref all the objects I used, and then return (even if it is a quick abort in the middle because of an error). I don&rsquo;t like using <code class="language-c highlight">goto</code> excessively, even if it is for an obvious <code class="language-c highlight">goto done;</code> but I probably will have to.</p>
+<p>Both of these are just confusing, and because there is no C equivalent of Python&rsquo;s <code class="language-python highlight">with</code> block or a C++ <code class="language-cpp highlight">try</code>/<code class="language-cpp highlight">finally</code> construct (and I&rsquo;ve yet to try any kind of C preprocessor macro hack) I have to explicitly stop, decref all the objects I used, and then return (even if it is a quick abort in the middle because of an error). And this is all messed up if I end up using <code class="language-c highlight">longjmp()</code>-based error handling, which means a function may never even return to be able to clean up those dangling references. I don&rsquo;t like using <code class="language-c highlight">goto</code> excessively, even if it is for an obvious <code class="language-c highlight">goto done;</code> but I probably will have to.</p>
 <hr>
 <p>Now that I&rsquo;ve got <em>that</em> off my head, I can get to the next thing: how the language is actually going to work. I&rsquo;m not writing another Lisp.</p>
 <p>To summarize what I&rsquo;ve written so far:</p>

@@ -1,4 +1,4 @@
-Title: I Keep Getting Stuck on the Garbage Collector...
+Title: Manual Memory Management Madness
 Date: 2023-03-17
 Series: pickle
 
@@ -32,7 +32,7 @@ foo->bar = baz;
 incref(baz);
 ```
 
-Both of these are just confusing, and because there is no C equivalent of Python's `:::python with` block or a C++ `:::cpp try`/`:::cpp finally` construct (and I've yet to try any kind of C preprocessor macro hack) I have to explicitly stop, decref all the objects I used, and then return (even if it is a quick abort in the middle because of an error). I don't like using `:::c goto` excessively, even if it is for an obvious `:::c goto done;` but I probably will have to.
+Both of these are just confusing, and because there is no C equivalent of Python's `:::python with` block or a C++ `:::cpp try`/`:::cpp finally` construct (and I've yet to try any kind of C preprocessor macro hack) I have to explicitly stop, decref all the objects I used, and then return (even if it is a quick abort in the middle because of an error). And this is all messed up if I end up using `:::c longjmp()`-based error handling, which means a function may never even return to be able to clean up those dangling references. I don't like using `:::c goto` excessively, even if it is for an obvious `:::c goto done;` but I probably will have to.
 
 ---
 

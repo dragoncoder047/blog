@@ -1,6 +1,7 @@
 Title: Pickle Tokenizer
 Date: 2023-04-20
 Modified: 2023-04-21
+Series: pickle
 
 I'm starting to work on my Pickle programming language, this time in Javascript. After only a few days' work, I'm surprised I got so much working. Currently I have both the tokenizer and the inheritance system working. The syntax of Pickle is pretty much in place now, and I just have a few tweaks left for the tokenizer, and hooking it up to a parser, before I am able to write the evaluator.
 

@@ -1,8 +1,9 @@
 {
     "cSpell.words": [
         "defun",
+        "phoo",
         "Schemascii",
-        "phoo"
+        "Tinobsy"
     ],
     "files.associations": {
         "*.tmpl": "jinja-html",

@@ -1,4 +1,12 @@
-.PHONY: build
+.PHONY: build clean
 
-build:
+build: clean
 	./build.py
+
+clean:
+	rm -f *.html
+	rm -rf author
+	rm -rf category
+	rm -rf draft
+	rm -rf images
+	rm -rf post

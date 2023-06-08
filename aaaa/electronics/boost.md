@@ -1,7 +1,6 @@
 Title: A Boost Converter
 Date: 2023-06-07
 Series: roboraptor-upgrade
-Status: draft
 
 The original Roboraptor had dual power supplies. Two "AA" size batteries supplied 3 volts for the logic circuitry, and four batteries in a separarte circuit provided 6 volts for the motors. My redesign of the Roboraptor is designed to run off of a large single-cell 3.7 volt lithium battery -- but the motors run really sluggishly on only 3.7 volts (even though the torque is high as the battery can supply an incredible amount of current). So, to make the motors run faster, I need to increase the voltage.
 
@@ -16,11 +15,23 @@ This all needs to be controllable in software. In an ideal world, something like
 So I figured I would have to make one using a microcontroller, and read data and send commands to it over I2C. I first looked up how a boost converter works. It's pretty simple, and I even found [this video](https://www.youtube.com/watch?v=QnUhjnbZ0T8) by Great Scott that even implements a boost converter using an ATtiny85 -- the same microcontroller I am using for peripheral tasks elsewhere in the robot. This is the circuit I settled on:
 
 ```schemascii
+J1-------------*--L1---*---+D1--*----J2
+               |       |        |    J1:Vin J2:Vout
+               |       |        |    J3:SDA J4:SCL
+        .~~~~. |       |        |    U1:ATtiny85,,PB3,,GND,PB0,PB1,PB2,VCC
+       -: U1 :-*       d        |    D1:SB360 L1:220u
+    *---:    :--J4  *gQ1  *-R1--*    Q1:nfet:IRL2703
+    |  -:    :------*  s  |     +    R1:100k R2:10k C1:68u
+  *-|---:    :--J3     |  |     C1   !padding=30!
+  | |   .~~~~.         |  |     |    G:chassis
+  | *---------------------*-R2--*
+  |                    |        |
+  G                    G        G
 ```
 
 GreatScott's code is the bare-bones necessary for a boost converter: it simply monitors an ADC input, which is connected to the output through a resistor divider, and adjusts the PWM duty cycle on another pin controlling the transistor to keep the output voltage steady at the set point (voltage too high = reduce duty cycle; too low = increase duty cycle). In his video, is controlled by another ADC input connected to a potentiometer knob, but I'll be changing it over I2C.
 
-[Previously]({filename}something.md) I found [this library](https://github.com/rambo/TinyWire) that allows the ATtiny85 to show up as an I2C slave device, and tested it out communicating with my ESP32 (no boost converter code yet). It worked-ish, but some subsequent testing (after that post) revealed that the ESP32 has a nasty bug where it does not tolerate clock stretching (the ATtiny85 clock-stretches extensively because it runs so slow), causing batch reads to fail. Fortunately, there are software workarounds.
+[Previously]({filename}something.md) I found [this library](https://github.com/rambo/TinyWire) that allows the ATtiny85 to show up as an I2C slave device, and tested it out communicating with my ESP32 (no boost converter code yet). It worked-ish, but some subsequent testing (after that post) revealed that the ESP32 has a nasty silicon bug where it does not tolerate clock stretching (the ATtiny85 clock-stretches extensively because it runs so slow), causing batch reads to fail. Fortunately, there are software workarounds.
 
 ## Integration hell
 

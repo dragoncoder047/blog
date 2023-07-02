@@ -50,12 +50,12 @@ DISPLAY_PAGES_ON_MENU = DISPLAY_CATEGORIES_ON_MENU = True
 
 ARTICLE_SAVE_AS = ARTICLE_URL = 'post/{date:%Y-%m-%d}-{slug}.html'
 PAGE_URL = PAGE_SAVE_AS = 'page/{slug}.html'
-AUTHOR_SAVE_AS = AUTHOR_URL = 'author/{slug}.html'
+AUTHOR_SAVE_AS = AUTHOR_URL = ''  # 'author/{slug}.html' # I am the only author
+AUTHORS_SAVE_AS = ''  # 'authors.html'
 DRAFT_URL = DRAFT_SAVE_AS = 'draft/{slug}.html'
 DRAFT_PAGE_URL = DRAFT_PAGE_SAVE_AS = 'page/draft/{slug}.html'
-AUTHORS_SAVE_AS = 'authors.html'
 CATEGORY_SAVE_AS = CATEGORY_URL = 'category/{slug}.html'
-CATEGORIES_SAVE_AS = 'categories.html'  # cSpell:ignore catg
+CATEGORIES_SAVE_AS = 'categories.html'
 TAG_SAVE_AS = TAG_URL = ''  # 'tag/{slug}.html'
 TAGS_SAVE_AS = ''  # 'tags.html' # I don't use tags
 ARCHIVES_SAVE_AS = 'archives.html'

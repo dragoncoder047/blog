@@ -115,91 +115,102 @@
         </p>
 
         <article>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/post/2022-06-13-gah-i-broke-it.html" rel="bookmark" title="Permalink to Gah... I broke it!">Gah... I broke it!</a></h2>
+            <div class="details">
+                <time class="published" datetime="2022-06-13T00:00:00-04:00">Mon 13 June 2022</time>
+                <address>By
+                        <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+                </address>
+            </div>
+            <summary><p>Last time I had just announced that Phoo was finished. Well, it&rsquo;s still finished &mdash; except for the fact that the online console no longer works. I tried porting the shell code to Phoo, but that ended up breaking the shell!</p>
+<p>It was pretty much a line-for-line translation, so I …</p></summary>
+        </article>
+<hr />        <article>
             <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/post/2022-06-07-phoo-is-mostly-finished.html" rel="bookmark" title="Permalink to Phoo is (mostly) finished">Phoo is (mostly) finished</a></h2>
             <div class="details">
                 <time class="published" datetime="2022-06-07T00:00:00-04:00">Tue 07 June 2022</time>
                 <address>By
-                        <a href="https://dragoncoder047.github.io/blog/author/dragoncoder047.html">dragoncoder047</a>
+                        <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>&#8230;Gosh, I just realized that I haven&#8217;t posted anything in weeks. I really don&#8217;t want to fall prey to the obsession of posting everything online. I hope I&#8217;m not.</p>
-<p>Anyway, I just finished up the first draft of the documentation of Phoo. The generator script is Python &#8230;<a href="/blog/post/2022-06-07-phoo-is-mostly-finished.html"><span>continue</span></a></p></summary>
+            <summary><p>&hellip;Gosh, I just realized that I haven&rsquo;t posted anything in weeks. I really don&rsquo;t want to fall prey to the obsession of posting everything online. I hope I&rsquo;m not.</p>
+<p>Anyway, I just finished up the first draft of the documentation of Phoo. The generator script is Python …</p></summary>
         </article>
 <hr />        <article>
             <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/post/2022-05-19-pyodide-issues.html" rel="bookmark" title="Permalink to Pyodide Issues">Pyodide Issues</a></h2>
             <div class="details">
                 <time class="published" datetime="2022-05-19T00:00:00-04:00">Thu 19 May 2022</time>
                 <address>By
-                        <a href="https://dragoncoder047.github.io/blog/author/dragoncoder047.html">dragoncoder047</a>
+                        <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>I am currently working on an online console for <a href="https://github.com/GordonCharlton/Quackery">Quackery</a> that is using the <a href="https://github.com/pyodide/pyodide">Pyodide</a> in-browser Python interpreter. The only bad thing is, Python&#8217;s <code class="language-py3 highlight">input()</code> function blocks until input is provided, which can&#8217;t be done in the browser because everything is asynchronous. The only way for it to &#8230;<a href="/blog/post/2022-05-19-pyodide-issues.html"><span>continue</span></a></p></summary>
+            <summary><p>I am currently working on an online console for <a href="https://github.com/GordonCharlton/Quackery">Quackery</a> that is using the <a href="https://github.com/pyodide/pyodide">Pyodide</a> in-browser Python interpreter. The only bad thing is, Python&rsquo;s <code class="language-py3 highlight">input()</code> function blocks until input is provided, which can&rsquo;t be done in the browser because everything is asynchronous. The only way for it to …</p></summary>
         </article>
 <hr />        <article>
             <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/post/2022-03-30-why-i-prefer-python.html" rel="bookmark" title="Permalink to Why I Prefer Python">Why I Prefer Python</a></h2>
             <div class="details">
                 <time class="published" datetime="2022-03-30T00:00:00-04:00">Wed 30 March 2022</time>
                 <address>By
-                        <a href="https://dragoncoder047.github.io/blog/author/dragoncoder047.html">dragoncoder047</a>
+                        <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
             <summary><p>In developing Phoo today I was unpleasantly presented with yet another reason why I prefer Python. It was when I was working on the new <code>Importer</code> API for loading external modules into Phoo that I accidentally did this:</p>
 <pre class="highlight"><code class="language-js">class Importer { /* stub class */ }
 class FetchImporter extends Importer {
     constructor(basePath, fetchOptions = {}) {
-        /* no &#8230;</code><a href="/blog/post/2022-03-30-why-i-prefer-python.html"><span>continue</span></a></pre></summary>
+        /* no …</code></pre></summary>
         </article>
 <hr />        <article>
             <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/post/2022-03-26-change-of-plans.html" rel="bookmark" title="Permalink to Change of Plans">Change of Plans</a></h2>
             <div class="details">
                 <time class="published" datetime="2022-03-26T00:00:00-04:00">Sat 26 March 2022</time>
                 <address>By
-                        <a href="https://dragoncoder047.github.io/blog/author/dragoncoder047.html">dragoncoder047</a>
+                        <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>After several days trying to debug the horribly bug-ridden <code>local-echo</code> package for xterm.js, I have had enough. It&#8217;s Ioannis&#8217; responsibility to debug his package. I am switching over to another Javascript terminal ptogram I found, <a href="https://github.com/jcubic/jquery.terminal">jquery.terminal</a> by Jakub T. Jankiewicz. It has built-in readline support, and well &#8230;<a href="/blog/post/2022-03-26-change-of-plans.html"><span>continue</span></a></p></summary>
+            <summary><p>After several days trying to debug the horribly bug-ridden <code>local-echo</code> package for xterm.js, I have had enough. It&rsquo;s Ioannis&rsquo; responsibility to debug his package. I am switching over to another Javascript terminal ptogram I found, <a href="https://github.com/jcubic/jquery.terminal">jquery.terminal</a> by Jakub T. Jankiewicz. It has built-in readline support, and well …</p></summary>
         </article>
 <hr />        <article>
             <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/post/2022-03-23-airdrop-for-non-apple-users.html" rel="bookmark" title="Permalink to Airdrop for non-Apple users">Airdrop for non-Apple users</a></h2>
             <div class="details">
                 <time class="published" datetime="2022-03-23T00:00:00-04:00">Wed 23 March 2022</time>
                 <address>By
-                        <a href="https://dragoncoder047.github.io/blog/author/dragoncoder047.html">dragoncoder047</a>
+                        <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>It has come up often where I have a file on my parent&#8217;s Mac that I need to send to my computer. Any Apple user would probably just use Airdrop. But I use Linux!&#8230; So I created a little Python script that allows sending files between computers with the &#8230;<a href="/blog/post/2022-03-23-airdrop-for-non-apple-users.html"><span>continue</span></a></p></summary>
+            <summary><p>It has come up often where I have a file on my parent&rsquo;s Mac that I need to send to my computer. Any Apple user would probably just use Airdrop. But I use Linux!&hellip; So I created a little Python script that allows sending files between computers with the …</p></summary>
         </article>
 <hr />        <article>
             <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/post/2022-03-23-terminal-troubles.html" rel="bookmark" title="Permalink to Terminal Troubles">Terminal Troubles</a></h2>
             <div class="details">
                 <time class="published" datetime="2022-03-23T00:00:00-04:00">Wed 23 March 2022</time>
                 <address>By
-                        <a href="https://dragoncoder047.github.io/blog/author/dragoncoder047.html">dragoncoder047</a>
+                        <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>I have finally gotten to the point in Phoo&#8217;s development that I am ready to set up the web interface.</p>
-<p>I chose xterm.js for the terminal interface because I intend for Phoo to be able to be run in Nodejs as well as in the browser, but I &#8230;<a href="/blog/post/2022-03-23-terminal-troubles.html"><span>continue</span></a></p></summary>
+            <summary><p>I have finally gotten to the point in Phoo&rsquo;s development that I am ready to set up the web interface.</p>
+<p>I chose xterm.js for the terminal interface because I intend for Phoo to be able to be run in Nodejs as well as in the browser, but I …</p></summary>
         </article>
 <hr />        <article>
             <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/post/2022-03-21-how-i-came-up-with-phoo.html" rel="bookmark" title="Permalink to How I came up with Phoo">How I came up with Phoo</a></h2>
             <div class="details">
                 <time class="published" datetime="2022-03-21T00:00:00-04:00">Mon 21 March 2022</time>
                 <address>By
-                        <a href="https://dragoncoder047.github.io/blog/author/dragoncoder047.html">dragoncoder047</a>
+                        <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>Several moths ago I stumbled upon Gordon Charlton&#8217;s <a href="https://github.com/GordonCharlton/Quackery">Quackery</a> language while paroosing Github for something. Usually I don&#8217;t pay much attention to obviously irrelevant search results, but this one seemed worth a look. I found Quackery to be a simple stack-based semi-compiled language that makes infrequent use of &#8230;<a href="/blog/post/2022-03-21-how-i-came-up-with-phoo.html"><span>continue</span></a></p></summary>
+            <summary><p>Several moths ago I stumbled upon Gordon Charlton&rsquo;s <a href="https://github.com/GordonCharlton/Quackery">Quackery</a> language while paroosing Github for something. Usually I don&rsquo;t pay much attention to obviously irrelevant search results, but this one seemed worth a look. I found Quackery to be a simple stack-based semi-compiled language that makes infrequent use of …</p></summary>
         </article>
 <hr />        <article>
             <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/post/2021-09-15-updating-python.html" rel="bookmark" title="Permalink to Updating Python">Updating Python</a></h2>
             <div class="details">
                 <time class="published" datetime="2021-09-15T00:00:00-04:00">Wed 15 September 2021</time>
                 <address>By
-                        <a href="https://dragoncoder047.github.io/blog/author/dragoncoder047.html">dragoncoder047</a>
+                        <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
             <summary><p>After I bought myself my Raspberry Pi, I soon figured out that the only version of Python available on the Debian package repositories was 3.7.2, but as of when I wrote this it is already on 3.9.7. So, I was forced to compile from source.</p>
-<p>The &#8230;<a href="/blog/post/2021-09-15-updating-python.html"><span>continue</span></a></p></summary>
+<p>The …</p></summary>
         </article>
 <hr />    <p class="paginator">
             <a href="https://dragoncoder047.github.io/blog/category/programming.html">&lt;&lt;First</a>

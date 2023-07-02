@@ -48,7 +48,7 @@ To summarize what I've written so far:
 
 I've been looking around at a lot of other embedd~~ed~~able scripting languages lately as I've been working on PICKLE. LIL is certainly a large inspiration for the syntax, and Python contributed the indented blocks.
 
-Bob Nystrom's [Wren](https://wren.io) programming language provided some help on operator and method overloading. Wren acheives method overloading by looking at the number of arguments when the method is called, and then finding a method definition with the same number of arguments -- so `:::wren foo.bar(1)` and `:::wren foo.bar(1, 2)` are actually two different methods. This implicitly means that declaring a method that takes a variable number of arguments (i.e. varargs, argument unpacking, "expandos", etc) is impossible and I don't like that.
+Bob Nystrom's [Wren](https://wren.io) programming language provided some help on operator and method overloading. Wren acheives method overloading by looking at the number of arguments when the method is called, and then finding a method definition with the same number of arguments -- so `:::wren foo.bar(1)` and `:::wren foo.bar(1, 2)` are actually two different methods (the first one is called `:::wren bar(_)` and the second one is called `:::wren bar(_,_)`). This implicitly means that declaring a method that takes a variable number of arguments (i.e. varargs, argument unpacking, "expandos", etc) is impossible and I don't like that.
 
 Wren, however, allows *operator* overloading as well, and its implementation is dead simple: to overload the `+` operator, you simply declare a method named `+` that takes one argument. That's it.
 

@@ -21,7 +21,7 @@
     <meta property="og:description" content="I did a lot of work on Tinobsy, the garbage collector for PICKLE. It’s pretty robust now, and passes all my tests – plus I translated it to C++ so I can take advantage of C++’s syntactic sugar for objects. All I think that I’ll be doing with …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://dragoncoder047.github.io/blog/post/2023-07-01-powerful-pickle-pattern-matching.html" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/post/2023-07-02-powerful-pickle-pattern-matching.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Powerful PICKLE Pattern Matching" />
@@ -105,7 +105,7 @@
             </nav>
         </header>
         <main>
-    <h1><a href="https://dragoncoder047.github.io/blog/post/2023-07-01-powerful-pickle-pattern-matching.html" rel="bookmark" title="Permalink to this page">Powerful PICKLE Pattern Matching</a></h1>
+    <h1><a href="https://dragoncoder047.github.io/blog/post/2023-07-02-powerful-pickle-pattern-matching.html" rel="bookmark" title="Permalink to this page">Powerful PICKLE Pattern Matching</a></h1>
     
     <div class="flex-row">
             <span style="flex: 1">&larr; Previous:
@@ -115,7 +115,7 @@
             </span>
     </div>
     <div class="post-info">
-        Posted <time class="published" datetime="2023-07-01T00:00:00-04:00">Sat 01 July 2023</time>
+        Posted <time class="published" datetime="2023-07-02T00:00:00-04:00">Sun 02 July 2023</time>
             <address>By
                     <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
             </address>
@@ -136,7 +136,7 @@
                     <a href='https://dragoncoder047.github.io/blog/post/2023-05-18-yet-another-garbage-collector.html'>Yet Another Garbage Collector</a>
                 </li>
                 <li class="active">
-                    <a href='https://dragoncoder047.github.io/blog/post/2023-07-01-powerful-pickle-pattern-matching.html'>Powerful PICKLE Pattern Matching</a>
+                    <a href='https://dragoncoder047.github.io/blog/post/2023-07-02-powerful-pickle-pattern-matching.html'>Powerful PICKLE Pattern Matching</a>
                 </li>
         </ol>
     <p>I did a lot of work on Tinobsy, the garbage collector for PICKLE. It&rsquo;s pretty robust now, and passes all my tests &ndash; plus I translated it to C++ so I can take advantage of C++&rsquo;s syntactic sugar for objects. All I think that I&rsquo;ll be doing with Tinobsy in the near future is maybe writing more tests. Now I am focusing more on the implementation of PICKLE itself, starting with the tokenizer.</p>
@@ -158,10 +158,10 @@ $x+$y</code></pre>
 <p>I considered adding another parsing rule I called the &ldquo;unary split rule&rdquo; that defined that if a symbol ended with a prefix operator, or started with a postfix operator, the symbol would be &ldquo;split&rdquo; to apply the unary operator, which would solve the above problem.</p>
 <p>However, I soon came up with a much simpler solution, with only <strong>two rules</strong> for the parser:</p>
 <ol>
-<li>Whitespace is significant.</li>
+<li>Whitespace <em>is</em> significant.</li>
 <li>Symbols (operators, numbers, variable names, etc) are concatenated at runtime, not by the parser.</li>
 </ol>
-<p>Rule 1 makes the most of a difference as it completely fixes the operator problem above. Combined with rule 2, it also enables the runtime engine to differentiate between different forms of numbers.</p>
+<p>Rule 1 makes the most of a difference as it completely fixes the operator problem above. Combined with rule 2, it also enables the creation, at runtime, of any kind of syntactic literal.</p>
 <p>Consider the expression <code class="language-pickle highlight">$x / 2+3j</code>. With only rule 2 in play, the tokenizer effectively strips the whitespace and it results in the expression <code class="language-pickle highlight">$x/2+3j</code>. The runtime engine can&rsquo;t tell that you intended to divide <code>x</code> by a complex number constant, and because division comes before addition, what it ends up doing is dividing <code>x</code> by 2 first and then adding an imaginary constant, not what was intended.</p>
 <p>Making whitespace significant enables expressions with no whitespace to have a higher precedence (if so specified), so that <code class="language-pickle highlight">2+3j</code> can be made into a complex number <em>before</em> the division occurs.</p>
 <p>Rule 2 would be augmented by a series of concatenation patterns, which govern how numbers and symbols &ldquo;parse themselves.&rdquo; For example, if you write two numeric digits with no whitespace separating them, they would be concatenated into one number equal to the second digit plus ten times the first. There would also be rules for concatenation of symbols into variable names and operator symbols into operators. Nifty, huh?</p>

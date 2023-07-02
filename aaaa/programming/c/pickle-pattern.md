@@ -1,5 +1,5 @@
 Title: Powerful PICKLE Pattern Matching
-Date: 2023-07-01
+Date: 2023-07-02
 Series: pickle
 
 I did a lot of work on Tinobsy, the garbage collector for PICKLE. It's pretty robust now, and passes all my tests -- plus I translated it to C++ so I can take advantage of C++'s syntactic sugar for objects. All I think that I'll be doing with Tinobsy in the near future is maybe writing more tests. Now I am focusing more on the implementation of PICKLE itself, starting with the tokenizer.
@@ -40,10 +40,10 @@ I considered adding another parsing rule I called the "unary split rule" that de
 
 However, I soon came up with a much simpler solution, with only **two rules** for the parser:
 
-1. Whitespace is significant.
+1. Whitespace *is* significant.
 2. Symbols (operators, numbers, variable names, etc) are concatenated at runtime, not by the parser.
 
-Rule 1 makes the most of a difference as it completely fixes the operator problem above. Combined with rule 2, it also enables the runtime engine to differentiate between different forms of numbers.
+Rule 1 makes the most of a difference as it completely fixes the operator problem above. Combined with rule 2, it also enables the creation, at runtime, of any kind of syntactic literal.
 
 Consider the expression `:::pickle $x / 2+3j`. With only rule 2 in play, the tokenizer effectively strips the whitespace and it results in the expression `:::pickle $x/2+3j`. The runtime engine can't tell that you intended to divide `x` by a complex number constant, and because division comes before addition, what it ends up doing is dividing `x` by 2 first and then adding an imaginary constant, not what was intended.
 

@@ -5,7 +5,6 @@ build: clean
 
 clean:
 	rm -f *.html
-	rm -rf author
 	rm -rf category
 	rm -rf draft
 	rm -rf images

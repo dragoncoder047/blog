@@ -32,6 +32,8 @@ After a lot of thinking (and consulting the [Interactive Fiction Wiki](https://w
     * Whether the object is a proper noun: if so, it will be printed as `John` rather than `the John`.
     * Whether the object is hidden: if so, it will never be printed when listing inventory, it will not appear in descriptions, and the game will always act as though the player doesn't have it. This is useful for intangible things like passwords, combinations, or incantations that must be learned or figured out before they can be used (the object can be silently inserted into the player's inventory when all the information necessary has been discovered) or "under" regions due to the limitation of the model that a table must be put over an under-the-table for other things to be able to be put under the table (which is really in the under-the-table).
 
+(Wait... did I just say "a few?" I sinceeeerely apologizeeee........)
+
 From this, special objects can be made with sentinel value of zero or infinity:
 
 * Anything immovable has infinite weight.

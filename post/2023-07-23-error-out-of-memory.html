@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en_us">
     <head>
-                <title>Well, I Got Something...</title>
+                <title>Error: out of memory</title>
             <meta charset="utf-8" />
             <meta name="generator" content="Pelican" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,21 +17,17 @@
 
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
-    <meta property="og:title" content="Well, I Got Something..." />
-    <meta property="og:description" content="Today I did a quick test of my little ATtiny85 microcontrollers’ capabilities. I had them sitting in a jar for a while, and I wanted to see if I could use them in conjunction as a coprocessor to manage some mundane task like regulating a motor. I have previously written …" />
+    <meta property="og:title" content="Error: out of memory" />
+    <meta property="og:description" content="I’ve been doing a little bit of everything lately. I’ve done a little work on PICKLE, trying to implement it first in Python so I don’t have to worry about the garbage collector. (The pattern-matching code is extremely complicated and screwed with my brain until I realized …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://dragoncoder047.github.io/blog/post/2023-03-05-well-i-got-something.html" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/post/2023-07-23-error-out-of-memory.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Well, I Got Something..." />
-    <meta name="twitter:description" content="Today I did a quick test of my little ATtiny85 microcontrollers’ capabilities. I had them sitting in a jar for a while, and I wanted to see if I could use them in conjunction as a coprocessor to manage some mundane task like regulating a motor. I have previously written …" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Error: out of memory" />
+    <meta name="twitter:description" content="I’ve been doing a little bit of everything lately. I’ve done a little work on PICKLE, trying to implement it first in Python so I don’t have to worry about the garbage collector. (The pattern-matching code is extremely complicated and screwed with my brain until I realized …" />
     <meta name="twitter:image" content="/images/patrick.svg" />
-            <!-- PrismJS -->
-<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
-<script src="/static/prism-runbutton.js"></script>
-<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
-
+    
     </head>
 
     <body class="match-braces rainbow-braces">
@@ -84,28 +80,23 @@
             </nav>
         </header>
         <main>
-    <h1><a href="https://dragoncoder047.github.io/blog/post/2023-03-05-well-i-got-something.html" rel="bookmark" title="Permalink to this page">Well, I Got Something...</a></h1>
+    <h1><a href="https://dragoncoder047.github.io/blog/post/2023-07-23-error-out-of-memory.html" rel="bookmark" title="Permalink to this page">Error: out of memory</a></h1>
     
     <div class="flex-row">
             <span style="flex: 1">&larr; Previous:
-                <a href="https://dragoncoder047.github.io/blog/post/2023-02-23-pickles.html">
-                    Pickles!
+                <a href="https://dragoncoder047.github.io/blog/post/2023-07-02-powerful-pickle-pattern-matching.html">
+                    Powerful PICKLE Pattern Matching
                 </a>
-            </span>
-            <span>Next:
-                <a href="https://dragoncoder047.github.io/blog/post/2023-03-10-a-very-confusing-data-model.html">
-                    A Very Confusing Data Model
-                </a> &rarr;
             </span>
     </div>
     <div class="post-info">
-        Posted <time class="published" datetime="2023-03-05T00:00:00-05:00">Sun 05 March 2023</time>
+        Posted <time class="published" datetime="2023-07-23T00:00:00-04:00">Sun 23 July 2023</time>
             <address>By
                     <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
             </address>
                 <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/category/electronics.html">electronics</a></div>
     </div>
-        <p><em>This post is part 4 of the roboraptor-upgrade series:</em></p>
+        <p><em>This post is part 6 of the roboraptor-upgrade series:</em></p>
         <ol class="series">
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/post/2022-07-18-shifting-gears.html'>Shifting Gears</a>
@@ -116,103 +107,26 @@
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/post/2023-01-17-hairy-circuit-layout-issues.html'>Hairy Circuit Layout Issues</a>
                 </li>
-                <li class="active">
+                <li >
                     <a href='https://dragoncoder047.github.io/blog/post/2023-03-05-well-i-got-something.html'>Well, I Got Something...</a>
                 </li>
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/post/2023-06-07-a-boost-converter.html'>A Boost Converter</a>
                 </li>
-                <li >
+                <li class="active">
                     <a href='https://dragoncoder047.github.io/blog/post/2023-07-23-error-out-of-memory.html'>Error: out of memory</a>
                 </li>
         </ol>
-    <p>Today I did a quick test of my little ATtiny85 microcontrollers&rsquo; capabilities. I had them sitting in a jar for a while, and I wanted to see if I could use them in conjunction as a coprocessor to manage some mundane task like regulating a motor. I have previously written I do not like the way the motors are mounted in my old Roboraptor, and I was thinking if I removed the springs and added a position sensor, I could operate the motors as if they were servos. Unfortunately, although I can find analog Hall-effect position sensors for dirt cheap, I&rsquo;m not even sure it one can just buy a bare servo controller chip without also buying the motor and gearbox it goes in. At any rate, I never found one!</p>
-<p>The ATtiny85&rsquo;s I had bought seem like a logical solution: They have ADC pins for reading the position sensor, and PWM pins for controlling the speed of a motor. Additionally, there is <a href="https://github.com/rambo/TinyWire/">a library</a> that can implement I<sup>2</sup>C in software, so the ATtiny85 can communicate with the master.</p>
-<p>I also bought some L293D motor drivers, and they seemed simple to wire up to the ATtiny85: One pin for forward, one pin for backward, and the enable pin permanently pulled high.</p>
-<p>Unfortunately, the only available pins for the I<sup>2</sup>C library occupied one of the only two available PWM pins on the ATtiny85, so I got creative. Instead of having a forward and backward, pin, I had a speed and direction pin. The direction pin, which can&rsquo;t do PWM, is connected to the forward input of the L293D, and through an inverter into the backward input. The speed control pin feeds into the enable input.</p>
-<p>Just to test if the ATtiny85 could also handle reading the ADC while it is handling the I2C bus at the same time, I connected a potentiometer to the last open pin, which happened to be an ADC pin (whew!) and reprogrammed the ATtiny85 to read the ADC. The master code simply reads the ADC register of the ATtiny85, translates it into a speed and direction, and sends it back to the ATtiny85 which then controls the motor.</p>
-<p>Here&rsquo;s the code for both, as reference:</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked id="__tabbed_1_1" name="__tabbed_1" type="radio"><label for="__tabbed_1_1">ATtiny85</label><div class="tabbed-content">
-<pre class="highlight"><code class="language-ino">#define I2C_SLAVE_ADDRESS 0x4 // the 7-bit address (remember to change this when adapting this example)
-#include &lt;TinyWireS.h&gt; // Get this from https://github.com/rambo/TinyWire
-#ifndef TWI_RX_BUFFER_SIZE
-#define TWI_RX_BUFFER_SIZE (16) // The default buffer size, though we cannot actually affect it by defining it in the sketch
-#endif
-volatile uint8_t i2c_regs[] = { // The "registers" we expose to I2C
-    0x0, // Speed
-    0x0, // Direction
-    0x0  // ADC
-};
-const byte reg_size = sizeof(i2c_regs);
-volatile byte reg_position; // Tracks the current register pointer position
-void requestEvent() {  
-    TinyWireS.send(i2c_regs[reg_position]);
-    reg_position++; // Increment the reg position on each read, and loop back to zero
-    if (reg_position &gt;= reg_size) reg_position = 0;
-}
-void receiveEvent(uint8_t howMany) {
-    if (howMany &lt; 1) return; // Sanity-check
-    if (howMany &gt; TWI_RX_BUFFER_SIZE) return; // Also insane number
-    reg_position = TinyWireS.receive();
-    howMany--;
-    if (!howMany) return; // This write was only to set the buffer for next read
-    while (howMany--) {
-        i2c_regs[reg_position] = TinyWireS.receive();
-        reg_position++;
-        if (reg_position &gt;= reg_size) reg_position = 0;
-    }
-}
-void setup() {
-    pinMode(4, OUTPUT); // Dir control
-    pinMode(1, OUTPUT); // Speed control
-    digitalWrite(1, LOW);
-    pinMode(3, INPUT);
-    TinyWireS.begin(I2C_SLAVE_ADDRESS);
-    TinyWireS.onReceive(receiveEvent);
-    TinyWireS.onRequest(requestEvent);
-}
-
-void loop() {
-    TinyWireS_stop_check();
-    digitalWrite(4, !!i2c_regs[1]);
-    analogWrite(1, i2c_regs[0]);
-    i2c_regs[2] = analogRead(3) &gt;&gt; 2;
-}</code></pre>
-</div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio"><label for="__tabbed_1_2">Master</label><div class="tabbed-content">
-<pre class="highlight"><code class="language-ino">#include &lt;Wire.h&gt;
-void setup() {
-    Wire.begin();
-    Serial.begin(115200);
-}
-void loop() {
-    byte x, d, s;
-    Wire.beginTransmission(0x04);
-    Wire.write(2);
-    Wire.endTransmission();
-    delay(10);
-    Wire.requestFrom(0x04, 1);
-    x = Wire.read();
-    Serial.println(x);
-    if (x &lt;= 127) {
-        d = 1;
-        s = (127 - x) &lt;&lt; 1;
-    } else {
-        d = 0;
-        s = (x - 128) &lt;&lt; 1;
-    }
-    Wire.beginTransmission(0x04);
-    Wire.write(0);
-    Wire.write(s);
-    Wire.write(d);
-    Wire.endTransmission();
-    delay(10);
-}</code></pre>
-</div>
-</div>
-<p>And at long last, after much <code class="language-ino highlight">delay()</code> tomfoolery, I got something to work.</p>
-<p>I quickly discovered that the ADC read (i.e. the <code class="language-ino highlight">analogRead()</code> call) takes a bit of time, and during that interval, the ATtiny85 effectively drops off the I<sup>2</sup>C bus. Weird, but workable.</p>
-<p>Oh well. I don&rsquo;t have half the parts I need to finish anything, so I&rsquo;ll have to wait.</p>
+    <p>I&rsquo;ve been doing a little bit of everything lately. I&rsquo;ve done a little work on PICKLE, trying to implement it first in Python so I don&rsquo;t have to worry about the garbage collector. (The pattern-matching code is extremely complicated and screwed with my brain until I realized that I&rsquo;m basically writing a regular expression engine, which just added to the confusion.) I made some more headway on the text-adventure game engine I muse about, starting with a pseudo-scripting language that is embeddable in a JSON document, and some Python code to run it (<a href="https://github.com/dragoncoder047/json_runner">here</a>). I got a few new Lispy features added to uLisp and David even <a href="http://forum.ulisp.com/t/ulisp-extensions-add-catch-throw-and-backquote/1249">mentioned them on the uLisp forum</a>. The boost converter mentioned previously I got working, and I&rsquo;ve published the code and circuit <a href="https://github.com/dragoncoder047/super85/tree/master/smartboost">on Github</a>.</p>
+<p>The next thing I am working on is rather simple: a motor controller, that&rsquo;s all. When it&rsquo;s done, it will end up in the super85 repository along with the boost converter.</p>
+<p>The motor is hooked up to an L293D H-bridge and an AS5600 absolute encoder. You may recognize this one as the exact same encoder I discovered inside of the Feedback 360 servo &ndash; in fact, it&rsquo;s the <em>same physical IC</em> in play here &ndash; I bought the Feedback 260 precisely for the encoder.</p>
+<p>The ATtiny85 implements a rather simple algorithm to allow the host microcontroller to give high-level commands. The ATtiny85 is sent a target position and a maximum speed; it then checks the motor&rsquo;s position and sets the target velocity to positive or negative of the maximum speed depending on the error; then in turn it checks the motor&rsquo;s velocity and increases or decreases the current PWM power depending on the error.</p>
+<p>The AS5600 is configured to output the position encoded as the duty cycle of a 910 Hz PWM signal, and the ATtiny85 is able to read that using a combination of a hardware timer and a pin-change interrupt. It&rsquo;s also conveniently able to use the input PWM signal as a stable timebase to base speed calculations upon.</p>
+<p>The vexing part of the code is actually calculating the speed. Doing this is not just as simple as subtracting the old position from the new position every tick, for a number of reasons.</p>
+<p>The interrupt routine outputs the current angle as a number in the range of 0 to 255. The interrupt fires at 910 Hz. Now, if the position were to change by only 1/256<sup>th</sup> every interrupt, the <em>minimum</em> speed would be a whopping 213 RPM, which is way too high for my application. The maximum speed representable in a signed 8-bit value (127) represents an equally-ridiculous 27,000 RPM, which isn&rsquo;t even physically possible to achieve using this setup due to Nyquist problems.</p>
+<p>The solution I came up with is to compute a rolling sum of the last <em>N</em> values. The range of speeds appropriate for my application (around 0.5 - 50 RPM) results in an <em>N</em> of 512.</p>
+<p>This is a problem: the ATtiny85 only has 512 bytes of RAM. Eating up the the <em>entire</em> RAM for the buffer of the last 512 values ain&rsquo;t gonna happen &ndash; there won&rsquo;t be any remaining space for <em>anything</em> else, and there&rsquo;s no way, even with some clever assembly, I&rsquo;m going to be able to pack everything else into the 32 CPU registers.</p>
+<p>So this is a very difficult problem to solve, one that I have not yet been able to hurdle. It is not something I&rsquo;m going to give up on either.</p>
     <script src="https://giscus.app/client.js"
         data-repo="dragoncoder047/blog"
         data-repo-id="R_kgDOHCL60w"

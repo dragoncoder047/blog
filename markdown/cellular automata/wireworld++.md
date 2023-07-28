@@ -19,7 +19,7 @@ Almost simultaneously with that I discovered a magnificent computer constructed 
 Here it is, displayed using Chris Rowett's LifeViewer: (and the RLE file for Golly: [quinapalus_primes.rle]({attach}quinapalus_primes.rle){download="quinapalus_primes.rle"})
 
 ```lifeviewer
-<< include aaaa/cellular automata/quinapalus_primes.rle >>
+<< include markdown/cellular automata/quinapalus_primes.rle >>
 [[ STEP 64 ZOOM 1.0 ]]
 ```
 

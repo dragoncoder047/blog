@@ -21,8 +21,8 @@ THEME_STATIC_DIR = 'static/'
 EXTRA_JS = '/static/misc.js'
 USE_FOLDER_AS_CATEGORY = True
 
-PATH = 'aaaa/'
-OUTPUT_PATH = './'
+PATH = 'markdown/'
+OUTPUT_PATH = 'docs/'
 
 GISCUS = {
     'repo': 'dragoncoder047/blog',

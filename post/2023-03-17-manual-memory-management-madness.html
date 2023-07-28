@@ -143,6 +143,9 @@
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/post/2023-07-02-powerful-pickle-pattern-matching.html'>Powerful PICKLE Pattern Matching</a>
                 </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/post/2023-07-28-pickle-has-regular-expressions-apparently.html'>PICKLE Has Regular Expressions, Apparently</a>
+                </li>
         </ol>
     <p>I&rsquo;ve been working quite a lot on my second programming language attempt, PICKLE. Admittedly, programming it in C has been a real chore. I started following the <a href="https://github.com/kanaka/mal/blob/master/process/guide.md">Make-A-Lisp</a> tutorial to try to give myself some plan for executing PICKLE. Mal, unfortunately, recommends dynamically typed languages; that unfortunately is a no-go because I have to write it in C/C++ so I can compile it onto a microcontroller.</p>
 <p>So the first thing I set out to do was create a type system and garbage collector. I had already read up on garbage collectors &ndash; Bob Nystrom&rsquo;s <a href="https://journal.stuffwithstuff.com/2013/12/08/babys-first-garbage-collector/">Baby&rsquo;s First Garbage Collector</a> is my go-to-reference for creating mark-and-sweep collectors. I tend to stick with the &ldquo;typed union&rdquo; approach to storing object-specific data, as opposed to the cast-the-opaque-pointer approach of Python.</p>

@@ -143,6 +143,9 @@
                 <li class="active">
                     <a href='https://dragoncoder047.github.io/blog/post/2023-07-02-powerful-pickle-pattern-matching.html'>Powerful PICKLE Pattern Matching</a>
                 </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/post/2023-07-28-pickle-has-regular-expressions-apparently.html'>PICKLE Has Regular Expressions, Apparently</a>
+                </li>
         </ol>
     <p>I did a lot of work on Tinobsy, the garbage collector for PICKLE. It&rsquo;s pretty robust now, and passes all my tests &ndash; plus I translated it to C++ so I can take advantage of C++&rsquo;s syntactic sugar for objects. All I think that I&rsquo;ll be doing with Tinobsy in the near future is maybe writing more tests. Now I am focusing more on the implementation of PICKLE itself, starting with the tokenizer.</p>
 <p>Lexing and parsing stuff in C is considerably harder than Javascript, mostly due to the lack of regular expressions. But C does have the advantage of <code class="language-c highlight">longjmp()</code>, which Javascript does not. I haven&rsquo;t finished writing the tokenizer/parser but it will be based off of the Javascript one pretty closely &mdash; with a few key changes to accommodate some new ideas.</p>

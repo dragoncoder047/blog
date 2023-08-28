@@ -19,7 +19,6 @@ THEME_CSS_FILE = '/static/css/theme.css'
 THEME_MAIN_CSS = '/static/css/main.css'
 THEME_STATIC_DIR = 'static/'
 EXTRA_JS = '/static/misc.js'
-USE_FOLDER_AS_CATEGORY = True
 
 PATH = 'markdown/'
 OUTPUT_PATH = 'docs/'
@@ -48,19 +47,19 @@ SEO_REPORT = True
 
 DISPLAY_PAGES_ON_MENU = DISPLAY_CATEGORIES_ON_MENU = True
 
-ARTICLE_SAVE_AS = ARTICLE_URL = 'post/{date:%Y-%m-%d}-{slug}.html'
+ARTICLE_SAVE_AS = ARTICLE_URL = '{path_no_ext}.html'
 PAGE_URL = PAGE_SAVE_AS = 'page/{slug}.html'
 AUTHOR_SAVE_AS = AUTHOR_URL = ''  # 'author/{slug}.html' # I am the only author
 AUTHORS_SAVE_AS = ''  # 'authors.html'
 DRAFT_URL = DRAFT_SAVE_AS = 'draft/{slug}.html'
 DRAFT_PAGE_URL = DRAFT_PAGE_SAVE_AS = 'page/draft/{slug}.html'
-CATEGORY_SAVE_AS = CATEGORY_URL = 'category/{slug}.html'
-CATEGORIES_SAVE_AS = 'categories.html'
-TAG_SAVE_AS = TAG_URL = ''  # 'tag/{slug}.html'
-TAGS_SAVE_AS = ''  # 'tags.html' # I don't use tags
+CATEGORY_SAVE_AS = CATEGORY_URL = ''  # 'category/{slug}.html'
+CATEGORIES_SAVE_AS = ''  # 'categories.html'  # I don't use categories
+TAG_SAVE_AS = TAG_URL = 'tag/{slug}.html'
+TAGS_SAVE_AS = 'tags.html'
 ARCHIVES_SAVE_AS = 'archives.html'
 
-PATH_METADATA = r'(?P<category>.*)/.*'
+PATH_METADATA = r'(?P<path_no_ext>.*)\..*'
 
 # Blogroll
 LINKS = (

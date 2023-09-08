@@ -45,7 +45,8 @@ AUTHOR_FEED_RSS = None
 
 SEO_REPORT = True
 
-DISPLAY_PAGES_ON_MENU = DISPLAY_CATEGORIES_ON_MENU = True
+DISPLAY_PAGES_ON_MENU = True
+DISPLAY_CATEGORIES_ON_MENU = False
 
 ARTICLE_SAVE_AS = ARTICLE_URL = '{path_no_ext}.html'
 PAGE_URL = PAGE_SAVE_AS = 'page/{slug}.html'
@@ -57,6 +58,8 @@ CATEGORIES_SAVE_AS = ''  # 'categories.html'  # I don't use categories
 TAG_SAVE_AS = TAG_URL = 'tag/{slug}.html'
 TAGS_SAVE_AS = 'tags.html'
 ARCHIVES_SAVE_AS = 'archives.html'
+
+USE_CATEGORES = False
 
 PATH_METADATA = r'(?P<path_no_ext>.*)\..*'
 
@@ -188,7 +191,6 @@ PLUGINS = [
     'pelican.plugins.read_more',
     'jinja2content',
     'series',
-    'pelican.plugins.more_categories',
     'pelican.plugins.neighbors'
 ]
 

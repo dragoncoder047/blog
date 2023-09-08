@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Updating Python</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Updating Python" />
+    <meta property="og:description" content="After I bought myself my Raspberry Pi, I soon figured out that the only version of Python available on the Debian package repositories was 3.7.2, but as of when I wrote this it is already on 3.9.7. So, I was forced to compile from source. The …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/updating_python.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Updating Python" />
+    <meta name="twitter:description" content="After I bought myself my Raspberry Pi, I soon figured out that the only version of Python available on the Debian package repositories was 3.7.2, but as of when I wrote this it is already on 3.9.7. So, I was forced to compile from source. The …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/">Categories</a>
+                            <ul>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/">misc</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/updating_python.html" rel="bookmark" title="Permalink to this page">Updating Python</a></h1>
+    
+    <div class="flex-row">
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/this_is_a_test.html">
+                    Test Post
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2021-09-15T00:00:00-04:00">Wed 15 September 2021</time>
+            <br /> Modified <time class="modified" datetime="2022-09-12T00:00:00-04:00">Mon 12 September 2022</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/">misc</a></div>
+    </div>
+    <p>After I bought myself my Raspberry Pi, I soon figured out that the only version of Python available on the Debian package repositories was 3.7.2, but as of when I wrote this it is already on 3.9.7. So, I was forced to compile from source.</p>
+<p>The process to do this is very time consuming, so I made a shell script to do it automatically, as per the instructions on the Python website.</p>
+<p>Here&rsquo;s the script: <a download="update-python.sh" href="https://dragoncoder047.github.io/blog/update-python.sh">update-python.sh</a></p>
+<p>Save it in someplace convenient (like <code>~/.local/bin/update-python.sh</code>). Then, run the following in your terminal to add the file as a command:</p>
+<!-- cSpell:ignore raspberrypi chmod -->
+
+<pre class="highlight"><code class="language-bash">chmod +x ~/.local/bin/update-python.sh #make it executable
+echo 'alias update-python=". ~/.local/bin/update-python.sh"' &gt;&gt; ~/.bashrc #let your shell find it
+. ~/.bashrc #re-initialize the shell</code></pre>
+<p>The first argument to the script is the version of Python you want to install, such as 3.9.7:</p>
+<pre class="highlight"><code class="language-bash">update-python 3.9.7</code></pre>
+<p>This will install Python 3.9.7 as <code>python3</code>.</p>
+<p>EDIT: If you want OpenSSL, Tkinter, etc. you will need to install some additional packages with <code>apt</code>:</p>
+<pre class="highlight"><code class="language-bash">sudo apt install libncurses-dev libgdbm-dev libz-dev tk-dev libsqlite3-dev libreadline-dev liblzma-dev libffi-dev libssl-dev</code></pre>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

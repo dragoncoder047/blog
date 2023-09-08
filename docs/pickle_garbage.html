@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Manual Memory Management Madness</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, c, lisp, language-design, garbage-collector" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Manual Memory Management Madness" />
+    <meta property="og:description" content="I’ve been working quite a lot on my second programming language attempt, PICKLE. Admittedly, programming it in C has been a real chore. I started following the Make-A-Lisp tutorial to try to give myself some plan for executing PICKLE. Mal, unfortunately, recommends dynamically typed languages; that unfortunately is a …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/pickle_garbage.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Manual Memory Management Madness" />
+    <meta name="twitter:description" content="I’ve been working quite a lot on my second programming language attempt, PICKLE. Admittedly, programming it in C has been a real chore. I started following the Make-A-Lisp tutorial to try to give myself some plan for executing PICKLE. Mal, unfortunately, recommends dynamically typed languages; that unfortunately is a …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+        <!-- Katex -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.css" type="text/css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/mhchem.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        renderMathInElement(document.body,
+            {
+                delimiters: [
+                    {left: '$$', right:'$$', display: true},
+                    {left: '$',  right:'$',  display: false},
+                    {left: '\\begin{align}', right: '\\end{align}', display: true},
+                ]
+            }
+        );
+    });
+</script>        <!-- /Katex -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/">Categories</a>
+                            <ul>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/">misc</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/pickle_garbage.html" rel="bookmark" title="Permalink to this page">Manual Memory Management Madness</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/tree_world.html">
+                    A Very Confusing Data Model
+                </a>
+            </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/phooey.html">
+                    Phooey! Phooey! Phooey!
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2023-03-17T00:00:00-04:00">Fri 17 March 2023</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/">misc</a></div>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/c.html">c</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/lisp.html">lisp</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/language-design.html">language-design</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/garbage-collector.html">garbage-collector</a>
+            </div>
+    </div>
+        <p><em>This post is part 2 of the pickle series:</em></p>
+        <ol class="series">
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickles.html'>Pickles!</a>
+                </li>
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/pickle_garbage.html'>Manual Memory Management Madness</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_tokenizer_js.html'>Pickle Tokenizer</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_gc.html'>Yet Another Garbage Collector</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_pattern.html'>Powerful PICKLE Pattern Matching</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_is_a_regex.html'>PICKLE Has Regular Expressions, Apparently</a>
+                </li>
+        </ol>
+    <p>I&rsquo;ve been working quite a lot on my second programming language attempt, PICKLE. Admittedly, programming it in C has been a real chore. I started following the <a href="https://github.com/kanaka/mal/blob/master/process/guide.md">Make-A-Lisp</a> tutorial to try to give myself some plan for executing PICKLE. Mal, unfortunately, recommends dynamically typed languages; that unfortunately is a no-go because I have to write it in C/C++ so I can compile it onto a microcontroller.</p>
+<p>So the first thing I set out to do was create a type system and garbage collector. I had already read up on garbage collectors &ndash; Bob Nystrom&rsquo;s <a href="https://journal.stuffwithstuff.com/2013/12/08/babys-first-garbage-collector/">Baby&rsquo;s First Garbage Collector</a> is my go-to-reference for creating mark-and-sweep collectors. I tend to stick with the &ldquo;typed union&rdquo; approach to storing object-specific data, as opposed to the cast-the-opaque-pointer approach of Python.</p>
+<p>Regardless of the method of garbage collection, I always managed to run into some sort of roadblock.</p>
+<p>With the pure mark-and-sweep of TEHSSL, it was necessary to store intermediate values needed during execution on a temporary garbage-collector-protection stack, and pop them back off when they are no longer needed, to allow them to be collected, but this really clutters the code. It also it got confusing for me to think about as to when a value must be put on/popped off the stack (of course, this only applies if someting is being done in the meantime that could trigger the garbage collector, that is, the allocation of more objects).</p>
+<p>The next approach I tried was a reference-counting garbage collector. There is, technically, a mark-and-sweep running in the background, but it is only explicitly called when needed to take care of circular references that arise. Reference-counting collectors, as I talked about in the previous post in this series, have the advantage that objects are immediately freed when they are no longer needed, and so can be quickly recycled. The disadvantage is that C (or even C++) does not keep track of references for you; you have to explicitly increment and decrement reference counts which clutters up the code.</p>
+<p>I quickly noticed that there is an almost-one-to-one relationship between garbage collection stack pushes and pops, and incrementing and decrementing references:</p>
+<pre class="highlight"><code class="language-cpp">push(vm-&gt;gc_stack, foo);
+do_something(foo);
+pop(vm-&gt;gc_stack);
+// equivalent to:
+incref(foo);
+do_something(foo);
+decref(foo);</code></pre>
+<p>In terms of code clutter, there is no advantage, and maybe a slight disadvantage for a reference-counting garbage collector because there is some required overhead when re-assigning a pointer:</p>
+<pre class="highlight"><code class="language-cpp">decref(foo-&gt;bar);
+foo-&gt;bar = baz;
+incref(baz);</code></pre>
+<p>Both of these are just confusing, and because there is no C equivalent of Python&rsquo;s <code class="language-python highlight">with</code> block or a C++ <code class="language-cpp highlight">try</code>/<code class="language-cpp highlight">finally</code> construct (and I&rsquo;ve yet to try any kind of C preprocessor macro hack) I have to explicitly stop, decref all the objects I used, and then return (even if it is a quick abort in the middle because of an error). And this is all messed up if I end up using <code class="language-c highlight">longjmp()</code>-based error handling, which means a function may never even return to be able to clean up those dangling references. I don&rsquo;t like using <code class="language-c highlight">goto</code> excessively, even if it is for an obvious <code class="language-c highlight">goto done;</code> but I probably will have to.</p>
+<hr>
+<p>Now that I&rsquo;ve got <em>that</em> off my head, I can get to the next thing: how the language is actually going to work. I&rsquo;m not writing another Lisp.</p>
+<p>To summarize what I&rsquo;ve written so far:</p>
+<ul>
+<li>A reference-counting garbage collector with a mark-and-sweep cycle buster.</li>
+<li>Two type systems:<ul>
+<li>One that leaves every object as an opaque type and leaves it up to &ldquo;type functions&rdquo; given to the VM to mark and sweep the objects.</li>
+<li>Another that defines 23 builtin types, with the data scattered thoughout a complex tree of <code class="language-c highlight">union</code> and <code class="language-c highlight">struct</code> blocks, and the VM uses a large lookup table to find which parts of the object contain pointers and things to be freed.</li>
+</ul>
+</li>
+<li>One parser, that despite the weirdness of the garbage collector and type system, is still able to produce a sensible abstract syntax tree.</li>
+</ul>
+<p>I&rsquo;ve been looking around at a lot of other embedd<sub>~ed</sub>~able scripting languages lately as I&rsquo;ve been working on PICKLE. LIL is certainly a large inspiration for the syntax, and Python contributed the indented blocks.</p>
+<p>Bob Nystrom&rsquo;s <a href="https://wren.io">Wren</a> programming language provided some help on operator and method overloading. Wren acheives method overloading by looking at the number of arguments when the method is called, and then finding a method definition with the same number of arguments &ndash; so <code class="language-wren highlight">foo.bar(1)</code> and <code class="language-wren highlight">foo.bar(1, 2)</code> are actually two different methods (the first one is called <code class="language-wren highlight">bar(_)</code> and the second one is called <code class="language-wren highlight">bar(_,_)</code>). This implicitly means that declaring a method that takes a variable number of arguments (i.e. varargs, argument unpacking, &ldquo;expandos&rdquo;, etc) is impossible and I don&rsquo;t like that.</p>
+<p>Wren, however, allows <em>operator</em> overloading as well, and its implementation is dead simple: to overload the <code>+</code> operator, you simply declare a method named <code>+</code> that takes one argument. That&rsquo;s it.</p>
+<p>Unfortunately, this model doesn&rsquo;t quite work for PICKLE: the operators are baked into the Wren grammar, and you can&rsquo;t define more.</p>
+<p>However, one idea I had myself in the process of thinking about how to implement custom operators is to simply have a second hashmap on each object, alongside the normal one for attributes, and use it to map operator symbols the object responds to to their associativity, arity, and precedence. Lookup would recurse through the prototype tree as with any other object property.</p>
+<p>Operators would be parsed identically to symbols, and if they aren&rsquo;t next to any object that responds to that operator, they would behave identically to one.</p>
+<p>When an expression is evaluated:</p>
+<ol>
+<li>Each element in the expression is evaluated (recursively). Most literals evaluate to themselves, so this really doesn&rsquo;t change much. The result of this is a list of values, some of which may be operator symbols.</li>
+<li>PICKLE scans each of the elements and looks to either side of it and makes a note when the middle object responds to either of the symbols on the left and right as operators.</li>
+<li>From these, if any are unary (prefix or postfix), it picks the highest precedence one and evaluates it by calling the appropriate method on the object and then splices the result back in to the in-progress list of values.</li>
+<li>Once the unary operators are exhausted, PICKLE picks the highest-precedence binary operator according to associativity rules and then calls the method on one object, passing the other object as a parameter, and splices in the return value to the list of values.</li>
+<li>It then checks that return value for operators it responds to and goes back to step 2.</li>
+<li>Once all the operators are exhausted, it simply calls the first object with the rest as arguments.</li>
+</ol>
+<p>This, conveniently, would simplify parsing, quite a lot, and allow for me to use Python style infix assignment operators instead of an annoying <code class="language-tcl highlight">set</code> command. The way it would work is variable names are parsed as symbols, and symbols would respond to the <code>$</code> dereferencing operator. When the operator is applied to the symbol, it responds by looking up the variable with the same name. Similarly, objects would respond to the <code>.</code> operator, which would perform attribute lookup, and the <code>=</code> operator, which would create a temporary set-attribute object, which, when combined with the <code>.</code> operator, would signal to an object to set the property to the computed value.</p>
+<p>This, however, does have some issues. Consider this (hypothetical) code:</p>
+<pre class="highlight"><code class="language-pickle">class A:
+    postfix 3 !!:
+        do_something
+class B:
+    prefix 3 !!:
+        do_something_else
+let x = A.new
+let y = B.new
+x!!y</code></pre>
+<p>Here, it creates two objects, one that responds to <code>!!</code> as a prefix operator, and the other to the same operator as postfix. The key here is that both operators have the <em>same precedence</em>. When PICKLE tries to execute the last line, it runs into an ambiguity problem: does the <code>!!</code> apply to <code>x</code> or <code>y</code>? I&rsquo;m not sure what I&rsquo;ll do here, whether it&rsquo;s just bail and throw an error, or define some sort of deterministic left-to-right order, but hopefully it will be something that makes sense.</p>
+<p>That&rsquo;s it for now. I&rsquo;m going to try to rewrite PICKLE in C++ and see if that makes things any easier.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_gc.html">Yet Another Garbage Collector</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_pattern.html">Powerful PICKLE Pattern Matching</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickles.html">Pickles!</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/tehssl.html">TEHSSL</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/ulisp.html">uLisp Thoughts</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

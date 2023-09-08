@@ -1,7 +1,7 @@
 Title: uLisp Thoughts
 Date: 2022-09-27
 Series: arduino-scripting
-Tags: programming, c arduino, language-design
+Tags: programming, c, arduino, language-design
 
 For a while I have been trying to work out some bugs in David Johnson-Davies' uLisp interpreter for Arduinos. I ported some macro and quasiquote extensions for an older version of uLisp to the current version, and apparently I did not do something right -- it crashes whenever I try to use those extensions.
 

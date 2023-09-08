@@ -5,7 +5,7 @@ Tags: programming, python, pickle, language-design
 
 I worked for a while last week on the PICKLE implementation in Python. As I no longer have to work on the garbage collector, after I wrote a little "glue code" I immediately dove into the core functionality of PICKLE: the pattern-matching engine. Once I get the algorithm down, I'll port it to the C++ implementation.
 
-While fleshing out PICKLE's syntax I decided that there would be two phases in PICKLE's evaluation algorithm of a line. [Previously]({filename}../c/pickle-pattern.md) I determined that whitespace would be significant, and this now opens the door for syntactic macros.
+While fleshing out PICKLE's syntax I decided that there would be two phases in PICKLE's evaluation algorithm of a line. [Previously]({filename}pickle_pattern.md) I determined that whitespace would be significant, and this now opens the door for syntactic macros.
 
 The way it would work when evaluating each logical line is as follows:
 

@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>PICKLE Has Regular Expressions, Apparently</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, python, pickle, language-design" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="PICKLE Has Regular Expressions, Apparently" />
+    <meta property="og:description" content="I worked for a while last week on the PICKLE implementation in Python. As I no longer have to work on the garbage collector, after I wrote a little “glue code” I immediately dove into the core functionality of PICKLE: the pattern-matching engine. Once I get the algorithm down, I …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/pickle_is_a_regex.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - PICKLE Has Regular Expressions, Apparently" />
+    <meta name="twitter:description" content="I worked for a while last week on the PICKLE implementation in Python. As I no longer have to work on the garbage collector, after I wrote a little “glue code” I immediately dove into the core functionality of PICKLE: the pattern-matching engine. Once I get the algorithm down, I …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/">Categories</a>
+                            <ul>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/">misc</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/pickle_is_a_regex.html" rel="bookmark" title="Permalink to this page">PICKLE Has Regular Expressions, Apparently</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/out_of_memory.html">
+                    Error: out of memory
+                </a>
+            </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/ml_brain.html">
+                    In Search of a Brain
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2023-07-28T00:00:00-04:00">Fri 28 July 2023</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/">misc</a></div>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/python.html">python</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/pickle.html">pickle</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/language-design.html">language-design</a>
+            </div>
+    </div>
+        <p><em>This post is part 6 of the pickle series:</em></p>
+        <ol class="series">
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickles.html'>Pickles!</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_garbage.html'>Manual Memory Management Madness</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_tokenizer_js.html'>Pickle Tokenizer</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_gc.html'>Yet Another Garbage Collector</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_pattern.html'>Powerful PICKLE Pattern Matching</a>
+                </li>
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/pickle_is_a_regex.html'>PICKLE Has Regular Expressions, Apparently</a>
+                </li>
+        </ol>
+    <p>I worked for a while last week on the PICKLE implementation in Python. As I no longer have to work on the garbage collector, after I wrote a little &ldquo;glue code&rdquo; I immediately dove into the core functionality of PICKLE: the pattern-matching engine. Once I get the algorithm down, I&rsquo;ll port it to the C++ implementation.</p>
+<p>While fleshing out PICKLE&rsquo;s syntax I decided that there would be two phases in PICKLE&rsquo;s evaluation algorithm of a line. <a href="https://dragoncoder047.github.io/blog/pickle_pattern.html">Previously</a> I determined that whitespace would be significant, and this now opens the door for syntactic macros.</p>
+<p>The way it would work when evaluating each logical line is as follows:</p>
+<ol>
+<li>Apply only patterns that don&rsquo;t contain whitespace (or are otherwise marked as macros) until none apply. &larr; MACROS APPLIED HERE</li>
+<li>Evaluate all the elements (recursively if there are any sub-expressions).</li>
+<li>Apply <em>all</em> patterns until none match. &larr; OPERATORS APPLIED HERE</li>
+<li>Call the first value in the resultant list with the remainder as arguments. &larr; FUNCTIONS CALLED HERE</li>
+</ol>
+<p>1 and 3 are the hardest part because they invoke the pattern matching algorithm. The reason they are so difficult is that, to be able to support any kind of pattern, it necessitates including constructs for alternation and repetition. There are also combinators for matching an element and storing it in a variable. To that end I came up with these combinators:</p>
+<pre class="highlight"><code class="language-python"># matches the current item if it is an instance of CLS, and if so stores it as a reference under NAME
+Var(cls: type, name: str)
+# tries each match in order until one matches
+Alternate(*patterns: Pattern)
+# repeats the inner match from MIN to MAX times
+Repeat(what: Any, min: int, max: int, greedy: bool)</code></pre>
+<p>The repetition is the hardest part, as it has to contend with both greedy and non-greedy matches. The approach I used was highly recursive, riddled with edge-case bugs, and was generally slow.</p>
+<p>After a while I realized how similar these constructs were to regular expressions, especially with the <code>Repeat</code> combinator:</p>
+<pre class="highlight"><code class="language-python">Alternate("a", "b", "c")    # --&gt; a|b|c
+Var(int, "foo")             # --&gt; (?P&lt;foo&gt;[0-9]+)
+Repeat("a", 0, 1,    True)  # --&gt; a?
+Repeat("a", 0, 1,    False) # --&gt; a??
+Repeat("a", 0, None, True)  # --&gt; a*
+Repeat("a", 1, None, True)  # --&gt; a+
+Repeat("a", 0, None, False) # --&gt; a*?
+Repeat("a", 4, 10,   True)  # --&gt; a{4,10}</code></pre>
+<p>Searching for regular expression algorithms led me to some (absolutely ancient) pages written by Russ Cox about <a href="https://swtch.com/~rsc/regexp/">Thompson&rsquo;s algorithm</a>. Seems like a simple enough algorithm; I hadn&rsquo;t thought of compiling a regular expression into a nondeterministic state machine before.</p>
+<p>However, the paper doesn&rsquo;t explain everything in detail; I included patterns with capped counts of repeats for some reason. Perhaps that isn&rsquo;t needed, but I thought it would be easy to implement.</p>
+<p>The code from the article is in C, and fragmented among the different parts of the page, but I&rsquo;ll have a go at implementing it. The Pythonic approach is tending towards dataclasses over structs, so I expect to take advantage of Python 3.10&rsquo;s <code class="language-python3 highlight">match</code> feature too.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_pattern.html">Powerful PICKLE Pattern Matching</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_gc.html">Yet Another Garbage Collector</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_tokenizer_js.html">Pickle Tokenizer</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_garbage.html">Manual Memory Management Madness</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/tree_world.html">A Very Confusing Data Model</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

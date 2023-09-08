@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Langton's Ant Music</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="cellular-automata, programming, javascript" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Langton&#39;s Ant Music" />
+    <meta property="og:description" content="Over the weekend I joined the conwaylife.com forums because I am interested in cellular automata. I find watching the mechanisms mesmerizing, and building them exciting. I also have an interest in music, and so a year or two ago I tried to generate music from cellular automata. I used …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/langton_music.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Langton&#39;s Ant Music" />
+    <meta name="twitter:description" content="Over the weekend I joined the conwaylife.com forums because I am interested in cellular automata. I find watching the mechanisms mesmerizing, and building them exciting. I also have an interest in music, and so a year or two ago I tried to generate music from cellular automata. I used …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+    
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/">Categories</a>
+                            <ul>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/">misc</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/langton_music.html" rel="bookmark" title="Permalink to this page">Langton's Ant Music</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/phoo_is_broken.html">
+                    Gah... I broke it!
+                </a>
+            </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/a_change.html">
+                    Shifting Gears
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2022-06-22T00:00:00-04:00">Wed 22 June 2022</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/">misc</a></div>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/cellular-automata.html">cellular-automata</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/javascript.html">javascript</a>
+            </div>
+    </div>
+    <p>Over the weekend I joined the <a href="https://conwaylife.com/forums/index.php">conwaylife.com forums</a> because I am interested in cellular automata. I find watching the mechanisms mesmerizing, and building them exciting.</p>
+<p>I also have an interest in music, and so a year or two ago I tried to generate music from cellular automata. I used one-dimensional rule 86, and then played notes depending on whether cells were on or off. The result sounded horrendously like a toddler banging on a piano. It&rsquo;s so bad I&rsquo;m not going to share it.</p>
+<p>I poked around the conwaylife forums, and learned about <a href="https://en.wikipedia.org/wiki/Langton's_ant">Langthon&rsquo;s ant</a>. Langton&rsquo;s ants are stateless Turing machines operating on a square grid. If an ant is on a white square it makes it black and turns right, and if it is on a black square it makes it white and turns left. Langton&rsquo;s ants have been generalized further, to include multiple colors and even internal states in the ant, in which case they are called turmites.</p>
+<p>If there are N ants, only N cells will change at once, so I wondered if you could play notes depending on the actions of the ants. For example, play a low bongo drum when the ant turns left and a high bongo when the ant turns right.</p>
+<p>I rigged up a Langton&rsquo;s Ant simulator and hooked it into <a href="https://tonejs.github.io/">Tone.js</a> to play notes and drums, and devised a syntax to describe the actions of ants and a parser to load it. The result is here: <a href="https://dragoncoder047.github.io/ca-experiments/langton-music/index.html">https://dragoncoder047.github.io/ca-experiments/langton-music/index.html</a>.</p>
+<p>With only 2 colors and 1 state of ant, the result isn&rsquo;t very good. Hopefully I can come up with some better ants that make some more musical music.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/ml_brain.html">In Search of a Brain</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_tokenizer_js.html">Pickle Tokenizer</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/phoo_debugger.html">Debugger, Almost</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/cant_find_the_bug.html">I Still Have No Idea</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/phoo_is_kinda_finished.html">Phoo is (mostly) finished</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>TEHSSL</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, c, language-design" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="TEHSSL" />
+    <meta property="og:description" content="I started writing a new programming language, TEHSSL, a few days ago. Starting from scratch (again!) wasn’t easy, and I’m nowhere near done yet. I have got two things working so far: the garbage collector, and the tokenizer. I have no idea how to handle the glue in …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/tehssl.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - TEHSSL" />
+    <meta name="twitter:description" content="I started writing a new programming language, TEHSSL, a few days ago. Starting from scratch (again!) wasn’t easy, and I’m nowhere near done yet. I have got two things working so far: the garbage collector, and the tokenizer. I have no idea how to handle the glue in …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/">Categories</a>
+                            <ul>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/">misc</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/tehssl.html" rel="bookmark" title="Permalink to this page">TEHSSL</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/cognate_ideas.html">
+                    Some Unrelated Ideas
+                </a>
+            </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/tehssl_segfaults.html">
+                    Segfaults
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2022-11-02T00:00:00-04:00">Wed 02 November 2022</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/">misc</a></div>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/c.html">c</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/language-design.html">language-design</a>
+            </div>
+    </div>
+    <p>I started writing a new programming language, TEHSSL, a few days ago. Starting from scratch (again!) wasn&rsquo;t easy, and I&rsquo;m nowhere near done yet. I have got two things working so far: the garbage collector, and the tokenizer. I have no idea how to handle the glue in between (parser, evaluator, macros, builtin functions), or even what the glue will do and how it will work.</p>
+<h2 id="garbage-collector">Garbage collector</h2>
+<p>The garbage collector is just a simple mark-and-sweep garbage collector, and I took inspiration from Bob Nystrom&rsquo;s <a href="https://github.com/munificent/mark-sweep"><code>mark-sweep</code></a> implementation, which, conveniently, was written in C.</p>
+<p>Adding some debug <code>printf()</code>&lsquo;s to the code to see what the collector was freeing and when, I hooked up a simple test that created objects and then deliberately did nothing with them, to create garbage, while pushing some to the stack to make them &ldquo;not garbage.&rdquo; Here is the code:</p>
+<pre class="highlight"><code class="language-c">tehssl_vm_t vm = tehssl_new_vm();
+// Make some garbage
+for (int i = 0; i &lt; 5; i++) {
+    tehssl_make_number(vm, 123);
+    tehssl_make_number(vm, 456.789123);
+    tehssl_make_string(vm, "i am cow hear me moo");
+    tehssl_make_symbol(vm, "Symbol!", SYMBOL_WORD);
+    // This is not garbage, it is on the stack now
+    tehssl_push(vm, &amp;vm-&gt;stack, tehssl_make_number(vm, 1.7E+123));
+    tehssl_push(vm, &amp;vm-&gt;stack, tehssl_make_string(vm, "Foo123"));
+}
+printf("%lu objects\n", vm-&gt;num_objects);
+tehssl_gc(vm);
+printf("%lu objects after gc\n", vm-&gt;num_objects);
+tehssl_destroy(vm);</code></pre>
+<p>And here is the output:</p>
+<pre class="highlight"><code class="language-txt">16 objects
+Freeing a SYMBOL name-&gt; "Symbol!"
+Freeing a STRING name-&gt; "i am cow hear me moo"
+Freeing a NUMBER number-&gt; 456.789
+Freeing a NUMBER number-&gt; 123
+12 objects after gc
+Freeing a LIST
+Freeing a LIST
+Freeing a LIST
+Freeing a LIST
+Freeing a LIST
+Freeing a LIST
+Freeing a LIST
+Freeing a LIST
+Freeing a LIST
+Freeing a STRING name-&gt; "Foo123"
+Freeing a LIST
+Freeing a NUMBER number-&gt; 1.7e+123</code></pre>
+<p>Everything that comes after the <code>12 objects after gc</code> mark is what happens when the entire VM is freed (i.e. the <code>tehssl_destroy()</code> call). <code>tehssl_destroy()</code> simply marks <em>everything</em> as garbage, and then garbage collects &ndash; that way all objects are freed, and all that&rsquo;s left to do is free the VM itself.</p>
+<p>This output also demonstrates TEHSSL&rsquo;s string and number interning; since strings and numbers are immutable, it only has to store one of each different value in use and just point to it multiple times. I don&rsquo;t know how this affects the speed of TEHSSL, but that&rsquo;s not something I&rsquo;m terribly concerned about: if any routine is terribly speed-critical, it can just be written in C!</p>
+<h2 id="tokenizer">Tokenizer</h2>
+<p>TEHSSL tokens fall into one of three categories: a paren (square, round, or curly), a semicolon, or a word. The tokenizer reads from a C <code>FILE*</code> pointer to allow for files and stdin and custom streams to be used as input irrespective of what; and returns the next token in the stream in a dynamic <code>malloc()</code>&lsquo;ed string. I hope Arduino uses GNU C extensions so I can use <a href="https://linux.die.net/man/3/fopencookie"><code>fopencookie()</code></a> to create wrappers for common protocols such as I2C, SPI, Serial, etc.</p>
+<p>Here&rsquo;s the tokenizer test code. It outputs the tokens in between backticks (<code>` `</code>) so I could paste them into this Markdown document.</p>
+<pre class="highlight"><code class="language-c">const char* str = "Def Myfunction as {\n    ~~Hello world! I am in a block!\n    DoSomething with: \\a-symbol and a number 45678;\n    Print \"Did something!!\";push a block{Foo bar Baz};\n    and then Do it\n}\n";
+printf("%s", str);
+FILE* s = fmemopen((void*)str, strlen(str), "r");
+char* token = NULL;
+while (!feof(s)) {
+    token = tehssl_next_token(s);
+    if (token == NULL) { printf("**ERR!**"); break; }
+    if (strlen(token) == 0) { printf("**EOF.**"); free(token); break; }
+    printf("`%s` ", token);
+    free(token);
+}
+fclose(s);</code></pre>
+<p>For reference, here&rsquo;s what the tokenizer is tokenizing, without the C backslash escapes:</p>
+<pre class="highlight"><code class="language-tehssl">Def Myfunction as {
+    ~~Hello world! I am in a block!
+    DoSomething with: \a-symbol and a number 45678;
+    Print "Did something!!";push a block{Foo bar Baz};
+    and then Do it
+}</code></pre>
+<p>And it produced these tokens: <code>Def</code> <code>Myfunction</code> <code>{</code> <code>DoSomething</code> <code>with:</code> <code>\a-symbol</code> <code>45678</code> <code>;</code> <code>Print</code> <code>"Did something!!</code> <code>;</code> <code>{</code> <code>Foo</code> <code>Baz</code> <code>}</code> <code>;</code> <code>Do</code> <code>}</code> <strong>EOF.</strong></p>
+<p>5 things are happenning here:</p>
+<ol>
+<li>The comment on line 2 is discarded entirely.</li>
+<li>The parens and semicolons are being separated out into their own tokens.</li>
+<li>All of the <code>lowercase</code> words are being discareded, because they are &ldquo;informal syntax&rdquo; that are treated as comments.</li>
+<li>The <code>with:</code> is <em>not</em> discarded, because it is a keyword property that actually means something.</li>
+<li>The string token (<code>"Did something!!</code>) doesn&rsquo;t have the closing quote. This is so the parser (which reads the tokens) can look at the first character to determine the type of symbol, and in the case of a string, it can just slice off the first character without having to blank out the last as well (which is considerably harder in C than in another lnaguage such as Python) to get the raw string contents.</li>
+</ol>
+<p>TEHSSL is more than just a grabage colelctor and a tokenizer, but that&rsquo;s all I have written at this moment. But apparently it looks promising, because David Kobalia starred TEHSSL on GitHub yesterday!</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_pattern.html">Powerful PICKLE Pattern Matching</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_gc.html">Yet Another Garbage Collector</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_garbage.html">Manual Memory Management Madness</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickles.html">Pickles!</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/ulisp.html">uLisp Thoughts</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>In Search of a Brain</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, javascript, machine-learning, game-design" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="In Search of a Brain" />
+    <meta property="og:description" content="I am not an expert in machine learning by any means. I do not understand the mathematics behind a neural network, much less how to implement one. My preferred method of teaching computers what to do is by writing code, not training machine learning models. Yet, strangely, today I find …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/ml_brain.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - In Search of a Brain" />
+    <meta name="twitter:description" content="I am not an expert in machine learning by any means. I do not understand the mathematics behind a neural network, much less how to implement one. My preferred method of teaching computers what to do is by writing code, not training machine learning models. Yet, strangely, today I find …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+        <!-- Katex -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.css" type="text/css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/mhchem.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        renderMathInElement(document.body,
+            {
+                delimiters: [
+                    {left: '$$', right:'$$', display: true},
+                    {left: '$',  right:'$',  display: false},
+                    {left: '\\begin{align}', right: '\\end{align}', display: true},
+                ]
+            }
+        );
+    });
+</script>        <!-- /Katex -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/">Categories</a>
+                            <ul>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/">misc</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/ml_brain.html" rel="bookmark" title="Permalink to this page">In Search of a Brain</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/pickle_is_a_regex.html">
+                    PICKLE Has Regular Expressions, Apparently
+                </a>
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2023-08-23T00:00:00-04:00">Wed 23 August 2023</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/">misc</a></div>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/javascript.html">javascript</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/machine-learning.html">machine-learning</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/game-design.html">game-design</a>
+            </div>
+    </div>
+        <p><em>This post is part 1 of the parasite series:</em></p>
+        <ol class="series">
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/ml_brain.html'>In Search of a Brain</a>
+                </li>
+        </ol>
+    <p>I am not an expert in machine learning by any means. I do not understand the mathematics behind a neural network, much less how to implement one. My preferred method of teaching computers what to do is by writing code, not training machine learning models. Yet, strangely, today I find myself in need of a machine learning model.</p>
+<p>Last week I dreamed up an idea for a videogame. Visually, it&rsquo;s similar to <a href="https://slither.io">slither.io</a>, but it&rsquo;s not a massively multiplayer game. Instead of every snake being controlled by a human player, there is only one controlled by a human. The rest are computer-controlled. Accordingly, the objective of the game is changed: Instead of trying to survive the longest and not run into another snake and die, the objective for the human player is to train (or trick) the AI snakes to do certain tasks, getting progressively more advanced and difficult in each subsequent level. I called the game &ldquo;Parasite&rdquo; because instead of the environment determining what the AIs learn, the player observes the snakes and makes that decision &ndash; essentially controlling the minds of the snakes, much like a <a href="https://en.wikipedia.org/wiki/Dicrocoelium_dendriticum#Life_cycle">mind-controlling parasite</a>. The user would also be able to muck around with each snake&rsquo;s proprioception and perception coefficients, changing how the snake responds to its environment.</p>
+<figure class="float-right">
+<p><img alt="snakes" src="https://dragoncoder047.github.io/blog/images/snakes.png"></p>
+<figcaption>The test snakes I implemented today. They look very cute. And tasty. Seriously, though, I didn&rsquo;t even realize they looked like gummy worms until I took this screenshot.</figcaption>
+</figure>
+<p>I quickly designed off a minimalistic user interface using my preferred web page framework (vanilla HTML and CSS, yum) and then got to work on the snakes that would exist in the game&rsquo;s environment. I based the snakes off of an old Processing demo I made in 8<sup>th</sup> grade. The snakes in that demo were extremely stupid &ndash; unlike a proper Snake game or something like like slither.io, the snakes in the demo could cross back over themselves and each other with no ill effects and the tail followed the exact same path the head. (It was implemented with a ring-buffer of previous head positions that were used to draw short, heavy line segments that made up the snake&rsquo;s body.) This was not something I wanted for this game and so I started thinking about how to implement something more advanced.</p>
+<p>After a lot of head-scratching and reviewing my old trigonometry and geometry notes, I got bored and went on to YouTube and eventually landed on <a href="https://www.youtube.com/watch?v=uirPtj6zGAw">the Brick Experiment Channel&rsquo;s 100-wheel LEGO car</a>. It sure ended up looking like a snake. And, at <a href="https://youtu.be/uirPtj6zGAw?t=214">3:34</a> I realized I had struck upon something good: the tail of the <del>car</del> snake pulls inward around bends &ndash; exactly the behavior I wanted for the snakes in my game. The implementation was dead simple: since I&rsquo;m trying to simulate or mimic a physical phenomenon, I can just use a physics engine! So I downloaded <a href="https://github.com/liabru/matter-js">Matter.js</a> into my project and made each snake out of a chain of circles. That worked extremely well and after rigging up a bit of dummy code to make the snakes move, they looked very lifelike.</p>
+<p>Now I moved on to part 2 of the snakes&rsquo; code: the machine-learning back box that is the AI brain of each snake. After a bit of googling around I learned that the approach I was going for is known as deep reinforcement learning, where the machine-learning model (often called the &ldquo;actor&rdquo;) is given information about the system it is trying to learn, and then produces some action to be performed. An external process (called the &ldquo;critic&rdquo;), which in Parasite is the human player/trainer, observes the result of the action and produces a reward value. The model then learns to produce actions that lead to higher reward values.</p>
+<p>Because each snake is going to have its own AI model (they&rsquo;re not going have shared &ldquo;hive mind&rdquo; brains), I started to look for a small, fast, and lightweight Javascript reinforcement-learning library. I initially found Andrej Karpathy&rsquo;s <a href="https://github.com/karpathy/reinforcejs">REINFORCEjs</a>, but none of the models fit the snakes in Parasite very well.</p>
+<p>The snakes&rsquo; input is a large high-dimensional vector containing information about the snake itself (energy level, length, etc) as well as the environment around it (position of food particles close to the snake, distance to the wall, etc). The snakes&rsquo; outputs, controlling what the snake does, is a bit different. The output state space is partly continuous, partly discrete &ndash; for example, two of the continuous outputs are the angle and length of the snake&rsquo;s tongue. For the snake to be able to eat, the tongue has to physically overlap with a food particle, and the AI has to also turn on another discrete (boolean) output from &ldquo;full&rdquo; to &ldquo;hungry&rdquo;. Only if the snake is hungry <em>and</em> the tongue is touching a food particle will the snake gain energy.</p>
+<p>The REINFORCEjs model that best fit this situation was the <code>DQNAgent</code> (I have no idea what DQN stands for), and you might be convinced that it does indeed work with continuous outputs by looking at the Waterworld demo that uses it. In that demo the agent is a small ball in a box filled with other small balls that all bounce around randomly, and the agent is fed information about the position and velocity of of balls close to the agent as well as the agent&rsquo;s own velocity, and is rewarded positively for contacting red balls and negatively for contacting green balls. The agent then learns to move itself around the box, eating all the red balls while avoiding the green ones.</p>
+<p>Turns out the Waterworld agent still had discrete outputs: the four actions were to apply force to the agent up, down, left, or right. The reason it worked is the same reason that electronic <a href="https://en.wikipedia.org/wiki/Pulse-width_modulation">pulse-width modulation</a>, which only ever assumes two possible values (on or off), can dim a light to any possible brightness between off and fully on. By rapidly modulating the proportion of &ldquo;up&rdquo; outputs to &ldquo;down&rdquo; outputs, and &ldquo;left&rdquo; to &ldquo;right&rdquo;, the Waterworld agent is able to simulate varying levels of force in any direction, due to the fact that it has mass and can&rsquo;t move instantly.</p>
+<p>Unfortunately in the case of the snakes&rsquo; tongues, a modulation scheme just won&rsquo;t work. Even if the proportion of $-\frac{\pi}{2}$ to $\frac{\pi}{2}$ outputs is correct, if the food particle is somewhere in the middle, the snake&rsquo;s tongue will simply dance all around it and never actually touch the food!</p>
+<p>My best kludge for this is to take all of the outputs that have to be continuous and make them integrating processes. In the case of the snakes&rsquo; tongues, that would mean an output action of &ldquo;tongue right&rdquo; would not instantaneously move the tongue to an angle of $\frac{\pi}{2}$, instead it would turn the tongue by a small angle relative to where it already is. I&rsquo;m not sure how well this would work, but considering control schemes like this are already common (e.g. a sous-vide cooker that can only turn its heating element on or off but can keep any set temperature), it&rsquo;s worth a shot.</p>
+<p>The next hard part is designing all the levels&hellip;</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_tokenizer_js.html">Pickle Tokenizer</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/tree_world.html">A Very Confusing Data Model</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/phoo_debugger.html">Debugger, Almost</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/cant_find_the_bug.html">I Still Have No Idea</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/langton_music.html">Langton's Ant Music</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

@@ -51,8 +51,7 @@ ARTICLE_SAVE_AS = ARTICLE_URL = '{path_no_ext}.html'
 PAGE_URL = PAGE_SAVE_AS = 'page/{slug}.html'
 AUTHOR_SAVE_AS = AUTHOR_URL = ''  # 'author/{slug}.html' # I am the only author
 AUTHORS_SAVE_AS = ''  # 'authors.html'
-DRAFT_URL = DRAFT_SAVE_AS = 'draft/{slug}.html'
-DRAFT_PAGE_URL = DRAFT_PAGE_SAVE_AS = 'page/draft/{slug}.html'
+DRAFT_URL = DRAFT_SAVE_AS = DRAFT_PAGE_URL = DRAFT_PAGE_SAVE_AS = 'drafts/{path_no_ext}.html'
 CATEGORY_SAVE_AS = CATEGORY_URL = ''  # 'category/{slug}.html'
 CATEGORIES_SAVE_AS = ''  # 'categories.html'  # I don't use categories
 TAG_SAVE_AS = TAG_URL = 'tag/{slug}.html'

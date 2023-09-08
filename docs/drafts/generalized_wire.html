@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Generalized Wire Cellular Automata (DRAFT)</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+        <meta name="robots" content="noindex" />
+
+
+    
+
+
+        <meta name="tags" content="cellular-automata, programming" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Generalized Wire Cellular Automata" />
+    <meta property="og:description" content="In fooling around with different variants of the Wireworld cellular automaton I was wondering if Wireworld and its variants can be generalized. Vanilla Conway’s Game of Life and its variants has been generalized, up to the point of being able to express a rule concisely in a single line …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/drafts/generalized_wire.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Generalized Wire Cellular Automata" />
+    <meta name="twitter:description" content="In fooling around with different variants of the Wireworld cellular automaton I was wondering if Wireworld and its variants can be generalized. Vanilla Conway’s Game of Life and its variants has been generalized, up to the point of being able to express a rule concisely in a single line …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+        <!-- Katex -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.css" type="text/css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/mhchem.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        renderMathInElement(document.body,
+            {
+                delimiters: [
+                    {left: '$$', right:'$$', display: true},
+                    {left: '$',  right:'$',  display: false},
+                    {left: '\\begin{align}', right: '\\end{align}', display: true},
+                ]
+            }
+        );
+    });
+</script>        <!-- /Katex -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/">Categories</a>
+                            <ul>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/">misc</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/drafts/generalized_wire.html" rel="bookmark" title="Permalink to this page">Generalized Wire Cellular Automata</a></h1>
+    
+    <div class="post-info">
+        Posted <time class="published" datetime="2022-06-16T00:00:00-04:00">Thu 16 June 2022</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/">misc</a></div>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/cellular-automata.html">cellular-automata</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
+            </div>
+    </div>
+    <p>In fooling around with different variants of the Wireworld cellular automaton I was wondering if Wireworld and its variants can be generalized.</p>
+<p>Vanilla Conway&rsquo;s Game of Life and its variants has been generalized, up to the point of being able to express a rule concisely in a single line following a standard format (called Hensel notation after the guy who invented it, Alan Hensel) as described <a href="https://conwaylife.com/wiki/Cellular_automaton#Life-like_cellular_automata">here</a>:</p>
+<ul>
+<li><code>B3/S23</code> (Life) &ndash; a dead cell is born if it has 3 live neighbors (<code>B3</code>) and a live cell survives if it has 2 or 3 (<code>S23</code>).</li>
+<li><code>B2-a/S12</code> (Just Friends) &ndash; born if there are 2 live neighbors (<code>B2</code>) except (<code>-</code>) if they are adjacent (<code>a</code>), and survives if there are 1 or 2 live neighbors (<code>S12</code>).</li>
+<li><code>B2/S345/G4</code> (Star Wars) &ndash; cells are born if there are 2 neighbors (<code>B2</code>), survive if there are 3, 4, or 5 (<code>S345</code>) and upon dying, pass through two additional &lsquo;dying&rsquo; states before returning to &lsquo;dead&rsquo; (<code>/4</code>).</li>
+<li><code>B3aijn4cw5cek6n/S2-in3-ky4ejntwy5ijnr6cen7c</code> (Wildfire) &ndash; I&rsquo;m not going to explain this one here!</li>
+</ul>
+<p>Now, Wireworld is obviously not one of these rules as stae 0 never changes; but when it is seen as one of those rules confined to a wire (state 3 &ndash; wire &ndash; as the &ldquo;background&rdquo;, state 1 as &ldquo;live&rdquo;, state 2 as &ldquo;dying&rdquo;), it can be seen that the rule emulated by the wire is <code>B12/S/G3</code>. Going in that vein (some rule confined to a wire) there has been <a href="https://conwaylife.com/forums/viewtopic.php?f=11&amp;t=3380">Wire2</a> (<code>B2/S/G3</code> &ndash; Brian&rsquo;s Brain &ndash; confined to a wire), <a href="https://conwaylife.com/forums/viewtopic.php?f=11&amp;t=5502&amp;">wireweird</a> (<code>B13/S/G3</code>), and <a href="https://conwaylife.com/forums/viewtopic.php?f=11&amp;t=907">Bliptile</a> (<code>B1/S/G3V</code>, the <code>V</code> deoting the von Neumann neighborhood).</p>
+<p>While this is useful, it gets old real fast, and especially clumsy and large the more transitions are restricted. This also doesn&rsquo;t cover hybrid rules such as <a href="https://dragoncoder047.github.io/blog/wireworld++.html">Wireworld++</a>, which includes two separate and largely independent Wireworld universes, and the transition between the two is asymmetric.</p>
+<p>Let me begin by defining what exactly a generalized wire cellular automaton is:</p>
+<ol>
+<li>State $0$ (the background) always remains the background. This forbids patterns from expanding and eliminates construction rules such as WWEJ3 (but as that is an extension of Wireworld, a universal-construction <abbr title="Generalized Wire Cellular Automata">GWCA</abbr> would naturally also be an extension).</li>
+<li>If there are multiple types of wire, the multiple subsets of states $S_1, S_2,&hellip;S_n$ are partitioned such that all sets are mutually disjoint from each other, that is, $S_1\cup S_2 &hellip;\cup S_n\equiv U$ and $S_p\cap S_q \equiv\emptyset\longleftrightarrow p\not = q$.</li>
+<li>No cell in a state $s_1$ where $s_1\in S_k$ will ever transition to a state $s_2$, $s_2 \not\in S_k$ &ndash; that is, a cell in some wire type will always remain the same wire type.</li>
+<li>Each subset $S$ can each be partitioned into $n$ subsets of types $T_n$, $1\le n\le 4$.</li>
+<li>If a cell in state $p$, $p\in T_k$, changes state to a new state $q$, then $q\in T_{k+1}$. Alternatively, if $x$ and $y$ are states, $x\in T_k$, and $y\in T_k$, a cell cannot transition from $x$ to $y$ without going through one or more additional states.</li>
+</ol>
+<p>The Wireworld++ rule I discovered fits these rules: States 1, 2, and 3 are the &ldquo;strong&rdquo; wire type, and 4, 5, and 6 are the &ldquo;weak&rdquo; type. The strong type always stays the strong type and the weak type always stays the weak type. 1 always changes to 2, 2 always changes to 3, and 3 changes back to 1. Likewise, 4 changes to 5, 5 to 6, and 6 back to 4. State 0 remains 0.</p>
+<p>Now, under those constraints, how to serialize this into a rule string?</p>
+<p>My first idea was simply an extension of the B/S notation used above: repeat a rule for each wire type separated by commas, and for the asymmetric transitions insert <code>+N:</code> (N being the index of the extra wire type, starting from 0) and followed by the addidtional transitions from that wire. The whole rule stars with <code>GW</code> do designate it as a <abbr title="Generalized Wire Cellular Automata">GWCA</abbr> rulestring.</p>
+<p>Using that notation, Wireworld is <code>GWB12/S/3</code>. Wireworld++ is <code>GWB12/S/3+1:B2,B12/S/3+0:B1</code>. Pushing it even further, Lode Vandevenne&rsquo;s <a href="https://lodev.org/ca/wireworldrgb.html">WireWorldRgb</a> is <code>GWB12/S/3+2:B12,B1/S/3+0:B1,B2/S/3+1:B1</code>. WireWorldRYGB (same page) is <code>GWB12/S/3+3:B1+1:B2,B12/S/3+0:B12,B12/S/3+3:B1+3:B2,B12/S/3+2:B12</code> (Whew!)</p>
+<p>Now, that is getting a little cumbersome even for only three or four types of wire. <a href="https://lodev.org/ca/llll.html">LLLL</a> has <em>eight</em> &ndash; I&rsquo;m not going to even try that one.</p>
+<p>And this notation also doesn&rsquo;t cover four-state wire types that have separate &ldquo;on&rdquo; and &ldquo;off&rdquo; wires (such as LLLL) or multiple different types of &ldquo;head&rdquo; or &ldquo;tail&rdquo;, i.e. some $T$ sets have more than one element, or where the &ldquo;tail&rdquo; lasts longer than one generation (such as NoTimeAtAll).</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/langton_music.html">Langton's Ant Music</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/wireworld++.html">Wireworld++</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/ml_brain.html">In Search of a Brain</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_is_a_regex.html">PICKLE Has Regular Expressions, Apparently</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/out_of_memory.html">Error: out of memory</a></li>
+        </ul>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

@@ -14,7 +14,7 @@ Vanilla Conway's Game of Life and its variants has been generalized, up to the p
 
 Now, Wireworld is obviously not one of these rules as stae 0 never changes; but when it is seen as one of those rules confined to a wire (state 3 -- wire -- as the "background", state 1 as "live", state 2 as "dying"), it can be seen that the rule emulated by the wire is `B12/S/G3`. Going in that vein (some rule confined to a wire) there has been [Wire2](https://conwaylife.com/forums/viewtopic.php?f=11&t=3380) (`B2/S/G3` -- Brian's Brain -- confined to a wire), [wireweird](https://conwaylife.com/forums/viewtopic.php?f=11&t=5502&) (`B13/S/G3`), and [Bliptile](https://conwaylife.com/forums/viewtopic.php?f=11&t=907) (`B1/S/G3V`, the `V` deoting the von Neumann neighborhood).
 
-While this is useful, it gets old real fast, and especially clumsy and large the more transitions are restricted. This also doesn't cover hybrid rules such as [Wireworld++]({filename}wireworld/wireworld++.md), which includes two separate and largely independent Wireworld universes, and the transition between the two is asymmetric.
+While this is useful, it gets old real fast, and especially clumsy and large the more transitions are restricted. This also doesn't cover hybrid rules such as [Wireworld++]({filename}wireworld++.md), which includes two separate and largely independent Wireworld universes, and the transition between the two is asymmetric.
 
 Let me begin by defining what exactly a generalized wire cellular automaton is:
 

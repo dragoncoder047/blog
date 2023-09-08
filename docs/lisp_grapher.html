@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Lisp Practice</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, lisp" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Lisp Practice" />
+    <meta property="og:description" content="Today I decided I would have a little fun with Lisp. I wanted to try and make a program that you can type in a function and get a graph of it. I started off with a function that takes an $x$-value and a list of coefficients, and evaluates …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/lisp_grapher.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Lisp Practice" />
+    <meta name="twitter:description" content="Today I decided I would have a little fun with Lisp. I wanted to try and make a program that you can type in a function and get a graph of it. I started off with a function that takes an $x$-value and a list of coefficients, and evaluates …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+        <!-- Katex -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.css" type="text/css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/mhchem.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        renderMathInElement(document.body,
+            {
+                delimiters: [
+                    {left: '$$', right:'$$', display: true},
+                    {left: '$',  right:'$',  display: false},
+                    {left: '\\begin{align}', right: '\\end{align}', display: true},
+                ]
+            }
+        );
+    });
+</script>        <!-- /Katex -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/">Categories</a>
+                            <ul>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/">misc</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/lisp_grapher.html" rel="bookmark" title="Permalink to this page">Lisp Practice</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/ulisp.html">
+                    uLisp Thoughts
+                </a>
+            </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/partcl.html">
+                    ParTcl
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2022-09-28T00:00:00-04:00">Wed 28 September 2022</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/">misc</a></div>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/lisp.html">lisp</a>
+            </div>
+    </div>
+    <p>Today I decided I would have a little fun with Lisp. I wanted to try and make a program that you can type in a function and get a graph of it.</p>
+<p>I started off with a function that takes an $x$-value and a list of coefficients, and evaluates the polynomial defined by those coefficients. Here&rsquo;s the function:</p>
+<pre class="highlight"><code class="language-lisp">(defun poly (x a)
+    (let ((result 0) (n (length a)))
+         (dotimes (k n)
+             (setq result (+ (* (nth k a) (expt x (- n k 1))) result)))
+         result))</code></pre>
+<p>And here&rsquo;s using it to evaluate the polynomial $2x^{3} - x^{2} + 5x - 10$ at $x = 3$:</p>
+<pre class="highlight"><code class="language-lisp">(poly 3 '(2 -1 5 -10))</code></pre>
+<p>Then I thought how to turn each of those points into an ASCII-art graph.</p>
+<p>The polt function uses two nested <code class="language-lisp highlight">dolist</code> loops iterating over a list of x-values and y-values, and then at each point, it has to decide domehow whether to plot a point (by returning &ldquo;#&rdquo; insread of the background character). The simplest solution is to only plot it if $y = f(x)$ and don&rsquo;t otherwise, but this only works when lines cross exactly over the gridline.</p>
+<p>After considering a number of other methods, I decided on the method that <a href="https://www.youtube.com/c/Mattbatwings">mattbatwings</a> used in <a href="https://www.youtube.com/watch?v=EvvWOaLgKVU">his Minecraft graphing calculator</a>. This represents a function as 3D surface in $x$ and $y$, and then plotting all the points where the surface crosses the $x$-$y$ plane at $z=0$.</p>
+<p>This function makes that decision. It takes the function $f$, the $x$ and $y$ coordinates, and $d$ which represents the distance between gird lines.</p>
+<pre class="highlight"><code class="language-lisp">(defun zerocross (f x y d)
+    (or
+        (eq (&lt; 0 (funcall f x y)) (&gt; 0 (funcall f (- x d) y)))
+        (eq (&lt; 0 (funcall f x (- y d))) (&gt; 0 (funcall f x y)))
+        (eq (&lt; 0 (funcall f x y)) (&gt; 0 (funcall f (+ x d) y)))
+        (eq (&lt; 0 (funcall f x (+ y d))) (&gt; 0 (funcall f x y)))))</code></pre>
+<p>If there is a sign change in the function close to the point, it returns <code class="language-lisp highlight">t</code>, otherwise it returns <code class="language-lisp highlight">nil</code>.</p>
+<p>Now all that&rsquo;s left to do is iterate over the provided ranges and call <code>zerocross</code> at each x- and y-value, and if there is no zero crossing, return the &ldquo;background&rdquo; characters.</p>
+<p><code>axis</code> returns a line character if it is on the axis, and dots for a grid at increments of 2.</p>
+<pre class="highlight"><code class="language-lisp">(defun axis (x y)
+    (if (and (= 0 x) (= 0 y)) "+"
+        (if (= 0 x) "|"
+            (if (= 0 y) "-"
+                (if (and (= 0 (mod x 2)) (= 0 (mod y 2))) "." " ")))))</code></pre>
+<p><code>range</code> is an emulation fo the Python <code class="language-py3 highlight">range</code> function, which returns a list of numbers from <code>min</code> up to <code>max</code> in increments of <code>step</code>.</p>
+<pre class="highlight"><code class="language-lisp">(defun range (min max step)
+    (let ((l nil) (c min))
+         (loop
+             (push c l)
+             (setq c (+ c step))
+             (when (&gt;= c max) (return l)))))</code></pre>
+<p><code>plot</code> then iterates over the entire x-y plane within the given range, and plots the function:</p>
+<pre class="highlight"><code class="language-lisp">(defun plot (fx tx fy ty s fun)
+    (with-output-to-string (out)
+        (dolist (y (range fy ty s))
+            (dolist (x (range fx tx s))
+                (princ (if (zerocross fun x y s) "#" (axis x y)) out))
+            (terpri out))))</code></pre>
+<p>If you&rsquo;re interested in the whole code, here it is: <a download="plot.lisp" href="https://dragoncoder047.github.io/blog/plot.lisp">plot.lisp</a></p>
+<p>Here&rsquo;s using it to plot the function $y^{3} + x^{2} - 10x - 70 = 0$:</p>
+<pre class="highlight"><code class="language-lisp">(princ
+    (plot
+        -20 20 ; x-values
+        -20 20 ; y-values
+        1 ; step in each direction
+        (lambda (x y) (+ (poly x '(1 -10 0)) (poly y '(1 0 0 -70))))))</code></pre>
+<p>This produces this neat graph:</p>
+<pre class="highlight"><code class="language-txt">                   |                    
+ . . . . . . . . . | . . . . . . . . . .
+                   |                    
+ . . . . . . . . . | . . . . . . . . . .
+                   |                    
+ . . . . . . . . . | . . . . . . . . . .
+                   |                    
+ . . . . . . . . . | . . . . . . . . . .
+                   |                    
+ . . . . . . . . . | . . . . . . . . . .
+                   |                    
+ . . . . . . . . . | . . . . . . . . . .
+                   |                    
+ . . . . . . . . . | . . . . . . . . . .
+         ###########                    
+ . . .#################. . . . . . . . .
+     ####          |####                
+ . .## . . . . . . | . ##. . . . . . . .
+    ##             |   ##               
+----##-------------+---##---------------
+    ##             |   ##               
+ . ##. . . . . . . | . .## . . . . . . .
+  ##               |     ##             
+###. . . . . . . . | . . .###. . . . . .
+##                 |       #####        
+ . . . . . . . . . | . . . . ######. . .
+                   |            ####### 
+ . . . . . . . . . | . . . . . . . #####
+                   |                   #
+ . . . . . . . . . | . . . . . . . . . .
+                   |                    
+ . . . . . . . . . | . . . . . . . . . .
+                   |                    
+ . . . . . . . . . | . . . . . . . . . .
+                   |                    
+ . . . . . . . . . | . . . . . . . . . .
+                   |                    
+ . . . . . . . . . | . . . . . . . . . .
+                   |                    
+ . . . . . . . . . | . . . . . . . . . .</code></pre>
+<p>Pretty neat! An easy self-introduction to a programming language I though I&rsquo;d never learn. Maybe I&rsquo;ll take some time to learn more.</p>
+<p>And here&rsquo;s a bigger example: $x\sin\left(0.2\pi x\right)-y=0$:</p>
+<pre class="highlight"><code class="language-lisp">(princ
+    (plot
+        -50 50 ; x-values
+        -50 50 ; y-values
+        1 ; step in each direction
+        (lambda (x y) (- (* x (sin (* x pi 0.2))) y))))</code></pre>
+<pre class="highlight"><code class="language-txt">                                                 |                                                  
+ . . . . . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . . . . . . .
+                                                 |                                                  
+ . . . . . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . . . . . . .
+                                                 |                                                  
+ . . . . . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . . . . . . .
+                                                 |                                                  
+ . . . . . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . . . . . . .
+      #                                          |                                          #       
+ . . ### . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . . ### . . .
+     ####                                        |                                        ####      
+ . . ####. . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . .#### . . .
+     ####                                        |                                        ####      
+ . . ####. . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . .#### . . .
+     ####                                        |                                        ####      
+ . . ####. . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . .#### . . .
+     ####                                        |                                        ####      
+ . . ####. . . .#. . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . .#. . . .#### . . .
+     ####      ###                               |                               ###      ####      
+ . . ####. . . ####. . . . . . . . . . . . . . . | . . . . . . . . . . . . . . .#### . . .#### . . .
+     ####      ####                              |                              ####      ####     #
+ . . ####. . . ####. . . . . . . . . . . . . . . | . . . . . . . . . . . . . . .#### . . .#### . . #
+     ####      ####                              |                              ####      ####     #
+ . . ####. . . ####. . . . . . . . . . . . . . . | . . . . . . . . . . . . . . .#### . . .#### . . #
+    ## ##      ####                              |                              ####      ## ##    #
+ . .## .## . . ####. . . . . . . . . . . . . . . | . . . . . . . . . . . . . . .#### . . ##. ##. . #
+    ##  ##     ####                              |                              ####     ##  ##    #
+ . .## .## . . ####. . . .#. . . . . . . . . . . | . . . . . . . . . . .#. . . .#### . . ##. ##. . #
+    ##  ##     ####      ###                     |                     ###      ####     ##  ##    #
+ . .## .## . . ####. . . ####. . . . . . . . . . | . . . . . . . . . .#### . . .#### . . ##. ##. . #
+    ##  ##    ## ##      ####                    |                    ####      ## ##    ##  ##    #
+ . .## .## . .## .## . . ####. . . . . . . . . . | . . . . . . . . . .#### . . ##. ##. . ##. ##. . #
+    ##  ##    ##  ##     ####                    |                    ####     ##  ##    ##  ##    #
+ . .## .## . .## .## . . ####. . . . . . . . . . | . . . . . . . . . .#### . . ##. ##. . ##. ##. . #
+    ##  ##    ##  ##     ####                    |                    ####     ##  ##    ##  ##    #
+ . .## .## . .## .## . .## ##. . . . . . . . . . | . . . . . . . . . .## ##. . ##. ##. . ##. ##. . #
+    ##  ##    ##  ##    ## ##       #            |            #       ## ##    ##  ##    ##  ##    #
+ . .## .## . .## .## . .## .## . . ### . . . . . | . . . . . ### . . ##. ##. . ##. ##. . ##. ##. . #
+    ##  ##    ##  ##    ##  ##     ####          |          ####     ##  ##    ##  ##    ##  ##    #
+ . .## .## . .## .## . .## .## . . ####. . . . . | . . . . .#### . . ##. ##. . ##. ##. . ##. ##. . #
+    ##  ##    ##  ##    ##  ##     ####          |          ####     ##  ##    ##  ##    ##  ##    #
+ . .## .## . .## .## . .## .## . .## ##. . . . . | . . . . .## ##. . ##. ##. . ##. ##. . ##. ##. . #
+    ##  ##    ##  ##    ##  ##    ## ##          |          ## ##    ##  ##    ##  ##    ##  ##    #
+ . .## .## . .## .## . .## .## . .## .## . . . . | . . . . ##. ##. . ##. ##. . ##. ##. . ##. ##. . #
+    ##  ##    ##  ##    ##  ##    ##  ##         |         ##  ##    ##  ##    ##  ##    ##  ##    #
+ . .## .## . .## .## . .## .## . .## .## . . . . | . . . . ##. ##. . ##. ##. . ##. ##. . ##. ##. . #
+    ##  ##    ##  ##    ##  ##    ##  ##     ##  |  ##     ##  ##    ##  ##    ##  ##    ##  ##    #
+ . .## .## . .## .## . .## .## . .## .## . .#### | ####. . ##. ##. . ##. ##. . ##. ##. . ##. ##. . #
+    ##  ##    ##  ##    ##  ##    ##  ##    ## ##|## ##    ##  ##    ##  ##    ##  ##    ##  ##    #
+#---##---##--##----##---##---##---##---##---##--###--##---##---##---##---##---##----##--##---##---##
+#  ##    ##  ##    ##  ##    ##  ##    ##  ##    #    ##  ##    ##  ##    ##  ##    ##  ##    ##  ##
+#. ##. . ##. ##. . ##. ##. . ##. ##. . ##. ##. . | . .## .## . .## .## . .## .## . .## .## . .## .##
+#  ##    ##  ##    ##  ##    ##  ##    ##  ##    |    ##  ##    ##  ##    ##  ##    ##  ##    ##  ##
+#. ##. . ##. ##. . ##. ##. . ##. ##. . ##.## . . | . . ##.## . .## .## . .## .## . .## .## . .## .##
+#  ##    ##  ##    ##  ##    ##  ##    ## ##     |     ## ##    ##  ##    ##  ##    ##  ##    ##  ##
+#. ##. . ##. ##. . ##. ##. . ##. ##. . .#### . . | . . ####. . .## .## . .## .## . .## .## . .## .##
+#  ##    ##  ##    ##  ##    ##  ##     ###      |      ###     ##  ##    ##  ##    ##  ##    ##  ##
+#. ##. . ##. ##. . ##. ##. . ##. ##. . . # . . . | . . . # . . .## .## . .## .## . .## .## . .## .##
+#  ##    ##  ##    ##  ##    ##  ##              |              ##  ##    ##  ##    ##  ##    ##  ##
+#. ##. . ##. ##. . ##. ##. . ##.## . . . . . . . | . . . . . . . ##.## . .## .## . .## .## . .## .##
+#  ##    ##  ##    ##  ##    ## ##               |               ## ##    ##  ##    ##  ##    ##  ##
+#. ##. . ##. ##. . ##. ##. . .#### . . . . . . . | . . . . . . . ####. . .## .## . .## .## . .## .##
+#  ##    ##  ##    ##  ##     ####               |               ####     ##  ##    ##  ##    ##  ##
+#. ##. . ##. ##. . ##. ##. . .#### . . . . . . . | . . . . . . . ####. . .## .## . .## .## . .## .##
+#  ##    ##  ##    ##  ##     ####               |               ####     ##  ##    ##  ##    ##  ##
+#. ##. . ##. ##. . ##.## . . .#### . . . . . . . | . . . . . . . ####. . . ##.## . .## .## . .## .##
+#  ##    ##  ##    ## ##      ###                |                ###      ## ##    ##  ##    ##  ##
+#. ##. . ##. ##. . .#### . . . # . . . . . . . . | . . . . . . . . # . . . ####. . .## .## . .## .##
+#  ##    ##  ##     ####                         |                         ####     ##  ##    ##  ##
+#. ##. . ##. ##. . .#### . . . . . . . . . . . . | . . . . . . . . . . . . ####. . .## .## . .## .##
+#  ##    ##  ##     ####                         |                         ####     ##  ##    ##  ##
+#. ##. . ##.## . . .#### . . . . . . . . . . . . | . . . . . . . . . . . . ####. . . ##.## . .## .##
+#  ##     ####      ####                         |                         ####      ####     ##  ##
+#. ##. . .#### . . .#### . . . . . . . . . . . . | . . . . . . . . . . . . ####. . . ####. . .## .##
+#  ##     ####      ####                         |                         ####      ####     ##  ##
+#. ##. . .#### . . .###. . . . . . . . . . . . . | . . . . . . . . . . . . .###. . . ####. . .## .##
+#  ##     ####       #                           |                           #       ####     ##  ##
+#.## . . .#### . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . ####. . . ##.##
+####      ####                                   |                                   ####      #### 
+#### . . .#### . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . ####. . . ####.
+####      ####                                   |                                   ####      #### 
+#### . . .#### . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . ####. . . ####.
+####      ####                                   |                                   ####      #### 
+#### . . .#### . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . ####. . . ####.
+####      ####                                   |                                   ####      #### 
+#### . . .###. . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . .###. . . ####.
+####       #                                     |                                     #       #### 
+#### . . . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . . . . ####.
+####                                             |                                             #### 
+#### . . . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . . . . ####.
+####                                             |                                             #### 
+#### . . . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . . . . ####.
+####                                             |                                             #### 
+#### . . . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . . . . ####.
+###                                              |                                              ### 
+ # . . . . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . . . . . # .
+                                                 |                                                  
+ . . . . . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . . . . . . .
+                                                 |                                                  
+ . . . . . . . . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . . . . . . . . . . .</code></pre>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_garbage.html">Manual Memory Management Madness</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/ml_brain.html">In Search of a Brain</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_is_a_regex.html">PICKLE Has Regular Expressions, Apparently</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/out_of_memory.html">Error: out of memory</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_pattern.html">Powerful PICKLE Pattern Matching</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

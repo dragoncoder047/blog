@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Well, I Got Something...</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="electronics" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Well, I Got Something..." />
+    <meta property="og:description" content="Today I did a quick test of my little ATtiny85 microcontrollers’ capabilities. I had them sitting in a jar for a while, and I wanted to see if I could use them in conjunction as a coprocessor to manage some mundane task like regulating a motor. I have previously written …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/i_got_something.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Well, I Got Something..." />
+    <meta name="twitter:description" content="Today I did a quick test of my little ATtiny85 microcontrollers’ capabilities. I had them sitting in a jar for a while, and I wanted to see if I could use them in conjunction as a coprocessor to manage some mundane task like regulating a motor. I have previously written …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/">Categories</a>
+                            <ul>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/">misc</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/i_got_something.html" rel="bookmark" title="Permalink to this page">Well, I Got Something...</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/pickles.html">
+                    Pickles!
+                </a>
+            </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/tree_world.html">
+                    A Very Confusing Data Model
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2023-03-05T00:00:00-05:00">Sun 05 March 2023</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/">misc</a></div>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/electronics.html">electronics</a>
+            </div>
+    </div>
+        <p><em>This post is part 4 of the roboraptor-upgrade series:</em></p>
+        <ol class="series">
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/a_change.html'>Shifting Gears</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/tested_systems.html'>Systems Tested</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/hairy_circuits.html'>Hairy Circuit Layout Issues</a>
+                </li>
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/i_got_something.html'>Well, I Got Something...</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/boost_converter.html'>A Boost Converter</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/out_of_memory.html'>Error: out of memory</a>
+                </li>
+        </ol>
+    <p>Today I did a quick test of my little ATtiny85 microcontrollers&rsquo; capabilities. I had them sitting in a jar for a while, and I wanted to see if I could use them in conjunction as a coprocessor to manage some mundane task like regulating a motor. I have previously written I do not like the way the motors are mounted in my old Roboraptor, and I was thinking if I removed the springs and added a position sensor, I could operate the motors as if they were servos. Unfortunately, although I can find analog Hall-effect position sensors for dirt cheap, I&rsquo;m not even sure it one can just buy a bare servo controller chip without also buying the motor and gearbox it goes in. At any rate, I never found one!</p>
+<p>The ATtiny85&rsquo;s I had bought seem like a logical solution: They have ADC pins for reading the position sensor, and PWM pins for controlling the speed of a motor. Additionally, there is <a href="https://github.com/rambo/TinyWire/">a library</a> that can implement I<sup>2</sup>C in software, so the ATtiny85 can communicate with the master.</p>
+<p>I also bought some L293D motor drivers, and they seemed simple to wire up to the ATtiny85: One pin for forward, one pin for backward, and the enable pin permanently pulled high.</p>
+<p>Unfortunately, the only available pins for the I<sup>2</sup>C library occupied one of the only two available PWM pins on the ATtiny85, so I got creative. Instead of having a forward and backward, pin, I had a speed and direction pin. The direction pin, which can&rsquo;t do PWM, is connected to the forward input of the L293D, and through an inverter into the backward input. The speed control pin feeds into the enable input.</p>
+<p>Just to test if the ATtiny85 could also handle reading the ADC while it is handling the I2C bus at the same time, I connected a potentiometer to the last open pin, which happened to be an ADC pin (whew!) and reprogrammed the ATtiny85 to read the ADC. The master code simply reads the ADC register of the ATtiny85, translates it into a speed and direction, and sends it back to the ATtiny85 which then controls the motor.</p>
+<p>Here&rsquo;s the code for both, as reference:</p>
+<div class="tabbed-set" data-tabs="1:2"><input checked id="__tabbed_1_1" name="__tabbed_1" type="radio"><label for="__tabbed_1_1">ATtiny85</label><div class="tabbed-content">
+<pre class="highlight"><code class="language-ino">#define I2C_SLAVE_ADDRESS 0x4 // the 7-bit address (remember to change this when adapting this example)
+#include &lt;TinyWireS.h&gt; // Get this from https://github.com/rambo/TinyWire
+#ifndef TWI_RX_BUFFER_SIZE
+#define TWI_RX_BUFFER_SIZE (16) // The default buffer size, though we cannot actually affect it by defining it in the sketch
+#endif
+volatile uint8_t i2c_regs[] = { // The "registers" we expose to I2C
+    0x0, // Speed
+    0x0, // Direction
+    0x0  // ADC
+};
+const byte reg_size = sizeof(i2c_regs);
+volatile byte reg_position; // Tracks the current register pointer position
+void requestEvent() {  
+    TinyWireS.send(i2c_regs[reg_position]);
+    reg_position++; // Increment the reg position on each read, and loop back to zero
+    if (reg_position &gt;= reg_size) reg_position = 0;
+}
+void receiveEvent(uint8_t howMany) {
+    if (howMany &lt; 1) return; // Sanity-check
+    if (howMany &gt; TWI_RX_BUFFER_SIZE) return; // Also insane number
+    reg_position = TinyWireS.receive();
+    howMany--;
+    if (!howMany) return; // This write was only to set the buffer for next read
+    while (howMany--) {
+        i2c_regs[reg_position] = TinyWireS.receive();
+        reg_position++;
+        if (reg_position &gt;= reg_size) reg_position = 0;
+    }
+}
+void setup() {
+    pinMode(4, OUTPUT); // Dir control
+    pinMode(1, OUTPUT); // Speed control
+    digitalWrite(1, LOW);
+    pinMode(3, INPUT);
+    TinyWireS.begin(I2C_SLAVE_ADDRESS);
+    TinyWireS.onReceive(receiveEvent);
+    TinyWireS.onRequest(requestEvent);
+}
+
+void loop() {
+    TinyWireS_stop_check();
+    digitalWrite(4, !!i2c_regs[1]);
+    analogWrite(1, i2c_regs[0]);
+    i2c_regs[2] = analogRead(3) &gt;&gt; 2;
+}</code></pre>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio"><label for="__tabbed_1_2">Master</label><div class="tabbed-content">
+<pre class="highlight"><code class="language-ino">#include &lt;Wire.h&gt;
+void setup() {
+    Wire.begin();
+    Serial.begin(115200);
+}
+void loop() {
+    byte x, d, s;
+    Wire.beginTransmission(0x04);
+    Wire.write(2);
+    Wire.endTransmission();
+    delay(10);
+    Wire.requestFrom(0x04, 1);
+    x = Wire.read();
+    Serial.println(x);
+    if (x &lt;= 127) {
+        d = 1;
+        s = (127 - x) &lt;&lt; 1;
+    } else {
+        d = 0;
+        s = (x - 128) &lt;&lt; 1;
+    }
+    Wire.beginTransmission(0x04);
+    Wire.write(0);
+    Wire.write(s);
+    Wire.write(d);
+    Wire.endTransmission();
+    delay(10);
+}</code></pre>
+</div>
+</div>
+<p>And at long last, after much <code class="language-ino highlight">delay()</code> tomfoolery, I got something to work.</p>
+<p>I quickly discovered that the ADC read (i.e. the <code class="language-ino highlight">analogRead()</code> call) takes a bit of time, and during that interval, the ATtiny85 effectively drops off the I<sup>2</sup>C bus. Weird, but workable.</p>
+<p>Oh well. I don&rsquo;t have half the parts I need to finish anything, so I&rsquo;ll have to wait.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/out_of_memory.html">Error: out of memory</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/boost_converter.html">A Boost Converter</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/schemascii_is_done.html">Schemascii &pm; 0</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/schemascii_progress.html">Schemascii &pm; 1</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/hairy_circuits.html">Hairy Circuit Layout Issues</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

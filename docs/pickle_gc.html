@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Yet Another Garbage Collector</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, c, language-design, garbage-collector" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Yet Another Garbage Collector" />
+    <meta property="og:description" content="Yet again I find myself writing a garbage collector. I did a little work on PICKLE’s Javascript implementation, and perhaps Javascript is not the right choice. Because Javascript’s inheritance model is so similar to PICKLE’s, yet slightly different, implementing the inheritance (even with ES6 Proxys) is …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/pickle_gc.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Yet Another Garbage Collector" />
+    <meta name="twitter:description" content="Yet again I find myself writing a garbage collector. I did a little work on PICKLE’s Javascript implementation, and perhaps Javascript is not the right choice. Because Javascript’s inheritance model is so similar to PICKLE’s, yet slightly different, implementing the inheritance (even with ES6 Proxys) is …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/">Categories</a>
+                            <ul>
+                                    <li class="active"><a href="https://dragoncoder047.github.io/blog/">misc</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/pickle_gc.html" rel="bookmark" title="Permalink to this page">Yet Another Garbage Collector</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/pickle_tokenizer_js.html">
+                    Pickle Tokenizer
+                </a>
+            </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/boost_converter.html">
+                    A Boost Converter
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2023-05-18T00:00:00-04:00">Thu 18 May 2023</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/">misc</a></div>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/c.html">c</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/language-design.html">language-design</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/garbage-collector.html">garbage-collector</a>
+            </div>
+    </div>
+        <p><em>This post is part 4 of the pickle series:</em></p>
+        <ol class="series">
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickles.html'>Pickles!</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_garbage.html'>Manual Memory Management Madness</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_tokenizer_js.html'>Pickle Tokenizer</a>
+                </li>
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/pickle_gc.html'>Yet Another Garbage Collector</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_pattern.html'>Powerful PICKLE Pattern Matching</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_is_a_regex.html'>PICKLE Has Regular Expressions, Apparently</a>
+                </li>
+        </ol>
+    <p>Yet again I find myself writing a garbage collector.</p>
+<p>I did a little work on PICKLE&rsquo;s Javascript implementation, and perhaps Javascript is not the right choice. Because Javascript&rsquo;s inheritance model is <em>so similar</em> to PICKLE&rsquo;s, yet slightly different, implementing the inheritance (even with ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy"><code class="language-js highlight">Proxy</code></a>s) is difficult.</p>
+<p>So now I find myself writing another garbage collector, in C, with the intention of writing PICKLE in C, using that garbage collector.</p>
+<p>This time, however, I&rsquo;m not going to let it get out of hand in one big file. I&rsquo;m separating the key components into their own separate files. Because the garbage collector is the base for something, I&rsquo;ve put it in its own repository. It&rsquo;s called &ldquo;<a href="https://github.com/dragoncoder047/tinobsy/">Tinobsy</a>&rdquo; (TINy OBject SYstem) because I couldn&rsquo;t think of any better thing to call it.</p>
+<p>While I initially complained about the verbosity of reference-counting garbage collectors, C preprocessor macros can help with that. To simplify the updates that need to occur when a new value is assigned, I created this macro to replace the assignment operator:</p>
+<pre class="highlight"><code class="language-c">#define SET(x, y) do { \
+    tincref(y); \
+    tdecref(x); \
+    (x)=(y);
+} while (0)</code></pre>
+<p>This takes care of the overhead needed to update reference counts when a value is reassigned. The old value that is being overwritten loses a reference, the new value gains a reference, and then the C pointer is actually updated. The <code class="language-c highlight">tincref()</code> must come first to prevent an object from reaching zero references and being freed in the pathological case of an object being assigned to itself. The only caveat with this macro is it evaluates each of its arguments twice, so it can&rsquo;t be used with compound statements that have side-effects (such as a function call).</p>
+<p>Once I got that figured out, I was able to write this bit:</p>
+<pre class="highlight"><code class="language-c">ttype cons_type = {"cons", OBJECT, OBJECT};
+tobject* cons(tvm* vm, tobject* x, tobject* y) {
+    tobject* cell = talloc(vm, &amp;cons_type);
+    SET(cell-&gt;car, x);
+    SET(cell-&gt;cdr, y);
+    return cell;
+}
+
+#define PUSH(vm, x, y) do { \
+    tobject* cell__ = cons((vm), (x), (y)); /* Create an object */\
+    SET(y,cell__); /* Do something with the object */\
+    tdecref(cell__); /* Done with it, clean up references */\
+} while (0)</code></pre>
+<p>This bit, while it isn&rsquo;t part of Tinobsy proper, is probably going to end up in PICKLE &ndash; I figure I&rsquo;m going to use some sort of Lisp-like object structure and cons cells are the basis of it.</p>
+<p>The <code>PUSH</code> macro shows the general method of memory management in Tinobsy: allocate some memory, use it, and then drop references to it so it can be freed as soon as possible.</p>
+<p>I included <code class="language-c highlight">longjmp()</code>-based control flow capabilities in Tinobsy, but as of right now I haven&rsquo;t written any macros that utilize it yet. I&rsquo;m modeling it after uLisp&rsquo;s error handling, simply returning a value when there isn&rsquo;t an error, and <code class="language-c highlight">longjmp()</code>&lsquo;ing back out to the last saved catchpoint (with <code class="language-c highlight">setjmp()</code>) when there is an error.</p>
+<p>I&rsquo;m not sure how returning the actual error object will occur, as <code class="language-c highlight">setjmp()</code> returns an <code class="language-c highlight">int</code>, not a pointer. It would be much easier to pass back a pointer to an object in a cross-platform manner, but casting the <code class="language-c highlight">int</code> to a pointer type is only guaranteed to work on 32-bit platforms because <code class="language-c highlight">int</code>s are 32 bits. Oh well. I&rsquo;ll think of something smart eventually. And PICKLE <em>will</em> get implemented, in some form or fashion, at some point.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_garbage.html">Manual Memory Management Madness</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_pattern.html">Powerful PICKLE Pattern Matching</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickles.html">Pickles!</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/tehssl.html">TEHSSL</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/ulisp.html">uLisp Thoughts</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

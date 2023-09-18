@@ -1,7 +1,7 @@
 Title: PICKLE Has Regular Expressions, Apparently
 Date: 2023-07-28
 Series: pickle
-Tags: programming, python, pickle, language-design
+Tags: programming, python, language-design
 
 I worked for a while last week on the PICKLE implementation in Python. As I no longer have to work on the garbage collector, after I wrote a little "glue code" I immediately dove into the core functionality of PICKLE: the pattern-matching engine. Once I get the algorithm down, I'll port it to the C++ implementation.
 

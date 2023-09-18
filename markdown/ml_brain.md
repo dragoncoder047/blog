@@ -1,6 +1,5 @@
 Title: In Search of a Brain
 Date: 2023-08-23
-Series: parasite
 Tags: programming, javascript, machine-learning, game-design
 
 I am not an expert in machine learning by any means. I do not understand the mathematics behind a neural network, much less how to implement one. My preferred method of teaching computers what to do is by writing code, not training machine learning models. Yet, strangely, today I find myself in need of a machine learning model.

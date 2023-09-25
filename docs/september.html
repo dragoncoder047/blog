@@ -100,6 +100,11 @@
                     In Search of a Brain
                 </a>
             </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/thunk_queue.html">
+                    Continuations and the thunk queue
+                </a> &rarr;
+            </span>
     </div>
     <div class="post-info">
         Posted <time class="published" datetime="2023-09-18T00:00:00-04:00">Mon 18 September 2023</time>
@@ -113,11 +118,38 @@
                     <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
             </div>
     </div>
+        <p><em>This post is part 7 of the pickle series:</em></p>
+        <ol class="series">
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickles.html'>Pickles!</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_garbage.html'>Manual Memory Management Madness</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_tokenizer_js.html'>Pickle Tokenizer</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_gc.html'>Yet Another Garbage Collector</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_pattern.html'>Powerful PICKLE Pattern Matching</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_is_a_regex.html'>PICKLE Has Regular Expressions, Apparently</a>
+                </li>
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/september.html'>It's September!!</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/thunk_queue.html'>Continuations and the thunk queue</a>
+                </li>
+        </ol>
     <p>Unfortunately that time of year has crept up&hellip; school has started again. And not just any kind of school: I find myself in 12<sup>th</sup> grade, balancing seven classes, two with AP tests at the end, three with huge final projects. I&rsquo;m also trying to apply to college at the same time. Not to mention that I also have a bunch of my own personal projects that I&rsquo;m trying to work on too.</p>
 <p>Thankfully I have had a small amount of time to spend on planning a couple of different things.</p>
 <h2 id="parasite">Parasite</h2>
 <p>I completed and published Parasite last week. It&rsquo;s not terribly polished and the game is practically unplayable, but I am still pretty impressed with where it is so far. It&rsquo;s a bit of an interesting experiment to see what you can do with a bunch of completely untrained neural networks. I encourage you to <a href="/parasite/">try it out</a> and tell me what you think.</p>
-<h3 id="tings-left-to-do">Tings left to do</h3>
+<h3 id="things-left-to-do">Things left to do</h3>
 <ul>
 <li>Implement the last two actions which allow the snakes to mate with each other and create more snakes. Right now they just do nothing with this one. I&rsquo;m also not sure how to merge the AI models of each of the parent snakes when creating the new ones.</li>
 <li>Create real levels, with playable goals. This is hard because each level&rsquo;s goal has to be assessed in a different way and so a Javascript function has to be used to test what it needs to and decide if the level is beaten. The other hard part is coming up with the goals!</li>
@@ -154,8 +186,8 @@ foo bar
     // reject is the failure continuation
 });</code></pre>
 <p>Scheme also has a construct known as <code class="language-scheme highlight">dynamic-wind</code> that functions a lot like Python&rsquo;s <code class="language-python highlight">with</code> blocks. <code class="language-scheme highlight">dynamic-wind</code> takes three thunks, the first is called whenever code in the second starts running, and the third is called whenever code in the second stops running. Entry and exit in Python is only possible by way of normal control flow or thrown exceptions, but in Scheme it&rsquo;s possible to ender and exit the same block many times, using continuations.</p>
-<p>The idea I had came after seeing a little snippet demonstrating the use of SISC Scheme&rsquo;s <code class="language-scheme highlight">with-failure-continuation</code>, which acts almost like a Python <code class="language-python highlight">try</code> block, <em>except</em> for the fact that it is also passed the current continuation at the point where the error occurred. This is extremely powerful.</p>
-<p>Consider a simple divide-by-zero error. The current continuation of the division expression still exists, and now the failure handler can decide whether to resume or propagate the exception. Python doesn&rsquo;t let you decide what to do in this situation: the result is always an exception being thrown. However, in Scheme, the failure handler can instead resume the computation with a substitute value: in some situations it would be appropriate to return $\pm\infty$ for a division by zero; in other situations a <code class="language-js highlight">NaN</code> value; and in others to continue the error.</p>
+<p>The idea I had came after seeing a little snippet demonstrating the use of SISC Scheme&rsquo;s <code class="language-scheme highlight">with-failure-continuation</code>, which acts almost like a Python <code class="language-python highlight">except</code> block, <em>except</em> for the fact that it is also passed the current continuation at the point where the error occurred. This is extremely powerful.</p>
+<p>Consider a simple divide-by-zero error. The current continuation of the division expression still exists, and now the failure handler can decide whether to resume or propagate the exception. Python doesn&rsquo;t let you decide what to do in this situation: the result is always an exception being thrown. However, in Scheme, the failure handler can instead resume the computation with a substitute value: in some situations it would be appropriate to return $\pm\infty$ for a division by zero; in other situations a <code class="language-js highlight">NaN</code> value; and in others to propagate the error.</p>
 <p>When errors are resumable, it unlocks a lot of possibilities. One useful example I can think of is quantities (numbers with units): a quantities package could install a failure handler that would intercept errors caused by trying to call a number with arguments (which normally would make no sense) and resume the call with a quantity.</p>
 <p>For example <code class="language-scheme highlight">(10 'miles)</code> normally would normally not work (Guile gives the message &ldquo;Wrong type to apply: 10&rdquo;), but if the error included details of what was being called and with what arguments, a handler could transform this call into a quantity representing a distance of 10 miles.</p>
 <p>So I&rsquo;ve decided that in PICKLE, continuations will be supplied with every error, so the computation can be resumed with any specific values.</p>
@@ -166,9 +198,9 @@ foo bar
         <ul>
                 <li><a href="https://dragoncoder047.github.io/blog/ml_brain.html">In Search of a Brain</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/tree_world.html">A Very Confusing Data Model</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/thunk_queue.html">Continuations and the thunk queue</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/pickle_is_a_regex.html">PICKLE Has Regular Expressions, Apparently</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/pickle_pattern.html">Powerful PICKLE Pattern Matching</a></li>
-                <li><a href="https://dragoncoder047.github.io/blog/pickle_gc.html">Yet Another Garbage Collector</a></li>
         </ul>
     <script src="https://giscus.app/client.js"
         data-repo="dragoncoder047/blog"

@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Continuations and the thunk queue</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, c, javascript, language-design" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Continuations and the thunk queue" />
+    <meta property="og:description" content="After I made the last post – where I decided that PICKLE would be done in continuation-passing style – I revisted one extremely simple toy programming language done in continuation-passing style I found online (here). I figured it would be a good example of how I could implement PICKLE. The only problem …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/thunk_queue.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Continuations and the thunk queue" />
+    <meta name="twitter:description" content="After I made the last post – where I decided that PICKLE would be done in continuation-passing style – I revisted one extremely simple toy programming language done in continuation-passing style I found online (here). I figured it would be a good example of how I could implement PICKLE. The only problem …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/thunk_queue.html" rel="bookmark" title="Permalink to this page">Continuations and the thunk queue</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/september.html">
+                    It's September!!
+                </a>
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2023-09-21T00:00:00-04:00">Thu 21 September 2023</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/c.html">c</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/javascript.html">javascript</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/language-design.html">language-design</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
+            </div>
+    </div>
+        <p><em>This post is part 8 of the pickle series:</em></p>
+        <ol class="series">
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickles.html'>Pickles!</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_garbage.html'>Manual Memory Management Madness</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_tokenizer_js.html'>Pickle Tokenizer</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_gc.html'>Yet Another Garbage Collector</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_pattern.html'>Powerful PICKLE Pattern Matching</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_is_a_regex.html'>PICKLE Has Regular Expressions, Apparently</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/september.html'>It's September!!</a>
+                </li>
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/thunk_queue.html'>Continuations and the thunk queue</a>
+                </li>
+        </ol>
+    <p>After I made the last post &ndash; where I decided that PICKLE would be done in continuation-passing style &ndash; I revisted one extremely simple toy programming language done in continuation-passing style I found online (<a href="https://curiosity-driven.org/continuations#interpreter">here</a>). I figured it would be a good example of how I could implement PICKLE. The only problem is the interpreter makes heavy use of closures &ndash; so heavy that I almost couldn&rsquo;t understand it.</p>
+<p>Closures, however, were a smart choice, at least in terms of being particularly low-hanging fruit in the Javascript sense. The &ldquo;current continuation&rdquo;, generally speaking, is just an object that contains some information on what computations need to be done after the current one completes (and passes its result to the continuation). A closure here would hold the code needed to perform the next action, and also close over the data (i.e. the abstract syntax tree being executed) representing the <em>real</em> program. While C++ doesn&rsquo;t have any (useful) closures per se, I already have garbage-collected objects, and closures and objects are <a href="https://wiki.c2.com/?ClosuresAndObjectsAreEquivalent">somewhat equivalent</a>.</p>
+<p>The one part of the little language that really caught my eye was the <a href="https://en.wikipedia.org/wiki/Trampoline_(computing)#High-level_programming">trampoline</a>. For a language that supports tail call elimination such as Scheme or C, continuations blowing up the call stack aren&rsquo;t really a concern. But until Javascript supports tail-call elimination, calling a continuation will continuously add call frames to the stack, guaranteeing a recursion error if the stack gets too large.</p>
+<p>The trampoline solves this by delaying the actual application of the continuation function. It bundles the function and arguments into a thunk, and then adds the thunk to a queue. The trampoline returns normally (continuations usually never return) causing the call stack to unwind. <em>Then</em> the trampoline calls the thunk. The thunk just ends up calling what it thinks is a continuation, but it&rsquo;s really the trampoline, and so the process ends up repeating (wrap continuation, call current thunk, get next thunk in queue, unwind stack) until the final continuation doesn&rsquo;t push any thunk and the queue is empty. The program could even implement an infinite loop using recursion and the stack would never grow at all because there is effectively no call stack because of the trampoline. There is a catch: while the <em>stack</em> doesn&rsquo;t grow at all, the individual continuations will use up more and more and more memory as they close over more and more and more call frames.</p>
+<p>An interesting thing occurs when multiple programs are using the same trampoline. This effect can be seen by opening the page for the programming language above and scrolling down to the code block immediately above the &ldquo;Simplifying web applications&rdquo; header. Replace it with this and press &ldquo;execute&rdquo;.</p>
+<pre class="highlight"><code class="language-js">// set up the dependencies
+function noop(){}
+var dependencies = lists.get() + ' ; ' + cond.get();
+interpret(parse(lexer(dependencies), operators), globals, trampoline.wrap, noop);
+trampoline.execute();
+// set up 4 separate programs
+interpret(parse(lexer('display(a); display(a); display(a); display(a)'), operators), globals, trampoline.wrap, noop);
+interpret(parse(lexer('display(b); display(b); display(b); display(b)'), operators), globals, trampoline.wrap, noop);
+interpret(parse(lexer('display(c); display(c); display(c); display(c)'), operators), globals, trampoline.wrap, noop);
+interpret(parse(lexer('display(d); display(d); display(d); display(d)'), operators), globals, trampoline.wrap, noop);
+trampoline.execute();</code></pre>
+<p>Notice that despite there being four separate programs that print the same letter every time &ndash; the first one just prints <code>a</code>, <code>a</code>, <code>a</code>, <code>a</code> &ndash; the output ends up having the <code>display</code> calls from all the programs <em>interleaved</em>.</p>
+<p>And therein lies the power of the trampoline: as well as eliminating the call stack, it allows for a very simple method of threadless concurrency. PICKLE never looked so real at this point! The other amazing part is the sheer simplicity of the main evaluation loop I drafted based on this:</p>
+<pre class="highlight"><code class="language-cpp">void pickle::mainloop() {
+    for (;;) {
+        if (this-&gt;queue_head == NULL) return; // Exhausted all continuations, program is complete
+        this-&gt;gc();
+        this-&gt;run_next_thunk();
+    }
+}</code></pre>
+<p>where the <code class="language-cpp highlight">run_next_thunk()</code> method simply pops the next thunk off the queue, and if it&rsquo;s a C++ function, calls it, and if it&rsquo;s a user-defined code block, puts another continuation on the queue that calls the C++ &ldquo;eval&rdquo; function with the code block as the argument.</p>
+<p>The evaluation function is also dead simple: it finds the best-matching pattern using PICKLE&rsquo;s pattern-matching engine, and if there is a match, it creates a continuation chain to apply the match and then return to the evaluator. If there are no matches, it does nothing, and returns the eval&rsquo;ed element unchanged to its own continuation.</p>
+<p>The only downside to this is that because PICKLE technically doesn&rsquo;t have function calls, it just emulates them using a pattern, it means that PICKLE doesn&rsquo;t support tail-call elimination. When a function is in tail position, and the call-a-function pattern matches, the result is first spliced into the code, checked for patterns again, and then returned, resulting in the continuation chain growing unnecessarily.</p>
+<p>There&rsquo;s probably some clever optimization I haven&rsquo;t found yet that will enable this. Considering my relative na&iuml;vete when it comes to pattern-matching languages, there&rsquo;s definitely more for me to learn.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_pattern.html">Powerful PICKLE Pattern Matching</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_gc.html">Yet Another Garbage Collector</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_tokenizer_js.html">Pickle Tokenizer</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_garbage.html">Manual Memory Management Madness</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickles.html">Pickles!</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

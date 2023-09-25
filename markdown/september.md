@@ -1,5 +1,6 @@
 Title: It's September!!
 Date: 2023-09-18
+Series: pickle
 Tags: game-design, language-design, programming
 
 Unfortunately that time of year has crept up... school has started again. And not just any kind of school: I find myself in 12^th^ grade, balancing seven classes, two with AP tests at the end, three with huge final projects. I'm also trying to apply to college at the same time. Not to mention that I also have a bunch of my own personal projects that I'm trying to work on too.
@@ -10,7 +11,7 @@ Thankfully I have had a small amount of time to spend on planning a couple of di
 
 I completed and published Parasite last week. It's not terribly polished and the game is practically unplayable, but I am still pretty impressed with where it is so far. It's a bit of an interesting experiment to see what you can do with a bunch of completely untrained neural networks. I encourage you to [try it out](/parasite/) and tell me what you think.
 
-### Tings left to do
+### Things left to do
 
 * Implement the last two actions which allow the snakes to mate with each other and create more snakes. Right now they just do nothing with this one. I'm also not sure how to merge the AI models of each of the parent snakes when creating the new ones.
 * Create real levels, with playable goals. This is hard because each level's goal has to be assessed in a different way and so a Javascript function has to be used to test what it needs to and decide if the level is beaten. The other hard part is coming up with the goals!
@@ -72,9 +73,9 @@ new Promise((resolve, reject) => {
 
 Scheme also has a construct known as `:::scheme dynamic-wind` that functions a lot like Python's `:::python with` blocks. `:::scheme dynamic-wind` takes three thunks, the first is called whenever code in the second starts running, and the third is called whenever code in the second stops running. Entry and exit in Python is only possible by way of normal control flow or thrown exceptions, but in Scheme it's possible to ender and exit the same block many times, using continuations.
 
-The idea I had came after seeing a little snippet demonstrating the use of SISC Scheme's `:::scheme with-failure-continuation`, which acts almost like a Python `:::python try` block, *except* for the fact that it is also passed the current continuation at the point where the error occurred. This is extremely powerful.
+The idea I had came after seeing a little snippet demonstrating the use of SISC Scheme's `:::scheme with-failure-continuation`, which acts almost like a Python `:::python except` block, *except* for the fact that it is also passed the current continuation at the point where the error occurred. This is extremely powerful.
 
-Consider a simple divide-by-zero error. The current continuation of the division expression still exists, and now the failure handler can decide whether to resume or propagate the exception. Python doesn't let you decide what to do in this situation: the result is always an exception being thrown. However, in Scheme, the failure handler can instead resume the computation with a substitute value: in some situations it would be appropriate to return $\pm\infty$ for a division by zero; in other situations a `:::js NaN` value; and in others to continue the error.
+Consider a simple divide-by-zero error. The current continuation of the division expression still exists, and now the failure handler can decide whether to resume or propagate the exception. Python doesn't let you decide what to do in this situation: the result is always an exception being thrown. However, in Scheme, the failure handler can instead resume the computation with a substitute value: in some situations it would be appropriate to return $\pm\infty$ for a division by zero; in other situations a `:::js NaN` value; and in others to propagate the error.
 
 When errors are resumable, it unlocks a lot of possibilities. One useful example I can think of is quantities (numbers with units): a quantities package could install a failure handler that would intercept errors caused by trying to call a number with arguments (which normally would make no sense) and resume the call with a quantity.
 

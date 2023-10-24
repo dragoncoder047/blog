@@ -12,7 +12,7 @@ As-is, it's very much a concept.
 
 I'm very much tailoring the engine to fit my friend's game, but I do want it to be able to be used for any generic type of game. So I have to do two things: 1) make it usable by a person who has never done programming before (although I do know my friend from *computer science* class) and 2) be story-agnostic, so it can be used for a fantasy story as easily as for a horror story or a science fiction story.
 
-Number 2) necessitates abstracting the common characteristics of story elements into simple base classes, and then allowing the user to extend them to create the objects in the game.
+Number 2 necessitates abstracting the common characteristics of story elements into simple base classes, and then allowing the user to extend them to create the objects in the game.
 
 After a lot of thinking (and consulting the [Interactive Fiction Wiki](https://www.ifwiki.org/Building_a_New_Interactive_Fiction_System)) I came up with a simple method of defining objects based on a few simple attributes:
 
@@ -38,7 +38,7 @@ After a lot of thinking (and consulting the [Interactive Fiction Wiki](https://w
 From this, special objects can be made with sentinel value of zero or infinity:
 
 * Anything immovable has infinite weight.
-* A non-container has zero volume.
+* A non-container has zero volume, but nonzero size.
 * A liquid has nonzero volume, but zero size.
 * A room that is not self-lit has zero luminosity (i.e. you need to bring in a candle to see stuff, otherwise you'll just get `It's dark in here`).
 

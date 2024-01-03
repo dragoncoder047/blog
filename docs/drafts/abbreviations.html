@@ -37,10 +37,10 @@
     </head>
 
     <body class="match-braces rainbow-braces">
-        <header>
+        <header class="flex-row">
                 <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
-            <nav>
-                <ul>
+            <nav class="flex-row">
+                <ul class="flex-row">
                     <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
                         <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
                         </li>
@@ -79,11 +79,10 @@
             <address>By
                     <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
             </address>
-                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/">misc</a></div>
             <div class="tags">
                 Tags:
-                    <a href="https://dragoncoder047.github.io/blog/tag/python.html">python</a>
                     <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/python.html">python</a>
             </div>
     </div>
     <p>While drafting out an idea I had, I came to the task of how to save to a file and load it again. The data I would be saving is highly repetitive, so I figured I could compress the file somehow to save space but still have it be human-readable. Gzip was out because although it offers great compression, it is a binary filetype (not human readable) and requires a huge external library (making it harder for other fellow programmers to understand).</p>

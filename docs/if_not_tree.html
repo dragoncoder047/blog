@@ -36,10 +36,10 @@
     </head>
 
     <body class="match-braces rainbow-braces">
-        <header>
+        <header class="flex-row">
                 <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
-            <nav>
-                <ul>
+            <nav class="flex-row">
+                <ul class="flex-row">
                     <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
                         <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
                         </li>
@@ -90,12 +90,11 @@
             <address>By
                     <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
             </address>
-                <div class="category">Category: <a href="https://dragoncoder047.github.io/blog/">misc</a></div>
             <div class="tags">
                 Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/game-design.html">game-design</a>
                     <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
                     <a href="https://dragoncoder047.github.io/blog/tag/python.html">python</a>
-                    <a href="https://dragoncoder047.github.io/blog/tag/game-design.html">game-design</a>
             </div>
     </div>
     <p>In a <a href="https://dragoncoder047.github.io/blog/tree_world.html">previous post</a>, I started some mental planning for an interactive fiction engine in Python. I picked it up again last week and started working on a new version. Custom logic is implemented using a tiny Python library I created called <a href="https://github.com/dragoncoder047/json_runner"><code>json_runner</code></a>, which as you might guess, is capable of running JSON objects as if they were code.</p>

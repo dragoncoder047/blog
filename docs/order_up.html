@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Order Up</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, c, arduino" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Order Up" />
+    <meta property="og:description" content="I’ve been tinkering with David Johnson-Davies’ uLisp interpreter for a while now. It’s designed to be small first and foremost, so that the core part that fits on the rather wimpy ATmega328 (i.e. an Arduino Uno) will still achieve maximum usefulness. Most of the optimization is achieved …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/order_up.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Order Up" />
+    <meta name="twitter:description" content="I’ve been tinkering with David Johnson-Davies’ uLisp interpreter for a while now. It’s designed to be small first and foremost, so that the core part that fits on the rather wimpy ATmega328 (i.e. an Arduino Uno) will still achieve maximum usefulness. Most of the optimization is achieved …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/order_up.html" rel="bookmark" title="Permalink to this page">Order Up</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/the_god_language.html">
+                    The God Language
+                </a>
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2024-01-22T00:00:00-05:00">Mon 22 January 2024</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/arduino.html">arduino</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/c.html">c</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
+            </div>
+    </div>
+    <p>I&rsquo;ve been tinkering with David Johnson-Davies&rsquo; <a href="http://ulisp.com">uLisp</a> interpreter for a while now. It&rsquo;s designed to be small first and foremost, so that the core part that fits on the rather wimpy ATmega328 (i.e. an Arduino Uno) will still achieve maximum usefulness. Most of the optimization is achieved by storing the built-in function lookup table in flash, instead of RAM, so that there is more RAM available for the program.</p>
+<p>One of the core data types in Lisp is a stream. They are used to provide input and output to the program, and the typical microcontroller has no less than four of them, corresponding to the types of data buses that the microcontroller can have: UART, SPI, I2C, SD, etc., as well as the types builtin to Lisp itself, such as streams that read from or print to an in-memory string. David&rsquo;s solution seemed kind of strange to me, as he defined a lookup table of the names of all built-in streams, and then each stream object in memory simply contained in index into that table. The strange part was that the actual function pointers to print to and read from each stream were <em>not</em> in an actual C++ table (which is probably what I would have done); David created lookup <em>functions</em> that when passed the index to the names table, returned the coresponding print or read function pointer.</p>
+<p>That weirdness also makes it a little difficult for extension authors like myself to add new streams to uLisp. The current extension facility David added in version 4.4 only supports adding new functions, keywords, and special forms. Everything else, such as special global variables, reader macros, new types, and new streams, must be manually patched into the uLisp source file.</p>
+<p>I started to think about how to re-implement the whole uLisp type system to add more flexibility. The first change was simple: David had again made the rather strange design choice to have built-in functions hold the <em>index</em> of their lookup table entry, rather than the actual memory <em>address</em>. This means when actually operating on up the lookup table entry&rsquo;s data, an extra operation must be done (that of indexing the table to get the actual entry).</p>
+<p>The second change was to completely re-implement streams. As well as making it easier to add new streams, I also wanted to remove a couple limitations of streams, such as the fact that file streams store the open file object in a global variable and not the actual stream object; the consequences of this is that you can only have two files open at once: one for reading, one for writing.</p>
+<p>After trying some other solutions that went nowhere I eventually remembered one function that I came across when messing around with LIL &ndash; the OpenBSD libc function <a href="https://man.freebsd.org/cgi/man.cgi?query=funopen&amp;sektion=3&amp;manpath=freebsd-release-ports"><code>funopen(3)</code></a>. This allows you to create custom streams by specifying functions to read, write, seek, close the stream, along with an implementation-defined &ldquo;cookie&rdquo; object holding some data for the stream. The cookie was they key here, as it allowed the stream functions to be generic and operate on a <em>class</em> of streams, rather than one individual stream. This removes the restriction limiting uLisp to two files &ndash; neat.</p>
+<p>After drafting up an in-memory layout for the stream object, I ran into a potential problem. Whenever uLisp&rsquo;s garbage collector runs, it sweeps the Lisp cells from bottom-to-top, and reassembles the free-cell list from the unmarked cells, in reverse order, so each free cell is always at a lower memory address than the next. When cells are pulled off the free list and put into use, they are pulled off top-to-bottom as with a stack. The problem arises when I create the stream object &ndash; since it takes up multiple uLisp cells, some cells will be garbage-collected first. But if the stream hasn&rsquo;t been closed before it is garbage-collected, it will need to be closed, but that can only be done if the &ldquo;body&rdquo; cells of the stream object are still intact. I came up with a extremely stupid solution at first: throw in another API function, that runs before each garbage collection, and simply mark all of the stream objects&rsquo; payloads (but not the heads), regardless of whether they are actually reachable, so that the head will always get swept first because it is the only cell that isn&rsquo;t marked.</p>
+<p>But this is probably not the best solution by any metric (except for stupidity). The garbage collector is already sweeping the workspace cells array once, and this would basically add a second sweep, doubling the time for a garbage collection. I haven&rsquo;t investigated the invariants of the free-cell list&rsquo;s order very closely, so it may be as simple as always allocating the &ldquo;head&rdquo; cell of the stream object last, so that it will be swept first. I have to ensure the order in which the cells are swept, because it could potentially break a stream and cause a memory leak if the stream gets corrupted before it gets closed. Hopefully, between myself and David, uLisp will be improved.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/lilduino.html">LILduino</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/ulisp.html">uLisp Thoughts</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/feedback360_gripes.html">Two Down, A Zillion More To Go</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/thunk_queue.html">Continuations and the thunk queue</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/out_of_memory.html">Error: out of memory</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>The Lesser of Two Evils</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, language-design, c" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="The Lesser of Two Evils" />
+    <meta property="og:description" content="I’ve been trying to write some of the code to implement PICKLE’s parser and evaluator – it’s not going well. The hard part is that everything in PICKLE is done using continuation-passing style. Everywhere the evaluator has a chance of calling user code (that may capture a continuation …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/pickle_bytecode.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - The Lesser of Two Evils" />
+    <meta name="twitter:description" content="I’ve been trying to write some of the code to implement PICKLE’s parser and evaluator – it’s not going well. The hard part is that everything in PICKLE is done using continuation-passing style. Everywhere the evaluator has a chance of calling user code (that may capture a continuation …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives.html">Archives</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/pickle_bytecode.html" rel="bookmark" title="Permalink to this page">The Lesser of Two Evils</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/order_up.html">
+                    Order Up
+                </a>
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2024-02-09T00:00:00-05:00">Fri 09 February 2024</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/c.html">c</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/language-design.html">language-design</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming.html">programming</a>
+            </div>
+    </div>
+        <p><em>This post is part 9 of the pickle series:</em></p>
+        <ol class="series">
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickles.html'>Pickles!</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_garbage.html'>Manual Memory Management Madness</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_tokenizer_js.html'>Pickle Tokenizer</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_gc.html'>Yet Another Garbage Collector</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_pattern.html'>Powerful PICKLE Pattern Matching</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_is_a_regex.html'>PICKLE Has Regular Expressions, Apparently</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/september.html'>It's September!!</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/thunk_queue.html'>Continuations and the thunk queue</a>
+                </li>
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/pickle_bytecode.html'>The Lesser of Two Evils</a>
+                </li>
+        </ol>
+    <p>I&rsquo;ve been trying to write some of the code to implement PICKLE&rsquo;s parser and evaluator &ndash; it&rsquo;s not going well. The hard part is that <em>everything</em> in PICKLE is done using continuation-passing style. Everywhere the evaluator has a chance of calling user code (that may capture a continuation), it has to interrupt its own execution and package everything up into a continuation that will resume the process with whatever the user&rsquo;s code completes with. The result? Turns out, <a href="http://callbackhell.com/">callback hell</a> in C++, or at least something like it, is possible. Just look at this mess:</p>
+<pre class="highlight"><code class="language-cpp">// do next is run body --&gt; cont=apply match cont-&gt; eval again -&gt; original eval cont
+vm-&gt;do_later(vm-&gt;make_partial(
+    NULL,//matched_pattern-&gt;body(),
+    NULL,
+    env,
+    vm-&gt;make_partial(
+        vm-&gt;wrap_func(funcs::splice_match),
+        vm-&gt;list(2, vm-&gt;append(ast, NULL), NULL/*matched_pattern-&gt;match_info()*/),
+        oldenv,
+        vm-&gt;make_partial(
+            vm-&gt;wrap_func(funcs::eval),
+            NULL,
+            oldenv,
+            cont,
+            fail_cont
+        ),
+        fail_cont
+    ),
+    fail_cont
+));</code></pre>
+<p>Yow &mdash; that&rsquo;s a tad hard to see what&rsquo;s going on. These 20-odd lines of code implement only one thing in PICKLE&rsquo;s evaluation algorithm: &ldquo;after finding a matched pattern, apply the match, and then go back to step 1 if there are more matches.&rdquo; It also exhibits symptoms of being spaghetti code &ndash; the evaluation function calls out (indirectly) to the match-splicing function. However, this is the only place it is used. Why didn&rsquo;t I try to inline it? Because it would add more layers of nesting.</p>
+<p>The whole reason this nesting is necessary anyway is that each little sub-step might trigger the execution of user code &mdash; and so a continuation must be made. After finding the match, the match-splicing function must first call the user&rsquo;s definition of the pattern (necessarily in continuation-passing style). Then the &ldquo;go back to step 1&rdquo; part is implemented by calling <code>eval</code> again, naturally in continuation-passing style.</p>
+<p>I really hate callback hell (or whatever you want to call this), especially because it is supposed to implement a simple, linear algorithm. It should all be at the same indentation level!</p>
+<h2 id="byteishcode-to-the-rescue">Byte(ish)code to the rescue</h2>
+<p>So far, PICKLE has been the pattern-matching equivalent of a tree-walking interpreter. It recursively applies patterns until it reaches an atomic operation, and then the call stack &ndash; which is really a chain of partial continuations allocated on the heap &ndash; unwinds to return and allow the next pattern to match. These chains of continuations are created on-the-fly by the &ldquo;callback hell&rdquo; spaghetti code I have written so far.</p>
+<p>There&rsquo;s one thing that I noticed while designing PICKLE: every major programming language that claims to be &ldquo;interpreted&rdquo; is still actually compiled &ndash; just not into machine code like fully compiled languages are (unless it&rsquo;s got a JIT). They are compiled into bytecode, and then the bytecode is run in a virtual machine, which is usually either a stack machine or a register machine. I don&rsquo;t know much about bytecode, so I don&rsquo;t have a very good idea of how I could use it.</p>
+<p>In terms of re-implementing PICKLE as a bytecode virtual machine, I have a few ideas, which may or may not work.</p>
+<p>Looking at what&rsquo;s going on in term of the continuation chain, it isn&rsquo;t actually a chain. It&rsquo;s a tree &ndash; each operation is able to trigger one of two continuations, one for when the operation succeeds, and one for when the operation fails. I recently learned that this practice of passing two continuations around is known as <a href="https://kseo.github.io/posts/2017-01-10-double-barrelled-continuation-passing-style-interpreter.html">&ldquo;double-barreled&rdquo; continuations</a>, and, well, I&rsquo;m not surprised that it&rsquo;s been named &ndash; I didn&rsquo;t even think of it myself. I got it from SISC.</p>
+<p>Perhaps the one way to simplify this is to go the stack machine approach. Phoo, my previous attempt at a programming language, was a stack machine. <a href="https://dragoncoder047.github.io/blog/phooey.html">After Phoo imploded</a> I&rsquo;ve had a bad taste in my mouth for stack-based stuff, but there must be a reason that other languages use them for their bytecode machines.</p>
+<h2 id="instruction-stack">Instruction <em>stack</em>??</h2>
+<p>My first idea is to flatten the tree of continuations into a list, and then separate the &ldquo;temporary state&rdquo; saved in the continuations into a work stack of data values. The continuations&rsquo; associated functions would be the bytecode instructions which would then push and pop form the stack.</p>
+<p>When a compound instruction, that needs to call user code, is executed, it does what it can, then it pushes the remainder of the instructions of the compound operation to the instruction stack, so they&rsquo;ll be executed after the user code returns. Then the user code is pushed to the stack so it will be executed &ndash; and the result of the user code is seamlessly inserted onto the stack for the remainder of the operations to use.</p>
+<p>The differentaition between the normal success continuation and the failure continuation, and how to even switch continuations (when applying the captured one from a <code class="language-scheme highlight">call/cc</code> construct), is actually kind of simple in this system. The solution I came up with is a little hokey, but it seems like it would work.</p>
+<p>Each instruction in the instruction queue is &ldquo;tagged&rdquo; to indicate what type of operation it is. Each atomic operation returns a value to indicate which type of continuation to search for next. For example, if the instruction failed, it can push an error to the value stack instead of its typical return value, and the return &ldquo;error&rdquo; to the PICKLE virtual machine, to signal that it should discard all instructions from the instruction stack until it gets to an error handler instruction. <a href="https://www.tcl-lang.org/man/tcl/TclCmd/return.htm#M5">Tcl does something similar</a>, by returning different &ldquo;codes&rdquo; along with the actual value.</p>
+<p>Here&rsquo;s an example. Let&rsquo;s evaluate the (hypothetical) expression <code class="language-pickle highlight">print try 5/x rescue NaN</code>. Conceptually, what should happen is it should look up x, divide 5 by its value, and print that, except if the division throws an error (if it is 0 or NaN), and in that case just print NaN. I&rsquo;m going to simplify the instructions, and skip steps along the way, but hopefully this should convey what I&rsquo;m thinking.</p>
+<p>To start everything <code class="language-pickle highlight">eval</code> is called &ndash; like so:</p>
+<pre class="highlight"><code class="language-txt">instructions: call
+data: ((print try 5/x rescue NaN)) eval</code></pre>
+<p>The <code class="language-pickle highlight">call</code> instruction simply launches into the evaluation process and begins matching patterns. Now the <code class="language-pickle highlight">try ... rescue ...</code> pattern matches inside the <code class="language-pickle highlight">print</code> expression, and begins with the following instructions and data. It might look like a lot, but all it does is evaluate the current expression&rsquo;s instructions, and then the last three instructions implement the &ldquo;splice in the result, and go back to step 1&rdquo; part.</p>
+<pre class="highlight"><code class="language-txt">instructions: call (error ('&lt;continuation&gt; call)) cons call call
+data: ((5/x)) eval (&lt;spliceinfo&gt; (print ...)) splice eval</code></pre>
+<p>The <code>call</code> instruction calls the function with its arguments above it, and so the expression <code class="language-pickle highlight">5/x</code> is evaluated. <code class="language-pickle highlight">eval</code> matches the variable lookup pattern first, and sets up instructions to apply that and return to evaluation:</p>
+<pre class="highlight"><code class="language-txt">instructions: getattribute cons call call (error ('&lt;continuation&gt; call)) cons call call
+data: x &lt;env&gt; (&lt;spliceinfo&gt; (5/...)) splice eval (&lt;spliceinfo&gt; (print ...)) splice eval</code></pre>
+<p>The <code>getattribute</code> instruction takes two things from the stack (a symbol and an object) and looks up the attribute on the object &ndash; in this case the object is the environment itself, so the value of the variable x is returned. The three instructions under that are identical to the first time <code class="language-pickle highlight">eval</code> was called &ndash; except this time they are nested two deep because two patterns have matched inside each other.</p>
+<p>Suppose x is 0. At the moment the division occurs, the state is this:</p>
+<pre class="highlight"><code class="language-txt">instructions: divide cons call call (error ('&lt;continuation&gt; call)) cons call call
+data: 0 5 (&lt;spliceinfo&gt; (...)) splice eval (&lt;spliceinfo&gt; (print ...)) splice eval</code></pre>
+<p>Because you can&rsquo;t divide by 0, <code>divide</code> fails. An error gets pushed to the stack, and now the PICKLE machine does something different: it skips ahead until it gets to an <code>error</code> instruction group &ndash; in this case, the instruction is to apply a continuation. Now what?</p>
+<h2 id="its-literally-just-stack-switching">It&rsquo;s <em>literally</em> just stack switching</h2>
+<p>Recall that a continuation is simply a chunk of data that when applied, causes a jump to a different point in the program. How is that done in this PICKLE machine? By switching stacks. The continuation, internally, holds what the instruction stack and data stack were at the time it was captured &ndash; or, rather, what they should be swapped out with when the continuation is invoked. In the case of the error handler discussed above, applying the continuation replaces the remaining instructions of the body with the instructions of the error handler, and replaces all the data <em>except</em> for what it is called with (in this case the error object), which is what is &ldquo;passed&rdquo; to the continuation.</p>
+<pre class="highlight"><code class="language-txt">instructions: ignore 'NaN cons call call
+data: &lt;error&gt; (&lt;spliceinfo&gt; (print ...)) splice eval</code></pre>
+<p>The <code>ignore</code> instruction discards the error (the handler doesn&rsquo;t use it), and then the default value (NaN) is pushed to the stack. Fantastic! The remaining instructions splice this value back into the <code>print</code> expression, which prints whatever it is passed. Then the program exits because its instruction stack is empty.</p>
+<h2 id="look-mom-i-have-n-barrel-continuations-now">Look Mom, I have <em>N</em>-barrel continuations now!</h2>
+<p>Now an implementation of continuations wouldn&rsquo;t be complete without thought about context managers. Suppose you are writing a library. One of the library functions allows the end-user to pass in a callback, and it calls the callback while some managed resource is in use. In something like Python, that isn&rsquo;t a problem. If the user function raises an error, you can catch the error, close the resource, and then re-raise the error. Once you return from the library function and close the resource, you can be sure it will never be opened again without running the initialization routines.</p>
+<p>Continuations throw a monkey wrench in all of that. Suppose the user&rsquo;s callback captures a continuation and then returns. The library function closes the resource like usual, and then the user&rsquo;s program decides to invoke the continuation, jumping back into the middle of the data-processing section of the library function, without running the initialization section. Suddenly the program finds itself trying to operate on a closed resource, and bad stuff starts happening.</p>
+<p>The solution is what the Scheme community calls <code class="language-scheme highlight">dynamic-wind</code> &ndash; a construct that traps continuations and forces entrance and exit handlers to run before the jump is made. After control flow exits a <code class="language-scheme highlight">dynamic-wind</code> (via normal returning or a continuation), the exit handler runs. Before control flow enters, the entrance handler runs. These two handlers can be used to open and close the managed resource, preventing invalid read states.</p>
+<p>And to implement them, PICKLE is going to need a new kind of bytecode instruction. A <code class="language-scheme highlight">dynamic-wind</code> block will leave &ldquo;cookies&rdquo; on the instruction stack, in the form of enter- and exit-type instructions, that are picked up by continuations when they are invoked. All exit handlers that the continuation would displace are run in the appropriate order, and then all of the entrance handlers are run in the appropriate order, and <em>then</em> the continuation&rsquo;s control is resumed. Problem solved.</p>
+<h2 id="no-bytes-here">No bytes here</h2>
+<p>After I came up with this idea for continuations, the next thing I immediately thought of was how could I use it? The insane power of first-class continuations allows a lot of things to be done &ndash; my initial idea was to use this in a robot, and when the robot &ldquo;goes to sleep,&rdquo; it could capture a continuation which saves the entire program state, and then serialize the continuation to permanent memory. Then the robot could safely shut down completely, and when it wakes up it just resumes the continuation it saved, and the program continues on as though nothing ever happened.</p>
+<p>After thinking of that, I got another idea: the continuation could be serialized and then <em>sent to another computer</em> and resumed on that computer. Wouldn&rsquo;t that be cool? Something like this could probably be used to make a multiplayer turn-based game, where you take your turn, then freeze the game&rsquo;s program and send the program state to your opponent. They unfreeze the game on their machine, play their turn, and send the updated state back to you. They don&rsquo;t even need to have downloaded their own copy of the game, because the entire game state will contain the game&rsquo;s code with it.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<p>Serializing the continuation would be an important part of implementing this. I explored a couple of different methods to serialize state like this, and the hard part to serialize was the C function pointers. The internal representation of core C++ functions includes the address of the function pointer so it can call the function &ndash; but I can&rsquo;t guarantee that the address will be the same on every system. If the address was sent as-is, the receiving machine would assume it&rsquo;s still a valid function pointer, and then try to call it, but the function pointer may not point to anything useful, and would probably cause a segmentation fault.</p>
+<p>So I came up with the idea of &ldquo;named functions&rdquo; &ndash; simply put, all of the C function instructions that go on the instruction stack, must be named with a symbol. The symbol would be associated with the C function using a hash-map, and then when the program state is serialized the <em>symbol</em> would be saved as the function, bot the function itself.</p>
+<p>So it turns out, all of the internal data is just Lisp structures. Maybe I don&rsquo;t even have to worry about making another garbage collector and using Tinobsy &ndash; I could just use uLisp&rsquo;s and rewrite <code>read()</code> and <code>eval()</code>. Or maybe I do need to rewrite it. I&rsquo;ll see what happens!</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>On second thought, this may be of little practical use. For a complicated game with lost of code, it would involve sending large game-state files back and forth.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/thunk_queue.html">Continuations and the thunk queue</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_pattern.html">Powerful PICKLE Pattern Matching</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_gc.html">Yet Another Garbage Collector</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_garbage.html">Manual Memory Management Madness</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/pickles.html">Pickles!</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

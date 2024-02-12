@@ -1,11 +1,15 @@
 {
     "cSpell.words": [
         "defun",
+        "funcs",
         "longjmp",
+        "oldenv",
         "phoo",
         "Roboraptor",
         "Schemascii",
-        "Tinobsy"
+        "SISC",
+        "Tinobsy",
+        "Unskippables"
     ],
     "files.associations": {
         "*.tmpl": "jinja-html",

@@ -9,7 +9,7 @@ Lexing and parsing stuff in C is considerably harder than Javascript, mostly due
 
 ## More powerful pattern matching
 
-I found Bob Nystrom's [Magpie] programming language a while ago and had a look at it. It didn't dawn on me the expressive power of Magpie's pattern matching until I took a closer look at their implementation explained in Bob's blog. In Magpie, the methods aren't ever attached to the objects they operate on -- while if you write `:::magpie "foo" length` it might look like you're calling a method attached to the string object, no, you're just calling a global method `:::magpie def (self is String) length`. Magpie pattern-matches the string argument and the `length` name and finds a method defined for it.
+I found Bob Nystrom's [Magpie] programming language a while ago and had a look at it. It didn't dawn on me the expressive power of Magpie's pattern matching until I took a closer look at their implementation explained in Bob's blog. In Magpie, the methods aren't ever attached to the objects they operate on: although if you write `:::magpie "foo" length` it might look like you're calling a method attached to the string object, you're actually just calling a global method `:::magpie def (self is String) length`. Magpie pattern-matches the string argument and the `length` name and finds a method defined for it.
 
 [Magpie]: https://magpie-lang.org/
 

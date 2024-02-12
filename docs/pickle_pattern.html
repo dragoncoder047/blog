@@ -144,11 +144,14 @@
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/thunk_queue.html'>Continuations and the thunk queue</a>
                 </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_bytecode.html'>The Lesser of Two Evils</a>
+                </li>
         </ol>
     <p>I did a lot of work on Tinobsy, the garbage collector for PICKLE. It&rsquo;s pretty robust now, and passes all my tests &ndash; plus I translated it to C++ so I can take advantage of C++&rsquo;s syntactic sugar for objects. All I think that I&rsquo;ll be doing with Tinobsy in the near future is maybe writing more tests. Now I am focusing more on the implementation of PICKLE itself, starting with the tokenizer.</p>
 <p>Lexing and parsing stuff in C is considerably harder than Javascript, mostly due to the lack of regular expressions. But C does have the advantage of <code class="language-c highlight">longjmp()</code>, which Javascript does not. I haven&rsquo;t finished writing the tokenizer/parser but it will be based off of the Javascript one pretty closely &mdash; with a few key changes to accommodate some new ideas.</p>
 <h2 id="more-powerful-pattern-matching">More powerful pattern matching</h2>
-<p>I found Bob Nystrom&rsquo;s <a href="https://magpie-lang.org/">Magpie</a> programming language a while ago and had a look at it. It didn&rsquo;t dawn on me the expressive power of Magpie&rsquo;s pattern matching until I took a closer look at their implementation explained in Bob&rsquo;s blog. In Magpie, the methods aren&rsquo;t ever attached to the objects they operate on &ndash; while if you write <code class="language-magpie highlight">"foo" length</code> it might look like you&rsquo;re calling a method attached to the string object, no, you&rsquo;re just calling a global method <code class="language-magpie highlight">def (self is String) length</code>. Magpie pattern-matches the string argument and the <code>length</code> name and finds a method defined for it.</p>
+<p>I found Bob Nystrom&rsquo;s <a href="https://magpie-lang.org/">Magpie</a> programming language a while ago and had a look at it. It didn&rsquo;t dawn on me the expressive power of Magpie&rsquo;s pattern matching until I took a closer look at their implementation explained in Bob&rsquo;s blog. In Magpie, the methods aren&rsquo;t ever attached to the objects they operate on: although if you write <code class="language-magpie highlight">"foo" length</code> it might look like you&rsquo;re calling a method attached to the string object, you&rsquo;re actually just calling a global method <code class="language-magpie highlight">def (self is String) length</code>. Magpie pattern-matches the string argument and the <code>length</code> name and finds a method defined for it.</p>
 <p>Magpie even has &ndash; you guessed it &ndash; user-definable infix operators. And also being able to extend the Magpie parser. And a lot of other stuff, apparently, that I already thought of but just didn&rsquo;t know existed in another language. The unfortunate part is that Magpie is implemented in C# and Java, neither of which run on a microcontroller, which is one of the goals of PICKLE.</p>
 <p>The idea I have come up with here is rather simple: there would be a function called something generic like <code>define</code> that would take a precedence, a pattern, and a code block, find a pattern variable named &ldquo;@&rdquo;, and insert the pattern into the pattern lookup table of the class named by <code>@</code>. For example, here&rsquo;s some hypothetical code:</p>
 <pre class="highlight"><code class="language-pickle">define 3 [arg] |&gt; [Callable @]:
@@ -178,11 +181,11 @@ $x+$y</code></pre>
         <hr />
         <p><strong>Related Posts</strong></p>
         <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_bytecode.html">The Lesser of Two Evils</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/thunk_queue.html">Continuations and the thunk queue</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/pickle_gc.html">Yet Another Garbage Collector</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/pickle_garbage.html">Manual Memory Management Madness</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/pickles.html">Pickles!</a></li>
-                <li><a href="https://dragoncoder047.github.io/blog/tehssl.html">TEHSSL</a></li>
         </ul>
     <script src="https://giscus.app/client.js"
         data-repo="dragoncoder047/blog"

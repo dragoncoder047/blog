@@ -123,6 +123,9 @@
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/thunk_queue.html'>Continuations and the thunk queue</a>
                 </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/pickle_bytecode.html'>The Lesser of Two Evils</a>
+                </li>
         </ol>
     <p>I worked for a while last week on the PICKLE implementation in Python. As I no longer have to work on the garbage collector, after I wrote a little &ldquo;glue code&rdquo; I immediately dove into the core functionality of PICKLE: the pattern-matching engine. Once I get the algorithm down, I&rsquo;ll port it to the C++ implementation.</p>
 <p>While fleshing out PICKLE&rsquo;s syntax I decided that there would be two phases in PICKLE&rsquo;s evaluation algorithm of a line. <a href="https://dragoncoder047.github.io/blog/pickle_pattern.html">Previously</a> I determined that whitespace would be significant, and this now opens the door for syntactic macros.</p>
@@ -156,11 +159,11 @@ Repeat("a", 4, 10,   True)  # --&gt; a{4,10}</code></pre>
         <hr />
         <p><strong>Related Posts</strong></p>
         <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/pickle_bytecode.html">The Lesser of Two Evils</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/the_god_language.html">The God Language</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/if_not_tree.html">Zero-Thickness Tree</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/thunk_queue.html">Continuations and the thunk queue</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/september.html">It's September!!</a></li>
-                <li><a href="https://dragoncoder047.github.io/blog/pickle_pattern.html">Powerful PICKLE Pattern Matching</a></li>
         </ul>
     <script src="https://giscus.app/client.js"
         data-repo="dragoncoder047/blog"

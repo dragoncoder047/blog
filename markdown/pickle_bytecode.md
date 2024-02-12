@@ -1,5 +1,5 @@
 Title: The Lesser of Two Evils
-Date: 2024-02-09
+Date: 2024-02-12
 Series: pickle
 Tags: programming, language-design, c
 

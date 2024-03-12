@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Error: out of memory</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, electronics, c" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Error: out of memory" />
+    <meta property="og:description" content="I’ve been doing a little bit of everything lately. I’ve done a little work on PICKLE, trying to implement it first in Python so I don’t have to worry about the garbage collector. (The pattern-matching code is extremely complicated and screwed with my brain until I realized …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2023/error-out-of-memory" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Error: out of memory" />
+    <meta name="twitter:description" content="I’ve been doing a little bit of everything lately. I’ve done a little work on PICKLE, trying to implement it first in Python so I don’t have to worry about the garbage collector. (The pattern-matching code is extremely complicated and screwed with my brain until I realized …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- Katex -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.css" type="text/css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/mhchem.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        renderMathInElement(document.body,
+            {
+                delimiters: [
+                    {left: '$$', right:'$$', display: true},
+                    {left: '$',  right:'$',  display: false},
+                    {left: '\\begin{align}', right: '\\end{align}', display: true},
+                ]
+            }
+        );
+    });
+</script>        <!-- /Katex -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon"height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives">Archives</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/tags">By tag</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/2023/error-out-of-memory" rel="bookmark" title="Permalink to this page">Error: out of memory</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/2023/powerful-pickle-pattern-matching">
+                    Powerful PICKLE Pattern Matching
+                </a>
+            </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/2023/pickle-has-regular-expressions-apparently">
+                    PICKLE Has Regular Expressions, Apparently
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2023-07-23T00:00:00-04:00">Sun 23 July 2023</time>
+            <br /> Modified <time class="modified" datetime="2023-07-28T00:00:00-04:00">Fri 28 July 2023</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/c">c</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/electronics">electronics</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming">programming</a>
+            </div>
+    </div>
+        <p><em>This post is part 6 of the roboraptor-upgrade series:</em></p>
+        <ol class="series">
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2022/shifting-gears'>Shifting Gears</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2022/systems-tested'>Systems Tested</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2023/hairy-circuit-layout-issues'>Hairy Circuit Layout Issues</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2023/well-i-got-something'>Well, I Got Something...</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2023/not-your-daddys-boost-converter'>Not Your Daddy's Boost Converter</a>
+                </li>
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/2023/error-out-of-memory'>Error: out of memory</a>
+                </li>
+        </ol>
+    <p>I&rsquo;ve been doing a little bit of everything lately. I&rsquo;ve done a little work on PICKLE, trying to implement it first in Python so I don&rsquo;t have to worry about the garbage collector. (The pattern-matching code is extremely complicated and screwed with my brain until I realized that I&rsquo;m basically writing a regular expression engine, which just added to the confusion.) I made some more headway on the text-adventure game engine I <a href="https://dragoncoder047.github.io/blog/2023/a-very-confusing-data-model">mused</a> about, starting with a pseudo-scripting language that is embeddable in a JSON document, and some Python code to run it (<a href="https://github.com/dragoncoder047/json_runner">this mess</a>). I got a few new Lispy features added to uLisp and David even <a href="http://forum.ulisp.com/t/ulisp-extensions-add-catch-throw-and-backquote/1249">mentioned</a> them on the uLisp forum. The boost converter mentioned previously I got working, and I&rsquo;ve published the code and circuit <a href="https://github.com/dragoncoder047/super85/tree/master/smartboost">on Github</a>.</p>
+<p>The next thing I am working on is rather simple: a motor controller, that&rsquo;s all. When it&rsquo;s done, it will end up in the super85 repository along with the boost converter.</p>
+<p>The motor is hooked up to an L293D H-bridge and an AS5600 absolute encoder. You may recognize this one as the exact same encoder I discovered inside of the Feedback 360 servo &ndash; in fact, it&rsquo;s the <em>same physical IC</em> in play here &ndash; I bought the Feedback 260 precisely for the encoder.</p>
+<p>The ATtiny85 implements a rather simple algorithm to allow the host microcontroller to give high-level commands. The ATtiny85 is sent a target position and a maximum speed; it then checks the motor&rsquo;s position and sets the target velocity to positive or negative of the maximum speed depending on the error in position; then in turn it checks the motor&rsquo;s velocity and increments or decrements the current PWM power depending on the error in velocity. Essentially, it&rsquo;s a proportional controller with $K_p = \infty$ watching the position and controlling the setpoint of a pure integral controller with a very large $K_i$ watching the velocity.</p>
+<p>The AS5600 is configured to output the position encoded as the duty cycle of a 910 Hz PWM signal, and the ATtiny85 is able to read that using a combination of a hardware timer and a pin-change interrupt. It&rsquo;s also conveniently able to use the input PWM signal as a stable timebase to base speed calculations upon.</p>
+<p>The vexing part of the code is actually calculating the speed. Doing this is not just as simple as subtracting the old position from the new position every tick, for a number of reasons.</p>
+<p>The interrupt routine outputs the current angle as a number in the range of 0 to 255. The interrupt fires at 910 Hz. Now, if the position were to change by only 1/256<sup>th</sup> every interrupt, the <em>minimum</em> speed would be a whopping 213 RPM, which is way too high for my application. The maximum speed representable in a signed 8-bit value (127) represents an equally-ridiculous 27,000 RPM, which isn&rsquo;t even physically possible to achieve using this setup due to Nyquist sampling problems.</p>
+<p>The solution I came up with is to compute a rolling sum of the last <em>N</em> values &ndash; essentially a rolling average, but multipled by the window size (and then the back-to-back divide-multiply can be eliminated). The range of speeds appropriate for my application (around 0.5 - 50 RPM) results in an <em>N</em> of 512.</p>
+<p>This is a problem: the ATtiny85 only has 512 bytes of RAM. Eating up the the <em>entire</em> RAM for the buffer of the last 512 values ain&rsquo;t gonna happen &ndash; there won&rsquo;t be any remaining space for <em>anything</em> else, and there&rsquo;s no way, even with some clever assembly, I&rsquo;m going to be able to pack everything else into the 32 CPU registers.</p>
+<p>So this is a very difficult problem to solve, one that I have not yet been able to hurdle. It is not something I&rsquo;m going to give up on either.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/2022/two-down-a-zillion-more-to-go">Two Down, A Zillion More To Go</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/the-lesser-of-two-evils">The Lesser of Two Evils</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/order-up">Order Up</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/continuations-and-the-thunk-queue">Continuations and the thunk queue</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/powerful-pickle-pattern-matching">Powerful PICKLE Pattern Matching</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

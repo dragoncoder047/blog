@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>The God Language</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, language-design" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="The God Language" />
+    <meta property="og:description" content="I did a lot. In the two months since I last shared something I’ve worked on no less than four different projects, all while trying to slip them in between an avalance of schoolwork and college applications. Oh, and I also spent a week sick with COVID-19. (It’s …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2023/the-god-language" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - The God Language" />
+    <meta name="twitter:description" content="I did a lot. In the two months since I last shared something I’ve worked on no less than four different projects, all while trying to slip them in between an avalance of schoolwork and college applications. Oh, and I also spent a week sick with COVID-19. (It’s …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+        <!-- Katex -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.css" type="text/css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/mhchem.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/copy-tex.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        renderMathInElement(document.body,
+            {
+                delimiters: [
+                    {left: '$$', right:'$$', display: true},
+                    {left: '$',  right:'$',  display: false},
+                    {left: '\\begin{align}', right: '\\end{align}', display: true},
+                ]
+            }
+        );
+    });
+</script>        <!-- /Katex -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon"height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives">Archives</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/tags">By tag</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/2023/the-god-language" rel="bookmark" title="Permalink to this page">The God Language</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/2023/zero-thickness-tree">
+                    Zero-Thickness Tree
+                </a>
+            </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/2024/order-up">
+                    Order Up
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2023-12-21T00:00:00-05:00">Thu 21 December 2023</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/language-design">language-design</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming">programming</a>
+            </div>
+    </div>
+    <p>I did a lot. In the two months since I last shared something I&rsquo;ve worked on no less than four different projects, all while trying to slip them in between an avalance of schoolwork and college applications. Oh, and I also spent a week sick with COVID-19. (It&rsquo;s real, people!)</p>
+<p>I left off with some decisions about a <strong>Python</strong> interactive-fiction engine I&rsquo;m working on. Originally I had written it to use a <strong>JSON DSL</strong> that I created. I eventually abandoned that in favor of just using Python itself.</p>
+<p>I also made some progress on another idea of mine: a virtual-reality cellular automata editor. I am writing the whole thing in <strong>Javascript</strong> so it can run in the browser, but user scripting is accomplished by writing code in <strong>Scheme</strong>. (Neither this nor the IF engine are released publicly yet.)</p>
+<p>Recently I also fixed up the syntactic macro support in <a href="https://github.com/dragoncoder47/ulisp-esp32">my fork of <strong>uLisp</strong></a>. uLisp is writted in <strong>C</strong> and <strong>C++</strong>, but these need to be compiled &ndash; my goal is to use uLisp as a scripting language for a microcontroller project I&rsquo;m also working on. And I previously toyed around with <strong>LIL</strong> (a dialect of <strong>Tcl</strong>) for this.</p>
+<p>In the past, I have played around with many other languages, including <strong>Quackery</strong>, <strong>Phoo</strong>, <strong>Ruby</strong>, <strong>Java</strong>, <strong>Bash</strong>, and <strong>Prolog</strong>.</p>
+<p>Notice all the bolded words on the paragraphs above? Each of them is a different programming language. The simple fact is that there are literally <em>thousands</em> of programming languages out there, some similar, some not, each highly tailored to its specific use-case.</p>
+<p>Part of what I have been doing in developing my programming language PICKLE is to strike a balance between all the languages I have seen so far and enable the writing of code that is easy to read, write, and think about, in the most sensible manner for the task at hand.</p>
+<p>But at the end of the day, PICKLE is just going to be another programming language. At any rate, there will be other languages that have features that PICKLE doesn&rsquo;t, or some of PICKLE&rsquo;s limitations will get in the way, or something else will go wrong and knock PICKLE off the pedestal I carefully placed it on.</p>
+<h2 id="the-conundrum-of-computer-code">The conundrum of computer code</h2>
+<p>Since they were invented, programming languages have been nothing more than a tool. We (humans) think in higher level steps - such as &ldquo;command the robot to turn the bolt to the specified torque.&rdquo; However, a computer can only think in simple, atomic steps, such as &ldquo;if register B is negative, go to line 42.&rdquo; The job of a programming language is to translate these high-level constructs into low-level machine code in order to make these incredibly stupid machines appear as though they are smart.</p>
+<figure class="float-left">
+<pre class="highlight"><code class="language-python">  File "xnum.py", line 112
+    if (m = re.match(r"\d+", txt)) is not None:
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Maybe you meant '=='?</code></pre>
+<figcaption>No, that&rsquo;s exactly what I meant. Shut up and give my my match result!!</figcaption>
+</figure>
+<p>The inherent limitation present in all of the world&rsquo;s programming languages today is that they have a well-defined syntax. While that may seem like a benefit, in most cases the syntax is rather restrictive. Consider Python for an example. In version 3.8 the Python developers introduced <a href="https://peps.python.org/pep-572">the <code class="language-python3 highlight">:=</code> walrus operator</a>. This functions pretty much exactly the same as Python&rsquo;s existing <code class="language-python3 highlight">=</code> assignment operator, except that <code class="language-python3 highlight">=</code> is a statement and can&rsquo;t be used where the parser expects an expression, whereas <code class="language-python3 highlight">:=</code> is an expression. Originally the deliberate lack of an assignment <em>expression</em> and only making it a <em>statement</em> was to prevent the common goof of writing it in the condition of an <code class="language-python3 highlight">if</code> statement and clobbering the value you were trying to compare. But in some cases, this behavior is intended. What is <em>really</em> needed is an <a href="https://en.wikipedia.org/wiki/Anaphoric_macro">anaphoric</a> version of the if statement, but Python doesn&rsquo;t have one.</p>
+<p>Common Lisp has its own share of nitpicks. The incredibly powerful <a href="https://cl-cookbook.sourceforge.net/loop.html"><code class="language-lisp highlight">loop</code></a> macro is able to do pretty much anything you can do with a loop in a remarkably natural-language sounding syntax. The only downside is that as it&rsquo;s a finite Lisp macro, not every possible expression can be constructed with the macro&rsquo;s facilities alone. Everything else has to be expressed in Lisp code, which requires the expressions to be in prefix notation and enclosed in parenthesis. I know this is a bit of a contrived example, but unless you&rsquo;re already an experienced Lisp programmer, pages and pages of this parenthesis-heavy syntax is more than enough to make me retch.</p>
+<p>The &ldquo;God language,&rdquo; if there is one, wouldn&rsquo;t have any kind of restrictions. You would basically just be able to write what the computer should do, and the computer would either know how to do it, or it would ask you how to do a particular step. Better yet, the computer would be able to figure things out for itself using what has already been given to it.<sup id="fnref:gpt"><a class="footnote-ref" href="#fn:gpt">1</a></sup> And ideally, the format of such a language should be such that a human reading any code written in it should be able to easily understand what that code is doing and how it is doing it. Unfortunately, no such language exists.</p>
+<h2 id="making-money-over-making-sense">Making money over making sense</h2>
+<p>Apparently, you can make money by selling software. I can&rsquo;t say I completely agree with it, but current copyright law allows a software developer to charge money before they provide the user with the program. And to be able to continue making money, the developer must protect their source code. If they did not, eventually some disgruntled user would post all the source code on the internet and suddenly anyone can download it, compile it, and use the program without paying the original developer. Sure, the developer could go around trying to sue everyone who downloads the pirated code, but it&rsquo;s a heck of a lot of effort to do that, and they can never be sure that they have gotten every last copy taken down.</p>
+<p>Because there is this need for developers to protect their code, two things were invented. The first was almost by accident: once a compiler reduces the source down to executable machine code, the source is no longer needed for the program to run. As a result, developers often only release the executable. Even a good decompiler can&rsquo;t recover any of the function or variable names, and certainly not the comments &ndash; which makes it hard to understand how the code works.</p>
+<p>The second method is a little more devious. Javascript, the langauge of the Web, is such that you can&rsquo;t distribute a compiled binary<sup id="fnref:wasm"><a class="footnote-ref" href="#fn:wasm">2</a></sup> to a Web page. You have to send the source code. Or, you can send a compressed and mangled, but equivalent, chunk of code. Sure, it does make your website load faster, but without the sourcemap it makes it difficult to follow what the code does. And you can do even more devious transformations to the code to make it even harder. Just look at <a href="https://docs.google.com/static/document/client/js/3964806806-kix_worker_binary_core.js">this mess of obfuscated Javascript</a> taken out of Google Docs&rsquo; codebase. Can you tell what it does? I can&rsquo;t. The strange part is Google appears to be using a few open-source projects &ndash; just search for <code>SPDX-License-Identifier</code> and you&rsquo;ll find three results. What are those libraries? I doubt they would be revealing trade secrets for Google to acknowledge which projects they are incorporating into their own.</p>
+<p>Regardless of whether I make PICKLE impossible to obfuscate, it will always have one limitation common to all programming languages: it&rsquo;s Turing-complete. The problem with that is any Turing-complete language can have a meta-circular interpreter for any other Turing-complete language written in it.</p>
+<p>The result of that is that if I take a programming language where it&rsquo;s impossible to obfuscate code (perhaps PICKLE), and write a Javascript interpreter in it, now I can run obfuscated Javascript <em>in</em> PICKLE. Once you cross the boundary into the &ldquo;data&rdquo; of the Javascript source, you can no longer tell what the heck is going on. Being Turing-complete is a double-edged sword in this sense. It makes the language infinitely powerful to write clean, elegant, and understandable code, but if your goal is to hide what you&rsquo;re doing, there&rsquo;s nothing stopping you from using this device.</p>
+<p>So the &ldquo;God language&rdquo; doesn&rsquo;t exist. It never did, and never will.</p>
+<p>Sorry.</p>
+<!--
+
+function mystery() {
+  var stones = randint(15, 31);
+  var misere = 1 - confirm(`This is the game of Nim.\n\nWe start with ${stones} stones.\n\nPress OK to start a normal game (to win, take the last stone)\nor press Cancel to play a misere game (to win, force the other player to take the last stone).`);
+  if (confirm("Should the computer play first?")) stones = comp_turn(stones);
+  while (stones) stones = one_round(stones);
+  function comp_turn(stones) {
+    var take = ((stones - misere) % 4) || randint(1, 3);
+    stones -= take;
+    alert(`The computer takes ${take} stones to leave ${stones} stones.`);
+    if (stones == misere) {
+      alert("The computer wins!!");
+      return 0;
+    }
+    return stones;
+  }
+  function one_round(stones) {
+    var take, pr = `There are ${stones} stones.\n\nEnter the number of stones to take (1-${Math.min(3, stones)}):`, invalid = false;
+    for (;;) {
+      take = prompt(pr);
+      if (take == null) return 0;
+      if (/^[123]$/.test(take)) {
+        take = parseInt(take);
+        if (take <= stones) break;
+      }
+      if (!invalid) {
+        invalid = true;
+        pr = "Invalid input, try again.\n\n" + pr;
+      }
+    }
+    stones -= take;
+    alert(`You take ${take} stones, leaving ${stones}`);
+    if (stones == misere) {
+      alert("The computer has no choice but to take the last stone -- you win!!");
+      return 0;
+    } else if (stones == 0) {
+      alert("Strange way of losing -- this was a misere game.");
+      return 0;
+    }
+    return comp_turn(stones);
+  }
+  function randint(lo, hi) {
+    return lo + (0 | (Math.random() * (hi - lo)));
+  }
+}
+mystery();
+
+-->
+
+<!--
+
+(function(SpaM,sPaM){var fRoB=SpaM();while(!![]){try{var SPaM=parseInt(bar(192))/1+parseInt(bar(185))/2+-parseInt(bar(175))/3+parseInt(bar(184))/4+-parseInt(bar(188))/5+parseInt(bar(173))/6+-parseInt(bar(166))/7*(parseInt(bar(187))/8);if(SPaM===sPaM)break;else fRoB['push'](fRoB['shift']());}catch(FRoB){fRoB['push'](fRoB['shift']());}}}(spam,440865));function bar(baz,foo){var frob=spam();return bar=function(Frob,Spam){Frob=Frob-163;var Foo=frob[Frob];return Foo;},bar(baz,foo);}function spam(){var spAM=['\x42\x63\x78\x65\x57','\x51\x6d\x79\x43\x6e','\x59\x6f\x75\x20\x74\x61\x6b\x65\x20','\x31\x39\x38\x31\x4a\x4a\x62\x6a\x4a\x76','\x6d\x69\x6e','\x54\x68\x69\x73\x20\x69\x73\x20\x74\x68\x65\x20\x67\x61\x6d\x65\x20\x6f\x66\x20\x4e\x69\x6d\x2e\x0a\x0a\x57\x65\x20\x73\x74\x61\x72\x74\x20\x77\x69\x74\x68\x20','\x6f\x45\x66\x56\x6a','\x57\x5a\x53\x6e\x52','\x4e\x75\x6d\x79\x4e','\x4e\x6b\x75\x44\x65','\x33\x31\x39\x39\x34\x31\x30\x51\x43\x71\x4a\x50\x55','\x41\x6b\x42\x52\x48','\x31\x33\x35\x37\x36\x36\x35\x6b\x54\x61\x57\x4b\x42','\x53\x74\x72\x61\x6e\x67\x65\x20\x77\x61\x79\x20\x6f\x66\x20\x6c\x6f\x73\x69\x6e\x67\x20\x2d\x2d\x20\x74\x68\x69\x73\x20\x77\x61\x73\x20\x61\x20\x6d\x69\x73\x65\x72\x65\x20\x67\x61\x6d\x65\x2e','\x54\x68\x65\x20\x63\x6f\x6d\x70\x75\x74\x65\x72\x20\x68\x61\x73\x20\x6e\x6f\x20\x63\x68\x6f\x69\x63\x65\x20\x62\x75\x74\x20\x74\x6f\x20\x74\x61\x6b\x65\x20\x74\x68\x65\x20\x6c\x61\x73\x74\x20\x73\x74\x6f\x6e\x65\x20\x2d\x2d\x20\x79\x6f\x75\x20\x77\x69\x6e\x21\x21','\x62\x4c\x6c\x41\x6c','\x72\x61\x6e\x64\x6f\x6d','\x20\x73\x74\x6f\x6e\x65\x73\x2e','\x6a\x76\x57\x52\x4d','\x20\x73\x74\x6f\x6e\x65\x73\x20\x74\x6f\x20\x6c\x65\x61\x76\x65\x20','\x73\x70\x6c\x69\x74','\x31\x31\x35\x37\x38\x32\x38\x77\x47\x6b\x73\x42\x65','\x31\x31\x33\x39\x32\x36\x36\x5a\x6b\x46\x6d\x71\x4e','\x4f\x6c\x4d\x55\x55','\x31\x35\x34\x34\x72\x6b\x58\x79\x75\x78','\x33\x36\x31\x34\x33\x31\x30\x67\x46\x45\x73\x49\x44','\x20\x73\x74\x6f\x6e\x65\x73\x2e\x0a\x0a\x50\x72\x65\x73\x73\x20\x4f\x4b\x20\x74\x6f\x20\x73\x74\x61\x72\x74\x20\x61\x20\x6e\x6f\x72\x6d\x61\x6c\x20\x67\x61\x6d\x65\x20\x28\x74\x6f\x20\x77\x69\x6e\x2c\x20\x74\x61\x6b\x65\x20\x74\x68\x65\x20\x6c\x61\x73\x74\x20\x73\x74\x6f\x6e\x65\x29\x0a\x6f\x72\x20\x70\x72\x65\x73\x73\x20\x43\x61\x6e\x63\x65\x6c\x20\x74\x6f\x20\x70\x6c\x61\x79\x20\x61\x20\x6d\x69\x73\x65\x72\x65\x20\x67\x61\x6d\x65\x20\x28\x74\x6f\x20\x77\x69\x6e\x2c\x20\x66\x6f\x72\x63\x65\x20\x74\x68\x65\x20\x6f\x74\x68\x65\x72\x20\x70\x6c\x61\x79\x65\x72\x20\x74\x6f\x20\x74\x61\x6b\x65\x20\x74\x68\x65\x20\x6c\x61\x73\x74\x20\x73\x74\x6f\x6e\x65\x29\x2e','\x54\x68\x65\x20\x63\x6f\x6d\x70\x75\x74\x65\x72\x20\x74\x61\x6b\x65\x73\x20','\x54\x68\x65\x20\x63\x6f\x6d\x70\x75\x74\x65\x72\x20\x77\x69\x6e\x73\x21\x21','\x32\x37\x38\x35\x37\x36\x6f\x79\x76\x58\x78\x67','\x62\x78\x62\x6c\x72','\x41\x72\x71\x52\x65','\x53\x68\x6f\x75\x6c\x64\x20\x74\x68\x65\x20\x63\x6f\x6d\x70\x75\x74\x65\x72\x20\x70\x6c\x61\x79\x20\x66\x69\x72\x73\x74\x3f','\x4f\x6a\x4b\x4e\x5a','\x20\x73\x74\x6f\x6e\x65\x73\x2c\x20\x6c\x65\x61\x76\x69\x6e\x67\x20'];spam=function(){return spAM;};return spam();}function mystery(){var baz={'\x51\x6d\x79\x43\x6e':function(Frob,Foo){return Frob(Foo);},'\x42\x63\x78\x65\x57':bar(191),'\x4e\x6b\x75\x44\x65':function(fRob,fOo){return fRob%fOo;},'\x6f\x45\x66\x56\x6a':function(sPam,bAr){return sPam-bAr;},'\x62\x4c\x6c\x41\x6c':function(bAz,FOo){return bAz==FOo;},'\x71\x73\x52\x73\x43':function(FRob,BAr){return FRob<=BAr;},'\x57\x5a\x53\x6e\x52':function(BAz,SPam){return BAz+SPam;},'\x6a\x76\x57\x52\x4d':'\x49\x6e\x76\x61\x6c\x69\x64\x20\x69\x6e\x70\x75\x74\x2c\x20\x74\x72\x79\x20\x61\x67\x61\x69\x6e\x2e\x0a\x0a','\x41\x72\x71\x52\x65':function(foO,baR){return foO(baR);},'\x4f\x6a\x4b\x4e\x5a':bar(177),'\x41\x6b\x42\x52\x48':function(baZ,frOb){return baZ(frOb);},'\x62\x78\x62\x6c\x72':bar(176),'\x66\x57\x76\x51\x53':function(spAm,SpAm){return spAm(SpAm);},'\x49\x4d\x6f\x5a\x46':function(FoO,BaZ){return FoO|BaZ;},'\x4e\x75\x6d\x79\x4e':function(BaR,FrOb){return BaR*FrOb;},'\x4f\x6c\x4d\x55\x55':function(bAR,fOO,sPAm){return bAR(fOO,sPAm);}},foo=baz[bar(186)](Spam,15,31),frob=baz['\x6f\x45\x66\x56\x6a'](1,baz[bar(174)](confirm,bar(168)+foo+bar(189)));if(baz['\x66\x57\x76\x51\x53'](confirm,bar(195)))foo=Bar(foo);while(foo)foo=Baz(foo);function Bar(bAZ){var fROb='\x34\x7c\x33\x7c\x31\x7c\x32\x7c\x30'[bar(183)]('\x7c'),FROb=0;while(!![]){switch(fROb[FROb++]){case'\x30':return bAZ;case'\x31':alert(bar(190)+BAZ+bar(182)+bAZ+bar(180));continue;case'\x32':if(bAZ==frob)return baz['\x51\x6d\x79\x43\x6e'](alert,baz[bar(163)]),0;continue;case'\x33':bAZ-=BAZ;continue;case'\x34':var BAZ=baz[bar(172)](baz[bar(169)](bAZ,frob),4)||Spam(1,3);continue;}break;}}function Baz(FOO){var SPAm,BAR='\x54\x68\x65\x72\x65\x20\x61\x72\x65\x20'+FOO+'\x20\x73\x74\x6f\x6e\x65\x73\x2e\x0a\x0a\x45\x6e\x74\x65\x72\x20\x74\x68\x65\x20\x6e\x75\x6d\x62\x65\x72\x20\x6f\x66\x20\x73\x74\x6f\x6e\x65\x73\x20\x74\x6f\x20\x74\x61\x6b\x65\x20\x28\x31\x2d'+Math[bar(167)](3,FOO)+'\x29\x3a',froB=![];for(;;){SPAm=baz[bar(164)](prompt,BAR);if(baz[bar(178)](SPAm,null))return 0;if(/^[123]$/['\x74\x65\x73\x74'](SPAm)){SPAm=baz[bar(164)](parseInt,SPAm);if(baz['\x71\x73\x52\x73\x43'](SPAm,FOO))break;}!froB&&(froB=!![],BAR=baz[bar(170)](baz[bar(181)],BAR));}FOO-=SPAm,baz[bar(194)](alert,bar(165)+SPAm+bar(197)+FOO);if(FOO==frob)return alert(baz[bar(196)]),0;else{if(FOO==0)return baz[bar(174)](alert,baz[bar(193)]),0;}return baz['\x66\x57\x76\x51\x53'](Bar,FOO);}function Spam(spaM,FroB){return baz[bar(170)](spaM,baz['\x49\x4d\x6f\x5a\x46'](0,baz[bar(171)](Math[bar(179)](),FroB-spaM)));}}mystery();
+
+-->
+
+<!--
+
+import re
+
+def rep(m):
+   return str(int(m.group(1), 16))
+
+s = r"""
+
+"""
+
+print(re.sub(r"0x([a-z\d]+)", rep, s))
+
+-->
+
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:gpt">
+<p>Heck, ChatGPT isn&rsquo;t even at that point yet. Not completely, at least.&#160;<a class="footnote-backref" href="#fnref:gpt" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:wasm">
+<p>I&rsquo;m deliberately ignoring WebAssembly here, because it&rsquo;s a whole &lsquo;nother animal to Javascript, and surprisingly, doesn&rsquo;t have very wide support or use.&#160;<a class="footnote-backref" href="#fnref:wasm" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/the-lesser-of-two-evils">The Lesser of Two Evils</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/continuations-and-the-thunk-queue">Continuations and the thunk queue</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/its-september">It's September!!</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/pickle-has-regular-expressions-apparently">PICKLE Has Regular Expressions, Apparently</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/powerful-pickle-pattern-matching">Powerful PICKLE Pattern Matching</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

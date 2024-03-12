@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Zero-Thickness Tree</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, python, game-design" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Zero-Thickness Tree" />
+    <meta property="og:description" content="In a previous post, I started some mental planning for an interactive fiction engine in Python. I picked it up again last week and started working on a new version. Custom logic is implemented using a tiny Python library I created called json_runner, which as you might guess, is capable …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2023/zero-thickness-tree" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Zero-Thickness Tree" />
+    <meta name="twitter:description" content="In a previous post, I started some mental planning for an interactive fiction engine in Python. I picked it up again last week and started working on a new version. Custom logic is implemented using a tiny Python library I created called json_runner, which as you might guess, is capable …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon"height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives">Archives</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/tags">By tag</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/2023/zero-thickness-tree" rel="bookmark" title="Permalink to this page">Zero-Thickness Tree</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/2023/continuations-and-the-thunk-queue">
+                    Continuations and the thunk queue
+                </a>
+            </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/2023/the-god-language">
+                    The God Language
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2023-10-24T00:00:00-04:00">Tue 24 October 2023</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/game-design">game-design</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/python">python</a>
+            </div>
+    </div>
+    <p>In a <a href="https://dragoncoder047.github.io/blog/2023/a-very-confusing-data-model">previous post</a>, I started some mental planning for an interactive fiction engine in Python. I picked it up again last week and started working on a new version. Custom logic is implemented using a tiny Python library I created called <a href="https://github.com/dragoncoder047/json_runner"><code>json_runner</code></a>, which as you might guess, is capable of running JSON objects as if they were code.</p>
+<p>To test my code, I came up with a &ldquo;test game&rdquo;. Naturally as a programmer I started by calling the game &ldquo;Foo Bar&rdquo;, and a series of wordplays ensued &ndash; one of the things I came up with is putting vodka and orange juice in a cocktail shaker, and pulling out a screwdriver, and then using the screwdriver to unscrew the lock of the door to open it.</p>
+<p>I was basing the method of scripting a lot off of Inform 7, just without the insane verbosity that comes along with a almost natural-language environment.</p>
+<p>In the process of testing I found a number of bugs in <code>json_runner</code>&lsquo;s parser, and was able to fix them. But there were still a lot of lingering inconsistencies and kludges: the format of the game data file made is very difficult to incorporate custom actions. For example, a complex phrase like <em>CUT THE ORANGE WITH THE KNIFE</em> would be dispatched to the orange object&rsquo;s <code>cut</code> action handler, which would have to first check if the player can use the knife (they are holding it or can take it), check if the player specified the right object (they could have equally written <em>CUT THE ORANGE WITH THE SPOON</em>, which wouldn&rsquo;t work) and then if everything is OK, print special messages, change the orange&rsquo;s description, etc. which seems a little unnecessary. It was also compounded by the fact that I neglected to include any type annotations in my Python code, which made it easy to assume a different object type and wind up with an <code>AttributeError</code>.</p>
+<p>Besides, moving objects around in the world was a total nightmare. Because objects were stored as a tree and had no reference to their parent, I had to implement a <code>purge_item()</code> method on the top-level object, which recursively removes the mentioned item from itself and any children &ndash; like if Inform 7&rsquo;s <code class="language-inform7 highlight">move X to Y</code> was actually implemented as <code class="language-inform7 highlight">remove X from play, now Y contains X</code>. Seems a little unnecessary.</p>
+<p>After I read the Inform documentation a little more, I finally figured out how to solve each problem. These are based on Inform&rsquo;s structure:</p>
+<ul>
+<li>The world is composed of a long list of objects, which can be subclassed &ndash; this is effectively what <code class="language-inform7 highlight">An X is a kind of Y</code> does.</li>
+<li>An object would have simple attributes representing states and properties (open, locked, lit, capacity, volume, etc).</li>
+<li>The world also contains a long list of facts about relations. For example <code class="language-inform7 highlight">X is in Y</code> would be represented by a <code class="language-python3 highlight">Fact(Containment, X, Y)</code>.</li>
+<li>The world would have a list of <code>Action</code>s and <code>Activity</code>s, and the rules that implement each would be executable code registered in some manner.</li>
+<li>Relations would register with each other which are mutually exclusive (so that when a fact that mentions one is asserted, it clears existing facts that contradict with it), and also whether they are transitive (i.e. if X is in Y and Y is in Z, then X is in Z).</li>
+</ul>
+<p>To remove an object from play would simply involve deleting all of the Facts that mention it.</p>
+<p>And after considering all of the bugs that cropped up in <code>json_runner</code>, I decided on a better option:</p>
+<p>Drumroll please&hellip;</p>
+<p>Plain old Python.</p>
+<p>No need to maintain a complicated and buggy JSON-code parser. No dependency on PyYAML to read the game file. No need to write basic interface functions into the JSON-code API manually. And the extra bonus with using pure Python is that it can interface with <em>any</em> other libraries that the story author wants to &ndash; the possibilities are unlimited.</p>
+<p>By the end of it I will have both a functioning engine, and a functioning game. I&rsquo;ve never written an interactive fiction game before, so it might be a little weird.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/a-very-confusing-data-model">A Very Confusing Data Model</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/its-september">It's September!!</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/in-search-of-a-brain">In Search of a Brain</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/pickle-has-regular-expressions-apparently">PICKLE Has Regular Expressions, Apparently</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/schemascii-0">Schemascii &pm; 0</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

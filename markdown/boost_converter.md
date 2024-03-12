@@ -2,7 +2,7 @@ Title: Not Your Daddy's Boost Converter
 Date: 2023-06-07
 Modified: 2024-03-10
 Series: roboraptor-upgrade
-Tags: electronics
+Tags: electronics, youtube
 
 The original Roboraptor had dual power supplies. Two "AA" size batteries supplied 3 volts for the logic circuitry, and four batteries in a separarte circuit provided 6 volts for the motors. My redesign of the Roboraptor is designed to run off of a large single-cell 3.7 volt lithium battery -- but the motors run really sluggishly on only 3.7 volts (even though the torque is high as the battery can supply an incredible amount of current). So, to make the motors run faster, I need to increase the voltage. On top of that, my idea includes a few more requirements:
 
@@ -48,6 +48,6 @@ The [code used is on GitHub](https://github.com/dragoncoder047/super85/tree/mast
 
 *Edit March 10 -- I made a YouTube Short about this and posted it on my channel (also embedded below). I probably should have cleaned up my desk and the breadboard, but I was in a hurry filming the video. Oops! Only about half of the wiring and components on the breadboard is the boost converter. The rest is for another unreleased project that utilizes this boost converter module. There is another ATtiny85 nestled in there -- can you spot it?*
 
-<iframe width="720" height="576" src="https://youtube.com/embed/9ofjsV2GTLM?si=w51A-55oF6hctdXX" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="40%" style="aspect-ratio: 9/16" src="https://youtube.com/embed/9ofjsV2GTLM?si=w51A-55oF6hctdXX" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 *I am currently working on a full-length video, without all of the mess, that explains this and more in full detail. Watch this page (or subscribe to my YouTube channel!) to know when that video is published.*

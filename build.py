@@ -12,7 +12,11 @@ SITENAME = 'dragoncoder047&rsquo;s blog'
 SITESUBTITLE = 'random thoughts about nonrandom things'
 SITEURL = 'https://dragoncoder047.github.io/blog'
 LOGO = '/images/patrick.svg'
-LOGO_AREA_HTML = f'<a href="{SITEURL}"><div class="flex-row"><img src="{LOGO}" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>{SITENAME}</h1><h2>{SITESUBTITLE}</h2></div></div></a>'
+LOGO_AREA_HTML = (f'<a href="{SITEURL}"><div class="flex-row"><img src="'
+                  + f'{LOGO}" width="141" alt="Patrick the purple dragon"'
+                  + 'height="85" /><div id="sitename-text" class="flex-'
+                  + f'column"><h1>{SITENAME}</h1><h2>{SITESUBTITLE}</h2>'
+                  + '</div></div></a>')
 ICON = '/images/patrick_head_silhouette.svg'
 ICON_MIMETYPE = 'image/svg+xml'
 THEME_CSS_FILE = '/static/css/theme.css'
@@ -48,20 +52,24 @@ SEO_REPORT = True
 DISPLAY_PAGES_ON_MENU = True
 DISPLAY_CATEGORIES_ON_MENU = False
 
-ARTICLE_SAVE_AS = ARTICLE_URL = '{path_no_ext}.html'
-PAGE_URL = PAGE_SAVE_AS = 'page/{slug}.html'
+ARTICLE_URL = '{date:%Y}/{slug}'
+ARTICLE_SAVE_AS = ARTICLE_URL + '/index.html'
+PAGE_URL = 'page/{slug}'
+PAGE_SAVE_AS = PAGE_URL + '/index.html'
 AUTHOR_SAVE_AS = AUTHOR_URL = ''  # 'author/{slug}.html' # I am the only author
 AUTHORS_SAVE_AS = ''  # 'authors.html'
-DRAFT_URL = DRAFT_SAVE_AS = DRAFT_PAGE_URL = DRAFT_PAGE_SAVE_AS = 'drafts/{path_no_ext}.html'
-CATEGORY_SAVE_AS = CATEGORY_URL = ''  # 'category/{slug}.html'
-CATEGORIES_SAVE_AS = ''  # 'categories.html'  # I don't use categories
-TAG_SAVE_AS = TAG_URL = 'tag/{slug}.html'
-TAGS_SAVE_AS = 'tags.html'
-ARCHIVES_SAVE_AS = 'archives.html'
+DRAFT_URL = '_draft/{slug}'
+DRAFT_SAVE_AS = DRAFT_URL + '/index.html'
+DRAFT_PAGE_URL = '_draft_page/{slug}'
+DRAFT_PAGE_SAVE_AS = DRAFT_PAGE_URL + '/index.html'
+TAG_URL = 'tag/{slug}'
+TAG_SAVE_AS = TAG_URL + '/index.html'
+TAGS_URL = 'tags'
+TAGS_SAVE_AS = 'tags/index.html'
+ARCHIVES_URL = 'archives'
+ARCHIVES_SAVE_AS = 'archives/index.html'
 
 USE_CATEGORES = False
-
-PATH_METADATA = r'(?P<path_no_ext>.*)\..*'
 
 # Blogroll
 LINKS = (
@@ -76,7 +84,8 @@ SOCIAL = (
 )
 
 MENUITEMS = (
-    ('Archives', f'{SITEURL}/{ARCHIVES_SAVE_AS}'),
+    ('Archives', f'{SITEURL}/{ARCHIVES_URL}'),
+    ('By tag', f'{SITEURL}/{TAGS_URL}'),
     ('Site root', '/'),
     ('Projects', '#', (
         ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste'),
@@ -91,7 +100,7 @@ DEFAULT_PAGINATION = 10
 DEFAULT_ORPHANS = 3
 PAGINATION_PATTERNS = (
     (1, '{name}{extension}', '{name}{extension}'),
-    (2, '{name}_{number}{extension}', '{name}_{number}{extension}'),
+    (2, '{name}{number}{extension}', '{name}{number}{extension}'),
 )
 
 THEME = './pelicantheme'
@@ -100,7 +109,11 @@ READERS = {'html': None}
 
 
 def lv_fence(source, language, css_class, options, md, **kwargs):
-    return f'<div class="lifeviewer"><textarea>{source.replace("AUTOSTART", "")}\n[[ EXCLUSIVEPLAY ]]</textarea><canvas height="{options.get("height", 400)}" width="{options.get("width", 600)}"></canvas></div>'
+    return ('<div class="lifeviewer"><textarea>'
+            + f'{source.replace("AUTOSTART", "")}'
+            + '\n[[ EXCLUSIVEPLAY ]]</textarea><canvas height="'
+            + f'{options.get("height", 400)}"'
+            + 'width="{options.get("width", 600)}"></canvas></div>')
 
 
 def kroki_fence(source, language, css_class, options, md, **kwargs):
@@ -115,11 +128,12 @@ def kroki_fence(source, language, css_class, options, md, **kwargs):
 
 def named_kroki(name):
     def named_fence(source, language, css_class, options, md, **kwargs):
-        return kroki_fence(source, language, css_class, options | {'type': name}, md, **kwargs)
+        return kroki_fence(source, language, css_class,
+                           options | {'type': name}, md, **kwargs)
     return {'name': name, 'class': name, 'format': named_fence}
 
 
-def schemascii_fence(source, language, css_class, options, md, attrs, **kwargs):
+def schemascii_fence(source, lang, cls, opts, md, attrs, **kwargs):
     try:
         return schemascii.render("markdown-block", source, **attrs)
     except (schemascii.Error, Exception) as err:

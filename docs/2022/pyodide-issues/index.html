@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Pyodide Issues</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, python" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Pyodide Issues" />
+    <meta property="og:description" content="I am currently working on an online console for Quackery that is using the Pyodide in-browser Python interpreter. The only bad thing is, Python’s input() function blocks until input is provided, which can’t be done in the browser because everything is asynchronous. The only way for it to …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2022/pyodide-issues" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Pyodide Issues" />
+    <meta name="twitter:description" content="I am currently working on an online console for Quackery that is using the Pyodide in-browser Python interpreter. The only bad thing is, Python’s input() function blocks until input is provided, which can’t be done in the browser because everything is asynchronous. The only way for it to …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon"height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives">Archives</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/tags">By tag</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/2022/pyodide-issues" rel="bookmark" title="Permalink to this page">Pyodide Issues</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/2022/wireworld">
+                    Wireworld++
+                </a>
+            </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/2022/phoo-is-mostly-finished">
+                    Phoo is (mostly) finished
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2022-05-19T00:00:00-04:00">Thu 19 May 2022</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/python">python</a>
+            </div>
+    </div>
+    <p>I am currently working on an online console for <a href="https://github.com/GordonCharlton/Quackery">Quackery</a> that is using the <a href="https://github.com/pyodide/pyodide">Pyodide</a> in-browser Python interpreter. The only bad thing is, Python&rsquo;s <code class="language-py3 highlight">input()</code> function blocks until input is provided, which can&rsquo;t be done in the browser because everything is asynchronous. The only way for it to work is an annoying <code class="language-js highlight">prompt()</code> box.</p>
+<p>I thought, maybe I could automatically rewrite the Quackery source code and patch in an async input function, then make everything else that needs to be async, async.</p>
+<p>The general process of patching went as follows:</p>
+<ol>
+<li>Find and replace the offending <code class="language-py3 highlight">input()</code> function with an async patched version.</li>
+<li>Find all the functions that are now invalid (i.e. are not declared with <code class="language-py3 highlight">async def</code> but now have an <code class="language-py3 highlight">await</code> inside of them) and make them <code class="language-py3 highlight">async def</code>.</li>
+<li>Find all the places where those functions are called, and <code class="language-py3 highlight">await</code> them.</li>
+<li>If something changed, go back to step 2.</li>
+</ol>
+<p>My <a href="https://github.com/dragoncoder047/QuackeryFork/blob/00868e13b0fa3f9671e109037b861f72b8759b21/webapp_start.py#L24-L127">first attempt</a> used the Python <a href="https://docs.python.org/library/ast.html">AST</a> module to walk the abstract syntax tree and replace <code class="language-py3 highlight">FunctionDef</code> nodes with <code class="language-py3 highlight">AsyncFunctionDef</code> nodes and wrap their calls in <code class="language-py3 highlight">Await</code> nodes. For some reason, that either crapped out halfway through or hung forever. I don&rsquo;t know why.</p>
+<p>My <a href="https://github.com/dragoncoder047/QuackeryFork/blob/a21709138de87326603f2686ffa44b166d113b65/webapp_start.py#L26-L77">second attempt</a> was to use the regular expression module to find all the non-<code class="language-py3 highlight">async</code> functions that have <code class="language-py3 highlight">await</code> inside of them, and insert <code class="language-py3 highlight">async</code> onto the definition, then find their references and insert <code class="language-py3 highlight">await</code>. This proved tricky using regular expressions and often produced absurd (and incorrect) results such as <code class="language-py3 highlight">async async def</code> (until I checked and removed all occurrences of <code class="language-py3 highlight">async async</code> and <code class="language-py3 highlight">await await</code> manually) or even <code class="language-py3 highlight">self.string_await from_stack()</code> (because <code>from_stack</code> happened to be processed before <code>string_from_stack</code> and their names overlapped).</p>
+<p>My <a href="https://github.com/dragoncoder047/QuackeryFork/blob/9bb91407bddebfa69297a7f9315ad8350e06189c/quackery_OOP_ASYNC.py">third attempt</a> was to simply manually go through and make the edits. The tricky thing here is, even though I am sure I have asynced and awaited everything I need to, Quackery operators (Python functions) are passed by reference to the interpreter, and some must be made async and some are not. And that wreaks havoc on the entire program, because it is impossible to predict whether that passed-by-reference function is async or not and whether it should be awaited. Whereas in Javascript &ndash; and Phoo, too &ndash; <code class="language-js highlight">await undefined</code> works, simply returning <code class="language-js highlight">undefined</code> immediately, <code class="language-py3 highlight">await None</code> throws <code>TypeError: object NoneType can't be used in 'await' expression</code> and crashes the whole program. So the <code class="language-py3 highlight">TypeError</code> must be suppressed with a try-catch block. Unfortunately, this causes some other problems, which I don&rsquo;t really understand and so I can&rsquo;t fix them.</p>
+<p>I sure hope the Pyodide people can get the async input fixed soon!</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/zero-thickness-tree">Zero-Thickness Tree</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/pickle-has-regular-expressions-apparently">PICKLE Has Regular Expressions, Apparently</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/a-very-confusing-data-model">A Very Confusing Data Model</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/schemascii-0">Schemascii &pm; 0</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/schemascii-1">Schemascii &pm; 1</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

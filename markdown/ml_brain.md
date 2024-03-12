@@ -7,7 +7,7 @@ I am not an expert in machine learning by any means. I do not understand the mat
 Last week I dreamed up an idea for a videogame. Visually, it's similar to [slither.io](https://slither.io), but it's not a massively multiplayer game. Instead of every snake being controlled by a human player, there is only one controlled by a human. The rest are computer-controlled. Accordingly, the objective of the game is changed: Instead of trying to survive the longest and not run into another snake and die, the objective for the human player is to train (or trick) the AI snakes to do certain tasks, getting progressively more advanced and difficult in each subsequent level. I called the game "Parasite" because instead of the environment determining what the AIs learn, the player observes the snakes and makes that decision -- essentially controlling the minds of the snakes, much like a [mind-controlling parasite](https://en.wikipedia.org/wiki/Dicrocoelium_dendriticum#Life_cycle). The user would also be able to muck around with each snake's proprioception and perception coefficients, changing how the snake responds to its environment.
 
 %%% float-right
-    ![snakes]({attach}images/snakes.png)
+    ![snakes]({attach}snakes.png)
 
     %: The test snakes I implemented today. They look very cute. And tasty. Seriously, though, I didn't even realize they looked like gummy worms until I took this screenshot.
 

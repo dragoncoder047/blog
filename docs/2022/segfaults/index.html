@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Segfaults</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, c" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Segfaults" />
+    <meta property="og:description" content="Today I did a little more work on my programming language TEHSSL. And in testing it, I discovered some anomalies. The first one is that – because of a typo on my part – testing TEHSSL will occasionally segfault when it tries to print the type of the “next” object after freeing …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2022/segfaults" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Segfaults" />
+    <meta name="twitter:description" content="Today I did a little more work on my programming language TEHSSL. And in testing it, I discovered some anomalies. The first one is that – because of a typo on my part – testing TEHSSL will occasionally segfault when it tries to print the type of the “next” object after freeing …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon"height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives">Archives</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/tags">By tag</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/2022/segfaults" rel="bookmark" title="Permalink to this page">Segfaults</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/2022/tehssl">
+                    TEHSSL
+                </a>
+            </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/2022/reverse-engineering-the-feedback-360">
+                    Reverse-Engineering the Feedback 360
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2022-11-16T00:00:00-05:00">Wed 16 November 2022</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/c">c</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming">programming</a>
+            </div>
+    </div>
+        <p><em>This post is part 5 of the arduino-scripting series:</em></p>
+        <ol class="series">
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2022/ulisp-thoughts'>uLisp Thoughts</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2022/partcl'>ParTcl</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2022/scratching-my-head-again'>Scratching My Head Again</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2022/some-unrelated-ideas'>Some Unrelated Ideas</a>
+                </li>
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/2022/segfaults'>Segfaults</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2023/lilduino'>LILduino</a>
+                </li>
+        </ol>
+    <p>Today I did a little more work on my programming language TEHSSL. And in testing it, I discovered some anomalies.</p>
+<p>The first one is that &ndash; because of a typo on my part &ndash; testing TEHSSL will occasionally segfault when it tries to print the type of the &ldquo;next&rdquo; object after freeing the last one &ndash; there is no &ldquo;next object&rdquo;, so it dereferences a null pointer and crashes. I fixed that, and it appears to work. However, it worked just fine when I pasted it into <a href="https://cpp.sh">cpp.sh</a>, and didn&rsquo;t hang or anything, so I&rsquo;m not sure what&rsquo;s up with that.</p>
+<p>Valgrind reports no memory leaks from the garpage collector after I fixed things (woohoo!), so that&rsquo;s good. However, in testing those bugs, I discovered another anomaly: when the tests de-allocate and free everything at the end, it prints out how many objects it freed. This count varies based on the compiler &ndash; without me changing any code at all!!</p>
+<p>When I run <code class="language-bash highlight">make test</code> (i.e. running it natively on my computer, using <code class="language-bash highlight">g++</code>), the output shows <a href="https://github.com/dragoncoder047/tehssl/blob/ea16652/test_reports/output.txt#L271">56 objects freed</a> at the end.</p>
+<p>When I paste it into cpp.sh (which uses Emscripten), it says there are 51 objects freed.</p>
+<p>What happened to the other 5 objects? Is it something to do with Emscripten vs <code class="language-bash highlight">g++</code>? I&rsquo;m not sure. But it has no memory leaks, and that&rsquo;s what I am really happy about.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/the-lesser-of-two-evils">The Lesser of Two Evils</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/order-up">Order Up</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/continuations-and-the-thunk-queue">Continuations and the thunk queue</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/error-out-of-memory">Error: out of memory</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/powerful-pickle-pattern-matching">Powerful PICKLE Pattern Matching</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

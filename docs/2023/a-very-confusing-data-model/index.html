@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>A Very Confusing Data Model</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, python, game-design" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="A Very Confusing Data Model" />
+    <meta property="og:description" content="For the past week or two I have been working on a few things simultaneously. I keep prototype code that I’m developing but not quite ready to release yet in private GitHub repositories, and publish them when I’m ready. Lately I’ve been working on two different and …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2023/a-very-confusing-data-model" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - A Very Confusing Data Model" />
+    <meta name="twitter:description" content="For the past week or two I have been working on a few things simultaneously. I keep prototype code that I’m developing but not quite ready to release yet in private GitHub repositories, and publish them when I’m ready. Lately I’ve been working on two different and …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon"height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives">Archives</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/tags">By tag</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/2023/a-very-confusing-data-model" rel="bookmark" title="Permalink to this page">A Very Confusing Data Model</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/2023/well-i-got-something">
+                    Well, I Got Something...
+                </a>
+            </span>
+            <span>Next:
+                <a href="https://dragoncoder047.github.io/blog/2023/manual-memory-management-madness">
+                    Manual Memory Management Madness
+                </a> &rarr;
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2023-03-10T00:00:00-05:00">Fri 10 March 2023</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/game-design">game-design</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/python">python</a>
+            </div>
+    </div>
+    <p>For the past week or two I have been working on a few things simultaneously. I keep prototype code that I&rsquo;m developing but not quite ready to release yet in private GitHub repositories, and publish them when I&rsquo;m ready. Lately I&rsquo;ve been working on two different and completely unrelated things.</p>
+<p>The first is the programming language I started in my previous post, PICKLE (which I think will be the final name). I got the garbage collector to work, and I also implemented hashmaps capable of looking up object attributes. I also got the parser to generate an abstract syntax tree from the code, which is a lot farther than I got with my other failed attempt at creating a programming language, TEHSSL.</p>
+<p>The other thing I am working on is at the request of a friend. He is currently working on a (cringey) interactive fiction game, currently using <a href="https://twinery.org">Twine</a>. But he wants to use a text-based engine, and none of the major ones have features he wants, so I have been asked to make one.</p>
+<p>As-is, it&rsquo;s very much a concept.</p>
+<p>I&rsquo;m very much tailoring the engine to fit my friend&rsquo;s game, but I do want it to be able to be used for any generic type of game. So I have to do two things: 1) make it usable by a person who has never done programming before (although I do know my friend from <em>computer science</em> class) and 2) be story-agnostic, so it can be used for a fantasy story as easily as for a horror story or a science fiction story.</p>
+<p>Number 2 necessitates abstracting the common characteristics of story elements into simple base classes, and then allowing the user to extend them to create the objects in the game.</p>
+<p>After a lot of thinking (and consulting the <a href="https://www.ifwiki.org/Building_a_New_Interactive_Fiction_System">Interactive Fiction Wiki</a>) I came up with a simple method of defining objects based on a few simple attributes:</p>
+<ul>
+<li>Physical attributes:<ul>
+<li>Size: how much space the object takes up. For example, a glass bottle might have a size of 1, and a brick might have a size of 2.</li>
+<li>Volume: the amount of space is empty inside and can be filled with other objects. The bottle&rsquo;s volume might be 1 as well, and the brick&rsquo;s is of course 0 because it isn&rsquo;t a container. This can also be greater than the size for fictional objects that can hold more objects than the visible volume.</li>
+<li>Weight: How heavy an object is. The player character has a limit to how much you can carry (which could be changed by a magic strength potion or such).</li>
+<li>Entrance size: irrespective of volume, the largest item that will fit into or out of the object. For example, while a lime could probably fit inside a glass pop bottle, it wouldn&rsquo;t fit though the neck and so could not be put in the bottle, or could not be taken out if it was magically moved inside the bottle.</li>
+</ul>
+</li>
+<li>Visual attributes:<ul>
+<li>Opacity: how easy it is to see objects inside of it. Things inside that are smaller than this percentage of the object&rsquo;s size are reduced to &ldquo;and something else inside&rdquo; when describing the object, and not mentioned at all if the opacity is 100%. For example, for a plastic jug with a size of 10 and an opacity of 90%, objects inside the jug that have a size less than 9 would have to be removed to be described clearly.</li>
+<li>Luminosity: how much light the object emits; additionally, if the object does not have an opacity of 100% and there are light-emitting objects inside, they also change the luminosity.</li>
+<li>Light color: an arbitrary string that usually serves no purpose, but it could be useful for color-coded hidden messages (such as a paper that reads &ldquo;puasjeftbhveibernaasgskkjefy&rdquo; normally but when viewed under red light it reads &ldquo;usethebrasskey&rdquo;).</li>
+<li>Fuel: how long the object will continue to emit light for. A match might only last for 2 turns, while a flashlight might last for 100 turns before the batteries die.</li>
+<li>Switch state: a flashlight could be turned off, in which case it would stop emitting light, but the battery would stop draining too.</li>
+</ul>
+</li>
+<li>Presentation attributes:<ul>
+<li>The usual name, description, and long description.</li>
+<li>Whether the object is unique: if so, it will be printed as <code>the brass key</code> rather than <code>a brass key</code>, if not, multiple instances will be coalesced into one entry when listing inventory (so it will show <code>5 apples</code> rather than <code>an apple, an apple, an apple, an apple, and an apple</code>.)</li>
+<li>Whether the object is a proper noun: if so, it will be printed as <code>John</code> rather than <code>the John</code>.</li>
+<li>Whether the object is hidden: if so, it will never be printed when listing inventory, it will not appear in descriptions, and the game will always act as though the player doesn&rsquo;t have it. This is useful for intangible things like passwords, combinations, or incantations that must be learned or figured out before they can be used (the object can be silently inserted into the player&rsquo;s inventory when all the information necessary has been discovered) or &ldquo;under&rdquo; regions due to the limitation of the model that a table must be put over an under-the-table for other things to be able to be put under the table (which is really in the under-the-table).</li>
+</ul>
+</li>
+</ul>
+<p>(Wait&hellip; did I just say &ldquo;a few?&rdquo; I sinceeeerely apologizeeee........)</p>
+<p>From this, special objects can be made with sentinel value of zero or infinity:</p>
+<ul>
+<li>Anything immovable has infinite weight.</li>
+<li>A non-container has zero volume, but nonzero size.</li>
+<li>A liquid has nonzero volume, but zero size.</li>
+<li>A room that is not self-lit has zero luminosity (i.e. you need to bring in a candle to see stuff, otherwise you&rsquo;ll just get <code>It's dark in here</code>).</li>
+</ul>
+<p>Rooms additionally can reference each other (to implement passages) directly or through a door. Doors also have flags indicating if they are locked and closed.</p>
+<p>Every object can also respond to events, which the vast majority of verbs is simply the verb. For example, typing <code>push the button</code> would invoke the <code>push</code> event on the button.</p>
+<p>The difficulty with this data model is the ability to refer to any object from anywhere in the object tree. The engine has to account for the paradoxical possibility of a reference cycle, so the tree acts more like a doubly-linked list and the management of the nodes gets very confusing very fast and I haven&rsquo;t implemented any of it yet.</p>
+<p>The second, unrelated problem I have is how to describe the game. I want to avoid the use of real Python code as much as possible, but to allow for anything to be modified in any way desired during the course of the game. I did find a simple description of using YAML (and by extension, JSON) as a templating language (<a href="https://nathanpeck.com/is-yaml-a-real-programming-language/">this</a>), but it&rsquo;s not Turing-complete, and it&rsquo;s a templating language anyway (the constructs were designed without any side-effects in mind).</p>
+<p>I have had several ideas over the course of thought:</p>
+<ol>
+<li>Use <a href="https://docs.python.org/3/library/tkinter.html#tkinter.Tcl">Tcl</a> embedded into Python to create a domain-specific language. This has the disadvantage in that it can&rsquo;t be run in the Web using Pyodide because Pyodide doesn&rsquo;t have access to libtcl.</li>
+<li>Write my own Tcl-like parser in Python. This is conceptually easy (all it really needs to do is be able to balance brackets) but extremely difficult in practice.</li>
+<li>Just give up and use Python, but make it really easy by using a decorator syntax, and naming conventions similar to the <code>do_X</code> standard expected by the Python <a href="https://docs.python.org/3/library/cmd.html"><code>cmd</code> module</a>.</li>
+<li>Use YAML, and embed commands into the strings somehow. Blocks could be implemented by one-keypair dictionaries.</li>
+</ol>
+<p>The approach I think I&rsquo;m going to use is probably a mix of 3 and 4. For some reason I like Lisp, so I might end up using <a href="https://hylang.org">Hy</a> as the expression syntax. A trivial fizzbuzz example would probably look like this:</p>
+<pre class="highlight"><code class="language-yaml">- for x (range 1 11):
+  - if (= 0 (% x 15)):
+    - print FizzBuzz
+    elif (= 0 (% x 5)):
+    - print Fizz
+    elif (= 0 (% x 3)):
+    - print Buzz
+    else:
+    - print {x}
+  - inc x</code></pre>
+<p>Who knows. If you&rsquo;re interested in the outcome of this, monitor my GitHub repositories list for the appearance of something described as a Python text-based game engine. I don&rsquo;t even have a name for it yet!</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/zero-thickness-tree">Zero-Thickness Tree</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/its-september">It's September!!</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/in-search-of-a-brain">In Search of a Brain</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/pickle-has-regular-expressions-apparently">PICKLE Has Regular Expressions, Apparently</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/schemascii-0">Schemascii &pm; 0</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

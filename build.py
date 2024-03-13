@@ -50,7 +50,6 @@ AUTHOR_FEED_RSS = None
 SEO_REPORT = True
 
 DISPLAY_PAGES_ON_MENU = True
-DISPLAY_CATEGORIES_ON_MENU = False
 
 ARTICLE_URL = '{date:%Y}/{slug}'
 ARTICLE_SAVE_AS = ARTICLE_URL + '/index.html'
@@ -69,6 +68,10 @@ TAGS_SAVE_AS = 'tags/index.html'
 ARCHIVES_URL = 'archives'
 ARCHIVES_SAVE_AS = 'archives/index.html'
 
+# I con't use categories
+CATEGORY_URL = CATEGORY_SAVE_AS = ''
+CATEGORIES_SAVE_AS = ''
+DISPLAY_CATEGORIES_ON_MENU = False
 USE_CATEGORES = False
 
 # Blogroll
@@ -99,8 +102,8 @@ MENUITEMS = (
 DEFAULT_PAGINATION = 10
 DEFAULT_ORPHANS = 3
 PAGINATION_PATTERNS = (
-    (1, '{name}{extension}', '{name}{extension}'),
-    (2, '{name}{number}{extension}', '{name}{number}{extension}'),
+    (1, '{url}', '{save_as}'),
+    (2, '{base_name}/page{number}', '{base_name}/page{number}/index.html'),
 )
 
 THEME = './pelicantheme'

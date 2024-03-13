@@ -96,114 +96,96 @@
     <h1>Articles tagged with programming</h1>
 
         <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/yet-another-garbage-collector" rel="bookmark" title="Permalink to Yet Another Garbage Collector">Yet Another Garbage Collector</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/gah-i-broke-it" rel="bookmark" title="Permalink to Gah... I broke it!">Gah... I broke it!</a></h2>
             <div class="details">
-                <time class="published" datetime="2023-05-18T00:00:00-04:00">Thu 18 May 2023</time>
+                <time class="published" datetime="2022-06-13T00:00:00-04:00">Mon 13 June 2022</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>Yet again I find myself writing a garbage collector.</p>
-<p>I did a little work on PICKLE&rsquo;s Javascript implementation, and perhaps Javascript is not the right choice. Because Javascript&rsquo;s inheritance model is <em>so similar</em> to PICKLE&rsquo;s, yet slightly different, implementing the inheritance (even with ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy"><code class="language-js highlight">Proxy</code></a>s) is …</p></summary>
+            <summary><p>Last time I had just announced that Phoo was finished. Well, it&rsquo;s still finished &mdash; except for the fact that the online console no longer works. I tried porting the shell code to Phoo, but that ended up breaking the shell!</p>
+<p>It was pretty much a line-for-line translation, so I …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/pickle-tokenizer" rel="bookmark" title="Permalink to Pickle Tokenizer">Pickle Tokenizer</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/phoo-is-mostly-finished" rel="bookmark" title="Permalink to Phoo is (mostly) finished">Phoo is (mostly) finished</a></h2>
             <div class="details">
-                <time class="published" datetime="2023-04-20T00:00:00-04:00">Thu 20 April 2023</time>
+                <time class="published" datetime="2022-06-07T00:00:00-04:00">Tue 07 June 2022</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>I&rsquo;m starting to work on my Pickle programming language, this time in Javascript. After only a few days&rsquo; work, I&rsquo;m surprised I got so much working. Currently I have both the tokenizer and the inheritance system working. The syntax of Pickle is pretty much in place now, and …</p></summary>
+            <summary><p>&hellip;Gosh, I just realized that I haven&rsquo;t posted anything in weeks. I really don&rsquo;t want to fall prey to the obsession of posting everything online. I hope I&rsquo;m not.</p>
+<p>Anyway, I just finished up the first draft of the documentation of Phoo. The generator script is Python …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/manual-memory-management-madness" rel="bookmark" title="Permalink to Manual Memory Management Madness">Manual Memory Management Madness</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/pyodide-issues" rel="bookmark" title="Permalink to Pyodide Issues">Pyodide Issues</a></h2>
             <div class="details">
-                <time class="published" datetime="2023-03-17T00:00:00-04:00">Fri 17 March 2023</time>
+                <time class="published" datetime="2022-05-19T00:00:00-04:00">Thu 19 May 2022</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>I&rsquo;ve been working quite a lot on my second programming language attempt, PICKLE. Admittedly, programming it in C has been a real chore. I started following the <a href="https://github.com/kanaka/mal/blob/master/process/guide.md">Make-A-Lisp</a> tutorial to try to give myself some plan for executing PICKLE. Mal, unfortunately, recommends dynamically typed languages; that unfortunately is a …</p></summary>
+            <summary><p>I am currently working on an online console for <a href="https://github.com/GordonCharlton/Quackery">Quackery</a> that is using the <a href="https://github.com/pyodide/pyodide">Pyodide</a> in-browser Python interpreter. The only bad thing is, Python&rsquo;s <code class="language-py3 highlight">input()</code> function blocks until input is provided, which can&rsquo;t be done in the browser because everything is asynchronous. The only way for it to …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/a-very-confusing-data-model" rel="bookmark" title="Permalink to A Very Confusing Data Model">A Very Confusing Data Model</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/why-i-prefer-python" rel="bookmark" title="Permalink to Why I Prefer Python">Why I Prefer Python</a></h2>
             <div class="details">
-                <time class="published" datetime="2023-03-10T00:00:00-05:00">Fri 10 March 2023</time>
+                <time class="published" datetime="2022-03-30T00:00:00-04:00">Wed 30 March 2022</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>For the past week or two I have been working on a few things simultaneously. I keep prototype code that I&rsquo;m developing but not quite ready to release yet in private GitHub repositories, and publish them when I&rsquo;m ready. Lately I&rsquo;ve been working on two different and …</p></summary>
+            <summary><p>In developing Phoo today I was unpleasantly presented with yet another reason why I prefer Python. It was when I was working on the new <code>Importer</code> API for loading external modules into Phoo that I accidentally did this:</p>
+<pre class="highlight"><code class="language-js">class Importer { /* stub class */ }
+class FetchImporter extends Importer {
+    constructor(basePath, fetchOptions = {}) {
+        /* no …</code></pre></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/pickles" rel="bookmark" title="Permalink to Pickles!">Pickles!</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/change-of-plans" rel="bookmark" title="Permalink to Change of Plans">Change of Plans</a></h2>
             <div class="details">
-                <time class="published" datetime="2023-02-23T00:00:00-05:00">Thu 23 February 2023</time>
+                <time class="published" datetime="2022-03-26T00:00:00-04:00">Sat 26 March 2022</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>I&rsquo;ve been playing around a little bit with LIL on my ESP32 arduino. It works, but there are a few things I don&rsquo;t like. LIL isn&rsquo;t object-oriented by default, so I can&rsquo;t do a lot of what I am used to writing code in Javascript and …</p></summary>
+            <summary><p>After several days trying to debug the horribly bug-ridden <code>local-echo</code> package for xterm.js, I have had enough. It&rsquo;s Ioannis&rsquo; responsibility to debug his package. I am switching over to another Javascript terminal ptogram I found, <a href="https://github.com/jcubic/jquery.terminal">jquery.terminal</a> by Jakub T. Jankiewicz. It has built-in readline support, and well …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/schemascii-0" rel="bookmark" title="Permalink to Schemascii ± 0">Schemascii &pm; 0</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/airdrop-for-non-apple-users" rel="bookmark" title="Permalink to Airdrop for non-Apple users">Airdrop for non-Apple users</a></h2>
             <div class="details">
-                <time class="published" datetime="2023-02-01T00:00:00-05:00">Wed 01 February 2023</time>
+                <time class="published" datetime="2022-03-23T00:00:00-04:00">Wed 23 March 2022</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>I have been working <em>really</em> hard this week on Schemascii. Like, maybe too much. But, I finally got Schemascii to the point that I could (if I wanted) upload it to PyPI and it would be a valid package.</p>
-<p>Schemascii is also able to be called as a command-line program …</p></summary>
+            <summary><p>It has come up often where I have a file on my parent&rsquo;s Mac that I need to send to my computer. Any Apple user would probably just use Airdrop. But I use Linux!&hellip; So I created a little Python script that allows sending files between computers with the …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/schemascii-1" rel="bookmark" title="Permalink to Schemascii ± 1">Schemascii &pm; 1</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/terminal-troubles" rel="bookmark" title="Permalink to Terminal Troubles">Terminal Troubles</a></h2>
             <div class="details">
-                <time class="published" datetime="2023-01-24T00:00:00-05:00">Tue 24 January 2023</time>
+                <time class="published" datetime="2022-03-23T00:00:00-04:00">Wed 23 March 2022</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>I spent the last two days fooling around with my half-idea of a diagramming program, Schemascii. What it&rsquo;s supposed to do is be able to make a diagram of a circuit (like the ones you might make in Eagle or KiCad before you plan a circuit board) out of …</p></summary>
+            <summary><p>I have finally gotten to the point in Phoo&rsquo;s development that I am ready to set up the web interface.</p>
+<p>I chose xterm.js for the terminal interface because I intend for Phoo to be able to be run in Nodejs as well as in the browser, but I …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/lilduino" rel="bookmark" title="Permalink to LILduino">LILduino</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/how-i-came-up-with-phoo" rel="bookmark" title="Permalink to How I came up with Phoo">How I came up with Phoo</a></h2>
             <div class="details">
-                <time class="published" datetime="2023-01-04T00:00:00-05:00">Wed 04 January 2023</time>
+                <time class="published" datetime="2022-03-21T00:00:00-04:00">Mon 21 March 2022</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>Congratulations, you have reached the end of this series.</p>
-<p>I finally found a programming language that I can use on my Arduino: <a href="https://runtimeterror.com/tech/lil/">LIL</a>, written by Kostas Michalopoulos. It&rsquo;s a lot like Tcl (but not quite), and it has a simple to use C API so I can add custom …</p></summary>
-        </article>
-<hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/systems-tested" rel="bookmark" title="Permalink to Systems Tested">Systems Tested</a></h2>
-            <div class="details">
-                <time class="published" datetime="2022-12-30T00:00:00-05:00">Fri 30 December 2022</time>
-                <address>By
-                        <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
-                </address>
-            </div>
-            <summary><p>Over winter break I was able to get some more progress done building circuits to get closer to an upgrade of my old, broken Roboraptor. There are a zillion different components to this project, and I wanted to test each separately to make sure they work before I make a …</p></summary>
-        </article>
-<hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/debugger-almost" rel="bookmark" title="Permalink to Debugger, Almost">Debugger, Almost</a></h2>
-            <div class="details">
-                <time class="published" datetime="2022-12-19T00:00:00-05:00">Mon 19 December 2022</time>
-                <address>By
-                        <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
-                </address>
-            </div>
-            <summary><p>Today I started work on the Phoo debugger. As-is, it is very simple &ndash; I already programmed in a &ldquo;tick&rdquo; function into Phoo that gets called every item, and so my debugger only needs to patch itself into this function.</p>
-<p>However, the three buttons &ndash; &ldquo;Into&rdquo;, &ldquo;Over&rdquo;, and &ldquo;Out&rdquo; &ndash; caused me some …</p></summary>
+            <summary><p>Several moths ago I stumbled upon Gordon Charlton&rsquo;s <a href="https://github.com/GordonCharlton/Quackery">Quackery</a> language while paroosing Github for something. Usually I don&rsquo;t pay much attention to obviously irrelevant search results, but this one seemed worth a look. I found Quackery to be a simple stack-based semi-compiled language that makes infrequent use of …</p></summary>
         </article>
 <hr />    <p class="paginator">
-            <a href="https://dragoncoder047.github.io/blog/tag/programming/index.html">&lt;&lt;First</a>
-        Page 2 of 4
-                <a href="https://dragoncoder047.github.io/blog/tag/programming/index3.html">Next></a>
-            <a href="https://dragoncoder047.github.io/blog/tag/programming/index4.html">Last>></a>
+            <a href="https://dragoncoder047.github.io/blog/tag/programming">&lt;&lt;First</a>
+                <a href="https://dragoncoder047.github.io/blog/tag/programming/page3">&lt;Previous</a>
+        Page 4 of 4
     </p>
             <section id="extras">
                     <div class="blogroll">

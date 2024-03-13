@@ -96,121 +96,114 @@
     <h1>Recent articles...</h1>
 
         <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/scratching-my-head-again" rel="bookmark" title="Permalink to Scratching My Head Again">Scratching My Head Again</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/powerful-pickle-pattern-matching" rel="bookmark" title="Permalink to Powerful PICKLE Pattern Matching">Powerful PICKLE Pattern Matching</a></h2>
             <div class="details">
-                <time class="published" datetime="2022-10-19T00:00:00-04:00">Wed 19 October 2022</time>
+                <time class="published" datetime="2023-07-02T00:00:00-04:00">Sun 02 July 2023</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>Again I find myself scratching my head over a simple scripting language. <a href="https://github.com/dragoncoder047/yisp">Yisp</a> got way too complicated; <a href="https://github.com/dragoncoder047/tinytcl">tinyTcl</a> leaked memory; and <a href="https://micropython.org">MicroPython</a> can&rsquo;t be extended with custom functions. All I want to do is have a scripting engine for my ESP32 that can run scripts off an SD card …</p></summary>
+            <summary><p>I did a lot of work on Tinobsy, the garbage collector for PICKLE. It&rsquo;s pretty robust now, and passes all my tests &ndash; plus I translated it to C++ so I can take advantage of C++&rsquo;s syntactic sugar for objects. All I think that I&rsquo;ll be doing with …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/partcl" rel="bookmark" title="Permalink to ParTcl">ParTcl</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/not-your-daddys-boost-converter" rel="bookmark" title="Permalink to Not Your Daddy's Boost Converter">Not Your Daddy's Boost Converter</a></h2>
             <div class="details">
-                <time class="published" datetime="2022-10-14T00:00:00-04:00">Fri 14 October 2022</time>
+                <time class="published" datetime="2023-06-07T00:00:00-04:00">Wed 07 June 2023</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>C headers are annoying. I was getting fed up with uLisp/Yisp and so I decided to run another Google search for &ldquo;embeddable scripting language for Arduino&rdquo;.</p>
-<p>It turned up <a href="https://github.com/kyab/mruby-arduino">mruby-arduino</a> &ndash; poorly documented, and a little too big for my needs.</p>
-<p>It turned up <a href="http://www.eluaproject.net/">eLua</a> &ndash; which unfortunately is just a …</p></summary>
+            <summary><p>The original Roboraptor had dual power supplies. Two &ldquo;AA&rdquo; size batteries supplied 3 volts for the logic circuitry, and four batteries in a separarte circuit provided 6 volts for the motors. My redesign of the Roboraptor is designed to run off of a large single-cell 3.7 volt lithium battery …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/lisp-practice" rel="bookmark" title="Permalink to Lisp Practice">Lisp Practice</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/yet-another-garbage-collector" rel="bookmark" title="Permalink to Yet Another Garbage Collector">Yet Another Garbage Collector</a></h2>
             <div class="details">
-                <time class="published" datetime="2022-09-28T00:00:00-04:00">Wed 28 September 2022</time>
+                <time class="published" datetime="2023-05-18T00:00:00-04:00">Thu 18 May 2023</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>Today I decided I would have a little fun with Lisp. I wanted to try and make a program that you can type in a function and get a graph of it.</p>
-<p>I started off with a function that takes an $x$-value and a list of coefficients, and evaluates …</p></summary>
+            <summary><p>Yet again I find myself writing a garbage collector.</p>
+<p>I did a little work on PICKLE&rsquo;s Javascript implementation, and perhaps Javascript is not the right choice. Because Javascript&rsquo;s inheritance model is <em>so similar</em> to PICKLE&rsquo;s, yet slightly different, implementing the inheritance (even with ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy"><code class="language-js highlight">Proxy</code></a>s) is …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/ulisp-thoughts" rel="bookmark" title="Permalink to uLisp Thoughts">uLisp Thoughts</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/pickle-tokenizer" rel="bookmark" title="Permalink to Pickle Tokenizer">Pickle Tokenizer</a></h2>
             <div class="details">
-                <time class="published" datetime="2022-09-27T00:00:00-04:00">Tue 27 September 2022</time>
+                <time class="published" datetime="2023-04-20T00:00:00-04:00">Thu 20 April 2023</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>For a while I have been trying to work out some bugs in David Johnson-Davies&rsquo; uLisp interpreter for Arduinos. I ported some macro and quasiquote extensions for an older version of uLisp to the current version, and apparently I did not do something right &ndash; it crashes whenever I try to …</p></summary>
+            <summary><p>I&rsquo;m starting to work on my Pickle programming language, this time in Javascript. After only a few days&rsquo; work, I&rsquo;m surprised I got so much working. Currently I have both the tokenizer and the inheritance system working. The syntax of Pickle is pretty much in place now, and …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/almost-no-javascript" rel="bookmark" title="Permalink to (Almost) No Javascript!">(Almost) No Javascript!</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/phooey-phooey-phooey" rel="bookmark" title="Permalink to Phooey! Phooey! Phooey!">Phooey! Phooey! Phooey!</a></h2>
             <div class="details">
-                <time class="published" datetime="2022-09-07T00:00:00-04:00">Wed 07 September 2022</time>
+                <time class="published" datetime="2023-04-18T00:00:00-04:00">Tue 18 April 2023</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>I did a total redesign of my Langton&rsquo;s Ant simulator last week &ndash; and most of the formatting I was able to do with pure CSS - no Javascript needed for layout control.</p>
-<p>Previously I had a rather crude layout consisting of a fixed-size canvas and a textbox below it. The …</p></summary>
+            <summary><p>Phoo fried my brain.</p>
+<p>My first programming language has just gotten way too complicated for me to maintain. I still haven&rsquo;t found the bug in the shell. And in the process of debugging it, I may have caused more bugs, too. Argh!</p>
+<p>It&rsquo;s compounded by the fact that …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/two-down-a-zillion-more-to-go" rel="bookmark" title="Permalink to Two Down, A Zillion More To Go">Two Down, A Zillion More To Go</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/manual-memory-management-madness" rel="bookmark" title="Permalink to Manual Memory Management Madness">Manual Memory Management Madness</a></h2>
             <div class="details">
-                <time class="published" datetime="2022-08-06T00:00:00-04:00">Sat 06 August 2022</time>
+                <time class="published" datetime="2023-03-17T00:00:00-04:00">Fri 17 March 2023</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>I have finally written code that actually compiled and ran on the little ESP32 board I bought, and I hate the blasted thing already.</p>
-<p>For starters, the process is slow, annoying, and tedious:</p>
-<ol>
-<li>I click <small>UPLOAD</small>, and the Arduino IDE begins compiling by &hellip; dumping preferences.</li>
-<li>It then has to shuffle …</li></ol></summary>
+            <summary><p>I&rsquo;ve been working quite a lot on my second programming language attempt, PICKLE. Admittedly, programming it in C has been a real chore. I started following the <a href="https://github.com/kanaka/mal/blob/master/process/guide.md">Make-A-Lisp</a> tutorial to try to give myself some plan for executing PICKLE. Mal, unfortunately, recommends dynamically typed languages; that unfortunately is a …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/shifting-gears" rel="bookmark" title="Permalink to Shifting Gears">Shifting Gears</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/a-very-confusing-data-model" rel="bookmark" title="Permalink to A Very Confusing Data Model">A Very Confusing Data Model</a></h2>
             <div class="details">
-                <time class="published" datetime="2022-07-18T00:00:00-04:00">Mon 18 July 2022</time>
+                <time class="published" datetime="2023-03-10T00:00:00-05:00">Fri 10 March 2023</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>Aaah, that&rsquo;s been a nice break from coding. Four weeks with no commits pushed to Phoo. It&rsquo;s a shame I left it in a broken state. I haven&rsquo;t the slightest idea why it&rsquo;s broken &mdash; but then again, all the other times Phoo broke, I never knew …</p></summary>
+            <summary><p>For the past week or two I have been working on a few things simultaneously. I keep prototype code that I&rsquo;m developing but not quite ready to release yet in private GitHub repositories, and publish them when I&rsquo;m ready. Lately I&rsquo;ve been working on two different and …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/langtons-ant-music" rel="bookmark" title="Permalink to Langton's Ant Music">Langton's Ant Music</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/well-i-got-something" rel="bookmark" title="Permalink to Well, I Got Something...">Well, I Got Something...</a></h2>
             <div class="details">
-                <time class="published" datetime="2022-06-22T00:00:00-04:00">Wed 22 June 2022</time>
+                <time class="published" datetime="2023-03-05T00:00:00-05:00">Sun 05 March 2023</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>Over the weekend I joined the <a href="https://conwaylife.com/forums/index.php">conwaylife.com forums</a> because I am interested in cellular automata. I find watching the mechanisms mesmerizing, and building them exciting.</p>
-<p>I also have an interest in music, and so a year or two ago I tried to generate music from cellular automata. I used …</p></summary>
+            <summary><p>Today I did a quick test of my little ATtiny85 microcontrollers&rsquo; capabilities. I had them sitting in a jar for a while, and I wanted to see if I could use them in conjunction as a coprocessor to manage some mundane task like regulating a motor. I have previously written …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/gah-i-broke-it" rel="bookmark" title="Permalink to Gah... I broke it!">Gah... I broke it!</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/pickles" rel="bookmark" title="Permalink to Pickles!">Pickles!</a></h2>
             <div class="details">
-                <time class="published" datetime="2022-06-13T00:00:00-04:00">Mon 13 June 2022</time>
+                <time class="published" datetime="2023-02-23T00:00:00-05:00">Thu 23 February 2023</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>Last time I had just announced that Phoo was finished. Well, it&rsquo;s still finished &mdash; except for the fact that the online console no longer works. I tried porting the shell code to Phoo, but that ended up breaking the shell!</p>
-<p>It was pretty much a line-for-line translation, so I …</p></summary>
+            <summary><p>I&rsquo;ve been playing around a little bit with LIL on my ESP32 arduino. It works, but there are a few things I don&rsquo;t like. LIL isn&rsquo;t object-oriented by default, so I can&rsquo;t do a lot of what I am used to writing code in Javascript and …</p></summary>
         </article>
 <hr />        <article>
-            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2022/phoo-is-mostly-finished" rel="bookmark" title="Permalink to Phoo is (mostly) finished">Phoo is (mostly) finished</a></h2>
+            <h2 class="entry-title"><a href="https://dragoncoder047.github.io/blog/2023/schemascii-0" rel="bookmark" title="Permalink to Schemascii ± 0">Schemascii &pm; 0</a></h2>
             <div class="details">
-                <time class="published" datetime="2022-06-07T00:00:00-04:00">Tue 07 June 2022</time>
+                <time class="published" datetime="2023-02-01T00:00:00-05:00">Wed 01 February 2023</time>
                 <address>By
                         <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
                 </address>
             </div>
-            <summary><p>&hellip;Gosh, I just realized that I haven&rsquo;t posted anything in weeks. I really don&rsquo;t want to fall prey to the obsession of posting everything online. I hope I&rsquo;m not.</p>
-<p>Anyway, I just finished up the first draft of the documentation of Phoo. The generator script is Python …</p></summary>
+            <summary><p>I have been working <em>really</em> hard this week on Schemascii. Like, maybe too much. But, I finally got Schemascii to the point that I could (if I wanted) upload it to PyPI and it would be a valid package.</p>
+<p>Schemascii is also able to be called as a command-line program …</p></summary>
         </article>
 <hr />    <p class="paginator">
             <a href="https://dragoncoder047.github.io/blog/index.html">&lt;&lt;First</a>
-                <a href="https://dragoncoder047.github.io/blog/index3.html">&lt;Previous</a>
-        Page 4 of 5
-            <a href="https://dragoncoder047.github.io/blog/index5.html">Last>></a>
+        Page 2 of 5
+                <a href="https://dragoncoder047.github.io/blog/page3">Next></a>
+            <a href="https://dragoncoder047.github.io/blog/page5">Last>></a>
     </p>
             <section id="extras">
                     <div class="blogroll">

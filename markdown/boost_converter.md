@@ -48,6 +48,6 @@ The [code used is on GitHub](https://github.com/dragoncoder047/super85/tree/mast
 
 *Edit March 10 -- I made a YouTube Short about this and posted it on my channel (also embedded below). I probably should have cleaned up my desk and the breadboard, but I was in a hurry filming the video. Oops! Only about half of the wiring and components on the breadboard is the boost converter. The rest is for another unreleased project that utilizes this boost converter module. There is another ATtiny85 nestled in there -- can you spot it?*
 
-<iframe width="40%" style="aspect-ratio: 9/16" src="https://youtube.com/embed/9ofjsV2GTLM?si=w51A-55oF6hctdXX" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<youtube id="9ofjsV2GTLM?si=w51A-55oF6hctdXX">
 
 *I am currently working on a full-length video, without all of the mess, that explains this and more in full detail. Watch this page (or subscribe to my YouTube channel!) to know when that video is published.*

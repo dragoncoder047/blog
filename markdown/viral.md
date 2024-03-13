@@ -12,11 +12,13 @@ For some reason I then decided I wanted to post those circuits to YouTube. So I 
 
 === "Circuit 1"
     Posted March 2
-    <iframe width="40%" style="margin-left:auto;margin-right:auto;aspect-ratio:9/16" src="https://youtube.com/embed/OGDkedjWLmQ?si=PIm5eEIG2L234rcC" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen></iframe>
+
+    <youtube short="OGDkedjWLmQ?si=PIm5eEIG2L234rcC">
 
 === "Circuit 2"
     Posted March 3
-    <iframe width="40%" style="margin-left:auto;margin-right:auto;aspect-ratio:9/16" src="https://youtube.com/embed/f7nS8oD3u-k?si=SsRKRJuFWw-clW_3" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen></iframe>
+
+    <youtube short="f7nS8oD3u-k?si=SsRKRJuFWw-clW_3">
 
 For reference, before I posted these, my channel had only about 200 views total, 10 likes, no comments, and 4 subscribers (2 of which I knew personally).
 
@@ -30,7 +32,7 @@ Who knew that a few simple circuits thrown together in a couple hours would spre
 
 I even got yelled at in the comments for not explaining fully what was going on in the first circuit -- so I posted a follow-up video!
 
-<iframe width="60%" style="margin-left:auto;margin-right:auto;aspect-ratio:16/9" src="https://www.youtube.com/embed/chz0rDJs0w4?si=HSCRfigC8TidHDzw" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen></iframe>
+<youtube id="chz0rDJs0w4?si=HSCRfigC8TidHDzw" />
 
 And I have ideas for even more videos in the works -- including some on my Lego projects, and others on my electronics, and even more that aren't related to any other stuff here.
 

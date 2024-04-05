@@ -122,14 +122,23 @@ def lv_fence(source, language, css_class, options, md, **kwargs):
             + 'width="{options.get("width", 600)}"></canvas></div>')
 
 
-def kroki_fence(source, language, css_class, options, md, **kwargs):
+def kroki_fence(source, language, css_class, options, md, classes, attrs,
+                **kwargs):
     data = base64.urlsafe_b64encode(zlib.compress(
         source.encode("utf-8"), 9)).decode("ascii")
     lang = options.get("type", options.get("name", "svgbob"))
     attr = ""
     if "width" in options and "height" in options:
         attr = f' width="{options["width"]}" height="{options["height"]}"'
-    return f'<img src="https://kroki.io/{lang}/svg/{data}"{attr} />'
+    if classes:
+        divopen = "<div class=\"" + " ".join(classes) + "\">"
+        divclose = "</div>"
+    else:
+        divopen = divclose = ""
+    attr += "".join(f'{k}="{v}"' for k, v in attrs.items())
+    return (divopen +
+            f'<img src="https://kroki.io/{lang}/svg/{data}"{attr} />' +
+            divclose)
 
 
 def named_kroki(name):

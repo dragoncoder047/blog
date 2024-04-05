@@ -1292,7 +1292,7 @@ $17.C22.C$17.C22.C$17.C3.C3.C2.2C2.3C5.C$17.C4.C.C2.C2.C.C2.C4.C$17.C
 [[  GPS 30 ]]
 [[ EXCLUSIVEPLAY ]]</textarea><canvas height="400"width="{options.get("width", 600)}"></canvas></div>
 <p>A true double-channel crossing is made with three XOR gates like so:</p>
-<p><img src="https://kroki.io/svgbob/svg/eNpzVNC109XShQA7MKkHIbkUQKBGARnUKET4Bylo68LUKzhBVKnDNAHZerrqYLY6F5omoD0QIbgKZJ1EWefI5YTpXqhhAK6KIqM=" /></p>
+<p><img src="https://kroki.io/svgbob/svg/eNpzVNC109XShQA7MKkHIbkUQKBGARnUKET4Bylo68LUKzhBVKnDNAHZerrqYLY6F5omoD0QIbgKZJ1EWefI5YTpXqhhAK6KIqM="type="svgbob" /></p>
 <p>and in Wireworld:</p>
 <div class="lifeviewer"><textarea>x = 37, y = 13, rule = Wireworld++
 23.2C$21.2C2.C$20.C3.4C$.9CB7.2C4.C2.2C$A10.A6C2.C3.4C.8C$.B9C8.4C2.C
@@ -1320,7 +1320,7 @@ F.10C$.B4CAB3C9.5C.F!
 <h2 id="multiplexers">Multiplexers</h2>
 <p>Looking back at the Quinapalus computer, I saw one big place where it could be optimized: the multiplexer that loads the new data into the memory loops.</p>
 <p>The multiplexer they used was wired like this:</p>
-<p><img src="https://kroki.io/svgbob/svg/eNp9kEEOhCAMRfec4u9IJoEDGGNCRnfGGmW2HmNWjWe3w0AEJb4N_PSX8gsII9Gs7P6EVQ2uWBOxAGdKrEG0xoA-HnJluKmfyIPbmwqgd95JI19m6GTQQJMpsX5xZ4vn_7Nb5cEfXLi44sqjna44vktF6aIlFFOOlynAOozD21d2V-RS-nH3-gBBklvG" /></p>
+<p><img src="https://kroki.io/svgbob/svg/eNp9kEEOhCAMRfec4u9IJoEDGGNCRnfGGmW2HmNWjWe3w0AEJb4N_PSX8gsII9Gs7P6EVQ2uWBOxAGdKrEG0xoA-HnJluKmfyIPbmwqgd95JI19m6GTQQJMpsX5xZ4vn_7Nb5cEfXLi44sqjna44vktF6aIlFFOOlynAOozD21d2V-RS-nH3-gBBklvG"type="svgbob" /></p>
 <p>In this demo, you can see the loop starts out originally with 1100 in it, and then 1010 is written to it.</p>
 <div class="lifeviewer"><textarea>x = 48, y = 9, rule = Wireworld++
 9C.7CAB$9.C9.C.C$9.C10.3C$.C.C.C.C2.7C2.C.C.C.C$17.B.C4.41C2B4CAB4C2B
@@ -1329,7 +1329,7 @@ F.10C$.B4CAB3C9.5C.F!
 [[ EXCLUSIVEPLAY ]]</textarea><canvas height="400"width="{options.get("width", 600)}"></canvas></div>
 <p><em>(The loop was originally period 96, to fit 16 bits, but I shortened to to period 24, for the sake of brevity.)</em></p>
 <p>After some work, I reworked the multiplexer to use this design:</p>
-<p><img src="https://kroki.io/svgbob/svg/eNp9kEEKhDAMRfc9xd8VhPYAIgNF3YkRp8KsPIarMGefqC22TvFt2k9_kv4AwkA0Kft9wqoad6wJWIATJdZDNMaAFg-5MvChWWq4OZUbu6gO0DnvpJBvM3Q0aKBOlFg3_LOG8_zsWmi4w5mLC6402uUK41_xkfcYI_krR2Uy8O6HvvWF3WW5lH7cvf4BVJFbbQ==" /></p>
+<p><img src="https://kroki.io/svgbob/svg/eNp9kEEKhDAMRfc9xd8VhPYAIgNF3YkRp8KsPIarMGefqC22TvFt2k9_kv4AwkA0Kft9wqoad6wJWIATJdZDNMaAFg-5MvChWWq4OZUbu6gO0DnvpJBvM3Q0aKBOlFg3_LOG8_zsWmi4w5mLC6402uUK41_xkfcYI_krR2Uy8O6HvvWF3WW5lH7cvf4BVJFbbQ=="type="svgbob" /></p>
 <p>and the multiplexer was able to be shrunk to this:</p>
 <div class="lifeviewer"><textarea>x = 64, y = 5, rule = Wireworld++
 19.4C.F20CAB4C2B4CAB4CB$17.2F4.C$8C.8CF.C.C2.F$8.C11.25CAB4CAB4CAB4CA

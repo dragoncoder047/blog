@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en_us">
     <head>
-                <title>Yet Another Garbage Collector</title>
+                <title>A Hash-Mapped Mess</title>
             <meta charset="utf-8" />
             <meta name="generator" content="Pelican" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,17 +16,17 @@
     
 
 
-        <meta name="tags" content="programming, c, language-design, garbage-collector" />
+        <meta name="tags" content="programming, c, garbage-collector, language-design" />
     <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
-    <meta property="og:title" content="Yet Another Garbage Collector" />
-    <meta property="og:description" content="Yet again I find myself writing a garbage collector. I did a little work on PICKLE’s Javascript implementation, and perhaps Javascript is not the right choice. Because Javascript’s inheritance model is so similar to PICKLE’s, yet slightly different, implementing the inheritance (even with ES6 Proxys) is …" />
+    <meta property="og:title" content="A Hash-Mapped Mess" />
+    <meta property="og:description" content="It has not been a good week. I set out on Tuesday to actually add real objects to PICKLE, with a hashmap of properties and multiple inheritance and everything. Suffice to say, that wasn’t easy. Between null pointer dereferencing, sloppy APIs, and an incomplete algorithm, it took several hours …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2023/yet-another-garbage-collector" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2024/a-hash-mapped-mess" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Yet Another Garbage Collector" />
-    <meta name="twitter:description" content="Yet again I find myself writing a garbage collector. I did a little work on PICKLE’s Javascript implementation, and perhaps Javascript is not the right choice. Because Javascript’s inheritance model is so similar to PICKLE’s, yet slightly different, implementing the inheritance (even with ES6 Proxys) is …" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - A Hash-Mapped Mess" />
+    <meta name="twitter:description" content="It has not been a good week. I set out on Tuesday to actually add real objects to PICKLE, with a hashmap of properties and multiple inheritance and everything. Suffice to say, that wasn’t easy. Between null pointer dereferencing, sloppy APIs, and an incomplete algorithm, it took several hours …" />
     <meta name="twitter:image" content="/images/patrick.svg" />
             <!-- PrismJS -->
 <script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
@@ -73,22 +73,17 @@
             </nav>
         </header>
         <main>
-    <h1><a href="https://dragoncoder047.github.io/blog/2023/yet-another-garbage-collector" rel="bookmark" title="Permalink to this page">Yet Another Garbage Collector</a></h1>
+    <h1><a href="https://dragoncoder047.github.io/blog/2024/a-hash-mapped-mess" rel="bookmark" title="Permalink to this page">A Hash-Mapped Mess</a></h1>
     
     <div class="flex-row">
             <span style="flex: 1">&larr; Previous:
-                <a href="https://dragoncoder047.github.io/blog/2023/pickle-tokenizer">
-                    Pickle Tokenizer
+                <a href="https://dragoncoder047.github.io/blog/2024/depends-on-your-definition-of-viral">
+                    Depends on Your Definition of Viral
                 </a>
-            </span>
-            <span>Next:
-                <a href="https://dragoncoder047.github.io/blog/2023/not-your-daddys-boost-converter">
-                    Not Your Daddy's Boost Converter
-                </a> &rarr;
             </span>
     </div>
     <div class="post-info">
-        Posted <time class="published" datetime="2023-05-18T00:00:00-04:00">Thu 18 May 2023</time>
+        Posted <time class="published" datetime="2024-04-05T00:00:00-04:00">Fri 05 April 2024</time>
             <address>By
                     <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
             </address>
@@ -100,7 +95,7 @@
                     <a href="https://dragoncoder047.github.io/blog/tag/programming">programming</a>
             </div>
     </div>
-        <p><em>This post is part 4 of the pickle series:</em></p>
+        <p><em>This post is part 10 of the pickle series:</em></p>
         <ol class="series">
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/2023/pickles'>Pickles!</a>
@@ -111,7 +106,7 @@
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/2023/pickle-tokenizer'>Pickle Tokenizer</a>
                 </li>
-                <li class="active">
+                <li >
                     <a href='https://dragoncoder047.github.io/blog/2023/yet-another-garbage-collector'>Yet Another Garbage Collector</a>
                 </li>
                 <li >
@@ -129,43 +124,32 @@
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/2024/the-lesser-of-two-evils'>The Lesser of Two Evils</a>
                 </li>
-                <li >
+                <li class="active">
                     <a href='https://dragoncoder047.github.io/blog/2024/a-hash-mapped-mess'>A Hash-Mapped Mess</a>
                 </li>
         </ol>
-    <p>Yet again I find myself writing a garbage collector.</p>
-<p>I did a little work on PICKLE&rsquo;s Javascript implementation, and perhaps Javascript is not the right choice. Because Javascript&rsquo;s inheritance model is <em>so similar</em> to PICKLE&rsquo;s, yet slightly different, implementing the inheritance (even with ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy"><code class="language-js highlight">Proxy</code></a>s) is difficult.</p>
-<p>So now I find myself writing another garbage collector, in C, with the intention of writing PICKLE in C, using that garbage collector.</p>
-<p>This time, however, I&rsquo;m not going to let it get out of hand in one big file. I&rsquo;m separating the key components into their own separate files. Because the garbage collector is the base for something, I&rsquo;ve put it in its own repository. It&rsquo;s called &ldquo;<a href="https://github.com/dragoncoder047/tinobsy/">Tinobsy</a>&rdquo; (TINy OBject SYstem) because I couldn&rsquo;t think of any better thing to call it.</p>
-<p>While I initially complained about the verbosity of reference-counting garbage collectors, C preprocessor macros can help with that. To simplify the updates that need to occur when a new value is assigned, I created this macro to replace the assignment operator:</p>
-<pre class="highlight"><code class="language-c">#define SET(x, y) do { \
-    tincref(y); \
-    tdecref(x); \
-    (x)=(y);
-} while (0)</code></pre>
-<p>This takes care of the overhead needed to update reference counts when a value is reassigned. The old value that is being overwritten loses a reference, the new value gains a reference, and then the C pointer is actually updated. The <code class="language-c highlight">tincref()</code> must come first to prevent an object from reaching zero references and being freed in the pathological case of an object being assigned to itself. The only caveat with this macro is it evaluates each of its arguments twice, so it can&rsquo;t be used with compound statements that have side-effects (such as a function call).</p>
-<p>Once I got that figured out, I was able to write this bit:</p>
-<pre class="highlight"><code class="language-c">ttype cons_type = {"cons", OBJECT, OBJECT};
-tobject* cons(tvm* vm, tobject* x, tobject* y) {
-    tobject* cell = talloc(vm, &amp;cons_type);
-    SET(cell-&gt;car, x);
-    SET(cell-&gt;cdr, y);
-    return cell;
-}
-
-#define PUSH(vm, x, y) do { \
-    tobject* cell__ = cons((vm), (x), (y)); /* Create an object */\
-    SET(y,cell__); /* Do something with the object */\
-    tdecref(cell__); /* Done with it, clean up references */\
-} while (0)</code></pre>
-<p>This bit, while it isn&rsquo;t part of Tinobsy proper, is probably going to end up in PICKLE &ndash; I figure I&rsquo;m going to use some sort of Lisp-like object structure and cons cells are the basis of it.</p>
-<p>The <code>PUSH</code> macro shows the general method of memory management in Tinobsy: allocate some memory, use it, and then drop references to it so it can be freed as soon as possible.</p>
-<p>I included <code class="language-c highlight">longjmp()</code>-based control flow capabilities in Tinobsy, but as of right now I haven&rsquo;t written any macros that utilize it yet. I&rsquo;m modeling it after uLisp&rsquo;s error handling, simply returning a value when there isn&rsquo;t an error, and <code class="language-c highlight">longjmp()</code>&lsquo;ing back out to the last saved catchpoint (with <code class="language-c highlight">setjmp()</code>) when there is an error.</p>
-<p>I&rsquo;m not sure how returning the actual error object will occur, as <code class="language-c highlight">setjmp()</code> returns an <code class="language-c highlight">int</code>, not a pointer. It would be much easier to pass back a pointer to an object in a cross-platform manner, but casting the <code class="language-c highlight">int</code> to a pointer type is only guaranteed to work on 32-bit platforms because <code class="language-c highlight">int</code>s are 32 bits. Oh well. I&rsquo;ll think of something smart eventually. And PICKLE <em>will</em> get implemented, in some form or fashion, at some point.</p>
+    <p>It has not been a good week. I set out on Tuesday to actually add real objects to PICKLE, with a hashmap of properties and multiple inheritance and everything. Suffice to say, that wasn&rsquo;t easy. Between null pointer dereferencing, sloppy APIs, and an incomplete algorithm, it took several hours&rsquo; work total to root out all the bugs.</p>
+<p>The hashmap design I used was a sort of &ldquo;binary trie&rdquo;, based on <a href="https://gist.github.com/creationix/3ea0d27dd100c5b53ca8546a2084ad47">this gist</a> of Tim Caswell. The design of it seems simple enough &ndash; each node can store a key-value pair, and to find an element you first check to see if the root node holds the key you&rsquo;re looking for, if it doesn&rsquo;t, you treat the hash value of the key as a bit string and get the next-most-significant bit of the hash, and recurse on the left or right child node depending on whether the bit is a 0 or a 1.</p>
+<p>Except, in practice, it&rsquo;s not that simple.</p>
+<p>Obviously, hashmaps for object properties aren&rsquo;t static &ndash; they will have properties inserted, updated, and removed. Updating an existing property is almost trivial &ndash; you just find the corresponding node in the hashmap and replace the value.</p>
+<p>The algorithms outlined for adding or deleting a property end up causing problems. Deleting a property just clears the node, it doesn&rsquo;t delete the node, and so the property-addition algorithm can check for and re-use cleared nodes instead of creating new children. This means that a simple add-or-update implementation might end up accidentally inserting the value twice, because it found a cleared node higher-up in the tree than the existing node&rsquo;s position and stopped too soon.</p>
+<div class="float-right"><img src="https://kroki.io/mermaid/svg/eNpLL0osyFAIceFSAIK0_HwFXV07haTEIjR-FQDbiAqJ" /></div>
+<p>Consider what happens if you have, say, three nodes called <code>foo</code>, <code>bar</code>, and <code>baz</code>. First <code>foo</code> is inserted to an empty tree, so it becomes the root node, Then <code>bar</code> and <code>baz</code> are added, and become children of <code>foo</code>.</p>
+<div class="float-right"><img src="https://kroki.io/mermaid/svg/eNpLL0osyFAIceFSAIK0_PxohVgFXV07haTEIpgQlF8FAP9BC2E=" /></div>
+<p>Now <code>foo</code> is deleted. The first node matching it is cleared - no problem. There are no <code>foo</code>s in the tree.</p>
+<div class="float-right"><img src="https://kroki.io/mermaid/svg/eNpLL0osyFAIceFSAIK0_PxopaTEIgWNvNRyTaVYBV1dOwUgHyqYn5MCFISphEpWAQB0jhJW" /></div>
+<p><code>bar</code> is updated. Since there is a free node above the old <code>bar</code>, there ends up two <code>bar</code> nodes.</p>
+<p>Up until now, there isn&rsquo;t any problem. Finding any node, even in the tree with the duplicated <code>bar</code>, finds the correct value.</p>
+<div class="float-right"><img src="https://kroki.io/mermaid/svg/eNpLL0osyFAIceFSAIK0_PxohVgFXV07haTEomglIKGgkZ-ToqkUC5OHSlYBALp5D0I=" /></div>
+<p>The problem arises when you try to delete <code>bar</code> on this duplicated tree &ndash; and since the old <code>bar</code> node wasn&rsquo;t ever deleted, this &ldquo;shadow&rdquo; node now rears it ugly head and causes the key <code>bar</code> to revert to its old value, instead of being deleted like it was supposed to be.</p>
+<p>I spent a long time trying to figure out how to combat this problem. The easiest solution, which I implemented, is to traverse the entire hash&rsquo;s search path, not just stopping at the first free node, when updating a value. If the new value is set by filling a free node (rather than simply updating the existing node with the same key), there may be shadow nodes under it, so the rest of the tree has to be traversed, and these shadow nodes cleared. This guarantees there will only be one node for any given key in use at the same time.</p>
+<hr>
+<p>The one last bug, that I still haven&rsquo;t fixed, is the way these hashmaps work with the garbage collector. When you delete a node, you don&rsquo;t actually <em>delete</em> the node, you just clear it / mark it as free. The memory is still in use as far as the garbage collector is concerned, and is never freed. Even if the an object has no properties currently, if the object had, say, a thousand different properties at some point in the past, there will now be a thousand unused nodes in the hashmap that the garbage collector just won&rsquo;t collect.</p>
+<p>I am not sure how to fix this. If I go start removing empty nodes willy-nilly, how will that impact looking up existing non-empty nodes? How do I put the tree back together after I delete a node? I don&rsquo;t know quite yet. A search trie is (yet again) something new to me, and I&rsquo;ll have to do more research. Every day is a learning experience &ndash; that is to be celebrated.</p>
         <hr />
         <p><strong>Related Posts</strong></p>
         <ul>
-                <li><a href="https://dragoncoder047.github.io/blog/2024/a-hash-mapped-mess">A Hash-Mapped Mess</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/yet-another-garbage-collector">Yet Another Garbage Collector</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/2023/manual-memory-management-madness">Manual Memory Management Madness</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/2024/the-lesser-of-two-evils">The Lesser of Two Evils</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/2023/continuations-and-the-thunk-queue">Continuations and the thunk queue</a></li>

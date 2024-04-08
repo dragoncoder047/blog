@@ -87,7 +87,7 @@
     </div>
     <div class="post-info">
         Posted <time class="published" datetime="2023-06-07T00:00:00-04:00">Wed 07 June 2023</time>
-            <br /> Modified <time class="modified" datetime="2024-03-10T00:00:00-05:00">Sun 10 March 2024</time>
+            <br /> Modified <time class="modified" datetime="2024-04-08T00:00:00-04:00">Mon 08 April 2024</time>
             <address>By
                     <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
             </address>
@@ -118,7 +118,9 @@
                     <a href='https://dragoncoder047.github.io/blog/2023/error-out-of-memory'>Error: out of memory</a>
                 </li>
         </ol>
-    <p>The original Roboraptor had dual power supplies. Two &ldquo;AA&rdquo; size batteries supplied 3 volts for the logic circuitry, and four batteries in a separarte circuit provided 6 volts for the motors. My redesign of the Roboraptor is designed to run off of a large single-cell 3.7 volt lithium battery &ndash; but the motors run really sluggishly on only 3.7 volts (even though the torque is high as the battery can supply an incredible amount of current). So, to make the motors run faster, I need to increase the voltage. On top of that, my idea includes a few more requirements:</p>
+    <p>The original Roboraptor had dual power supplies. Two &ldquo;AA&rdquo; size batteries supplied 3 volts for the logic circuitry, and four batteries in a separarte circuit provided 6 volts for the motors. My redesign of the Roboraptor is designed to run off of a large single-cell 3.7 volt lithium battery &ndash; but the motors run really sluggishly on only 3.7 volts (even though the torque is high as the battery can supply an incredible amount of current). So, to make the motors run faster, I need to increase the voltage.</p>
+<p><iframe style="margin-left:auto;margin-right:auto;aspect-ratio:16/9;width:60%;min-width:500px;max-width:1000px" src="https://youtube.com/embed/NnDvN9RbQGY?si=ahxCAqWVCsQAkOef" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share"></iframe></p>
+<p>On top of that, my idea includes a few more requirements:</p>
 <ol>
 <li>When the Roboraptor is in a &ldquo;sleep&rdquo; state, it can turn off the boost converter to save power.</li>
 <li>It can artificially reduce the output voltage to make the motors move smoothly and minimize PWM whine at slow speeds.</li>
@@ -134,9 +136,6 @@
 <p>Then I tried to change the output voltage over I2C. Now the ATtiny85 didn&rsquo;t even ACK on its own address!</p>
 <p>After a <em>lot</em> of debugging, a <a href="https://github.com/technoblogy/ulisp-esp/issues/75">month-long rabbit hole</a> trying to figure out why reads didn&rsquo;t work, and finding out I was using several outdated packages (and updating), I finally, at long last, got the voltage to change by sending commands over I2C. Whew!!</p>
 <p>The <a href="https://github.com/dragoncoder047/super85/tree/master/smartboost">code used is on GitHub</a>. And the circuit is above.</p>
-<p><em>Edit March 10 &ndash; I made a YouTube Short about this and posted it on my channel (also embedded below). I probably should have cleaned up my desk and the breadboard, but I was in a hurry filming the video. Oops! Only about half of the wiring and components on the breadboard is the boost converter. The rest is for another unreleased project that utilizes this boost converter module. There is another ATtiny85 nestled in there &ndash; can you spot it?</em></p>
-<p><iframe style="margin-left:auto;margin-right:auto;aspect-ratio:16/9;width:60%;min-width:500px;max-width:1000px" src="https://youtube.com/embed/9ofjsV2GTLM?si=w51A-55oF6hctdXX" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share"></iframe></p>
-<p><em>I am currently working on a full-length video, without all of the mess, that explains this and more in full detail. Watch this page (or subscribe to my YouTube channel!) to know when that video is published.</em></p>
         <hr />
         <p><strong>Related Posts</strong></p>
         <ul>

@@ -1,10 +1,14 @@
 Title: Not Your Daddy's Boost Converter
 Date: 2023-06-07
-Modified: 2024-03-10
+Modified: 2024-04-08
 Series: roboraptor-upgrade
 Tags: electronics, youtube
 
-The original Roboraptor had dual power supplies. Two "AA" size batteries supplied 3 volts for the logic circuitry, and four batteries in a separarte circuit provided 6 volts for the motors. My redesign of the Roboraptor is designed to run off of a large single-cell 3.7 volt lithium battery -- but the motors run really sluggishly on only 3.7 volts (even though the torque is high as the battery can supply an incredible amount of current). So, to make the motors run faster, I need to increase the voltage. On top of that, my idea includes a few more requirements:
+The original Roboraptor had dual power supplies. Two "AA" size batteries supplied 3 volts for the logic circuitry, and four batteries in a separarte circuit provided 6 volts for the motors. My redesign of the Roboraptor is designed to run off of a large single-cell 3.7 volt lithium battery -- but the motors run really sluggishly on only 3.7 volts (even though the torque is high as the battery can supply an incredible amount of current). So, to make the motors run faster, I need to increase the voltage.
+
+<youtube id="NnDvN9RbQGY?si=ahxCAqWVCsQAkOef">
+
+On top of that, my idea includes a few more requirements:
 
 1. When the Roboraptor is in a "sleep" state, it can turn off the boost converter to save power.
 2. It can artificially reduce the output voltage to make the motors move smoothly and minimize PWM whine at slow speeds.
@@ -45,9 +49,3 @@ Then I tried to change the output voltage over I2C. Now the ATtiny85 didn't even
 After a *lot* of debugging, a [month-long rabbit hole](https://github.com/technoblogy/ulisp-esp/issues/75) trying to figure out why reads didn't work, and finding out I was using several outdated packages (and updating), I finally, at long last, got the voltage to change by sending commands over I2C. Whew!!
 
 The [code used is on GitHub](https://github.com/dragoncoder047/super85/tree/master/smartboost). And the circuit is above.
-
-*Edit March 10 -- I made a YouTube Short about this and posted it on my channel (also embedded below). I probably should have cleaned up my desk and the breadboard, but I was in a hurry filming the video. Oops! Only about half of the wiring and components on the breadboard is the boost converter. The rest is for another unreleased project that utilizes this boost converter module. There is another ATtiny85 nestled in there -- can you spot it?*
-
-<youtube id="9ofjsV2GTLM?si=w51A-55oF6hctdXX">
-
-*I am currently working on a full-length video, without all of the mess, that explains this and more in full detail. Watch this page (or subscribe to my YouTube channel!) to know when that video is published.*

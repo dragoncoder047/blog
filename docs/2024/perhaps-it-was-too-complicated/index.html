@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Perhaps It Was Too Complicated</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, python, game-design" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Perhaps It Was Too Complicated" />
+    <meta property="og:description" content="I guess I lied. About five months ago, I posted some thoughts about an upcoming Python interactive fiction engine, where the world model is not actually a tree, but simulated as such by relations. For example, there could be an apple inside of a refrigerator, and while it would make …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2024/perhaps-it-was-too-complicated" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Perhaps It Was Too Complicated" />
+    <meta name="twitter:description" content="I guess I lied. About five months ago, I posted some thoughts about an upcoming Python interactive fiction engine, where the world model is not actually a tree, but simulated as such by relations. For example, there could be an apple inside of a refrigerator, and while it would make …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon"height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives">Archives</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/tags">By tag</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/2024/perhaps-it-was-too-complicated" rel="bookmark" title="Permalink to this page">Perhaps It Was Too Complicated</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/2024/a-hash-mapped-mess">
+                    A Hash-Mapped Mess
+                </a>
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2024-05-01T00:00:00-04:00">Wed 01 May 2024</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/game-design">game-design</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/python">python</a>
+            </div>
+    </div>
+    <p>I guess I lied. About five months ago, I posted some thoughts about an upcoming Python interactive fiction engine, where the world model is not actually a tree, but simulated as such by relations. For example, there could be an apple inside of a refrigerator, and while it would make sense to put the apple as a child object of the refrigerator, the actual implementation would just store three objects in a flat list: the apple, the fridge, and a relation object specifying the apple is inside the fridge.</p>
+<p>It turns out, that was a little difficult to implement. I may go back to it, but for now, my implementation does actually place the objects in a tree structure, with the fridge pointing directly to the apple as a contained object. Except in the current implementation, the apple also holds a pointer to the fridge as its parent object &ndash; when the player takes the apple from the fridge, this enables the apple to be easily made a child object of the player only, and not both the player and the fridge at the same time (which wouldn&rsquo;t make much sense). Since the apple has a non-<code class="language-py3 highlight">None</code> parent, before the apple&rsquo;s parent is set to the player, the apple&rsquo;s parent (i.e. the fridge) has the apple removed from its child object lists, ensuring the apple is only child of one thing at once.</p>
+<p>I sorted this out, then started follwing <a href="https://zedlopez.github.io/standard_rules/">Inform 7&rsquo;s Standard Rules</a> to implement the typical physics of interactive fiction. After looking at how Inform has the runtime system organized, I figured out that there was some duplication of things. For example, Inform separates different things being done into two basic categores &ndash; &ldquo;activities&rdquo; and &ldquo;actions&rdquo;. I&rsquo;m not entirely sure what the difference is, even after reading the documentation. But here&rsquo;s a good example I came up with that demonstrates one of each:</p>
+<pre class="highlight"><code class="language-inform7">[This is a rule for the "printing-the-name-of activity"]
+Before printing the name of an edible thing:
+    say "[one of]yummy[or]scrumptious[or]delicious[or]tasty[or]delectable[at random] "
+
+[This is a rule for the "opening action"]
+Before opening an interdimensional chest (called C):
+    repeat with D running through all interdimensional chests in the world:
+        if D is not C, now every thing in D is in C.</code></pre>
+<p>The headers of the rules, which specify when the rule runs, look very similar. They both filter for a specific type of object. They both filter for a specific thing happening in the turn cycle. They both happen before the rest of the rule runs. Why should one be an &ldquo;action&rdquo; and the other an &ldquo;activity&rdquo;? I really don&rsquo;t know.</p>
+<p>I simplified both &ldquo;actions&rdquo; and &ldquo;activities&rdquo; into one construct: &ldquo;events&rdquo;. Every object can have event handlers attached to it, which function as the rules. When the action or activity happens, all the event handlers for the relevant objects are invoked, in order, until either one of the handlers cancels the whole action, or all handlers have been run.</p>
+<p>The next thing I revised &ndash; from both my previous two posts on this, as well as Inform&rsquo;s Standard Rules &ndash; is that not every object has every possible attribute, such as having a capacity, or a luminosity, or anything else that differentiates a particular &ldquo;type&rdquo; of object from another. These are added by giving the game objects &ldquo;traits&rdquo;.</p>
+<p>As of right now, 202 out of the 373 lines in <code>thing.py</code> deal with managing traits on game objects. Most of those lines implement two key characteristics of traits: there can only be one of each trait on a particular object, and some traits can imply other traits &ndash; so I have to do dependency analysis to figure out what has been added and what needs to be added. Then, since the &ldquo;core&rdquo; functionality is implemented by traits, there are a lot of aliases and attribute interception going on to automatically translate properties into trait lookup. It&rsquo;s a bit of a mess right now, and at any rate it&rsquo;s useless until I actually implement the rest of the library!</p>
+<p>I suppose the lesson to be learned here is that of Occam&rsquo;s razor: that is, if it looks to be too complicated for what it&rsquo;s doing, it probably is.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/zero-thickness-tree">Zero-Thickness Tree</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/a-very-confusing-data-model">A Very Confusing Data Model</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/its-september">It's September!!</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/in-search-of-a-brain">In Search of a Brain</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/pickle-has-regular-expressions-apparently">PICKLE Has Regular Expressions, Apparently</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

@@ -216,19 +216,8 @@ class YoutubeMagic(html.parser.HTMLParser):
                       "web-share"),
             "allowfullscreen": True}
 
-        self.out += (
-            '<iframe style="'
-            "margin-left:auto;margin-right:auto;"
-            f"aspect-ratio:{ratio};width:{width};"
-            "min-width:500px;"
-            "max-width:1000px"
-            '" src="' + url +
-            '" allow="'
-            "accelerometer;autoplay;"
-            "clipboard-write;encrypted-media;"
-            "gyroscope;picture-in-picture;"
-            "web-share"
-            '"></iframe>')
+        self.out += f"<iframe{"".join(f" {k}=\"{v}\"" for k,
+                                      v in attrs.items())}></iframe>"
 
     handle_startendtag = handle_starttag
 

@@ -138,15 +138,23 @@
 <p>Except, in practice, it&rsquo;s not that simple.</p>
 <p>Obviously, hashmaps for object properties aren&rsquo;t static &ndash; they will have properties inserted, updated, and removed. Updating an existing property is almost trivial &ndash; you just find the corresponding node in the hashmap and replace the value.</p>
 <p>The algorithms outlined for adding or deleting a property end up causing problems. Deleting a property just clears the node, it doesn&rsquo;t delete the node, and so the property-addition algorithm can check for and re-use cleared nodes instead of creating new children. This means that a simple add-or-update implementation might end up accidentally inserting the value twice, because it found a cleared node higher-up in the tree than the existing node&rsquo;s position and stopped too soon.</p>
+<div>
 <div class="float-right"><img src="https://kroki.io/mermaid/svg/eNpLL0osyFAIceFSAIK0_HwFXV07haTEIjR-FQDbiAqJ" /></div>
 <p>Consider what happens if you have, say, three nodes called <code>foo</code>, <code>bar</code>, and <code>baz</code>. First <code>foo</code> is inserted to an empty tree, so it becomes the root node, Then <code>bar</code> and <code>baz</code> are added, and become children of <code>foo</code>.</p>
+</div>
+<div>
 <div class="float-right"><img src="https://kroki.io/mermaid/svg/eNpLL0osyFAIceFSAIK0_PxohVgFXV07haTEIpgQlF8FAP9BC2E=" /></div>
 <p>Now <code>foo</code> is deleted. The first node matching it is cleared - no problem. There are no <code>foo</code>s in the tree.</p>
+</div>
+<div>
 <div class="float-right"><img src="https://kroki.io/mermaid/svg/eNpLL0osyFAIceFSAIK0_PxopaTEIgWNvNRyTaVYBV1dOwUgHyqYn5MCFISphEpWAQB0jhJW" /></div>
 <p><code>bar</code> is updated. Since there is a free node above the old <code>bar</code>, there ends up two <code>bar</code> nodes.</p>
 <p>Up until now, there isn&rsquo;t any problem. Finding any node, even in the tree with the duplicated <code>bar</code>, finds the correct value.</p>
+</div>
+<div>
 <div class="float-right"><img src="https://kroki.io/mermaid/svg/eNpLL0osyFAIceFSAIK0_PxohVgFXV07haTEomglIKGgkZ-ToqkUC5OHSlYBALp5D0I=" /></div>
 <p>The problem arises when you try to delete <code>bar</code> on this duplicated tree &ndash; and since the old <code>bar</code> node wasn&rsquo;t ever deleted, this &ldquo;shadow&rdquo; node now rears it ugly head and causes the key <code>bar</code> to revert to its old value, instead of being deleted like it was supposed to be.</p>
+</div>
 <p>I spent a long time trying to figure out how to combat this problem. The easiest solution, which I implemented, is to traverse the entire hash&rsquo;s search path, not just stopping at the first free node, when updating a value. If the new value is set by filling a free node (rather than simply updating the existing node with the same key), there may be shadow nodes under it, so the rest of the tree has to be traversed, and these shadow nodes cleared. This guarantees there will only be one node for any given key in use at the same time.</p>
 <hr>
 <p>The one last bug, that I still haven&rsquo;t fixed, is the way these hashmaps work with the garbage collector. When you delete a node, you don&rsquo;t actually <em>delete</em> the node, you just clear it / mark it as free. The memory is still in use as far as the garbage collector is concerned, and is never freed. Even if the an object has no properties currently, if the object had, say, a thousand different properties at some point in the past, there will now be a thousand unused nodes in the hashmap that the garbage collector just won&rsquo;t collect.</p>

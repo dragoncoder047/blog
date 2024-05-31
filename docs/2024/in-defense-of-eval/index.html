@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>In Defense Of Eval</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+
+        <meta name="tags" content="programming, python" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="In Defense Of Eval" />
+    <meta property="og:description" content="Your honor, this programmer has obvious disregard for the rules of Sane Programming. We can agree that it is common knowledge that there are certain features of programming languages that are available, but are not to be used. Anyone who does use them is deserving of shame. I present to …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2024/in-defense-of-eval" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - In Defense Of Eval" />
+    <meta name="twitter:description" content="Your honor, this programmer has obvious disregard for the rules of Sane Programming. We can agree that it is common knowledge that there are certain features of programming languages that are available, but are not to be used. Anyone who does use them is deserving of shame. I present to …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon"height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives">Archives</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/tags">By tag</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a>Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/2024/in-defense-of-eval" rel="bookmark" title="Permalink to this page">In Defense Of Eval</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/2024/perhaps-it-was-too-complicated">
+                    Perhaps It Was Too Complicated
+                </a>
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2024-05-31T00:00:00-04:00">Fri 31 May 2024</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/python">python</a>
+            </div>
+    </div>
+    <p>Your honor, this programmer has obvious disregard for the rules of Sane Programming. We can agree that it is common knowledge that there are certain features of programming languages that are available, but are not to be used. Anyone who does use them is deserving of shame. I present to you Exhibit A, a snippet of code taken from one of the defendant&rsquo;s projects:</p>
+<pre class="highlight"><code class="language-python">def __init__(self, game):
+    # ... snip ...
+
+    self.cff = inspect.currentframe().f_back
+
+def create_new_gameobj(self):
+    for varname, value in self.cff.f_locals.items():
+        if value is self.game:
+            break
+    else:
+        raise ValueError
+    g = {}
+    eval(self.cff.f_code, g, g)
+    return g[varname]</code></pre>
+<p>This code uses <code>inspect</code> to capture and save the current stack frame, which it later references in another method, that also makes a forbidden call to <code class="language-python3 highlight">eval()</code>. May I remind the jury of the widely-accepted programming adage, &ldquo;eval is evil?&rdquo; Case closed.</p>
+<hr>
+<p>Okay, okay, I know what you&rsquo;re thinking. Did I write that code? Yes, I did. And there&rsquo;s a very good reason why I could <em>only</em> use <code class="language-python3 highlight">eval()</code> for that code, and why I <em>had</em> to save a reference to the current stack frame.</p>
+<p>This chunk of code is taken from one of my as-yet-unreleased projects, the interactive fiction framework that I have written about a couple of times before. I&rsquo;ve gotten it to the point of being able to run a very basic and limited and rather unplayable game, but at least it works. Since terminals can&rsquo;t change font, I decided that to be able to use proportional-width fonts for formatting, I would have to take advantage of a web browser.</p>
+<p>The entire game object, that holds the state of the interactive fiction story, is created when the story file is run (it&rsquo;s just Python), and the world state is manipulated by injecting the player&rsquo;s commands. When the game is running in a terminal, there is only one session going at once, so the original game object passed in can be used, no problem.</p>
+<p>Weird stuff starts happening if the same game object is used for the Web server mode of presentation. Because the game object holds the state of the game, if the same game object is shared across two supposedly separate game sessions, the two sessions will end up sharing game state. That is bad.</p>
+<p>The solution I came up with was simple: just serialize the game object and stuff it in a hidden <code class="language-html highlight">&lt;input&gt;</code> in the game page that the server sends. Then when the player submits their command, the game object is deserialized from scratch, and essentially creates a new, cloned game object each time that never shares any state with any other game object in any session. Or so I thought.</p>
+<p>Turns out, simply serializing and then deserializing the game object wasn&rsquo;t enough to truly and fully clone it into a noninteracting, independent session. In writing the test game, I made judicious use of some advanced pointer structures &ndash; most notably impure functions and lexical closures &ndash; that Python&rsquo;s standard <code>pickle</code> module couldn&rsquo;t handle. So I had to turn to the third-party <a href="https://pypi.org/project/dill/"><code>dill</code> package</a>. And this was when I ran into another issue.</p>
+<p>Impure functions are simply functions that refer to and assign to variables from outside their own scope. To be able to do that, and simultaneously make the function a first-class object that can be passed around (and even through the network, as I was attempting to do), Python has to give the function object a pointer to all of the scopes it references, so it can still manipulate the variables even after the referenced scopes are popped off the call stack. Lexical closures are the same thing, except at some point, the function object is the only object that refers to the scope &ndash; at this point, the scope is said to be &ldquo;closed over,&rdquo; and the function a &ldquo;closure.&rdquo; Python employs some other optimization tricks to reduce memory consumption (such as only giving the function a reference to the variables it interacts with &ndash; known as the &ldquo;cell variables&rdquo; &ndash; and discarding the rest of the scope), but the point is this: <em>some part of the global scope is still alive</em> even after it is not directly accessible by the program.</p>
+<p>The <code>dill</code> package is able to serialize these impure functions and their references to global variables, with one critical caveat that I found out the hard way: When it detects an impure function is refering to a module-level global scope, it doesn&rsquo;t serialize the scope, it only makes a note in the serialization output that the scope is referred to. Then, when the object is deserialized, <code>dill</code> just adds a pointer to the already-existing scope. In the name of saving memory, <code>dill</code> has just created shared state.</p>
+<p>So that&rsquo;s the reason for why I use <code>inspect</code> and <code class="language-python3 highlight">eval</code>. The only way I can create a clean clone is by re-running the code, every time, in a clean scope. When the server is created, it saves a snapshot of where it was called from, which gets it the module code needed to recreate the game object. Then when it starts a new session, it creates a new, empty scope, and <code class="language-python3 highlight">eval</code>&lsquo;s the code within that scope. Problem solved.</p>
+<p><em>This</em> is the reason I used <code class="language-python3 highlight">eval</code>. <em>This</em> is the reason <code class="language-python3 highlight">eval</code> exists. <em>This</em> is the reason <code class="language-python3 highlight">eval</code> can never die.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/perhaps-it-was-too-complicated">Perhaps It Was Too Complicated</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/zero-thickness-tree">Zero-Thickness Tree</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/pickle-has-regular-expressions-apparently">PICKLE Has Regular Expressions, Apparently</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/a-very-confusing-data-model">A Very Confusing Data Model</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/schemascii-0">Schemascii &pm; 0</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

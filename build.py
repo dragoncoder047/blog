@@ -6,26 +6,28 @@ import html.parser
 from markdown.extensions import Extension
 from markdown.postprocessors import Postprocessor
 
-PORT = 8080
-BIND = "192.168.1.158"
-SITEURL = f"http://{BIND}:{PORT}"
+# PORT = 8080
+# BIND = "192.168.1.158"
+# SITEURL = f"http://{BIND}:{PORT}"
 
 AUTHOR = "dragoncoder047"
 SITENAME = "dragoncoder047&rsquo;s blog"
 SITESUBTITLE = "random thoughts about nonrandom things"
 SITEURL = "https://dragoncoder047.github.io/blog"
-LOGO = "/images/patrick.svg"
-LOGO_AREA_HTML = (f'<a href="{SITEURL}"><div class="flex-row"><img src="'
-                  + f'{LOGO}" width="141" alt="Patrick the purple dragon"'
-                  + 'height="85" /><div id="sitename-text" class="flex-'
-                  + f'column"><h1>{SITENAME}</h1><h2>{SITESUBTITLE}</h2>'
-                  + "</div></div></a>")
-ICON = "/images/patrick_head_silhouette.svg"
+LOGO = "/images/foo.svg"
+LOGO_AREA_HTML = (f'<a href="{SITEURL}"><div class="flex-row">'
+                  f'<img src="{LOGO}" alt="under construction..." />'
+                  '<div id="sitename-text" class="flex-column">'
+                  f'<h1>{SITENAME}</h1><h2>{SITESUBTITLE}</h2></div></div>'
+                  '</a>')
+ICON = "/images/foo.svg"
 ICON_MIMETYPE = "image/svg+xml"
 THEME_CSS_FILE = "/static/css/theme.css"
 THEME_MAIN_CSS = "/static/css/main.css"
 THEME_STATIC_DIR = "static/"
 EXTRA_JS = "/static/misc.js"
+
+GOOGLE_TAG = "G-XR0F89CCGK"  # cSpell: ignore ccgk
 
 PATH = "markdown/"
 OUTPUT_PATH = "docs/"

@@ -14,14 +14,14 @@ AUTHOR = "dragoncoder047"
 SITENAME = "dragoncoder047&rsquo;s blog"
 SITESUBTITLE = "random thoughts about nonrandom things"
 SITEURL = "https://dragoncoder047.github.io/blog"
-LOGO = "/images/foo.svg"
-LOGO_AREA_HTML = (f'<a href="{SITEURL}"><div class="flex-row">'
-                  f'<img src="{LOGO}" alt="under construction..." />'
-                  '<div id="sitename-text" class="flex-column">'
-                  f'<h1>{SITENAME}</h1><h2>{SITESUBTITLE}</h2></div></div>'
-                  '</a>')
-ICON = "/images/foo.svg"
-ICON_MIMETYPE = "image/svg+xml"
+LOGO = "/images/yazani/yazani_1_extracted_bg.svg"
+LOGO_AREA_HTML = ('<a href="/" class="flex-row"><div class="flex-row">'
+                  f'<img src="{LOGO}" />'
+                  '<div id="sitename-text">'
+                  f'<h1>{SITENAME}</h1><h2>{SITESUBTITLE}</h2>'
+                  '</div></div></a>')
+ICON = "/images/yazani_1_extracted_bg_big_eyes_cropped.png"
+ICON_MIMETYPE = "image/png"
 THEME_CSS_FILE = "/static/css/theme.css"
 THEME_MAIN_CSS = "/static/css/main.css"
 THEME_STATIC_DIR = "static/"

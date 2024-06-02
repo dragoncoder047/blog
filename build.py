@@ -206,8 +206,10 @@ class YoutubeMagic(html.parser.HTMLParser):
         else:
             raise ValueError(
                 "must have one of 'short', 'id', 'list' attribute")
+        # add global attributes
+        url += "&cc_load_policy=1&cc_lang_pref=en&rel=0&enablejsapi=1"
         attrs = {
-            "style": ("margin-left:auto;margin-right:auto;"
+            "style": ("display:block;margin-left:auto;margin-right:auto;"
                       f"aspect-ratio:{ratio};width:{width};"
                       "min-width:500px;"
                       "max-width:1000px"),

@@ -15,7 +15,8 @@ SITENAME = "dragoncoder047&rsquo;s blog"
 SITESUBTITLE = "random thoughts about nonrandom things"
 SITEURL = "https://dragoncoder047.github.io/blog"
 LOGO = "/images/yazani/yazani_1_extracted_bg.png"
-LOGO_AREA_HTML = ('<a href="/" class="flex-row"><div class="flex-row">'
+LOGO_AREA_HTML = (f'<a href="{SITEURL}" class="flex-row">'
+                  '<div class="flex-row">'
                   f'<img src="{LOGO}" style="max-height:10em" '
                   'id="banner-image" />'
                   '<div id="sitename-text">'

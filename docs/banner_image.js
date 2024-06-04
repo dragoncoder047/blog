@@ -1,4 +1,4 @@
-(function () {
+window.addEventListener("DOMContentLoaded", function () {
     const tagsEl = /** @type {HTMLMetaElement} */ document.querySelector("meta[name=tags]");
     if (!tagsEl) return;
     const bannerImage = document.querySelector("#banner-image");
@@ -16,4 +16,4 @@
         if (name == null) return; // Don't change it
     }
     bannerImage.src = `/images/yazani/yazani_${name}_extracted.png`;
-})();
+});

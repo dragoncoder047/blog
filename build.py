@@ -16,7 +16,8 @@ SITESUBTITLE = "random thoughts about nonrandom things"
 SITEURL = "https://dragoncoder047.github.io/blog"
 LOGO = "/images/yazani/yazani_1_extracted_bg.png"
 LOGO_AREA_HTML = ('<a href="/" class="flex-row"><div class="flex-row">'
-                  f'<img src="{LOGO}" style="max-height:10em" />'
+                  f'<img src="{LOGO}" style="max-height:10em" '
+                  'id="banner-image" />'
                   '<div id="sitename-text">'
                   f'<h1>{SITENAME}</h1><h2>{SITESUBTITLE}</h2>'
                   '</div></div></a>')
@@ -25,7 +26,7 @@ ICON_MIMETYPE = "image/png"
 THEME_CSS_FILE = "/static/css/theme.css"
 THEME_MAIN_CSS = "/static/css/main.css"
 THEME_STATIC_DIR = "static/"
-EXTRA_JS = "/static/misc.js"
+EXTRA_JS = ("/static/misc.js", "/blog/banner_image.js")
 
 GOOGLE_TAG = "G-XR0F89CCGK"  # cSpell: ignore ccgk
 

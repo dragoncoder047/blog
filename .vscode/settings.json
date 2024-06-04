@@ -7,6 +7,7 @@
         "GISCUS",
         "iframe",
         "inlinehilite",
+        "isinstance",
         "kroki",
         "longjmp",
         "lude",
@@ -22,7 +23,8 @@
         "SISC",
         "svgbob",
         "Tinobsy",
-        "Unskippables"
+        "Unskippables",
+        "yazani"
     ],
     "files.associations": {
         "*.tmpl": "jinja-html",

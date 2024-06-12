@@ -15,7 +15,11 @@ Obviously, hashmaps for object properties aren't static -- they will have proper
 
 The algorithms outlined for adding or deleting a property end up causing problems. Deleting a property just clears the node, it doesn't delete the node, and so the property-addition algorithm can check for and re-use cleared nodes instead of creating new children. This means that a simple add-or-update implementation might end up accidentally inserting the value twice, because it found a cleared node higher-up in the tree than the existing node's position and stopped too soon.
 
-<div markdown="block">
+<table markdown="block">
+<thead></thead>
+<tbody markdown="block">
+<tr markdown="block">
+<td markdown="block">
 ```{.mermaid .float-right}
 graph TD
     foo --> bar
@@ -23,9 +27,11 @@ graph TD
 ```
 
 Consider what happens if you have, say, three nodes called `foo`, `bar`, and `baz`. First `foo` is inserted to an empty tree, so it becomes the root node, Then `bar` and `baz` are added, and become children of `foo`.
-</div>
+</td>
+</tr>
 
-<div markdown="block">
+<tr markdown="block">
+<td markdown="block">
 ```{.mermaid .float-right}
 graph TD
     foo[ ] --> bar
@@ -33,9 +39,11 @@ graph TD
 ```
 
 Now `foo` is deleted. The first node matching it is cleared - no problem. There are no `foo`s in the tree.
-</div>
+</td>
+</tr>
 
-<div markdown="block">
+<tr markdown="block">
+<td markdown="block">
 ```{.mermaid .float-right}
 graph TD
     foo["bar (new)"] --> bar["bar (old)"]
@@ -45,9 +53,11 @@ graph TD
 `bar` is updated. Since there is a free node above the old `bar`, there ends up two `bar` nodes.
 
 Up until now, there isn't any problem. Finding any node, even in the tree with the duplicated `bar`, finds the correct value.
-</div>
+</td>
+</tr>
 
-<div markdown="block">
+<tr markdown="block">
+<td markdown="block">
 ```{.mermaid .float-right}
 graph TD
     foo[ ] --> bar["bar (old)"]
@@ -55,7 +65,10 @@ graph TD
 ```
 
 The problem arises when you try to delete `bar` on this duplicated tree -- and since the old `bar` node wasn't ever deleted, this "shadow" node now rears it ugly head and causes the key `bar` to revert to its old value, instead of being deleted like it was supposed to be.
-</div>
+</td>
+</tr>
+</tbody>
+</table>
 
 I spent a long time trying to figure out how to combat this problem. The easiest solution, which I implemented, is to traverse the entire hash's search path, not just stopping at the first free node, when updating a value. If the new value is set by filling a free node (rather than simply updating the existing node with the same key), there may be shadow nodes under it, so the rest of the tree has to be traversed, and these shadow nodes cleared. This guarantees there will only be one node for any given key in use at the same time.
 

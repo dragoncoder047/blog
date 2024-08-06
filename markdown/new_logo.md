@@ -10,7 +10,7 @@ Before this big redesign, I had been using a simple, handmade SVG of a dragon as
 %%%
     ![Patrick the purple dragon]({attach}patrick.svg)
 
-    %%: It really is just one `:::xml <path>` -- go [check it out](https://github.com/dragoncoder047/blog/blob/main/markdown/patrick.svg?short_path=f2f122e)!
+    %: It really is just one `:::xml <path>` -- go [check it out](https://github.com/dragoncoder047/blog/blob/main/markdown/patrick.svg?short_path=f2f122e)!
 
 To go along with the purple of Patrick, I made the rest of the website in purple and blue and other loud colors in the name of having the maximum contrast ratio -- you know, the ones that make your eyes pop when you first look at them. In hindsight it was rather ugly, but I really liked loud colors back then. I unfortunately didn't save a screenshot of the old website, and the Internet Archive's few captures of my site are horribly broken (the CSS didn't get captured for some odd reason, so it's all basically raw HTML), so I guess you'll have to take my word for it. But hey, at least there isn't any more loud colors permanently emblazoned on this page.
 
@@ -32,6 +32,6 @@ Once I actually, you know, started uploading, I figured I was going to need a ch
 
 And then later this year I found myself with a sheet of paper, a pencil, and nothing else to do. And I got a wonderful idea: I would draw more of Yazani doing different things and use those pictures on my website. So that's what I did, and this redesign is what resulted. I initially had reservations about using drawings of Yazani on my website, rather that drawings (or photographs) of myself, but at any rate Yazani is my character and has sort of evolved into my "alter ego" in a way. I even added a script to my blog that swaps out the image of Yazani in the top left for one that is relevant to what the blog post is about -- check out some other blog posts, and look at which image appears.
 
-To accompany this change I switched out the color scheme of this website. I'm not sure why I chose green, and I'm not sure why I decided to mess with any of the other CSS as well. I intended for the links to be the same color as the surrounding text, just with a blue underline, and then I found out that the CSS I used didn't work in Safari. I haven't the foggiest idea why it doesn't.
+To accompany this change I switched out the color scheme of this website. I'm not sure why I chose green, and I'm not sure why I decided to mess with any of the other CSS as well. I intended for the links to be the same color as the surrounding text, just with a blue underline, and then I found out that the CSS I used didn't work in Safari. I haven't the foggiest idea why it doesn't. *(EDIT 2024-08-06: this has been fixed in Safari.)*
 
 And that is the end of the story of my online presence overhaul. I fully anticipate that in the future, I will do another one of these overhauls. But I hope it won't be anytime soon.

@@ -329,4 +329,10 @@ READ_MORE_LINK_FORMAT = '<a href="/blog/{url}">{text}</a>'
 
 if __name__ == "__main__":
     import os
-    os.system(f"pelican {PATH} -o {OUTPUT_PATH} -s {__file__}")
+    import shlex
+    os.system(f"""pelican {
+        shlex.quote(PATH)
+    } -o {
+        shlex.quote(OUTPUT_PATH)
+    } -s {
+        shlex.quote(__file__)}""")

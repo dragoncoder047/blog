@@ -8,4 +8,6 @@ Otherwise it's the same setup as the [site root's repository](https://github.com
 
 # Copyright notice
 
-All of the *code* in this repository is licensed under the GPLv3. All of the *content* is copyright &copy; 2021-present me, and may not be used without either permission or attribution.
+All of the *code* in this repository is licensed under the GPLv3.
+
+All of the *content* is copyright &copy; 2021-present me, and may not be used without either permission or attribution.

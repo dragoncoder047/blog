@@ -21,14 +21,14 @@
         <meta name="tags" content="programming, c" />
     <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
     <meta property="og:title" content="ParTcl" />
-    <meta property="og:description" content="C headers are annoying. I was getting fed up with uLisp/Yisp and so I decided to run another Google search for “embeddable scripting language for Arduino”. It turned up mruby-arduino – poorly documented, and a little too big for my needs. It turned up eLua – which unfortunately is just a …" />
+    <meta property="og:description" content="C headers are annoying. I was getting fed up with uLisp and so I decided to run another Google search for “embeddable scripting language for Arduino”. It turned up mruby-arduino – poorly documented, and a little too big for my needs. It turned up eLua – which unfortunately is just a flashable …" />
     <meta property="og:image" content="/images/yazani/yazani_1_extracted_bg.png" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://dragoncoder047.github.io/blog/2022/partcl" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - ParTcl" />
-    <meta name="twitter:description" content="C headers are annoying. I was getting fed up with uLisp/Yisp and so I decided to run another Google search for “embeddable scripting language for Arduino”. It turned up mruby-arduino – poorly documented, and a little too big for my needs. It turned up eLua – which unfortunately is just a …" />
+    <meta name="twitter:description" content="C headers are annoying. I was getting fed up with uLisp and so I decided to run another Google search for “embeddable scripting language for Arduino”. It turned up mruby-arduino – poorly documented, and a little too big for my needs. It turned up eLua – which unfortunately is just a flashable …" />
     <meta name="twitter:image" content="/images/yazani/yazani_1_extracted_bg.png" />
             <!-- PrismJS -->
 <script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
@@ -121,7 +121,7 @@
                     <a href='https://dragoncoder047.github.io/blog/2023/lilduino'>LILduino</a>
                 </li>
         </ol>
-    <p>C headers are annoying. I was getting fed up with uLisp/Yisp and so I decided to run another Google search for &ldquo;embeddable scripting language for Arduino&rdquo;.</p>
+    <p>C headers are annoying. I was getting fed up with uLisp and so I decided to run another Google search for &ldquo;embeddable scripting language for Arduino&rdquo;.</p>
 <p>It turned up <a href="https://github.com/kyab/mruby-arduino">mruby-arduino</a> &ndash; poorly documented, and a little too big for my needs.</p>
 <p>It turned up <a href="http://www.eluaproject.net/">eLua</a> &ndash; which unfortunately is just a flashable firmware with no C interface for custom functions (just like with MicroPython).</p>
 <p>And it turned up Serge Zaitsev&rsquo;s <a href="https://zserge.com/posts/tcl-interpreter/">ParTcl interpreter</a>. It&rsquo;s a bare-bones interpreter for the <a href="https://en.wikipedia.org/wiki/Tcl">Tcl</a> programming language which implements only 5 core functions (<code class="language-tcl highlight">subst</code>, <code class="language-tcl highlight">set</code>, <code class="language-tcl highlight">while</code>, <code class="language-tcl highlight">if</code>, and <code class="language-tcl highlight">proc</code>) as well as <code class="language-tcl highlight">puts</code> and some math functions.</p>
@@ -136,7 +136,7 @@
 <p>&hellip;which is exactly what I need to use it as an Arduino library!</p>
 <p>There are a few bugs &ndash; namely this one:</p>
 <blockquote>
-<p>In the default implementation lists are implemented as raw strings that add some escaping (braces) around each iterm. It&rsquo;s a simple solution that also reduces the code, but in some exotic cases the escaping can become wrong and invalid results will be returned.</p>
+<p>In the default implementation lists are implemented as raw strings that add some escaping (braces) around each item. It&rsquo;s a simple solution that also reduces the code, but in some exotic cases the escaping can become wrong and invalid results will be returned.</p>
 </blockquote>
 <p>Using my experience from Lisp lists, I saw that Tcl lists could be implemented as a linked list as well. I <a href="https://github.com/zserge/partcl/issues/14">proposed it</a> and we&rsquo;ll see what Serge says. I could probably fork ParTcl and add it myself anyway.</p>
 <p>This seems like the best solution so far, and what I&rsquo;ll probably go with.</p>

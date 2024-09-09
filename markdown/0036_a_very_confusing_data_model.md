@@ -52,7 +52,7 @@ The second, unrelated problem I have is how to describe the game. I want to avoi
 
 I have had several ideas over the course of thought:
 
-1. Use [Tcl](https://docs.python.org/3/library/tkinter.html#tkinter.Tcl) embedded into Python to create a domain-specific language. This has the disadvantage in that it can't be run in the Web using Pyodide because Pyodide doesn't have access to libtcl.
+1. Use [Tcl](https://docs.python.org/3/library/tkinter.html#tkinter.Tcl) embedded into Python to create a domain-specific language. This has the disadvantage in that it can't be run in the Web using Pyodide because Pyodide doesn't have access to `libtcl`.
 2. Write my own Tcl-like parser in Python. This is conceptually easy (all it really needs to do is be able to balance brackets) but extremely difficult in practice.
 3. Just give up and use Python, but make it really easy by using a decorator syntax, and naming conventions similar to the `do_X` standard expected by the Python [`cmd` module](https://docs.python.org/3/library/cmd.html).
 4. Use YAML, and embed commands into the strings somehow. Blocks could be implemented by one-keypair dictionaries.

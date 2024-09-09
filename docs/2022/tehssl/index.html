@@ -168,11 +168,11 @@ fclose(s);</code></pre>
 <ol>
 <li>The comment on line 2 is discarded entirely.</li>
 <li>The parens and semicolons are being separated out into their own tokens.</li>
-<li>All of the <code>lowercase</code> words are being discareded, because they are &ldquo;informal syntax&rdquo; that are treated as comments.</li>
+<li>All of the <code>lowercase</code> words are being discarded, because they are &ldquo;informal syntax&rdquo; that are treated as comments.</li>
 <li>The <code>with:</code> is <em>not</em> discarded, because it is a keyword property that actually means something.</li>
-<li>The string token (<code>"Did something!!</code>) doesn&rsquo;t have the closing quote. This is so the parser (which reads the tokens) can look at the first character to determine the type of symbol, and in the case of a string, it can just slice off the first character without having to blank out the last as well (which is considerably harder in C than in another lnaguage such as Python) to get the raw string contents.</li>
+<li>The string token (<code>"Did something!!</code>) doesn&rsquo;t have the closing quote. This is so the parser (which reads the tokens) can look at the first character to determine the type of symbol, and in the case of a string, it can just slice off the first character without having to blank out the last as well (which is considerably harder in C than in another language such as Python) to get the raw string contents.</li>
 </ol>
-<p>TEHSSL is more than just a grabage colelctor and a tokenizer, but that&rsquo;s all I have written at this moment. But apparently it looks promising, because David Kobalia starred TEHSSL on GitHub yesterday!</p>
+<p>TEHSSL is more than just a grabage collector and a tokenizer, but that&rsquo;s all I have written at this moment. But apparently it looks promising, because David Kobalia starred TEHSSL on GitHub yesterday!</p>
         <hr />
         <p><strong>Related Posts</strong></p>
         <ul>

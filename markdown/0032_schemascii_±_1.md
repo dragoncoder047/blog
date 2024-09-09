@@ -37,7 +37,7 @@ J1:-5V
 J2:GND
 ```
 
-So far, my program is able to run aroud and grab all of the components off the diagram, and also grab the "BOM data" that I placed at the bottom. It ends up in this big dictionary:
+So far, my program is able to run around and grab all of the components off the diagram, and also grab the "BOM data" that I placed at the bottom. It ends up in this big dictionary:
 
 ```py3
 {   Cbox(p1=(3+0j), p2=(7+0j), type='BAT', id=1): [   Terminal(pt=(7+0j), flag='+', side=<Side.RIGHT: 1>),

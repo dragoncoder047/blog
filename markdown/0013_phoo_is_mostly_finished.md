@@ -8,10 +8,8 @@ Anyway, I just finished up the first draft of the documentation of Phoo. The gen
 
 Phoo itself seems to work okay, although there are a few bugs, including that macros are impossible, they just don't work properly ([#6](https://github.com/dragoncoder047/phoo/issues/6)), plus I have a huge laundry list of libraries I want to add to Phoo ([#9](https://github.com/dragoncoder047/phoo/issues/9)).
 
-Oh well. Suffice to say I have other ideas I should be working and not hemming and hawing about unecessary libraries that do nothing but get me closer to fufilling [Zawinski's Law](https://en.wikipedia.org/wiki/Jamie_Zawinski#Zawinski's_Law).
+Oh well. Suffice to say I have other ideas I should be working and not hemming and hawing about unnecessary libraries that do nothing but get me closer to fulfilling [Zawinski's Law](https://en.wikipedia.org/wiki/Jamie_Zawinski#Zawinski's_Law).
 
 Here's the current version of Phoo, embedded:
 
-<iframe src="https://phoo-lang.github.io/" style="width: 100%"></iframe>
-
-EDIT: fixed URL.
+<iframe src="https://dragoncoder047.github.io/phoo" style="width: 100%"></iframe>

@@ -16,7 +16,7 @@ I decided I would redesign everything to fix these problems. In total, I made qu
 
 #5 I am the most proud of, and here's how I did it:
 
-First, everything tha is *not* the popup (what would noramlly just be the `:::html <body>`) gets put in the `:::html <main>` element.
+First, everything tha is *not* the popup (what would normally just be the `:::html <body>`) gets put in the `:::html <main>` element.
 
 The body's scroll is disabled:
 

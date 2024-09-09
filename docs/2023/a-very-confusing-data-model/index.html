@@ -146,7 +146,7 @@
 <p>The second, unrelated problem I have is how to describe the game. I want to avoid the use of real Python code as much as possible, but to allow for anything to be modified in any way desired during the course of the game. I did find a simple description of using YAML (and by extension, JSON) as a templating language (<a href="https://nathanpeck.com/is-yaml-a-real-programming-language/">this</a>), but it&rsquo;s not Turing-complete, and it&rsquo;s a templating language anyway (the constructs were designed without any side-effects in mind).</p>
 <p>I have had several ideas over the course of thought:</p>
 <ol>
-<li>Use <a href="https://docs.python.org/3/library/tkinter.html#tkinter.Tcl">Tcl</a> embedded into Python to create a domain-specific language. This has the disadvantage in that it can&rsquo;t be run in the Web using Pyodide because Pyodide doesn&rsquo;t have access to libtcl.</li>
+<li>Use <a href="https://docs.python.org/3/library/tkinter.html#tkinter.Tcl">Tcl</a> embedded into Python to create a domain-specific language. This has the disadvantage in that it can&rsquo;t be run in the Web using Pyodide because Pyodide doesn&rsquo;t have access to <code>libtcl</code>.</li>
 <li>Write my own Tcl-like parser in Python. This is conceptually easy (all it really needs to do is be able to balance brackets) but extremely difficult in practice.</li>
 <li>Just give up and use Python, but make it really easy by using a decorator syntax, and naming conventions similar to the <code>do_X</code> standard expected by the Python <a href="https://docs.python.org/3/library/cmd.html"><code>cmd</code> module</a>.</li>
 <li>Use YAML, and embed commands into the strings somehow. Blocks could be implemented by one-keypair dictionaries.</li>

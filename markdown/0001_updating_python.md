@@ -1,7 +1,7 @@
 Date: 2021-09-15
 Title: Updating Python
 Modified: 2022-09-12
-Tage: python, linux
+Tags: python, linux
 
 After I bought myself my Raspberry Pi, I soon figured out that the only version of Python available on the Debian package repositories was 3.7.2, but as of when I wrote this it is already on 3.9.7. So, I was forced to compile from source.
 

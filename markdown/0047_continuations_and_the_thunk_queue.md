@@ -3,7 +3,7 @@ Date: 2023-09-21
 Series: pickle
 Tags: programming, c, javascript, language-design
 
-After I made the last post -- where I decided that PICKLE would be done in continuation-passing style -- I revisted one extremely simple toy programming language done in continuation-passing style I found online ([here](https://curiosity-driven.org/continuations#interpreter)). I figured it would be a good example of how I could implement PICKLE. The only problem is the interpreter makes heavy use of closures -- so heavy that I almost couldn't understand it.
+After I made the last post -- where I decided that PICKLE would be done in continuation-passing style -- I revisited one extremely simple toy programming language done in continuation-passing style I found online ([here](https://curiosity-driven.org/continuations#interpreter)). I figured it would be a good example of how I could implement PICKLE. The only problem is the interpreter makes heavy use of closures -- so heavy that I almost couldn't understand it.
 
 Closures, however, were a smart choice, at least in terms of being particularly low-hanging fruit in the Javascript sense. The "current continuation", generally speaking, is just an object that contains some information on what computations need to be done after the current one completes (and passes its result to the continuation). A closure here would hold the code needed to perform the next action, and also close over the data (i.e. the abstract syntax tree being executed) representing the *real* program. While C++ doesn't have any (useful) closures per se, I already have garbage-collected objects, and closures and objects are [somewhat equivalent](https://wiki.c2.com/?ClosuresAndObjectsAreEquivalent).
 

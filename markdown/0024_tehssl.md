@@ -93,8 +93,8 @@ And it produced these tokens: `Def` `Myfunction` `{` `DoSomething` `with:` `\a-s
 
 1. The comment on line 2 is discarded entirely.
 2. The parens and semicolons are being separated out into their own tokens.
-3. All of the `lowercase` words are being discareded, because they are "informal syntax" that are treated as comments.
+3. All of the `lowercase` words are being discarded, because they are "informal syntax" that are treated as comments.
 4. The `with:` is *not* discarded, because it is a keyword property that actually means something.
-5. The string token (`"Did something!!`) doesn't have the closing quote. This is so the parser (which reads the tokens) can look at the first character to determine the type of symbol, and in the case of a string, it can just slice off the first character without having to blank out the last as well (which is considerably harder in C than in another lnaguage such as Python) to get the raw string contents.
+5. The string token (`"Did something!!`) doesn't have the closing quote. This is so the parser (which reads the tokens) can look at the first character to determine the type of symbol, and in the case of a string, it can just slice off the first character without having to blank out the last as well (which is considerably harder in C than in another language such as Python) to get the raw string contents.
 
-TEHSSL is more than just a grabage colelctor and a tokenizer, but that's all I have written at this moment. But apparently it looks promising, because David Kobalia starred TEHSSL on GitHub yesterday!
+TEHSSL is more than just a grabage collector and a tokenizer, but that's all I have written at this moment. But apparently it looks promising, because David Kobalia starred TEHSSL on GitHub yesterday!

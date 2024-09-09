@@ -18,6 +18,7 @@
     
 
 
+        <meta name="tags" content="python, linux" />
     <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
     <meta property="og:title" content="Updating Python" />
     <meta property="og:description" content="After I bought myself my Raspberry Pi, I soon figured out that the only version of Python available on the Debian package repositories was 3.7.2, but as of when I wrote this it is already on 3.9.7. So, I was forced to compile from source. The …" />
@@ -89,6 +90,11 @@
             <address>By
                     <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
             </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/linux">linux</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/python">python</a>
+            </div>
     </div>
     <p>After I bought myself my Raspberry Pi, I soon figured out that the only version of Python available on the Debian package repositories was 3.7.2, but as of when I wrote this it is already on 3.9.7. So, I was forced to compile from source.</p>
 <p>The process to do this is very time consuming, so I made a shell script to do it automatically, as per the instructions on the Python website.</p>
@@ -104,6 +110,15 @@ echo 'alias update-python=". ~/.local/bin/update-python.sh"' &gt;&gt; ~/.bashrc 
 <p>This will install Python 3.9.7 as <code>python3</code>.</p>
 <p>EDIT: If you want OpenSSL, Tkinter, etc. you will need to install some additional packages with <code>apt</code>:</p>
 <pre class="highlight"><code class="language-bash">sudo apt install libncurses-dev libgdbm-dev libz-dev tk-dev libsqlite3-dev libreadline-dev liblzma-dev libffi-dev libssl-dev</code></pre>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/in-defense-of-eval">In Defense Of Eval</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/perhaps-it-was-too-complicated">Perhaps It Was Too Complicated</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/zero-thickness-tree">Zero-Thickness Tree</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/pickle-has-regular-expressions-apparently">PICKLE Has Regular Expressions, Apparently</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/a-very-confusing-data-model">A Very Confusing Data Model</a></li>
+        </ul>
     <script src="https://giscus.app/client.js"
         data-repo="dragoncoder047/blog"
         data-repo-id="R_kgDOHCL60w"

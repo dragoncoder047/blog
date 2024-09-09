@@ -50,7 +50,7 @@ Looking at what's going on in term of the continuation chain, it isn't actually 
 
 Perhaps the one way to simplify this is to go the stack machine approach. Phoo, my previous attempt at a programming language, was a stack machine. [After Phoo imploded][phooey] I've had a bad taste in my mouth for stack-based stuff, but there must be a reason that other languages use them for their bytecode machines.
 
-[phooey]: {filename}phooey.md
+[phooey]: {filename}0038_phooey_phooey_phooey.md
 
 ## Instruction *stack*??
 

@@ -26,7 +26,7 @@ The result of that code would be to define that applying the operator `|>` to an
 
 ## Simplified parsing
 
-In the [previous post about PICKLE]({filename}pickle_garbage.md) I mentioned that unary operators would be applied first, then binary (infix) operators. The only problem with this arises when you throw whitespace into the mix: for example, consider a simple addition of two variables -- you could write it with whitespace, or without. In the old Javascript parser they would produce different sequences of tokens:
+In the [previous post about PICKLE]({filename}0037_manual_memory_management_madness.md) I mentioned that unary operators would be applied first, then binary (infix) operators. The only problem with this arises when you throw whitespace into the mix: for example, consider a simple addition of two variables -- you could write it with whitespace, or without. In the old Javascript parser they would produce different sequences of tokens:
 
 ```pickle
 ## With space --> "$" "x" "+" "$" "y"

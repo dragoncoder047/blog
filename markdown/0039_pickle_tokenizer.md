@@ -34,7 +34,7 @@ The only bug I can see here with this example is that the colon-block string par
 
 ## Inheritance
 
-In [my earlier post about Pickle]({filename}pickles.md), I mentioned that Pickle would have a multiprototype-based inheritance system, a strange mix of Python and Javascript. Python supports multiple inheritance, but chokes on "ambiguous" inheritance trees, while Javascript only supports single inheritance through prototypes. But I think I've found a simple solution that implements multiprototype-based inheritance. Here's a pared-down example:
+In [my earlier post about Pickle]({filename}0034_pickles.md), I mentioned that Pickle would have a multiprototype-based inheritance system, a strange mix of Python and Javascript. Python supports multiple inheritance, but chokes on "ambiguous" inheritance trees, while Javascript only supports single inheritance through prototypes. But I think I've found a simple solution that implements multiprototype-based inheritance. Here's a pared-down example:
 
 ```js
 class PickleObject {

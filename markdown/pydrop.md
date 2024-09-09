@@ -1,5 +1,5 @@
 Title: Airdrop for non-Apple users
-Date: 2022-3-23
+Date: 2022-03-23
 Tags: programming, python
 
 It has come up often where I have a file on my parent's Mac that I need to send to my computer. Any Apple user would probably just use Airdrop. But I use Linux!... So I created a little Python script that allows sending files between computers with the only condition is one must be able to run Python and the other must have a web browser.

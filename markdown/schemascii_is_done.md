@@ -1,5 +1,5 @@
 Title: Schemascii &pm; 0
-Date: 02-01-2023
+Date: 2023-02-01
 Tags: programming, electronics, python
 
 I have been working *really* hard this week on Schemascii. Like, maybe too much. But, I finally got Schemascii to the point that I could (if I wanted) upload it to PyPI and it would be a valid package.

@@ -79,7 +79,7 @@ ARCHIVES_SAVE_AS = "archives/index.html"
 CATEGORY_URL = CATEGORY_SAVE_AS = ""
 CATEGORIES_SAVE_AS = ""
 DISPLAY_CATEGORIES_ON_MENU = False
-USE_CATEGORES = False
+USE_CATEGORIES = False
 
 # Blogroll
 LINKS = (
@@ -210,12 +210,16 @@ class YoutubeMagic(html.parser.HTMLParser):
             raise ValueError(
                 "must have one of 'short', 'id', 'list' attribute")
         # add global attributes
-        url += "&cc_load_policy=1&cc_lang_pref=en&rel=0&enablejsapi=1"
+        # cSpell: ignore enablejsapi
+        if "?" in url:
+            url += "&"
+        else:
+            url += "?"
+        url += "cc_load_policy=1&cc_lang_pref=en&rel=0&enablejsapi=1"
         attrs = {
             "style": ("display:block;margin-left:auto;margin-right:auto;"
                       f"aspect-ratio:{ratio};width:{width};"
-                      "min-width:500px;"
-                      "max-width:1000px"),
+                      "max-width:90vw"),
             "src": url,
             "allow": ("accelerometer;autoplay;"
                       "clipboard-write;encrypted-media;"

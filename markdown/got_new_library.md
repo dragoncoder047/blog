@@ -1,5 +1,5 @@
 Title: Change of Plans
-Date: 03-26-2022
+Date: 2022-03-26
 Modified: 2022-4-4
 Tags: programming, phoo, javascript
 

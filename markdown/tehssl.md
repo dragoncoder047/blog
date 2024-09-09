@@ -1,5 +1,5 @@
 Title: TEHSSL
-Date: 2022-11-2
+Date: 2022-11-02
 Tags: programming, c, language-design
 
 I started writing a new programming language, TEHSSL, a few days ago. Starting from scratch (again!) wasn't easy, and I'm nowhere near done yet. I have got two things working so far: the garbage collector, and the tokenizer. I have no idea how to handle the glue in between (parser, evaluator, macros, builtin functions), or even what the glue will do and how it will work.

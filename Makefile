@@ -1,4 +1,4 @@
-.PHONY: build clean
+.PHONY: build clean filenames
 
 build: clean
 	./build.py
@@ -6,3 +6,6 @@ build: clean
 
 clean:
 	rm -rf docs/
+
+filenames:
+	python3 normalize_filenames.py

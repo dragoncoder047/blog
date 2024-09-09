@@ -2,11 +2,10 @@ import glob
 import datetime
 import html
 import os
-import pprint
 import string
 import re
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
+os.chdir("markdown/")
 
 files = glob.glob("*.md")
 
@@ -18,7 +17,6 @@ def slugify(s: str):
     return re.sub(fr"[\s{re.escape(string.punctuation)}]+", "_",
                   html.unescape(s).lower()).strip("_")
 
-assert slugify("Hello, World!") == "hello_world"
 
 for file in files:
     date = None

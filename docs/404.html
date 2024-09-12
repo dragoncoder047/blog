@@ -77,7 +77,10 @@
     
 
 
-    <p style="text-align: center"><pre class="highlight"><code class="language-txt">       444444444         000000000              444444444  
+    <!-- TODO: get an image for this page? -->
+<!-- markdownlint-disable blanks-around-fences -->
+
+<p style="text-align: center"><pre class="highlight"><code class="language-txt">       444444444         000000000              444444444  
       4::::::::4       00:::::::::00           4::::::::4  
      4:::::::::4     00:::::::::::::00        4:::::::::4  
     4::::44::::4    0:::::::000:::::::0      4::::44::::4  
@@ -97,9 +100,10 @@
 
 <p><a href="javascript:history.back()">Go back</a>.</p>
 <script>
+    // update link if it was an internal link
     var m = document.getElementById('message');
     if (/\/\/dragoncoder047.github.io\//.test(document.referrer)) {
-        var repo = /dragoncoder047.github.io\/(\w+)\//.exec(document.referrer)[1];
+        var repo = /dragoncoder047.github.io\/(\w+)/.exec(document.referrer)?.[1] || "dragoncoder047.github.io";
         m.innerHTML = 'Sorry for the broken link. If it doesn&apos;t get fixed soon, please <a href="https://github.com/dragoncoder047/' + repo + '/issues">report it</a>.';
     }
 </script>

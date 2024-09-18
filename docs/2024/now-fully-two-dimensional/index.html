@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Now Fully Two-Dimensional</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
+                    <link rel="apple-touch-icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
+                        <script src="/static/misc.js"></script>
+                        <script src="/blog/banner_image.js"></script>
+
+
+
+    
+
+
+        <meta name="tags" content="programming, electronics, python" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Now Fully Two-Dimensional" />
+    <meta property="og:description" content="Last time I mentioned something about Schemascii, I had just completed the first version. It works well for what I need it for, but the internals are very crude. Schemascii doesn’t even have advanced components such as op-amps and logic gates – something that has prevented me from fully being …" />
+    <meta property="og:image" content="/images/yazani/yazani_1_extracted_bg.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2024/now-fully-two-dimensional" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Now Fully Two-Dimensional" />
+    <meta name="twitter:description" content="Last time I mentioned something about Schemascii, I had just completed the first version. It works well for what I need it for, but the internals are very crude. Schemascii doesn’t even have advanced components such as op-amps and logic gates – something that has prevented me from fully being …" />
+    <meta name="twitter:image" content="/images/yazani/yazani_1_extracted_bg.png" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog" class="flex-row"><div class="flex-row"><img src="/images/yazani/yazani_1_extracted_bg.png" style="max-height:10em" id="banner-image" /><div id="sitename-text"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives">Archives</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/tags">By tag</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/2024/now-fully-two-dimensional" rel="bookmark" title="Permalink to this page">Now Fully Two-Dimensional</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/2024/pointer-soup">
+                    Pointer Soup
+                </a>
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2024-09-17T00:00:00-04:00">Tue 17 September 2024</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/electronics">electronics</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming">programming</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/python">python</a>
+            </div>
+    </div>
+    <p>Last time I mentioned something about Schemascii, I had <a href="https://dragoncoder047.github.io/blog/2023/schemascii-0">just completed the first version</a>. It works well for what I need it for, but the internals are very crude. Schemascii doesn&rsquo;t even have advanced components such as op-amps and logic gates &ndash; something that has prevented me from fully being able to convert all of the circuit diagrams that I have posted to Schemascii format. I couldn&rsquo;t come up with a simple way of specifying what shape the IC should have (other than hard-coding it and causing inevitable problems) so I just gave up and moved on to other projects.</p>
+<!-- cSpell: ignore Nadim Khemir Asciio -->
+
+<p>In July of 2023 I was contacted by Nadim Khemir, one of the developers of the program <a href="https://github.com/nkh/P5-App-Asciio/">Asciio</a>. I had never heard of Asciio before &ndash; it turns out it is a rather old and large Perl program that lets you edit box-and-arrow diagrams, drawn using ASCII art as one would expect. He <a href="https://github.com/dragoncoder047/schemascii/issues/8">asked</a> if I would be interested in collaborating on making both Schemascii and Asciio play nicely with each other &ndash; Schemascii gets a GUI editor, and Asciio gets an SVG renderer (at least for circuit diagrams). I can&rsquo;t say I wasn&rsquo;t interested, but at the time I wasn&rsquo;t really up to anything that would require modifying the scope of Schemascii. I realized I had written some terrible spaghetti code in getting Schemascii to work, and adding more new features would have just made my brain hurt more. I didn&rsquo;t really touch Schemascii much after that.</p>
+<p>Fast-forward to the middle of August 2024. I was going through and cleaning up old issues in GitHub and found the one from Nadim. It sparked my interest (again), and I read what I originally wrote in reply to Nadim:</p>
+<blockquote>
+<p>Schemascii&rsquo;s internal representation is pretty much just the raw text, no structure or anything, and any coordinate information is thrown out after rendering each component or line to a string. If you connect two separate wires using the G symbols, electrically, they are connected (both ground), but Schemascii has no idea and ends up making them appear as two separate wires when you hover over them. So I doubt I&rsquo;d be able to add any thing to export a Schemascii diagram to any of the other formats.</p>
+</blockquote>
+<p>And then I opened up the source code and was reminded of how messy Schemascii is. The messy code, the lack of op-amps, and the weird &ldquo;G&rdquo; issue led me to decide that, well, I would need to do some refactoring.</p>
+<p>&ldquo;Some refactoring&rdquo; turned out to be a royal understatement. What I ended up doing was completely re-writing Schemascii from the inside out. The only thing left from the &ldquo;old&rdquo; Schemascii was the utility functions that performed some basic mathematical operation on the points &ndash; and even with some of those, I was able to revise their algorithms to run faster and/or produce shorter results.</p>
+<h2 id="eliminating-cramming">Eliminating cramming</h2>
+<p>One of the biggest problems with Schemascii&rsquo;s first syntax, as I saw it, is that the directives that indicate the value of each component have to be crammed into the area of the drawing. Inevitably they never fit, and so I have to put them outside the area of the drawing &ndash; which ends up making the &ldquo;area of the drawing&rdquo; bigger as far as Schemascii is concerned, and the drawing ends up with an awkwardly large and often asymmetric margin around it.</p>
+<p>The solution was to move these formatting directives - which I called &ldquo;BOM data&rdquo; for lack of a better term - completely outside of the drawing. Schemascii won&rsquo;t even look for them there. Instead, Schemascii now forces them to be in a separate section below the document.</p>
+<p>Freed from the restriction that it has to fit within the document, I decided that all of the different drawing elements &ndash; wires, components, annotations, etc. &ndash; would be put into an &ldquo;inheritance hierarchy&rdquo; of sorts, much like HTML elements being targeted by CSS. Then, the formatting directives would be grouped into rules, with selectors that can match some of the different elements.</p>
+<p>Since it reminded me of CSS, the syntax for it I designed is a lot like CSS. It&rsquo;s not quite CSS, though. Why I didn&rsquo;t just pick an existing structured data format, such as JSON, YAML, or TOML, I am not quite sure. I think the main reasons why I decided to &ldquo;roll my own&rdquo; syntax was a combination of not liking the verbosity and lack of comments in JSON, having to add a dependency for YAML, and having to require Python 3.12 for TOML.</p>
+<p>The syntax I have implemented so far is a little like CSS, but not quite. Here is a little example:</p>
+<pre class="highlight"><code class="language-text">* {
+    %% * = global config options
+    color = black
+    width = 2; padding = 20;
+    format = symbol
+    mystring = "hello\nworld"
+}
+
+R* {tolerance = .05; wattage = 0.25}</code></pre>
+<h2 id="confronting-schemasciis-dimensionality">Confronting Schemascii&rsquo;s dimensionality</h2>
+<p>Schemascii is, by nature, two-dimensional. While it&rsquo;s not exactly 2-D <em>code</em> (compared to an actual Turing-complete programming language such as <a href="https://esolangs.org/wiki/Befunge">Befunge</a>), writing a parser for it is still pretty difficult.</p>
+<p>Consider the task of extracting the wires. Any characters that are allowed in wires &ndash; namely <code>-</code>, <code>|</code>, <code>(</code>, <code>)</code>, and <code>*</code> &ndash; are part of some wire or another. Then Schemascii must determine which characters are parts of which wire.</p>
+<p>From the top-level, it seems obvious: just &ldquo;follow&rdquo; the wires until you reach the ends, splitting at junctions, and continuing straight at crossings. I implemented just that, and ended up with <a href="https://github.com/dragoncoder047/schemascii/blob/a76158b6dfa26384f8e2fc8bdce52b5efca728bd/schemascii/wires.py">this 128-line monstrosity</a>. The entire file implements that one algorithm, as a depth-first search. There is no other functionality in that entire file except for internal functions that implement some part of that algorithm.</p>
+<p>At any rate, the algorithm is not <em>quite</em> a straight flood fill, and this is why I probably didn&rsquo;t use it. But when I rewrote Schemascii, flood fill seemed close enough to try &ndash; and I was right.</p>
+<p>Flood fill is a devilishly simple algorithm by itself:</p>
+<ol>
+<li>Start with a set of known &ldquo;seed&rdquo; cells as the &ldquo;frontier&rdquo; set.</li>
+<li>Pick a point in the &ldquo;frontier&rdquo; set (it doesn&rsquo;t matter which).</li>
+<li>Add all the valid neighbors adjacent to that point that also aren&rsquo;t already in the &ldquo;seen&rdquo; set to the &ldquo;frontier&rdquo; set.</li>
+<li>Move the point you just picked from the &ldquo;frontier&rdquo; set into the &ldquo;seen&rdquo; set.</li>
+<li>Repeat steps 2-4 until the &ldquo;frontier&rdquo; set is empty. The result is all of the points that are now in the &ldquo;seen&rdquo; set.</li>
+</ol>
+<p>As-is, this can&rsquo;t just be used to find wires, because by definition, the wires have a <em>directionality</em> to them. The algorithm outlined above doesn&rsquo;t care which direction it&rsquo;s expanding into when chooses the neighbors in step 3. I figured out that the simplest way to make the code &ldquo;follow&rdquo; the wires and not inadvertently merge two wires that cross each other is to make each of the &ldquo;frontier&rdquo; points remember the direction that their previous neighbor was. That way, when it is picking neighbors in step 3, it can check to see which direction it came &ldquo;in&rdquo; to the cell from, and based on the character in the cell, it restricts what directions it is allowed to go &ldquo;out&rdquo; of the cell by.</p>
+<p>For example, the horizontal line character <code>-</code> can still be crossed vertically. When the search comes in from the right or left, it is not allowed to spill out to the top and bottom, and likewise if it comes in from the top or bottom it is not allowed to go to the side. Except if it&rsquo;s an asterisk <code>*</code>, which is used to join wires &ndash; in that case, it is allowed to exit in all four directions no matter which direction it enters from. It&rsquo;s literally that simple, and it works<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<h2 id="the-one-remaining-problem">The one remaining problem</h2>
+<p>Previously, Schemascii only allowed two formats for drawing the components: &ldquo;small components,&rdquo; which were just the reference designator optionally padded with <code>#</code>&lsquo;s on the left and right, and &ldquo;large components&rdquo;, which were restricted to being a rectangle drawn using <code>:</code> and <code>~</code> for the sides and <code>.</code> for corners. It was quite awkward, and since everything was rectangular, I couldn&rsquo;t make anything fancy like the triangular shape of op-amps.</p>
+<p>I looked back at the example drawings I had already made, and the code I had already written, and it dawned on me that I could just use <code>#</code>&lsquo;s for the components and then flood-fill to find them all. It no longer mattered that the components weren&rsquo;t rectangular &ndash; it would still find all of them. And I had already written flood fill code that - surprise surprise! - worked perfectly to find all of the <code>#</code>&lsquo;s that made up the component&rsquo;s area.</p>
+<p>So I drew up the draft for an XOR gate and an op-amp :</p>
+<pre class="highlight"><code class="language-text">  # ######                   #
+   # ########                ###
+----# #########         ----+#####
+    # #U1G1#####----         #U2A###-----
+----# #########         -----#####
+   # ########                ###
+  # ######                   #</code></pre>
+<p>The code worked perfectly - it spat out a list of 25 points corresponding to the extent of the triangle, when given the three points that form <code>U2A</code>.</p>
+<p>I quickly discovered that there&rsquo;s still one thing I haven&rsquo;t thought through completely yet. Visually, it&rsquo;s obvious that the op-amp&rsquo;s shape is supposed to be a nice, clean triangle, but how that exactly is created from all of the points is something I have not been able to figure out yet.</p>
+<p>For example, if the rule is &ldquo;find all of the points that aren&rsquo;t completely surrounded by any of the other points, then sort,&rdquo; you end up with a horrible jagged saw-tooth pattern along the sloped sides of the triangle. Applied to the XOR gate, it produces jagged, pixelated edges, and completely garbles the double line in the back.</p>
+<p>There&rsquo;s probably an incredibly clever solution to this that I have not been able to think of, but I am sure I will think of it eventually, or stumble upon it on the Internet. The next version of Schemascii is <em>so close</em> to being complete.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>It&rsquo;s still not perfect &ndash; there are some rare but strange edge cases in my current code. One example is if the same wire is looped over itself. The code will follow the wire around the loop and then, finding that the intersection point is already in the &ldquo;seen&rdquo; set, stop and miss the rest of the wire.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/schemascii-0">Schemascii &pm; 0</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/schemascii-1">Schemascii &pm; 1</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/in-defense-of-eval">In Defense Of Eval</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/perhaps-it-was-too-complicated">Perhaps It Was Too Complicated</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/zero-thickness-tree">Zero-Thickness Tree</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife.com Forums</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                                <li><a href="http://www.ulisp.com/">uLisp</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XR0F89CCGK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-XR0F89CCGK");
+    </script>
+
+        </footer>
+    </body>
+</html>

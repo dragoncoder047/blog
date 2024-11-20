@@ -1,0 +1,63 @@
+<body></body>
+<script src="https://unpkg.com/kaplay@3001.0.0-alpha.18/dist/kaboom.js"></script>
+<script>
+    kaboom({
+        crisp: true,
+        background: "#000000"
+    });
+    setGravity(300);
+    const level = addLevel([
+        "==========================",
+        "=                        =",
+        "=                        =",
+        "=       =====            =",
+        "= @                      =",
+        "=       ^^    ============",
+        "===============           "
+    ], {
+        tileWidth: 16,
+        tileHeight: 16,
+        pos: vec2(20, 20),
+        tiles: {
+            "@": () => [
+                rect(15, 31),
+                area(),
+                body({ jumpForce: 150, maxVelocity: 400 }),
+                anchor("bot"),
+                color("#ff0000"),
+                z(Infinity),
+                "player"
+            ],
+            "^": () => [
+                rect(16, 16),
+                area(),
+                anchor("bot"),
+                color("#ffff00"),
+                "coin"
+            ],
+            "=": () => [
+                rect(16, 16),
+                area(),
+                body({ isStatic: true }),
+                anchor("bot"),
+                color("#0000ff"),
+                "ground"
+            ],
+        }
+    });
+    const player = level.get("player")[0];
+    // ?!? hacky ?!?
+    player.vel = vec2(0, -100);
+    onKeyDown("up", () => {
+        if (player.isGrounded()) {
+            player.jump();
+        }
+    });
+    const SPEED = 64;
+    onKeyDown("left", () => {
+        player.move(-SPEED, 0);
+    });
+    onKeyDown("right", () => {
+        player.move(SPEED, 0);
+    });
+</script>

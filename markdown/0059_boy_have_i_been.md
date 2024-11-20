@@ -57,7 +57,6 @@ In early October, the Kaplay team announced that they would be hosting a game ja
 
 I turned him down, mostly because I knew that I should be prioritizing my studies over judging a game jam and I wouldn't be able to commit to the time. Unfortunately, that meant that I would have more time to work on my game... and so I did that. I recruited a classmate from my calculus class to beta-test my game and it ballooned exponentially from there. I kept creating more and more additions to my game, and finding more things to fix in Kaplay. It was so much that I actually am now the 5^th^ place developer by number of commits, after only the original developer (of Kaboom.js, Kaplay's predecessor), and Kaplay's development team.
 
-
 [![6 top developers to Kaplay by number of commits]({attach}kcontr.png)](https://github.com/kaplayjs/kaplay/graphs/contributors)
 
 I'd say it's been a productive 3 months.

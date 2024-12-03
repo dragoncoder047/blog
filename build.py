@@ -92,6 +92,7 @@ LINKS = (
 SOCIAL = (
     (f"{AUTHOR} on GitHub", f"https://github.com/{AUTHOR}"),
     (f"{AUTHOR} on YouTube", f"https://youtube.com/@{AUTHOR}"),
+    (f"{AUTHOR} on Instagram", f"https://instagram.com/{AUTHOR}/"),
 )
 
 MENUITEMS = (
@@ -162,37 +163,40 @@ def schemascii_fence(source, lang, cls, opts, md, attrs, **kwargs):
         return f"<code style=\"color: red\">Schemascii error:\n{err!r}</code>"
 
 
-class YTExt(Extension):
+class SocialExtension(Extension):
     def extendMarkdown(self, md):
-        md.postprocessors.register(YoutubeEmbed(md), "youtube", -1)
+        md.postprocessors.register(SocialEmbed(md), "social", -1)
 
 
-class YoutubeEmbed(Postprocessor):
+class SocialEmbed(Postprocessor):
     def run(self, src: str):
-        if "<youtube" not in src:
+        # cSpell: ignore insta
+        if "<youtube" not in src and "<insta" not in src:
             return src
         # Seems like a kludge to not use a Treeprocessor.
-        # But I tried, it doesn't work. ¯\_(ツ)_/¯ Weird
+        # But I tried, it doesn't work. ¯\_(ツ)_/¯ Weird!
         # And you can't use xml.etree.ElementTree either
         # because it's *cough cough* not valid XML...
-        magic = YoutubeMagic()
+        magic = SocialMagic()
         magic.feed(src)
         magic.close()
         return magic.out
 
 
-class YoutubeMagic(html.parser.HTMLParser):
+class SocialMagic(html.parser.HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=False)
         self.out = ""
 
-    def handle_starttag(self, tag: str, attrs: dict[str, str]):
-        if tag != "youtube":
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str]]):
+        func = getattr(self, "handle_" + tag, None)
+        if not callable(func):
             self.out += self.get_starttag_text()
-            return
-        # why is it not a dictionary??
-        attrs = dict(attrs)
-        # munge the tag to make it an embed
+        else:
+            self.out += func(dict(attrs))
+    handle_startendtag = handle_starttag
+
+    def handle_youtube(self, attrs: dict[str, str]) -> str:
         if "short" in attrs:
             url = "https://youtube.com/embed/" + attrs["short"]
             ratio = "9/16"
@@ -227,13 +231,25 @@ class YoutubeMagic(html.parser.HTMLParser):
                       "web-share"),
             "allowfullscreen": True}
 
-        self.out += f"<iframe{"".join(f" {k}=\"{v}\"" for k,
-                                      v in attrs.items())}></iframe>"
+        return f"<iframe{"".join(f" {k}=\"{v}\"" for k,
+                                 v in attrs.items())}></iframe>"
 
-    handle_startendtag = handle_starttag
+    def handle_instagram(self, attrs: dict[str, str]) -> str:
+        permalink = html.escape(f"https://www.instagram.com/p/{
+            attrs["post"]}/?utm_source=ig_embed&utm_campaign=loading")
+        # cSpell: ignore instgrm
+        return f"""<blockquote class="instagram-media"{
+            "" if not bool(attrs.get("caption", True))
+            else " data-instgrm-captioned"}
+    data-instgrm-permalink="{permalink}"
+    data-instgrm-version="14">
+    <a href="{permalink}">View this post on Instagram</a>
+    </blockquote>""".replace("\n", "")
+    handle_insta = handle_instagram
 
-    def handle_endtag(self, tag):
-        if tag != "youtube":
+    def handle_endtag(self, tag: str):
+        func = getattr(self, "handle_" + tag, None)
+        if not callable(func):
             self.out += f"</{tag}>"
 
     def handle_data(self, data):
@@ -310,7 +326,7 @@ MARKDOWN = {
             "syntax_left": r"<{2,}\s+i(?:nc(?:lude))",
             "syntax_right": r">{2,}",
         },
-        "build:YTExt": {},
+        "build:SocialExtension": {},
     },
     "output_format": "html5",
 }

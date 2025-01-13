@@ -1,6 +1,6 @@
 Title: A Very Confusing Data Model
 Date: 2023-03-10
-Tags: programming, python, game-design
+Tags: programming, python, gamedev
 
 For the past week or two I have been working on a few things simultaneously. I keep prototype code that I'm developing but not quite ready to release yet in private GitHub repositories, and publish them when I'm ready. Lately I've been working on two different and completely unrelated things.
 

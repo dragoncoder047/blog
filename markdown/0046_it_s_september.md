@@ -1,7 +1,7 @@
 Title: It's September!!
 Date: 2023-09-18
 Series: pickle
-Tags: game-design, language-design, programming
+Tags: gamedev, language-design, programming
 
 Unfortunately that time of year has crept up... school has started again. And not just any kind of school: I find myself in 12^th^ grade, balancing seven classes, two with AP tests at the end, three with huge final projects. I'm also trying to apply to college at the same time. Not to mention that I also have a bunch of my own personal projects that I'm trying to work on too.
 

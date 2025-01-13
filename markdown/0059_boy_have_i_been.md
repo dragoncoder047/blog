@@ -1,6 +1,7 @@
 Title: Boy, Have I Been...
 Date: 2024-11-20
-Tags: javascript, game-design, youtube, programming, code-nostalgia
+Tags: javascript, gamedev, youtube, programming, code-nostalgia
+Series: debugger-game
 
 Back in July, I had the following conversation with a friend over lunch:
 

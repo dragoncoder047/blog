@@ -1,6 +1,6 @@
 Title: Zero-Thickness Tree
 Date: 2023-10-24
-Tags: programming, python, game-design
+Tags: programming, python, gamedev
 
 In a [previous post]({filename}0036_a_very_confusing_data_model.md), I started some mental planning for an interactive fiction engine in Python. I picked it up again last week and started working on a new version. Custom logic is implemented using a tiny Python library I created called [`json_runner`](https://github.com/dragoncoder047/json_runner), which as you might guess, is capable of running JSON objects as if they were code.
 

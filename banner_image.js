@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", function () {
     var name;
     if (Math.random() < 0.05) name = "chicken";
     else if (tags.includes("robotics")) name = "armdroid";
-    else if (tags.includes("game-design")) name = "gaming";
+    else if (tags.includes("gamedev")) name = "gaming";
     else if (tags.includes("electronics")) name = "soldering";
     else if (tags.includes("reverse-engineering")) name = "microscope";
     else {

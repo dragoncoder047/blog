@@ -1,6 +1,6 @@
 Title: Perhaps It Was Too Complicated
 Date: 2024-05-01
-Tags: programming, python, game-design
+Tags: programming, python, gamedev
 
 I guess I lied. About five months ago, I posted some thoughts about an upcoming Python interactive fiction engine, where the world model is not actually a tree, but simulated as such by relations. For example, there could be an apple inside of a refrigerator, and while it would make sense to put the apple as a child object of the refrigerator, the actual implementation would just store three objects in a flat list: the apple, the fridge, and a relation object specifying the apple is inside the fridge.
 

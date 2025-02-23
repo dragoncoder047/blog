@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>One Hell of a Physics Engine</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
+                    <link rel="apple-touch-icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
+                        <script src="/static/misc.js"></script>
+                        <script src="/blog/banner_image.js"></script>
+
+
+
+    
+
+
+        <meta name="tags" content="programming, javascript, gamedev" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="One Hell of a Physics Engine" />
+    <meta property="og:description" content="I’ve been working on my upcoming platformer game, Debugger, way too much. And I haven’t really had the chance to add much of anything to the game itself. All I have been dealing with is trying to eliminate any source of lag in the game by any means …" />
+    <meta property="og:image" content="/images/yazani/yazani_1_extracted_bg.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2025/one-hell-of-a-physics-engine" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - One Hell of a Physics Engine" />
+    <meta name="twitter:description" content="I’ve been working on my upcoming platformer game, Debugger, way too much. And I haven’t really had the chance to add much of anything to the game itself. All I have been dealing with is trying to eliminate any source of lag in the game by any means …" />
+    <meta name="twitter:image" content="/images/yazani/yazani_1_extracted_bg.png" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+        <!-- Katex -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.css" type="text/css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/mhchem.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.js"></script>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\begin{align}", right: "\\end{align}", display: true },
+                ]
+            }
+        );
+    });
+</script>        <!-- /Katex -->
+
+
+
+
+
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog" class="flex-row"><div class="flex-row"><img src="/images/yazani/yazani_1_extracted_bg.png" style="max-height:10em" id="banner-image" /><div id="sitename-text"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives">Archives</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/tags">By tag</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/2025/one-hell-of-a-physics-engine" rel="bookmark" title="Permalink to this page">One Hell of a Physics Engine</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/2025/so-far-ahead-yet-so-far-behind">
+                    So far ahead, yet so far behind
+                </a>
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2025-02-22T00:00:00-05:00">Sat 22 February 2025</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/gamedev">gamedev</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/javascript">javascript</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming">programming</a>
+            </div>
+    </div>
+        <p><em>This post is part 3 of the debugger-game series:</em></p>
+        <ol class="series">
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2024/boy-have-i-been'>Boy, Have I Been...</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2025/so-far-ahead-yet-so-far-behind'>So far ahead, yet so far behind</a>
+                </li>
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/2025/one-hell-of-a-physics-engine'>One Hell of a Physics Engine</a>
+                </li>
+        </ol>
+    <p>I&rsquo;ve been working on my upcoming platformer game, Debugger, way too much. And I haven&rsquo;t really had the chance to add much of anything to the game itself. All I have been dealing with is trying to eliminate any source of lag in the game by any means possible.</p>
+<p>Sure, the game never got a smooth 60 frames per second, even at the start. I knew that a Javascript game like Debugger was never going to have buttery-smooth graphics, even with a KAPLAY using a WebGL backend for all the drawing. The main source of lag is in the physics engine &ndash; and there&rsquo;s a lot of reasons why that will usually be the bottleneck.</p>
+<p>Detecting collisions is an integral component of any platformer game&rsquo;s physics &mdash; without collision detection, the player falls straight through the platforms. But in larger platformer games &ndash; and in general, any physics-based game &ndash; doing that collision check takes a huge amount of processing power (and mostly time), so a plethora of algorithms have been developed to speed up collision checking. KAPLAY&rsquo;s integrated physics is no exception, but it&rsquo;s currently a little underpowered.</p>
+<h2 id="failure-mode-1-the-game-lags-to-the-point-of-being-unplayable">Failure mode #1: The game lags to the point of being unplayable</h2>
+<p>This was the case once I had the mechanics of the game down and started adding to the world. I opened a test build of the game in my browser one day and found that I was getting an eye-watering 5 frames per second &mdash; technically, it was playable (I deliberately designed the game to never rely on swift reflexes or split-second timing), but the latency on even the keyboard controls was extremely bad and unresponsive, and in addition to that, it turned my laptop&rsquo;s fan into a jet engine.</p>
+<p>After discussing the implementation of KAPLAY&rsquo;s physics engine with the developer in charge of it, Marc Flerackers, I was made aware that KAPLAY uses a one-dimensional <a href="https://en.wikipedia.org/wiki/Sweep_and_prune">sweep-and-prune</a> to filter the possible pairs of objects down to remove ones it knows can&rsquo;t possibly collide.</p>
+<p>By default, KAPLAY&rsquo;s sweep-and-prune sweeps horizontally, culling objects that have vertical space between them. But with thousands of objects spread out both vertically and horizontally over the plane (and in my game mostly vertically), this didn&rsquo;t filter much and the game wasted a lot of unnecessary checks.</p>
+<p>Marc quickly drafted up a vertical version of the sweep-and-prune and I patched it in, hoping that if the game is oriented more vertically than horizontally, this would speed it up. It turns out it did, but not by much. I clocked it at 7 FPS &ndash; and this was in Google Chrome, which has a more aggressive Javascript optimizer and JIT compiler than either of Firefox and Safari. Those two were still stuck at 5 FPS.</p>
+<p>Obviously, to be able to cater to any kind of game with minimal configuration, KAPLAY needs to be able to adapt to whichever direction the user&rsquo;s game is oriented in. Marc whipped up a quick double sweep-and-prune function that sweeps in both directions and then only takes the colliding pairs that were in both horizontal and vertical sweeps. I patched it in, enabled it in my game, and&hellip;</p>
+<h2 id="failure-mode-2-collisions-just-completely-stop-working">Failure mode #2: Collisions just completely stop working</h2>
+<p>Suffice to say there is still a bug in Marc&rsquo;s na&iuml;ve bidirectional sweep-and-prune. When I opened a test build with this code, it showed a more-reasonable 18 FPS &mdash; but my joy was quickly turned to horror as I watched the player fall straight through the floor and out the bottom of the world.</p>
+<p>When I told Marc this, he pointed me to an old file containing code for a spatial hash grid that never got integrated, but he thought it might work. I patched it in and &ndash; no joy, it didn&rsquo;t work. But at least it was actually able to get 22 FPS this time, which I guess showed that the hashgrid had less overhead that two sweep-and-prune instances.</p>
+<p>Then out of his sleeve Marc produced some (very) old code that implemented not a hashgrid, but a spatial quadtree. And it worked, at least with the little demo he wrote for it, which used only 200 objects and maybe 5 levels of tree. My game needed significantly more &ndash; and combined with my (almost certainly terrible) code to allow the tree to expand and rebalance itself if objects leave the bounding area of the root node, it certainly stressed the quadtree to the maximum. It turns out that maximum was&hellip;</p>
+<h2 id="failure-mode-3-the-browser-crashes">Failure mode #3: The browser crashes</h2>
+<p>When a Web page completely stops working, it is without a doubt a sign that something has gone horribly wrong, and you should look at the error messages in the browser developer tools console to see where you should go to fix the error. Unfortunately in the rare case where the page manages to break the browser itself, no one is able to help you because there are no stack traces or console messages (the developer tools won&rsquo;t even open). It&rsquo;s the equivalent feeling to what you&rsquo;d have if your dog poops on your lap while you&rsquo;re in the park with no cleaning supplies for miles. Seeing the little &ldquo;Aw, Snap!&rdquo; icon come up made me feel like my game had just been reduced to a hot, steaming pile of shit and I had no way to tell why.</p>
+<p>Of course that didn&rsquo;t mean that the <em>entire</em> quadtree implementation was bad. I managed to run a profiler on the page before it crashed, and the report indicated that the bottleneck was in updating the different nodes in the tree. When an object moves and has to be removed from one node and inserted into another, the array in the old node containing the objects has to have the object spliced out of it using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice"><code class="language-js highlight">Array.splice()</code></a> method. And it turns out that <code class="language-js highlight">splice()</code> is slow. Like, <em>really</em> slow. Because it has to move all of the elements ahead of the one deleted back by one index, it takes longer if the element is closer to the beginning.</p>
+<p>I tried changing the implementation to simply set the removed object to <code class="language-js highlight">undefined</code> instead of <code class="language-js highlight">splice()</code>&lsquo;ing it out, but that still didn&rsquo;t speed it up. <em>Now</em>, the bottleneck was the <code class="language-js highlight">indexOf()</code> call, used to find which element needs to be deleted. It&rsquo;s $O\left(n\right)$ linear search either way. An ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set"><code class="language-js highlight">Set</code></a> would use a binary tree or something that is a bit faster (probably $O\left(\log n\right)$ but it depends on the implementation), but I saw no way to be able to use it, since when the quadtree is queried for all possible objects that may be colliding, it only needs to yield each pair once &ndash; a simple double loop would produce $[b, a]$ as well as $[a, b]$, which would effectively double the time it takes to process each collision, since they are being processed twice. It&rsquo;s super easy to avoid this with an array by watching the index variables, but sets are unordered so that won&rsquo;t be possible. There&rsquo;s probably an algorithm that works for unordered and unindexable sets, but I need some time.</p>
+<p>There&rsquo;s one thing for sure that can be had form all of this: KAPLAY&rsquo;s physics engine is one hell of a program and by working on it, I&rsquo;ve certainly learned a lot more about physics simulations than I ever bargained for.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/2025/so-far-ahead-yet-so-far-behind">So far ahead, yet so far behind</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/boy-have-i-been">Boy, Have I Been...</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/in-search-of-a-brain">In Search of a Brain</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/perhaps-it-was-too-complicated">Perhaps It Was Too Complicated</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/zero-thickness-tree">Zero-Thickness Tree</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife.com Forums</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                                <li><a href="http://www.ulisp.com/">uLisp</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                                <li><a href="https://instagram.com/dragoncoder047/">dragoncoder047 on Instagram</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XR0F89CCGK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-XR0F89CCGK");
+    </script>
+
+        </footer>
+    </body>
+</html>

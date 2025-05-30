@@ -1,5 +1,6 @@
 Title: School Chromebooks
 Date: 2022-04-01
+Tags: rant
 
 I am a high school student, and so while I am at school I have to use the school-provided computers. The school district chose to give us Chromebooks. And anyone who needs to do some serious coding (like me) knows that Chromebooks are utterly useless.
 

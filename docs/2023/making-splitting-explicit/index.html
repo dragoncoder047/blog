@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en_us">
     <head>
-                <title>Powerful PICKLE Pattern Matching</title>
+                <title>Making Splitting Explicit</title>
             <meta charset="utf-8" />
             <meta name="generator" content="Pelican" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +11,6 @@
                     <link rel="icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
                     <link rel="apple-touch-icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
                         <script src="/static/misc.js"></script>
-                        <script src="/blog/banner_image.js"></script>
 
 
 
@@ -20,14 +19,14 @@
 
         <meta name="tags" content="programming, c, language-design" />
     <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
-    <meta property="og:title" content="Powerful PICKLE Pattern Matching" />
+    <meta property="og:title" content="Making Splitting Explicit" />
     <meta property="og:description" content="I did a lot of work on Tinobsy, the garbage collector for PICKLE. It’s pretty robust now, and passes all my tests – plus I translated it to C++ so I can take advantage of C++’s syntactic sugar for objects. All I think that I’ll be doing with …" />
     <meta property="og:image" content="/images/yazani/yazani_1_extracted_bg.png" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2023/powerful-pickle-pattern-matching" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2023/making-splitting-explicit" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Powerful PICKLE Pattern Matching" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Making Splitting Explicit" />
     <meta name="twitter:description" content="I did a lot of work on Tinobsy, the garbage collector for PICKLE. It’s pretty robust now, and passes all my tests – plus I translated it to C++ so I can take advantage of C++’s syntactic sugar for objects. All I think that I’ll be doing with …" />
     <meta name="twitter:image" content="/images/yazani/yazani_1_extracted_bg.png" />
             <!-- PrismJS -->
@@ -102,7 +101,7 @@
             </nav>
         </header>
         <main>
-    <h1><a href="https://dragoncoder047.github.io/blog/2023/powerful-pickle-pattern-matching" rel="bookmark" title="Permalink to this page">Powerful PICKLE Pattern Matching</a></h1>
+    <h1><a href="https://dragoncoder047.github.io/blog/2023/making-splitting-explicit" rel="bookmark" title="Permalink to this page">Making Splitting Explicit</a></h1>
     
     <div class="flex-row">
             <span style="flex: 1">&larr; Previous:
@@ -143,7 +142,7 @@
                     <a href='https://dragoncoder047.github.io/blog/2023/yet-another-garbage-collector'>Yet Another Garbage Collector</a>
                 </li>
                 <li class="active">
-                    <a href='https://dragoncoder047.github.io/blog/2023/powerful-pickle-pattern-matching'>Powerful PICKLE Pattern Matching</a>
+                    <a href='https://dragoncoder047.github.io/blog/2023/making-splitting-explicit'>Making Splitting Explicit</a>
                 </li>
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/2023/pickle-has-regular-expressions-apparently'>PICKLE Has Regular Expressions, Apparently</a>
@@ -184,13 +183,21 @@ $x+$y</code></pre>
 <li>Symbols (operators, numbers, variable names, etc) are concatenated at runtime, not by the parser.</li>
 </ol>
 <p>Rule 1 makes the most of a difference as it completely fixes the operator problem above. Combined with rule 2, it also enables the creation, at runtime, of any kind of syntactic literal.</p>
-<p>Consider the expression <code class="language-pickle highlight">$x / 2+3j</code>. With only rule 2 in play, the tokenizer effectively strips the whitespace and it results in the expression <code class="language-pickle highlight">$x/2+3j</code>. The runtime engine can&rsquo;t tell that you intended to divide <code>x</code> by a complex number constant, and because division comes before addition, what it ends up doing is dividing <code>x</code> by 2 first and then adding an imaginary constant, not what was intended.</p>
-<p>Making whitespace significant enables expressions with no whitespace to have a higher precedence (if so specified), so that <code class="language-pickle highlight">2+3j</code> can be made into a complex number <em>before</em> the division occurs.</p>
+<p>Consider the expression <code class="language-pickle highlight">x / 2+3j</code>. With only rule 2 in play, the tokenizer effectively strips the whitespace and it results in the expression <code class="language-pickle highlight">x/2+3j</code>. The runtime engine can&rsquo;t tell that you intended to divide <code>x</code> by a complex number constant, and because division comes before addition, it ends up inserting &ldquo;imaginary parenthesis&rdquo; around the division and turns the expression into <code class="language-pickle highlight">(x/2)+3j</code>, which isn&rsquo;t what you would think that does by the way it is written.</p>
+<p>Making whitespace significant enables expressions with no whitespace to have a higher precedence (if so specified), so that <code class="language-pickle highlight">2+3j</code> can be made into a complex number <em>before</em> the division occurs.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <p>Rule 2 would be augmented by a series of concatenation patterns, which govern how numbers and symbols &ldquo;parse themselves.&rdquo; For example, if you write two numeric digits with no whitespace separating them, they would be concatenated into one number equal to the second digit plus ten times the first. There would also be rules for concatenation of symbols into variable names and operator symbols into operators. Nifty, huh?</p>
 <h2 id="eta-anyone">ETA, anyone?</h2>
 <p>I know PICKLE is still vaporware at this point. I haven&rsquo;t even finished the tokenizer yet. But half of the work has already been done in working towards having a working programming language &ndash; it just needs to be implemented as computer-readable code.</p>
 <p>Perhaps in the future there will be an AI program that will be able to read descriptions like this and produce working code off of it. It would be an interesting experiment to see if it ends up producing the same code as me.</p>
 <p>Until then, you&rsquo;re just going to have to wait.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Python, strangely enough, also interprets that expression as <code class="language-python3 highlight">(x/2)+3j</code>, the same result as ignoring whitespace. This kind of surprised me at first since Python has significant whitespace, but it makes sense once you realize that Python only cares about indentation whitespace, and ignores it inside expressions. It effectively means that the way the Python parser sees expressions is that there really isn&rsquo;t <em>complex</em> number literals, but there are <em>imaginary</em> number literals and you create a complex number by adding a real number to an imaginary number. Indeed, <code class="language-python3 highlight">(3j-True)</code> is interpreted the same as <code class="language-python3 highlight">(-1+3j)</code> (the <code class="language-python3 highlight">True</code> is interpreted as 1, since booleans are a subclass of integers).&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
         <hr />
         <p><strong>Related Posts</strong></p>
         <ul>

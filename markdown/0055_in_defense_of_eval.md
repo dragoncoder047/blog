@@ -1,5 +1,5 @@
 Title: In Defense Of Eval
-Tags: programming, python
+Tags: programming, python, rant
 Date: 2024-05-31
 
 Your honor, this programmer has obvious disregard for the rules of Sane Programming. We can agree that it is common knowledge that there are certain features of programming languages that are available, but are not to be used. Anyone who does use them is deserving of shame. I present to you Exhibit A, a snippet of code taken from one of the defendant's projects:

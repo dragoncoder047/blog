@@ -1,6 +1,6 @@
 Title: The God Language
 Date: 2023-12-21
-Tags: programming, language-design
+Tags: programming, language-design, rant
 
 I did a lot. In the two months since I last shared something I've worked on no less than four different projects, all while trying to slip them in between an avalance of schoolwork and college applications. Oh, and I also spent a week sick with COVID-19. (It's real, people!)
 

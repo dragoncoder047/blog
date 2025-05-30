@@ -1,4 +1,4 @@
-Title: Powerful PICKLE Pattern Matching
+Title: Making Splitting Explicit
 Date: 2023-07-02
 Series: pickle
 Tags: programming, c, language-design
@@ -46,9 +46,9 @@ However, I soon came up with a much simpler solution, with only **two rules** fo
 
 Rule 1 makes the most of a difference as it completely fixes the operator problem above. Combined with rule 2, it also enables the creation, at runtime, of any kind of syntactic literal.
 
-Consider the expression `:::pickle $x / 2+3j`. With only rule 2 in play, the tokenizer effectively strips the whitespace and it results in the expression `:::pickle $x/2+3j`. The runtime engine can't tell that you intended to divide `x` by a complex number constant, and because division comes before addition, what it ends up doing is dividing `x` by 2 first and then adding an imaginary constant, not what was intended.
+Consider the expression `:::pickle x / 2+3j`. With only rule 2 in play, the tokenizer effectively strips the whitespace and it results in the expression `:::pickle x/2+3j`. The runtime engine can't tell that you intended to divide `x` by a complex number constant, and because division comes before addition, it ends up inserting "imaginary parenthesis" around the division and turns the expression into `:::pickle (x/2)+3j`, which isn't what you would think that does by the way it is written.
 
-Making whitespace significant enables expressions with no whitespace to have a higher precedence (if so specified), so that `:::pickle 2+3j` can be made into a complex number *before* the division occurs.
+Making whitespace significant enables expressions with no whitespace to have a higher precedence (if so specified), so that `:::pickle 2+3j` can be made into a complex number *before* the division occurs.[^1]
 
 Rule 2 would be augmented by a series of concatenation patterns, which govern how numbers and symbols "parse themselves." For example, if you write two numeric digits with no whitespace separating them, they would be concatenated into one number equal to the second digit plus ten times the first. There would also be rules for concatenation of symbols into variable names and operator symbols into operators. Nifty, huh?
 
@@ -59,3 +59,6 @@ I know PICKLE is still vaporware at this point. I haven't even finished the toke
 Perhaps in the future there will be an AI program that will be able to read descriptions like this and produce working code off of it. It would be an interesting experiment to see if it ends up producing the same code as me.
 
 Until then, you're just going to have to wait.
+
+[^1]:
+    Python, strangely enough, also interprets that expression as `:::python3 (x/2)+3j`, the same result as ignoring whitespace. This kind of surprised me at first since Python has significant whitespace, but it makes sense once you realize that Python only cares about indentation whitespace, and ignores it inside expressions. It effectively means that the way the Python parser sees expressions is that there really isn't *complex* number literals, but there are *imaginary* number literals and you create a complex number by adding a real number to an imaginary number. Indeed, `:::python3 (3j-True)` is interpreted the same as `:::python3 (-1+3j)` (the `:::python3 True` is interpreted as 1, since booleans are a subclass of integers).

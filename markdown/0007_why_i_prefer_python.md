@@ -1,6 +1,6 @@
 Title: Why I Prefer Python
 Date: 2022-03-30
-Tags: programming, python, javascript, phoo
+Tags: programming, python, javascript, phoo, rant
 
 In developing Phoo today I was unpleasantly presented with yet another reason why I prefer Python. It was when I was working on the new `Importer` API for loading external modules into Phoo that I accidentally did this:
 

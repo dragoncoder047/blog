@@ -27,7 +27,7 @@ ICON_MIMETYPE = "image/png"
 THEME_CSS_FILE = "/static/css/theme.css"
 THEME_MAIN_CSS = "/static/css/main.css"
 THEME_STATIC_DIR = "static/"
-EXTRA_JS = ("/static/misc.js", "/blog/banner_image.js")
+EXTRA_JS = ("/static/misc.js",)
 
 GOOGLE_TAG = "G-XR0F89CCGK"  # cSpell: ignore ccgk
 
@@ -236,7 +236,7 @@ class SocialMagic(html.parser.HTMLParser):
 
     def handle_instagram(self, attrs: dict[str, str]) -> str:
         permalink = html.escape(f"https://www.instagram.com/p/{
-            attrs["post"]}/?utm_source=ig_embed&utm_campaign=loading")
+            attrs["post"]}/?utm_source=ig_embed")
         # cSpell: ignore instgrm
         return f"""<blockquote class="instagram-media"{
             "" if not bool(attrs.get("caption", True))

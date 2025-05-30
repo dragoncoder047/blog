@@ -11,7 +11,6 @@
                     <link rel="icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
                     <link rel="apple-touch-icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
                         <script src="/static/misc.js"></script>
-                        <script src="/blog/banner_image.js"></script>
 
 
 
@@ -122,7 +121,7 @@
                     <a href='https://dragoncoder047.github.io/blog/2023/yet-another-garbage-collector'>Yet Another Garbage Collector</a>
                 </li>
                 <li >
-                    <a href='https://dragoncoder047.github.io/blog/2023/powerful-pickle-pattern-matching'>Powerful PICKLE Pattern Matching</a>
+                    <a href='https://dragoncoder047.github.io/blog/2023/making-splitting-explicit'>Making Splitting Explicit</a>
                 </li>
                 <li class="active">
                     <a href='https://dragoncoder047.github.io/blog/2023/pickle-has-regular-expressions-apparently'>PICKLE Has Regular Expressions, Apparently</a>
@@ -141,7 +140,7 @@
                 </li>
         </ol>
     <p>I worked for a while last week on the PICKLE implementation in Python. As I no longer have to work on the garbage collector, after I wrote a little &ldquo;glue code&rdquo; I immediately dove into the core functionality of PICKLE: the pattern-matching engine. Once I get the algorithm down, I&rsquo;ll port it to the C++ implementation.</p>
-<p>While fleshing out PICKLE&rsquo;s syntax I decided that there would be two phases in PICKLE&rsquo;s evaluation algorithm of a line. <a href="https://dragoncoder047.github.io/blog/2023/powerful-pickle-pattern-matching">Previously</a> I determined that whitespace would be significant, and this now opens the door for syntactic macros.</p>
+<p>While fleshing out PICKLE&rsquo;s syntax I decided that there would be two phases in PICKLE&rsquo;s evaluation algorithm of a line. <a href="https://dragoncoder047.github.io/blog/2023/making-splitting-explicit">Previously</a> I determined that whitespace would be significant, and this now opens the door for syntactic macros.</p>
 <p>The way it would work when evaluating each logical line is as follows:</p>
 <ol>
 <li>Apply only patterns that don&rsquo;t contain whitespace (or are otherwise marked as macros) until none apply. &larr; MACROS APPLIED HERE</li>

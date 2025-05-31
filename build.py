@@ -100,11 +100,13 @@ MENUITEMS = (
     ("By tag", f"{SITEURL}/{TAGS_URL}"),
     ("Site root", "/"),
     ("Projects", "#", (
-        ("Thuepaste", f"https://{AUTHOR}.github.io/thuepaste"),
         ("Armdroid", f"https://{AUTHOR}.github.io/armdroid"),
-        ("Langton's Ant Music", f"https://{AUTHOR}.github.io/langton-music"),
+        ("Langton&rsquo;s Ant Music",
+         f"https://{AUTHOR}.github.io/langton-music"),
+        ("Lynx", f"https://{AUTHOR}.github.io/lynx"),
         ("Schemascii", f"https://{AUTHOR}.github.io/schemascii"),
         ("Parasite", f"https://{AUTHOR}.github.io/parasite"),
+        ("Thuepaste", f"https://{AUTHOR}.github.io/thuepaste"),
     )),
 )
 

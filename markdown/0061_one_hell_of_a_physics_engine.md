@@ -3,9 +3,9 @@ Date: 2025-02-22
 Tags: programming, javascript, gamedev
 Series: debugger-game
 
-I've been working on my upcoming platformer game, Debugger, way too much. And I haven't really had the chance to add much of anything to the game itself. All I have been dealing with is trying to eliminate any source of lag in the game by any means possible.
+I've been working on my upcoming platformer game, *Debugger*, way too much. And I haven't really had the chance to add much of anything to the game itself. All I have been dealing with is trying to eliminate any source of lag in the game by any means possible.
 
-Sure, the game never got a smooth 60 frames per second, even at the start. I knew that a Javascript game like Debugger was never going to have buttery-smooth graphics, even with a KAPLAY using a WebGL backend for all the drawing. The main source of lag is in the physics engine -- and there's a lot of reasons why that will usually be the bottleneck.
+Sure, the game never got a smooth 60 frames per second, even at the start. I knew that a Javascript game like *Debugger* was never going to have buttery-smooth graphics, even with a KAPLAY using a WebGL backend for all the drawing. The main source of lag is in the physics engine -- and there's a lot of reasons why that will usually be the bottleneck.
 
 Detecting collisions is an integral component of any platformer game's physics --- without collision detection, the player falls straight through the platforms. But in larger platformer games -- and in general, any physics-based game -- doing that collision check takes a huge amount of processing power (and mostly time), so a plethora of algorithms have been developed to speed up collision checking. KAPLAY's integrated physics is no exception, but it's currently a little underpowered.
 

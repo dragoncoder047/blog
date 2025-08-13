@@ -138,6 +138,9 @@
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/2025/one-hell-of-a-physics-engine'>One Hell of a Physics Engine</a>
                 </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2025/whats-in-a-game'>What's in a game?</a>
+                </li>
         </ol>
     <p>Back in July, I had the following conversation with a friend over lunch:</p>
 <blockquote>
@@ -149,11 +152,11 @@
 <p><strong>Me</strong>: Gosh, that would require some thinking&hellip;</p>
 </blockquote>
 <p>And think I did. That&rsquo;s what I&rsquo;ve been working on for the past few months; I kind of forgot that I even had a blog or a YouTube channel. Developing the game has been taking up way too much time and I probably should have prioritized my studies over finishing the game, instead of the other way around. But the game is now 90% complete (or more), so I thought it would be fun to take a trip down memory lane and look at what the game looked like in its earliest stages.</p>
-<p>I quickly decided it was going to be a platformer game and be playable in the browser. That left it still pretty wide open in terms of game engine, and so I settled on <a href="https://kaplayjs.com/">Kaplay.js</a>. While I worked on the game description, I also played around with Kaplay and put together a bit of code to test what I could do.</p>
-<p>Digging through old git commit history, I resurrected the very first test I ever made using Kaplay. It is date-stamped July 19.</p>
+<p>I quickly decided it was going to (a) be a platformer game and (b) be playable in the browser. That left it still pretty wide open in terms of game engine, and so I settled on <a href="https://kaplayjs.com/">KAPLAY.js</a>. While I worked on the game description, I also played around with KAPLAY and put together a bit of code to test what I could do.</p>
+<p>Digging through old git commit history, here&rsquo;s the very first test I ever made using KAPLAY. It is date-stamped July 19.</p>
 <figure class="figure">
 <p><iframe src="kdemo.html" height="125" width="450" style="margin-left:auto;margin-right:auto"></iframe></p>
-<figcaption>You can click on the canvas and use the left and right arrow keys to move the red rectangle (the player) and the up key to jump. There&rsquo;s not much to do, but hey&hellip; it works!</figcaption>
+<figcaption>You can click on the canvas and use the <kbd>&larr;</kbd> and <kbd>&rarr;</kbd> arrow keys to move the red rectangle (the player) and the <kbd>&uarr;</kbd> key to jump. There&rsquo;s not much to do, but hey&hellip; it works!</figcaption>
 </figure>
 <p>Compared to what the game is now, that first demo was laughably primitive. There wasn&rsquo;t even any art, but with a good eye you can see how it resembles &ndash; just barely &ndash; the full game that I have put together.</p>
 <p><iframe style="display:block;margin-left:auto;margin-right:auto;aspect-ratio:16/9;width:60%;max-width:90vw" src="https://youtube.com/embed/66vBqb_Jda4?si=k7doYZbl3srXPBkK&cc_load_policy=1&cc_lang_pref=en&rel=0&enablejsapi=1" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen="True"></iframe></p>
@@ -164,15 +167,15 @@
 <p>Compare that to what&rsquo;s going on in game above, and you can see why it&rsquo;s taken me so long to put this game together. It&rsquo;s been revised so much that it&rsquo;s almost the exact converse of what I originally wrote &ndash; instead of being a bug, the player character is fighting bugs.</p>
 <hr>
 <p>Putting together a game like this is incredibly fun &ndash; and exhausting. When I started, I thought I would be able to throw it together in, like, a week. It turns out it&rsquo;s not that simple: I was constantly running into weird bugs in the game engine itself!</p>
-<p>All of those bugs would need fixing if my game was going to work, so I reported them all to Kaplay&rsquo;s maintainers, one by one, as I discovered them.. Later on, I forked Kaplay and fixed them myself.</p>
-<p>As I explored Kaplay&rsquo;s codebase, I learned more and more about how the game engine works, and I started noticing things that could be improved, even stuff that my game didn&rsquo;t encounter as a problem. The speed at which I was finding and fixing issues must have been unusual, because once I joined the Kaplay Discord server in September, I was quickly reminded of my &ldquo;meme&rdquo; status:</p>
+<p>All of those bugs would need fixing if my game was going to work, so I reported them all to KAPLAY&rsquo;s maintainers, one by one, as I discovered them.. Later on, I forked KAPLAY and fixed them myself.</p>
+<p>As I explored KAPLAY&rsquo;s codebase, I learned more and more about how the game engine works, and I started noticing things that could be improved, even stuff that my game didn&rsquo;t encounter as a problem. The speed at which I was finding and fixing issues must have been unusual, because once I joined KAPLAY&rsquo;s Discord server in September, I was quickly reminded of my &ldquo;meme&rdquo; status:</p>
 <p><img alt="lajbel: you have reached the final issue, a dragoncoder047 issue" src="https://dragoncoder047.github.io/blog/2024/boy-have-i-been/kdmeme.png"></p>
 <p>It was all in good fun, though; I was never harassed over it except for this tongue-in-cheek ribbing. The Discord server also gave me the unexpected opportunity to help others quickly &ndash; since I kind of knew what the game engine was doing internally, I could explain a lot of the errors that other users were encountering and point them in the right direction.</p>
 <hr>
-<p>In early October, the Kaplay team announced that they would be hosting a game jam in November, and then dropped a huge surprise in my lap: the main developer asked me to be a judge of the game jam.</p>
+<p>In early October, the KAPLAY team announced that they would be hosting a game jam in November, and then dropped a huge surprise in my lap: the main developer asked me to be a judge of the game jam.</p>
 <p><img alt="lajbel: Hey dragoncoder047! I'm searching for judges on our upcoming game jam. What do you think?" src="https://dragoncoder047.github.io/blog/2024/boy-have-i-been/kajamjudgereq.png"></p>
-<p>I turned him down, mostly because I knew that I should be prioritizing my studies over judging a game jam and I wouldn&rsquo;t be able to commit to the time. Unfortunately, that meant that I would have more time to work on my game&hellip; and so I did that. I recruited a classmate from my calculus class to beta-test my game and it ballooned exponentially from there. I kept creating more and more additions to my game, and finding more things to fix in Kaplay. It was so much that I actually am now the 5<sup>th</sup> place developer by number of commits, after only the original developer (of Kaboom.js, Kaplay&rsquo;s predecessor), and Kaplay&rsquo;s development team.</p>
-<p><a href="https://github.com/kaplayjs/kaplay/graphs/contributors"><img alt="6 top developers to Kaplay by number of commits" src="https://dragoncoder047.github.io/blog/2024/boy-have-i-been/kcontr.png"></a></p>
+<p>I turned him down, mostly because I knew that I should be prioritizing my studies over judging a game jam and I wouldn&rsquo;t be able to commit to the time. Unfortunately, that meant that I would have more time to work on my game&hellip; and so I did that. I recruited a classmate from my calculus class to beta-test my game and it ballooned exponentially from there. I kept creating more and more additions to my game, and finding more things to fix in KAPLAY. It was so much that I actually am now the 5<sup>th</sup> place developer by number of commits, after only the original developer (of Kaboom.js, KAPLAY&rsquo;s predecessor), and KAPLAY&rsquo;s development team. <em>(EDIT Aug. 11 - now I&rsquo;m 4<sup>th</sup>!)</em></p>
+<p><a href="https://github.com/kaplayjs/kaplay/graphs/contributors"><img alt="6 top developers to KAPLAY by number of commits" src="https://dragoncoder047.github.io/blog/2024/boy-have-i-been/kcontr.png"></a></p>
 <p>I&rsquo;d say it&rsquo;s been a productive 3 months.</p>
 <!-- cSpell: ignore kaplay -->
         <hr />

@@ -140,11 +140,14 @@
                 <li >
                     <a href='https://dragoncoder047.github.io/blog/2025/one-hell-of-a-physics-engine'>One Hell of a Physics Engine</a>
                 </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2025/whats-in-a-game'>What's in a game?</a>
+                </li>
         </ol>
-    <p>I finally got around to testing the game I have been making, Debugger, using a game controller. For the most part, it went off without a hitch, but there were several problems I encountered &ndash; and none of them were fixable, because they were not bugs in my code, nor in the game library I am using (<a href="https://v4000.kaplayjs.com">KAPLAY.js</a>). They were problems with the browser itself.</p>
+    <p>I finally got around to testing the game I have been making, <em>Debugger</em>, using a game controller. For the most part, it went off without a hitch, but there were several problems I encountered &ndash; and none of them were fixable, because they were not bugs in my code, nor in the game library I am using (<a href="https://v4000.kaplayjs.com">KAPLAY.js</a>). They were problems with the browser itself.</p>
 <p>KAPLAY uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API">Web Gamepad API</a> internally to detect and process game controllers, like the one I am using. Despite the fact that MDN claims that it&rsquo;s been available and fully supported, I found it wasn&rsquo;t. Some browsers supported it only partially, while others claimed to support it but actually implemented it in an undocumented, noncompliant manner.</p>
 <h2 id="safari">Safari</h2>
-<p>Safari on Mac, surprisingly enough, actually supported all of the APIs that were required to run Debugger. I added some code to give haptic feedback using the game controller&rsquo;s rumble motors, and after testing in several browsers it turns out that Safari was the only browser I could get haptic feedback working in &ndash; even though MDN claims that all major browsers have supported it for like 5 years.</p>
+<p>Safari on Mac, surprisingly enough, actually supported all of the APIs that were required to run <em>Debugger</em>. I added some code to give haptic feedback using the game controller&rsquo;s rumble motors, and after testing in several browsers it turns out that Safari was the only browser I could get haptic feedback working in &ndash; even though MDN claims that all major browsers have supported it for like 5 years.</p>
 <h2 id="chrome">Chrome</h2>
 <p>Chrome is usually the browser that releases experimental features first &ndash; and so I kind of suspected that gamepad rumble would work in Chrome too, but I was sorely disappointed. All of the <em>inputs</em> defined in the spec work perfectly (buttons, triggers, sticks, etc), and so the game is technically playable, but it is missing the haptic feedback. For the Chrome developers to say that they can&rsquo;t implement it because they can&rsquo;t access the right OS-level system calls is a lousy excuse, because Safari can.</p>
 <p>Interestingly enough, my classmate who I had elisted to alpha-test, reported that controller rumble <em>did</em> work in Chrome.</p>
@@ -214,7 +217,7 @@
 </table>
 <p>I can tell it&rsquo;s trying to represent it as an angle somehow, but it&rsquo;s not any standard unit for angle, and what&rsquo;s up with the 1.29 representing &ldquo;nothing pressed&rdquo;? That&rsquo;s not even a valid value for an entry in <code>axes</code> anyway. Just why, Firefox?</p>
 <h2 id="the-verdict">The verdict</h2>
-<p>There&rsquo;s enough support out there for the Gamepad API that you&rsquo;re actually able to play Debugger. That being said, it took a lot of work to get there. To be able to display the right button names for the controller the player is using, I had to implement some horrible string-munging code to try to parse the <code>id</code> value that the browser gives for each connected game controller, figure out which kind it is, and then swap out the button names using the internationalization string mechanism. There&rsquo;s also the code to check if the browser is Firefox and warn the user about the above bugs when they try to use a game controller.</p>
+<p>There&rsquo;s enough support out there for the Gamepad API that you&rsquo;re actually able to play <em>Debugger</em>. That being said, it took a lot of work to get there. To be able to display the right button names for the controller the player is using, I had to implement some horrible string-munging code to try to parse the <code>id</code> value that the browser gives for each connected game controller, figure out which kind it is, and then swap out the button names using the internationalization string mechanism. There&rsquo;s also the code to check if the browser is Firefox and warn the user about the above bugs when they try to use a game controller.</p>
 <p>Until and unless browser developers get their sh*t together and fix all these problems, I&rsquo;m probably not going to make any Web-based thing that interfaces with game controllers. The sad truth is that no matter how widely-supported the Web Gamepad API claims to be, it just isn&rsquo;t.</p>
         <hr />
         <p><strong>Related Posts</strong></p>
@@ -222,8 +225,8 @@
                 <li><a href="https://dragoncoder047.github.io/blog/2025/one-hell-of-a-physics-engine">One Hell of a Physics Engine</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/2024/boy-have-i-been">Boy, Have I Been...</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/2023/in-search-of-a-brain">In Search of a Brain</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2025/whats-in-a-game">What's in a game?</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/2024/perhaps-it-was-too-complicated">Perhaps It Was Too Complicated</a></li>
-                <li><a href="https://dragoncoder047.github.io/blog/2023/zero-thickness-tree">Zero-Thickness Tree</a></li>
         </ul>
     <script src="https://giscus.app/client.js"
         data-repo="dragoncoder047/blog"

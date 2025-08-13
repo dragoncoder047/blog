@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>What's in a game?</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
+                    <link rel="apple-touch-icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
+                        <script src="/static/misc.js"></script>
+
+
+
+    
+
+
+        <meta name="tags" content="programming, gamedev" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="What&#39;s in a game?" />
+    <meta property="og:description" content="“I have a cool game mechanic. Now what?” Unfortunately for me, I don’t have any good answer to that question. But I found myself asking it a few weeks ago as I worked on my puzzle platformer game, Debugger. For the most part, all of the game’s mechanics …" />
+    <meta property="og:image" content="/images/yazani/yazani_1_extracted_bg.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2025/whats-in-a-game" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - What&#39;s in a game?" />
+    <meta name="twitter:description" content="“I have a cool game mechanic. Now what?” Unfortunately for me, I don’t have any good answer to that question. But I found myself asking it a few weeks ago as I worked on my puzzle platformer game, Debugger. For the most part, all of the game’s mechanics …" />
+    <meta name="twitter:image" content="/images/yazani/yazani_1_extracted_bg.png" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+        <!-- Katex -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.css" type="text/css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/mhchem.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.js"></script>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\begin{align}", right: "\\end{align}", display: true },
+                ]
+            }
+        );
+    });
+</script>        <!-- /Katex -->
+
+
+
+
+
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog" class="flex-row"><div class="flex-row"><img src="/images/yazani/yazani_1_extracted_bg.png" style="max-height:10em" id="banner-image" /><div id="sitename-text"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives">Archives</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/tags">By tag</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton&rsquo;s Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/lynx">Lynx</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/2025/whats-in-a-game" rel="bookmark" title="Permalink to this page">What's in a game?</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/2025/your-contribution-graph-means-absolutely-nothing">
+                    Your Contribution Graph Means Absolutely Nothing
+                </a>
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2025-08-13T00:00:00-04:00">Wed 13 August 2025</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/gamedev">gamedev</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming">programming</a>
+            </div>
+    </div>
+        <p><em>This post is part 4 of the debugger-game series:</em></p>
+        <ol class="series">
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2024/boy-have-i-been'>Boy, Have I Been...</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2025/so-far-ahead-yet-so-far-behind'>So far ahead, yet so far behind</a>
+                </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2025/one-hell-of-a-physics-engine'>One Hell of a Physics Engine</a>
+                </li>
+                <li class="active">
+                    <a href='https://dragoncoder047.github.io/blog/2025/whats-in-a-game'>What's in a game?</a>
+                </li>
+        </ol>
+    <p>&ldquo;I have a cool game mechanic. Now what?&rdquo;</p>
+<p>Unfortunately for me, I don&rsquo;t have any good answer to that question. But I found myself asking it a few weeks ago as I worked on my puzzle platformer game, <em>Debugger</em>.</p>
+<p>For the most part, all of the game&rsquo;s mechanics have been finalized. I&rsquo;m quite pleased with the graphics as well, and haven&rsquo;t actually touched the main texture significantly for months. Apart from fixing bugs in both my code and the game engine (KAPLAY), I haven&rsquo;t really done anything significant. That&rsquo;s what I&rsquo;m most annoyed at myself for.</p>
+<p>The one thing that <em>Debugger</em> lacks completely right now is any kind of lore. It&rsquo;s fun to play, but apart from solving puzzles, there&rsquo;s not much else. I found myself wanting to tell a story through the game, but nothing came to mind. Nothing still has, for that matter.</p>
+<p>I stalled for a while by adding various graphics enhancements to the game, such as a sprite-stacking &ldquo;2.5D&rdquo; effect using parallax scrolling, and lighting using a <a href="https://github.com/tristanperrow/kaplay-lighting">plugin</a> another KAPLAY user developed (and I promptly added a settings option to turn them both off and then did that, as they&rsquo;re rather GPU-intensive and were causing my laptop to overheat). I started drafting lore in a file, called <code>LORE.md</code> for obvious reasons, and left it open most of the time. Whenever I finished that day&rsquo;s worth of bugfixes and enhancements, I would commit and push my changes, and then close all of the open tabs, leaving only <code>LORE.md</code> open and reminding myself of how much I hadn&rsquo;t written.</p>
+<p>But what should I even write?</p>
+<h2 id="starting-somewhere">Starting&hellip; somewhere</h2>
+<p>Perhaps part of the reason why I am having trouble coming up with ideas for <em>Debugger</em>&lsquo;s lore is that I have never really played very much of established videogames with fully-developed storylines. On that effort, I decided I wanted to start playing some existing games to be able to see how their developers and story directors think.</p>
+<h3 id="minecraft">Minecraft</h3>
+<p>I had a <a href="https://minecraft.net" title="do I really need to give you a link to this?">Minecraft</a> gift card lying around that my aunt had bought me years ago that I hadn&rsquo;t yet redeemed, so I redeemed it. And although I had seen many YouTube videos discussing Minecraft&rsquo;s lore, I wanted to start at the beginning and see how Minecraft introduces the player to is story.</p>
+<!--cSpell: ignore mojang -->
+
+<p>Unfortunately for me, Minecraft doesn&rsquo;t make any effort whatsoever to set up any kind of exposition. Upon creating a new survival-mode world and launching it, you (the player) are simply spawned in a random location in the world and you have to immediately start trying to survive (ahem, it&rsquo;s <em>survival</em> mode) and it&rsquo;s only after you have played for a long time that you find bits and pieces of Minecraft&rsquo;s lore in the form of the various structures that generate in various locations in the world across biome types, elevations, and dimensions. I didn&rsquo;t play long enough to get any  of that before I got bored looking for it.</p>
+<figure>
+<p><img alt="image" src="https://dragoncoder047.github.io/blog/2025/whats-in-a-game/minecraft_screenshot.png"></p>
+<figcaption>I started by playing survival mode, but got quickly bored (and died 5 times in 2 minutes). Rather than bore myself any more I made a &ldquo;redstone sandbox&rdquo; creative mode superflat world and played around in that. The first thing I made was a 2x2 flush sliding piston door. I did not use any tutorials. I am pretty proud of myself.</figcaption>
+</figure>
+<p>There&rsquo;s no text<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, which makes the lore extremely cryptic. Thankfully this crypticness has probably made it a lot easier for Mojang to add pretty much anything and still have it fit with the existing lore. A recent snapshot (<a href="https://www.minecraft.net/article/minecraft-snapshot-25w31a">25w31a</a>) added copper golems, which are basically little robots that run around and sort items for you. By what I have heard on YouTube, copper golems were added entirely by request from the Mineraft community who have been tired of having to waste time building item sorting machines to maintain organization when building &ndash; thus copper golems are probably the best candidate for &lsquo;thing in Minecraft with absolutely no lore whatsoever&rsquo;. (My creative mode inventory is rather disorganized, so I completely understand where this request is coming from!)</p>
+<p>That being said, Minecraft&rsquo;s style of dumping the player straight into the world with no explanation is kind of where <em>Debugger</em> is at already. I suppose that means that I should not worry too much about getting the player up to speed initially, as they will be getting all of that anyway as the game progresses and putting half of it upfront might just be wasting time.</p>
+<h3 id="warframe">Warframe</h3>
+<p>Being a college student with a $0 budget is quite limiting, and I have had a pretty hard time finding games that are both well-developed in terms of storyline and free to play. Thankfully, <a href="https://warframe.com">Warframe</a> is both. I initially resisted getting it as I&rsquo;m not that big of a fan of fighting / shoot-&lsquo;em-up games, but I was quickly getting bored by Minecraft, so I figured I should at least try a different game.</p>
+<p>Unlike Minecraft, Warframe actually has plot-developing cutscenes and guided introductory missions that the player has to complete before they can continue. Combined with the fact that it&rsquo;s nearly impossible to die to the point of having to completely restart the mission (at least in the beginning, I haven&rsquo;t got past that yet) &ndash; even the starter warframes are quite overpowered compared to the enemies, and you also get four revives for free every time &ndash; the game feels more like a guided story than a game to me at least, and <em>oh boy</em> is it a long story.</p>
+<p>Warframe is actually a few years younger than Minecraft (12 compared to 16 years), yet there&rsquo;s already more pages in the Warframe fan wiki compared to Minecraft (<a href="https://warframe.fandom.com/wiki/WARFRAME_Wiki">9,276</a> compared to Minecraft&rsquo;s <a href="https://minecraft.fandom.com/wiki/Minecraft_Wiki">7,514</a> at the time I wrote this) and from a cursory look, the majority of pages in the Warframe wiki are dedicated to lore, revolving around both the game&rsquo;s immense number of items (also more than Minecraft!) and just pages and pages of nothing but history of the Warframe universe, whereas the Minecraft wiki&rsquo;s pages largely just detail the properties (of items) and behaviors (of mobs) of each thing in the game, and don&rsquo;t connect things together too much.</p>
+<p>Due to the fact that I&rsquo;m not a terribly avid gamer, I&rsquo;m probably never going to get through all of Warframe&rsquo;s missions. (By the time I get through all of the ones that exist right now, they&rsquo;ll probably have added many more!)</p>
+<p>Regardless, this is actually kind of similar to how I envisioned (and currently have) <em>Debugger</em>&lsquo;s lore set up: even though the player has to retrace their steps and pass through the same area multiple times, there&rsquo;s still a linear pathway they have to follow, so it&rsquo;s looking like I will probably be able to write a fairly linear storyline and have it work.</p>
+<h3 id="honorable-mention-undertale-and-deltarune">Honorable mention: Undertale (and Deltarune)</h3>
+<p>For a text-driven narrative, some of the best examples I can think of are Toby Fox&rsquo;s games. I am completely sure that if it weren&rsquo;t for the fact that I haven&rsquo;t played either of them, these would be first in the list of games I have explored here and not pushed down to the &ldquo;honorable mention&rdquo; level.</p>
+<p>With how popular they are, avoiding Undertale and Deltarune memes, fan art, and &ldquo;[character] out of context&rdquo;-style quotings has been next to impossible for me. It&rsquo;s quite apparent that the reason why Toby Fox&rsquo;s characters have been so popular is that they balance the right amount of deadpan humor, fourth-wall breaking, and unreliable-narrator-ness to make the game strangely addictive. Even the <a href="https://undertale.com/about/">&ldquo;about&rdquo; page for Undertale</a> has this same kind of irreverence:</p>
+<blockquote>
+<p>So, did you learn what the game&rsquo;s about?</p>
+<p>Hmmm.</p>
+<p>Well, it&rsquo;s too late.</p>
+<p>There&rsquo;s no &ldquo;BACK&rdquo; button on this page.</p>
+<p>You&rsquo;re going to be trapped here&hellip;</p>
+<p>For ALL ETERNITY!!!</p>
+<p>Urrahhhh ha ha ha!!</p>
+<p>This ABOUT PAGE is gonna be your GRAVE!</p>
+<p>AHAHAHAHAHAHAHAHAHAHAHAHAHA!!!!</p>
+<p>Oh! And here&rsquo;s my Twitter.</p>
+</blockquote>
+<p>I don&rsquo;t want to just &ldquo;mimic Toby Fox,&rdquo; but I definitely admire deadpan comedy and farcical situations like this and are probably where all of the iconic memes and quotes have come from. I want my characters to have their own style, and doing this is going to be a challenge.</p>
+<h2 id="going">Going</h2>
+<p>I have not played any of those games to the point of seeing a resolution to the story. Granted, there may not even be a resolution (Minecraft hardly has any lore, and Warframe is said to be in &lsquo;perpetual beta&rsquo;; in both cases the developers are just continuously adding stuff to their game), but even with that, I haven&rsquo;t even gotten out of the exposition in either game.</p>
+<p>Constructing a complete story arc is surprisingly difficult whether it&rsquo;s a videogame backstory or a novel. Heck, even getting this very blog post to a sensible conclusion was difficult. Nevertheless the general theme of what I&rsquo;ve learned with these is that everything including the the environment has to play a role or be otherwise connected to the story in a visible manner for the influence of the story to be the strongest.</p>
+<p>The current way I have of presenting lore in the game is via dialog boxes that are styled to look like a Linux <code>man</code> page, and all of the items you can pick up in the game have entries in this system &ndash; some are longer than others, but at least for what I have written currently, they only describe the items&rsquo; functionality in the style of a man page giving hints to how you can use it, and don&rsquo;t really take part in any story. There&rsquo;s only eight entries (because there&rsquo;s only eight unique items), and there&rsquo;s not much you can do to tell a full story in eight panels that are presented only when the user asks to look at them by pressing a button &ndash; you could play the whole game and never read a single word of any of them. So I definitely need some other way of giving out bits and pieces of the lore.</p>
+<p>My half-assed first draft and <em>Debugger</em>&lsquo;s lore document included a nameless, faceless &lsquo;computer&rsquo; narrator, and I had deliberately ignored how I was going to actually integrate such a thing into the game for the sake of expanding the draft. After suffering from writers&rsquo; block for a few days I decided my time would be better spent trying to figure out how to actually present the narration or narrator.</p>
+<p>My initial idea was a little floating companion that follows the player around throughout the game and displays speech bubbles after key events happen (when the player picks up a certain item, when the player enters a certain area, etc) and the player can click on the thing to move to the next speech bubble&rsquo;s worth of text if it doesn&rsquo;t fit in one.</p>
+<figure>
+<p><img alt="image" src="https://dragoncoder047.github.io/blog/2025/whats-in-a-game/idea_debugger_computer.png"></p>
+<figcaption>Everything in pink is just a doodle that I made on top of the screenshot as a 30-second mockup.</figcaption>
+</figure>
+<p>After admiring my hot pink scribble, I started to think about how exactly the narrator companion would talk in-game. I narrowed it down to two options for myself:</p>
+<ol>
+<li>
+<p>Play off the current generative AI boom and tools like ChatGPT. I&rsquo;ve never used AI like this, but I could probably check with friends or just come up with something that fits like this. From the popularity of ChatGPT, it&rsquo;s obvious that people have no problem with this kind of conversational style, so maybe I can capitalize on that. Maybe I can even run my drafts through ChatGPT itself to make them sound more like AI!</p>
+</li>
+<li>
+<p>Make the narrator snarky and superficially unhelpful, similar to the character GLaDOS from the game <em>Portal</em> (another one which I have not played). Back when <em>Portal</em> was a new game, apparently GLaDOS enjoyed the same memeworthiness and quotability as <em>Deltarune</em>&lsquo;s characters do today, largely in part due to her chillingly callous and snarky retorts during and after each level.</p>
+</li>
+</ol>
+<p>Then there&rsquo;s always the third option in the middle of the two: start out with one of them, and gradually transition to the other one as gameplay progresses. I might do this only because I will probably get bored or blank if I try to write the entire thing using one static tone.</p>
+<p>Having the text come in small snippets also opens up the possibility of having randomized or changing text, in case the player encounters the same text trigger multiple times. Obviously this means that if I do this, I will have to write much more text than just one complete pass through the game, which just adds to the difficulty level.</p>
+<h2 id="gone">Gone</h2>
+<p>Probably the most important thing about a game&rsquo;s storyline is the ending of it. It needs to tie up all of the loose ends with the story, so that the game actually feels complete rather than just being that way, and leaves the player with a nice feeling that they&rsquo;ll remember after having not played for a while.</p>
+<p>At one point during the development of <em>Debugger</em> I did have an area that could be called an ending in some regards, but it was little more than just a text box announcing &lsquo;Congratulations! You have reached the end of the game!&rsquo;. I eventually scrapped that area as it was obvious that despite the game announcing to the player that it was so, the game would not <em>feel</em> complete without the rest of the story coming to a close around it. And at that point, there wasn&rsquo;t really any story that I could do anything to conclude, so that area was quite worthless.</p>
+<p>Some places I&rsquo;ve heard that when designing a story like this it helps to work backwards &ndash; determine what the ending/resolution will look like, and then figure out how the player will get there. I&rsquo;m finding this extra difficult because the part of the game I have implemented currently is the <em>beginning</em> of the game, and having to ignore that and come up with an ending hasn&rsquo;t been easy as I am constantly being pulled back to the part I have made already during development, which is not the end.</p>
+<p>That being said I am probably going to start working on the conclusion next, just to keep my sanity, and to give myself a known ending to work towards. Up until now, <em>Debugger</em> has been steadily progressing towards something, but without a clear destination, I&rsquo;ve been largely unable to stop working on it.</p>
+<h2 id="with-a-bang">With a bang</h2>
+<p>And let&rsquo;s not forget one of the other important aspects of a good videogame: the background music. Even if there&rsquo;s sound effects, without any music, the game just feels empty and lifeless.</p>
+<p>That being said, &lsquo;empty and lifeless&rsquo; is kind of the aesthetic I was going for to begin with, so I initially did not have any music. But my alpha-tester classmate pointed this lack of music out, and he said that for what he could see the game would be better served by some background music.</p>
+<p>I currently have 10 different songs written for <em>Debugger</em>, and they are more or less designed to be seamlessly transitioned into each other. They&rsquo;re all scored using simple 8-bit style synthesizers (mostly because I decided to limit myself to use <a href="https://keithclark.github.io/ZzFXM/">ZzFXM</a>) and have a range of moods, from hyperactive and fast to dark and foreboding.</p>
+<p>My initial plan was just to assign one song to each room in the game, and then whenever the current song ends, just check which room the player is in, and switch to the song assigned to it. This is sort of what other games like <em>Undertale</em> do, where each area has its own theme music, each boss has their own battle music, etc. But after a while, I realized that I would have to add new rooms as I expanded the game, and having to design the level <em>and</em> compose another song for it just makes the whole thing harder.</p>
+<p>Since I didn&rsquo;t have the right number of songs to go along with the current number of levels I had designed, I just abandoned that idea entirely and made the songs switch between each other totally at random. But after stalling for a while (and composing a few more of the songs) I came up with a better idea: the player&rsquo;s actions would bias the choices of songs. Each time the player does something significant, it will change a parameter variable (such as speed, danger, repetitiveness, etc.), and once the current set of parameter variables is far enough from the current song&rsquo;s assigned parameters, the song will change to another song that is closer to the current parameter values. Of course, making sure that the song fits the actions is completely governed by what numbers I assign to each song, and fine-tuning those will present its own set of problems.</p>
+<h2 id="yet">Yet</h2>
+<p>If there&rsquo;s anything I&rsquo;ve gained from this experience, it&rsquo;s a healthy respect for other indie game developers (and ones at big established studios, too). Games are art, with a little bit of programming thrown in, and not the other way around. I probably should have realized this earlier on, but my na&iuml;ve enthusiasm for the game I came up with largely blinded me to the level of creativity I will need to develop in order to get <em>Debugger</em> across the finish line.</p>
+<p>I may still not appreciate it fully, but I now have a healthier understanding of what it takes to make a game, and what it takes to finish a game as well. Here&rsquo;s hoping that with this new knowledge, I will be able to push myself to make <em>Debugger</em> a great game.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Except for the &lsquo;End poem&rsquo; that you get after beating the Ender Dragon, but it&rsquo;s also just as cryptic and abstract as the rest of Minecraft&rsquo;s environment, and I could see it fitting in with any possible interpretation of Minecraft&rsquo;s lore. Hardly anyone who gets to that point ever stops to read it anyway these days from what I&rsquo;ve seen, because they&rsquo;ve either seen it all before, or don&rsquo;t care about it. It&rsquo;s a nice read though. Full disclosure - I never actually beat Minecraft and read it that way. I just looked at it from other places where it is posted online. Sure, boo me all you want, but playing Minecraft is not my job.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/2025/one-hell-of-a-physics-engine">One Hell of a Physics Engine</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2025/so-far-ahead-yet-so-far-behind">So far ahead, yet so far behind</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/boy-have-i-been">Boy, Have I Been...</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/perhaps-it-was-too-complicated">Perhaps It Was Too Complicated</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/zero-thickness-tree">Zero-Thickness Tree</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife.com Forums</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                                <li><a href="http://www.ulisp.com/">uLisp</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                                <li><a href="https://instagram.com/dragoncoder047/">dragoncoder047 on Instagram</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XR0F89CCGK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-XR0F89CCGK");
+    </script>
+
+        </footer>
+    </body>
+</html>

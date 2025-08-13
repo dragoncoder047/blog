@@ -3,13 +3,13 @@ Date: 2025-01-13
 Tags: programming, javascript, gamedev
 Series: debugger-game
 
-I finally got around to testing the game I have been making, Debugger, using a game controller. For the most part, it went off without a hitch, but there were several problems I encountered -- and none of them were fixable, because they were not bugs in my code, nor in the game library I am using ([KAPLAY.js][kaplay]). They were problems with the browser itself.
+I finally got around to testing the game I have been making, *Debugger*, using a game controller. For the most part, it went off without a hitch, but there were several problems I encountered -- and none of them were fixable, because they were not bugs in my code, nor in the game library I am using ([KAPLAY.js][kaplay]). They were problems with the browser itself.
 
 KAPLAY uses the [Web Gamepad API][gamepad_api] internally to detect and process game controllers, like the one I am using. Despite the fact that MDN claims that it's been available and fully supported, I found it wasn't. Some browsers supported it only partially, while others claimed to support it but actually implemented it in an undocumented, noncompliant manner.
 
 ## Safari
 
-Safari on Mac, surprisingly enough, actually supported all of the APIs that were required to run Debugger. I added some code to give haptic feedback using the game controller's rumble motors, and after testing in several browsers it turns out that Safari was the only browser I could get haptic feedback working in -- even though MDN claims that all major browsers have supported it for like 5 years.
+Safari on Mac, surprisingly enough, actually supported all of the APIs that were required to run *Debugger*. I added some code to give haptic feedback using the game controller's rumble motors, and after testing in several browsers it turns out that Safari was the only browser I could get haptic feedback working in -- even though MDN claims that all major browsers have supported it for like 5 years.
 
 ## Chrome
 
@@ -63,7 +63,7 @@ I can tell it's trying to represent it as an angle somehow, but it's not any sta
 
 ## The verdict
 
-There's enough support out there for the Gamepad API that you're actually able to play Debugger. That being said, it took a lot of work to get there. To be able to display the right button names for the controller the player is using, I had to implement some horrible string-munging code to try to parse the `id` value that the browser gives for each connected game controller, figure out which kind it is, and then swap out the button names using the internationalization string mechanism. There's also the code to check if the browser is Firefox and warn the user about the above bugs when they try to use a game controller.
+There's enough support out there for the Gamepad API that you're actually able to play *Debugger*. That being said, it took a lot of work to get there. To be able to display the right button names for the controller the player is using, I had to implement some horrible string-munging code to try to parse the `id` value that the browser gives for each connected game controller, figure out which kind it is, and then swap out the button names using the internationalization string mechanism. There's also the code to check if the browser is Firefox and warn the user about the above bugs when they try to use a game controller.
 
 Until and unless browser developers get their sh*t together and fix all these problems, I'm probably not going to make any Web-based thing that interfaces with game controllers. The sad truth is that no matter how widely-supported the Web Gamepad API claims to be, it just isn't.
 

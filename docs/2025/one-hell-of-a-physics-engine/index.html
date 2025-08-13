@@ -140,9 +140,12 @@
                 <li class="active">
                     <a href='https://dragoncoder047.github.io/blog/2025/one-hell-of-a-physics-engine'>One Hell of a Physics Engine</a>
                 </li>
+                <li >
+                    <a href='https://dragoncoder047.github.io/blog/2025/whats-in-a-game'>What's in a game?</a>
+                </li>
         </ol>
-    <p>I&rsquo;ve been working on my upcoming platformer game, Debugger, way too much. And I haven&rsquo;t really had the chance to add much of anything to the game itself. All I have been dealing with is trying to eliminate any source of lag in the game by any means possible.</p>
-<p>Sure, the game never got a smooth 60 frames per second, even at the start. I knew that a Javascript game like Debugger was never going to have buttery-smooth graphics, even with a KAPLAY using a WebGL backend for all the drawing. The main source of lag is in the physics engine &ndash; and there&rsquo;s a lot of reasons why that will usually be the bottleneck.</p>
+    <p>I&rsquo;ve been working on my upcoming platformer game, <em>Debugger</em>, way too much. And I haven&rsquo;t really had the chance to add much of anything to the game itself. All I have been dealing with is trying to eliminate any source of lag in the game by any means possible.</p>
+<p>Sure, the game never got a smooth 60 frames per second, even at the start. I knew that a Javascript game like <em>Debugger</em> was never going to have buttery-smooth graphics, even with a KAPLAY using a WebGL backend for all the drawing. The main source of lag is in the physics engine &ndash; and there&rsquo;s a lot of reasons why that will usually be the bottleneck.</p>
 <p>Detecting collisions is an integral component of any platformer game&rsquo;s physics &mdash; without collision detection, the player falls straight through the platforms. But in larger platformer games &ndash; and in general, any physics-based game &ndash; doing that collision check takes a huge amount of processing power (and mostly time), so a plethora of algorithms have been developed to speed up collision checking. KAPLAY&rsquo;s integrated physics is no exception, but it&rsquo;s currently a little underpowered.</p>
 <h2 id="failure-mode-1-the-game-lags-to-the-point-of-being-unplayable">Failure mode #1: The game lags to the point of being unplayable</h2>
 <p>This was the case once I had the mechanics of the game down and started adding to the world. I opened a test build of the game in my browser one day and found that I was getting an eye-watering 5 frames per second &mdash; technically, it was playable (I deliberately designed the game to never rely on swift reflexes or split-second timing), but the latency on even the keyboard controls was extremely bad and unresponsive, and in addition to that, it turned my laptop&rsquo;s fan into a jet engine.</p>
@@ -165,8 +168,8 @@
                 <li><a href="https://dragoncoder047.github.io/blog/2025/so-far-ahead-yet-so-far-behind">So far ahead, yet so far behind</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/2024/boy-have-i-been">Boy, Have I Been...</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/2023/in-search-of-a-brain">In Search of a Brain</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2025/whats-in-a-game">What's in a game?</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/2024/perhaps-it-was-too-complicated">Perhaps It Was Too Complicated</a></li>
-                <li><a href="https://dragoncoder047.github.io/blog/2023/zero-thickness-tree">Zero-Thickness Tree</a></li>
         </ul>
     <script src="https://giscus.app/client.js"
         data-repo="dragoncoder047/blog"

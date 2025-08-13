@@ -19,14 +19,14 @@ Back in July, I had the following conversation with a friend over lunch:
 
 And think I did. That's what I've been working on for the past few months; I kind of forgot that I even had a blog or a YouTube channel. Developing the game has been taking up way too much time and I probably should have prioritized my studies over finishing the game, instead of the other way around. But the game is now 90% complete (or more), so I thought it would be fun to take a trip down memory lane and look at what the game looked like in its earliest stages.
 
-I quickly decided it was going to be a platformer game and be playable in the browser. That left it still pretty wide open in terms of game engine, and so I settled on [Kaplay.js](https://kaplayjs.com/). While I worked on the game description, I also played around with Kaplay and put together a bit of code to test what I could do.
+I quickly decided it was going to (a) be a platformer game and (b) be playable in the browser. That left it still pretty wide open in terms of game engine, and so I settled on [KAPLAY.js](https://kaplayjs.com/). While I worked on the game description, I also played around with KAPLAY and put together a bit of code to test what I could do.
 
-Digging through old git commit history, I resurrected the very first test I ever made using Kaplay. It is date-stamped July 19.
+Digging through old git commit history, here's the very first test I ever made using KAPLAY. It is date-stamped July 19.
 
 %%% figure
     <iframe src="kdemo.html" height="125" width="450" style="margin-left:auto;margin-right:auto"></iframe>
 
-    %: You can click on the canvas and use the left and right arrow keys to move the red rectangle (the player) and the up key to jump. There's not much to do, but hey... it works!
+    %: You can click on the canvas and use the <kbd>&larr;</kbd> and <kbd>&rarr;</kbd> arrow keys to move the red rectangle (the player) and the <kbd>&uarr;</kbd> key to jump. There's not much to do, but hey... it works!
 
 Compared to what the game is now, that first demo was laughably primitive. There wasn't even any art, but with a good eye you can see how it resembles -- just barely -- the full game that I have put together.
 
@@ -42,9 +42,9 @@ Compare that to what's going on in game above, and you can see why it's taken me
 
 Putting together a game like this is incredibly fun -- and exhausting. When I started, I thought I would be able to throw it together in, like, a week. It turns out it's not that simple: I was constantly running into weird bugs in the game engine itself!
 
-All of those bugs would need fixing if my game was going to work, so I reported them all to Kaplay's maintainers, one by one, as I discovered them.. Later on, I forked Kaplay and fixed them myself.
+All of those bugs would need fixing if my game was going to work, so I reported them all to KAPLAY's maintainers, one by one, as I discovered them.. Later on, I forked KAPLAY and fixed them myself.
 
-As I explored Kaplay's codebase, I learned more and more about how the game engine works, and I started noticing things that could be improved, even stuff that my game didn't encounter as a problem. The speed at which I was finding and fixing issues must have been unusual, because once I joined the Kaplay Discord server in September, I was quickly reminded of my "meme" status:
+As I explored KAPLAY's codebase, I learned more and more about how the game engine works, and I started noticing things that could be improved, even stuff that my game didn't encounter as a problem. The speed at which I was finding and fixing issues must have been unusual, because once I joined KAPLAY's Discord server in September, I was quickly reminded of my "meme" status:
 
 ![lajbel: you have reached the final issue, a dragoncoder047 issue]({attach}kdmeme.png)
 
@@ -52,13 +52,13 @@ It was all in good fun, though; I was never harassed over it except for this ton
 
 ---
 
-In early October, the Kaplay team announced that they would be hosting a game jam in November, and then dropped a huge surprise in my lap: the main developer asked me to be a judge of the game jam.
+In early October, the KAPLAY team announced that they would be hosting a game jam in November, and then dropped a huge surprise in my lap: the main developer asked me to be a judge of the game jam.
 
 ![lajbel: Hey dragoncoder047! I'm searching for judges on our upcoming game jam. What do you think?]({attach}kajamjudgereq.png)
 
-I turned him down, mostly because I knew that I should be prioritizing my studies over judging a game jam and I wouldn't be able to commit to the time. Unfortunately, that meant that I would have more time to work on my game... and so I did that. I recruited a classmate from my calculus class to beta-test my game and it ballooned exponentially from there. I kept creating more and more additions to my game, and finding more things to fix in Kaplay. It was so much that I actually am now the 5^th^ place developer by number of commits, after only the original developer (of Kaboom.js, Kaplay's predecessor), and Kaplay's development team.
+I turned him down, mostly because I knew that I should be prioritizing my studies over judging a game jam and I wouldn't be able to commit to the time. Unfortunately, that meant that I would have more time to work on my game... and so I did that. I recruited a classmate from my calculus class to beta-test my game and it ballooned exponentially from there. I kept creating more and more additions to my game, and finding more things to fix in KAPLAY. It was so much that I actually am now the 5^th^ place developer by number of commits, after only the original developer (of Kaboom.js, KAPLAY's predecessor), and KAPLAY's development team. *(EDIT Aug. 11 - now I'm 4^th^!)*
 
-[![6 top developers to Kaplay by number of commits]({attach}kcontr.png)](https://github.com/kaplayjs/kaplay/graphs/contributors)
+[![6 top developers to KAPLAY by number of commits]({attach}kcontr.png)](https://github.com/kaplayjs/kaplay/graphs/contributors)
 
 I'd say it's been a productive 3 months.
 

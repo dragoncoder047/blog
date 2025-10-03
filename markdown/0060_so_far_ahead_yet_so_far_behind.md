@@ -1,7 +1,7 @@
 Title: So far ahead, yet so far behind
 Date: 2025-01-13
 Tags: programming, javascript, gamedev
-Series: debugger-game
+Series: aelith-game
 
 I finally got around to testing the game I have been making, *Debugger*, using a game controller. For the most part, it went off without a hitch, but there were several problems I encountered -- and none of them were fixable, because they were not bugs in my code, nor in the game library I am using ([KAPLAY.js][kaplay]). They were problems with the browser itself.
 

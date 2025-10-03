@@ -1,7 +1,7 @@
 Title: One Hell of a Physics Engine
 Date: 2025-02-22
 Tags: programming, javascript, gamedev
-Series: debugger-game
+Series: aelith-game
 
 I've been working on my upcoming platformer game, *Debugger*, way too much. And I haven't really had the chance to add much of anything to the game itself. All I have been dealing with is trying to eliminate any source of lag in the game by any means possible.
 

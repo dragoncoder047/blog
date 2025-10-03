@@ -1,7 +1,7 @@
 Title: What's in a game?
 Date: 2025-08-13
 Tags: programming, gamedev
-Series: debugger-game
+Series: aelith-game
 
 "I have a cool game mechanic. Now what?"
 
@@ -28,7 +28,7 @@ I had a [Minecraft][mc]{title="do I really need to give you a link to this?"} gi
 [mc]: https://minecraft.net
 <!--cSpell: ignore mojang -->
 
-Unfortunately for me, Minecraft doesn't make any effort whatsoever to set up any kind of exposition. Upon creating a new survival-mode world and launching it, you (the player) are simply spawned in a random location in the world and you have to immediately start trying to survive (ahem, it's *survival* mode) and it's only after you have played for a long time that you find bits and pieces of Minecraft's lore in the form of the various structures that generate in various locations in the world across biome types, elevations, and dimensions. I didn't play long enough to get any  of that before I got bored looking for it.
+Unfortunately for me, Minecraft doesn't make any effort whatsoever to set up any kind of exposition. Upon creating a new survival-mode world and launching it, you (the player) are simply spawned in a random location in the world and you have to immediately start trying to survive (ahem, it's *survival* mode) and it's only after you have played for a long time that you find bits and pieces of Minecraft's lore in the form of the various structures that generate in various locations in the world across biome types, elevations, and dimensions. I didn't play long enough to get any of that before I got bored looking for it.
 
 %%%
     ![image]({attach}minecraft_screenshot.png)
@@ -49,7 +49,7 @@ Being a college student with a $0 budget is quite limiting, and I have had a pre
 
 Unlike Minecraft, Warframe actually has plot-developing cutscenes and guided introductory missions that the player has to complete before they can continue. Combined with the fact that it's nearly impossible to die to the point of having to completely restart the mission (at least in the beginning, I haven't got past that yet) -- even the starter warframes are quite overpowered compared to the enemies, and you also get four revives for free every time -- the game feels more like a guided story than a game to me at least, and *oh boy* is it a long story.
 
-Warframe is actually a few years younger than Minecraft (12 compared to 16 years), yet there's already more pages in the Warframe fan wiki compared to Minecraft ([9,276][wfwiki] compared to Minecraft's [7,514][mcwiki] at the time I wrote this) and from a cursory look, the majority of pages in the Warframe wiki are dedicated to lore, revolving around both the game's immense number of items (also more than Minecraft!) and just pages and pages of nothing but history of the Warframe universe, whereas the Minecraft wiki's pages largely just detail the properties (of items) and behaviors (of mobs) of each thing in the game, and don't connect things together too much.
+Warframe is actually a few years younger than Minecraft (12 compared to 16 years), yet there's already more pages in the Warframe fan wiki compared to Minecraft ([9,276][wfwiki] compared to Minecraft's [7,514][mcwiki] at the time I wrote this). From a cursory look, the majority of pages in the Warframe wiki are dedicated to lore, revolving around both the game's immense number of items (also more than Minecraft!) and just pages and pages of nothing but history of the Warframe universe, whereas the Minecraft wiki's pages largely just detail the properties (of items) and behaviors (of mobs) of each thing in the game, and don't connect things together too much.
 
 [wf]: https://warframe.com
 [mcwiki]: https://minecraft.fandom.com/wiki/Minecraft_Wiki
@@ -93,7 +93,7 @@ I don't want to just "mimic Toby Fox," but I definitely admire deadpan comedy an
 
 I have not played any of those games to the point of seeing a resolution to the story. Granted, there may not even be a resolution (Minecraft hardly has any lore, and Warframe is said to be in 'perpetual beta'; in both cases the developers are just continuously adding stuff to their game), but even with that, I haven't even gotten out of the exposition in either game.
 
-Constructing a complete story arc is surprisingly difficult whether it's a videogame backstory or a novel. Heck, even getting this very blog post to a sensible conclusion was difficult. Nevertheless the general theme of what I've learned with these is that everything including the the environment has to play a role or be otherwise connected to the story in a visible manner for the influence of the story to be the strongest.
+Constructing a complete story arc is surprisingly difficult whether it's a videogame backstory or a novel. Heck, even getting this very blog post to a sensible conclusion was difficult. Nevertheless the general theme of what I've learned with these is that everything including the the environment has to play a role or be otherwise connected to the story in a visible manner for the influence of the story to be the strongest. It's the old principle of [Chekhov's gun](https://en.wikipedia.org/wiki/Chekhov%27s_gun) -- if something is displayed prominently - anywhere - and not immediately used, the player *must* come back to it later and use it. If it's never used, including it is pointless for the story and potentially confusing to the player.
 
 The current way I have of presenting lore in the game is via dialog boxes that are styled to look like a Linux `man` page, and all of the items you can pick up in the game have entries in this system -- some are longer than others, but at least for what I have written currently, they only describe the items' functionality in the style of a man page giving hints to how you can use it, and don't really take part in any story. There's only eight entries (because there's only eight unique items), and there's not much you can do to tell a full story in eight panels that are presented only when the user asks to look at them by pressing a button -- you could play the whole game and never read a single word of any of them. So I definitely need some other way of giving out bits and pieces of the lore.
 
@@ -108,7 +108,7 @@ My initial idea was a little floating companion that follows the player around t
 
 After admiring my hot pink scribble, I started to think about how exactly the narrator companion would talk in-game. I narrowed it down to two options for myself:
 
-1. Play off the current generative AI boom and tools like ChatGPT. I've never used AI like this, but I could probably check with friends or just come up with something that fits like this. From the popularity of ChatGPT, it's obvious that people have no problem with this kind of conversational style, so maybe I can capitalize on that. Maybe I can even run my drafts through ChatGPT itself to make them sound more like AI!
+1. Play off the current generative AI boom and tools like ChatGPT, and make the narrator character sickeningly sycophantic. I've never used AI and experienced that yes-man tendency some large language models are said to exhibit, but I could probably check with friends or just come up with something that sounds that way. From the popularity of ChatGPT, it's obvious that people have no problem with this kind of conversational style, so maybe I can capitalize on that. Maybe I can even run my drafts through ChatGPT itself to make them sound more like AI!
 
 2. Make the narrator snarky and superficially unhelpful, similar to the character GLaDOS from the game *Portal* (another one which I have not played). Back when *Portal* was a new game, apparently GLaDOS enjoyed the same memeworthiness and quotability as *Deltarune*'s characters do today, largely in part due to her chillingly callous and snarky retorts during and after each level.
 
@@ -120,9 +120,9 @@ Having the text come in small snippets also opens up the possibility of having r
 
 Probably the most important thing about a game's storyline is the ending of it. It needs to tie up all of the loose ends with the story, so that the game actually feels complete rather than just being that way, and leaves the player with a nice feeling that they'll remember after having not played for a while.
 
-At one point during the development of *Debugger* I did have an area that could be called an ending in some regards, but it was little more than just a text box announcing 'Congratulations! You have reached the end of the game!'. I eventually scrapped that area as it was obvious that despite the game announcing to the player that it was so, the game would not *feel* complete without the rest of the story coming to a close around it. And at that point, there wasn't really any story that I could do anything to conclude, so that area was quite worthless.
+At one point during the development of *Debugger* I did have an area that could be called an ending in some regards, but it was little more than just a text box announcing 'Congratulations! You have reached the end of the game!'. I eventually scrapped that area as it was obvious that despite the game announcing to the player that it was so, the game would not *feel* complete without the rest of the story coming to a close around it. And at that point, there wasn't really any story that I could do anything to conclude, so that area was worthless.
 
-Some places I've heard that when designing a story like this it helps to work backwards -- determine what the ending/resolution will look like, and then figure out how the player will get there. I'm finding this extra difficult because the part of the game I have implemented currently is the *beginning* of the game, and having to ignore that and come up with an ending hasn't been easy as I am constantly being pulled back to the part I have made already during development, which is not the end.
+In some places, I've heard that when designing a story like this it helps to work backwards -- determine what the ending/resolution will look like, and then figure out how the player will get there. I'm finding this extra difficult because the part of the game I have implemented currently is the *beginning* of the game, and having to ignore that and come up with an ending hasn't been easy as I am constantly being pulled back to the part I have made already during development, which is not the end.
 
 That being said I am probably going to start working on the conclusion next, just to keep my sanity, and to give myself a known ending to work towards. Up until now, *Debugger* has been steadily progressing towards something, but without a clear destination, I've been largely unable to stop working on it.
 
@@ -142,6 +142,6 @@ Since I didn't have the right number of songs to go along with the current numbe
 
 ## Yet
 
-If there's anything I've gained from this experience, it's a healthy respect for other indie game developers (and ones at big established studios, too). Games are art, with a little bit of programming thrown in, and not the other way around. I probably should have realized this earlier on, but my na&iuml;ve enthusiasm for the game I came up with largely blinded me to the level of creativity I will need to develop in order to get *Debugger* across the finish line.
+If there's anything I've gained from this experience, it's a healthy respect for other indie game developers (and ones at big established studios, too). Games are art, with a little bit of programming thrown in, and not the other way around. I probably should have realized this earlier on, but my na&iuml;ve enthusiasm for the game mechanic I came up with largely blinded me to the level of creativity I need to develop in order to get *Debugger* across the finish line.
 
 I may still not appreciate it fully, but I now have a healthier understanding of what it takes to make a game, and what it takes to finish a game as well. Here's hoping that with this new knowledge, I will be able to push myself to make *Debugger* a great game.

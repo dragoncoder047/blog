@@ -110,35 +110,35 @@
     </div>
         <p><em>This post is part 9 of the pickle series:</em></p>
         <ol class="series">
-                <li >
-                    <a href='https://dragoncoder047.github.io/blog/2023/pickles'>Pickles!</a>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2023/pickles">Pickles!</a>
                 </li>
-                <li >
-                    <a href='https://dragoncoder047.github.io/blog/2023/manual-memory-management-madness'>Manual Memory Management Madness</a>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2023/manual-memory-management-madness">Manual Memory Management Madness</a>
                 </li>
-                <li >
-                    <a href='https://dragoncoder047.github.io/blog/2023/pickle-tokenizer'>Pickle Tokenizer</a>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2023/pickle-tokenizer">Pickle Tokenizer</a>
                 </li>
-                <li >
-                    <a href='https://dragoncoder047.github.io/blog/2023/yet-another-garbage-collector'>Yet Another Garbage Collector</a>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2023/yet-another-garbage-collector">Yet Another Garbage Collector</a>
                 </li>
-                <li >
-                    <a href='https://dragoncoder047.github.io/blog/2023/making-splitting-explicit'>Making Splitting Explicit</a>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2023/making-splitting-explicit">Making Splitting Explicit</a>
                 </li>
-                <li >
-                    <a href='https://dragoncoder047.github.io/blog/2023/pickle-has-regular-expressions-apparently'>PICKLE Has Regular Expressions, Apparently</a>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2023/pickle-has-regular-expressions-apparently">PICKLE Has Regular Expressions, Apparently</a>
                 </li>
-                <li >
-                    <a href='https://dragoncoder047.github.io/blog/2023/its-september'>It's September!!</a>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2023/its-september">It's September!!</a>
                 </li>
-                <li >
-                    <a href='https://dragoncoder047.github.io/blog/2023/continuations-and-the-thunk-queue'>Continuations and the thunk queue</a>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2023/continuations-and-the-thunk-queue">Continuations and the thunk queue</a>
                 </li>
                 <li class="active">
-                    <a href='https://dragoncoder047.github.io/blog/2024/the-lesser-of-two-evils'>The Lesser of Two Evils</a>
+                    <a href="https://dragoncoder047.github.io/blog/2024/the-lesser-of-two-evils">The Lesser of Two Evils</a>
                 </li>
-                <li >
-                    <a href='https://dragoncoder047.github.io/blog/2024/a-hash-mapped-mess'>A Hash-Mapped Mess</a>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2024/a-hash-mapped-mess">A Hash-Mapped Mess</a>
                 </li>
         </ol>
     <p>I&rsquo;ve been trying to write some of the code to implement PICKLE&rsquo;s parser and evaluator &ndash; it&rsquo;s not going well. The hard part is that <em>everything</em> in PICKLE is done using continuation-passing style. Everywhere the evaluator has a chance of calling user code (that may capture a continuation), it has to interrupt its own execution and package everything up into a continuation that will resume the process with whatever the user&rsquo;s code completes with. The result? Turns out, <a href="http://callbackhell.com/">callback hell</a> in C++, or at least something like it, is possible. Just look at this mess:</p>

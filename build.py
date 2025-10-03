@@ -241,12 +241,16 @@ class SocialMagic(html.parser.HTMLParser):
             attrs["post"]}/?utm_source=ig_embed")
         # cSpell: ignore instgrm
         return f"""<blockquote class="instagram-media"{
-            "" if not bool(attrs.get("caption", True))
-            else " data-instgrm-captioned"}
+            " data-instgrm-captioned" if bool(attrs.get("caption", True))
+            else ""}
     data-instgrm-permalink="{permalink}"
     data-instgrm-version="14">
     <a href="{permalink}">View this post on Instagram</a>
     </blockquote>""".replace("\n", "")
+        # this is missing the
+        # <script async src="//www.instagram.com/embed.js"></script>
+        # but that is detected and included automatically by
+        # the template autoinclude.html
     handle_insta = handle_instagram
 
     def handle_endtag(self, tag: str):

@@ -240,7 +240,8 @@ class SocialMagic(html.parser.HTMLParser):
         permalink = html.escape(f"https://www.instagram.com/p/{
             attrs["post"]}/?utm_source=ig_embed")
         # cSpell: ignore instgrm
-        return f"""<blockquote class="instagram-media"{
+        return f"""<blockquote style="margin:inherit auto"
+            class="instagram-media"{
             " data-instgrm-captioned" if bool(attrs.get("caption", True))
             else ""}
     data-instgrm-permalink="{permalink}"

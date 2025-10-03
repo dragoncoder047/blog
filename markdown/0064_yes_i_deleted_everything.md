@@ -9,7 +9,7 @@ In the previous post I detailed a (very long) series of thoughts I had during de
 
 Among other things, it's not called *Debugger* anymore. After finishing a complete draft of the game's plot, that title no longer fit. I'm not going to leak the story quite yet, but it is centered around an industrial complex called the *Aelith*, which is also now the title of the game.
 
-![*Aelith* logo]({attach}aelith_logo_1.png)
+![*Aelith* logo]({attach}aelith_logo_1.png){style="margin:inherit auto"}
 
 In the process of making the game fit with the story I wrote (rather than the other way around) I decided that rather than trying to refactor the messy spaghetti code I already had, it would be more efficient to just get rid of it and start again from scratch! (Of course, I didn't *delete* the old code; I merely archived it in a separate folder, so I could go back and copy old useful snippets that I had when needed, without having to futz around with git recovering it.)
 

@@ -7,7 +7,7 @@
             <meta name="generator" content="Pelican" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <link rel="stylesheet" href="/static/css/main.css" />
-            <link rel="stylesheet" href="/static/css/theme.css" />
+            <link rel="stylesheet" href="/blog/blogtheme.css" />
                     <link rel="icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
                     <link rel="apple-touch-icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
                         <script src="/static/misc.js"></script>
@@ -131,9 +131,9 @@
 <ol>
 <li>State $0$ (the background) always remains the background. This forbids patterns from expanding and eliminates construction rules such as WWEJ3 (but as that is an extension of Wireworld, a universal-construction <abbr title="Generalized Wire Cellular Automata">GWCA</abbr> would naturally also be an extension).</li>
 <li>If there are multiple types of wire, the multiple subsets of states $S_1, S_2,&hellip;S_n$ are partitioned such that all sets are mutually disjoint from each other, that is, $S_1\cup S_2 &hellip;\cup S_n\equiv U$ and $S_p\cap S_q \equiv\emptyset\longleftrightarrow p\not = q$.</li>
-<li>No cell in a state $s_1$ where $s_1\in S_k$ will ever transition to a state $s_2$, $s_2 \not\in S_k$ &ndash; that is, a cell in some wire type will always remain the same wire type.</li>
+<li>No cell in a state $s_1\in S_k$ will ever transition to a state $s_2 \not\in S_k$ &ndash; that is, a cell in some wire type will always remain the same wire type.</li>
 <li>Each subset $S$ can each be partitioned into $n$ subsets of types $T_n$, $1\le n\le 4$.</li>
-<li>If a cell in state $p$, $p\in T_k$, changes state to a new state $q$, then $q\in T_{k+1}$. Alternatively, if $x$ and $y$ are states, $x\in T_k$, and $y\in T_k$, a cell cannot transition from $x$ to $y$ without going through one or more additional states.</li>
+<li>A cell in state $p\in T_k$, can only change state to a new state $q\in T_{k+1}$. Alternatively, if $x$ and $y$ are states, $x\in T_k$, and $y\in T_k$, a cell cannot transition from $x$ to $y$ without going through one or more additional states.</li>
 </ol>
 <p>The Wireworld++ rule I discovered fits these rules: States 1, 2, and 3 are the &ldquo;strong&rdquo; wire type, and 4, 5, and 6 are the &ldquo;weak&rdquo; type. The strong type always stays the strong type and the weak type always stays the weak type. 1 always changes to 2, 2 always changes to 3, and 3 changes back to 1. Likewise, 4 changes to 5, 5 to 6, and 6 back to 4. State 0 remains 0.</p>
 <p>Now, under those constraints, how to serialize this into a rule string?</p>

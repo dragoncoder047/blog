@@ -11,9 +11,9 @@ Starting with the format I had already devised, the task boiled down to this ver
 
 For example, given 'foo', 'bar', 'bam', and 'baz', they are each three bytes. Given 1000 of those tokens in the file, that's 3Kb. But if I could shorten the names -- they could be shortened to 'f', 'r', 'm', and 'z' respectively -- each token would only be one byte, cutting the file size by two-thirds. One letter is all that is needed to uniquely determine which it is --- given that the only choices are 'foo', 'bar', 'bam', and 'baz'.
 
-Now the problem is, how do I get a computer to do that abbreviation, given the word to be abbreviated and the list of possibilities?
+It's intuitive to a human, but now the problem is, how do I get a computer to do that abbreviation, given the word to be abbreviated and the list of possibilities?
 
-My first idea was simple: look at each letter in turn, and if there are more than one different letter of the different possible words at that position in each word, output the letter in the word to be abbreviated, remove the other words that don't have that letter at that position, and repeat until there is only one word left, which should be the word to be abbreviated.
+My first idea was simple: look at each letter in order, and if there are more than one different letter of the different possible words at that position in each word, output the letter in the word to be abbreviated, remove the other words that don't have that letter at that position from consideration, and repeat until there is only one word left, which should be the word to be abbreviated.
 
 The un-abbreviation algorithm for this is also just as simple: go through each letter in the abbreviation, and filter the possibilities down when they have different letters at the next position.
 

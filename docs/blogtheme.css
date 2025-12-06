@@ -1,0 +1,6 @@
+@import url('/static/css/theme.css');
+
+iframe.instagram-media {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}

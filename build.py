@@ -24,7 +24,7 @@ LOGO_AREA_HTML = (f'<a href="{SITEURL}" class="flex-row">'
                   '</div></div></a>')
 ICON = "/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png"
 ICON_MIMETYPE = "image/png"
-THEME_CSS_FILE = "/static/css/theme.css"
+THEME_CSS_FILE = "/blog/blogtheme.css"
 THEME_MAIN_CSS = "/static/css/main.css"
 THEME_STATIC_DIR = "static/"
 EXTRA_JS = ("/static/misc.js",)

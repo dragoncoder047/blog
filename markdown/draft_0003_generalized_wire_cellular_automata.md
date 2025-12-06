@@ -20,9 +20,9 @@ Let me begin by defining what exactly a generalized wire cellular automaton is:
 
 1. State $0$ (the background) always remains the background. This forbids patterns from expanding and eliminates construction rules such as WWEJ3 (but as that is an extension of Wireworld, a universal-construction GWCA would naturally also be an extension).
 2. If there are multiple types of wire, the multiple subsets of states $S_1, S_2,...S_n$ are partitioned such that all sets are mutually disjoint from each other, that is, $S_1\cup S_2 ...\cup S_n\equiv U$ and $S_p\cap S_q \equiv\emptyset\longleftrightarrow p\not = q$.
-3. No cell in a state $s_1$ where $s_1\in S_k$ will ever transition to a state $s_2$, $s_2 \not\in S_k$ -- that is, a cell in some wire type will always remain the same wire type.
+3. No cell in a state $s_1\in S_k$ will ever transition to a state $s_2 \not\in S_k$ -- that is, a cell in some wire type will always remain the same wire type.
 4. Each subset $S$ can each be partitioned into $n$ subsets of types $T_n$, $1\le n\le 4$.
-5. If a cell in state $p$, $p\in T_k$, changes state to a new state $q$, then $q\in T_{k+1}$. Alternatively, if $x$ and $y$ are states, $x\in T_k$, and $y\in T_k$, a cell cannot transition from $x$ to $y$ without going through one or more additional states.
+5. A cell in state $p\in T_k$, can only change state to a new state $q\in T_{k+1}$. Alternatively, if $x$ and $y$ are states, $x\in T_k$, and $y\in T_k$, a cell cannot transition from $x$ to $y$ without going through one or more additional states.
 
 *[GWCA]: Generalized Wire Cellular Automata
 

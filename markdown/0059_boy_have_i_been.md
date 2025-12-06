@@ -24,7 +24,7 @@ I quickly decided it was going to (a) be a platformer game and (b) be playable i
 Digging through old git commit history, here's the very first test I ever made using KAPLAY. It is date-stamped July 19.
 
 %%% figure
-    <iframe src="kdemo.html" height="125" width="450" style="margin-left:auto;margin-right:auto"></iframe>
+    <canvas id="a" height="125" width="450" style="margin-left:auto;margin-right:auto"></canvas>
 
     %: You can click on the canvas and use the <kbd>&larr;</kbd> and <kbd>&rarr;</kbd> arrow keys to move the red rectangle (the player) and the <kbd>&uarr;</kbd> key to jump. There's not much to do, but hey... it works!
 
@@ -63,3 +63,78 @@ I turned him down, mostly because I knew that I should be prioritizing my studie
 I'd say it's been a productive 3 months.
 
 <!-- cSpell: ignore kaplay -->
+<!-- markdownlint-disable no-reversed-links -->
+
+<script async type="module">
+    import kaboom from "https://unpkg.com/kaplay@3001.0.0-alpha.18/dist/kaboom.mjs";
+    const canvas = document.getElementById("a");
+    // Hack to make focus() not get called, since the focus
+    // option doesn't seem to work.
+    Object.defineProperty(canvas, "focus", {
+        value() {
+            console.log("skipping focusing canvas:", this);
+        }
+    });
+    const k = kaboom({
+        crisp: true,
+        background: "#000000",
+        focus: false,
+        canvas,
+        global: false
+    });
+    k.setGravity(300);
+    const level = k.addLevel([
+        "==========================",
+        "=                        =",
+        "=                        =",
+        "=       =====            =",
+        "= @                      =",
+        "=       ^^    ============",
+        "===============           "
+    ], {
+        tileWidth: 16,
+        tileHeight: 16,
+        pos: k.vec2(20, 20),
+        tiles: {
+            "@": () => [
+                k.rect(15, 31),
+                k.area(),
+                k.body({ jumpForce: 150, maxVelocity: 400 }),
+                k.anchor("bot"),
+                k.color("#ff0000"),
+                k.z(Infinity),
+                "player"
+            ],
+            "^": () => [
+                k.rect(16, 16),
+                k.area(),
+                k.anchor("bot"),
+                k.color("#ffff00"),
+                "coin"
+            ],
+            "=": () => [
+                k.rect(16, 16),
+                k.area(),
+                k.body({ isStatic: true }),
+                k.anchor("bot"),
+                k.color("#0000ff"),
+                "ground"
+            ],
+        }
+    });
+    const player = level.get("player")[0];
+    // ?!? hacky ?!?
+    player.vel = k.vec2(0, -100);
+    k.onKeyDown("up", () => {
+        if (player.isGrounded()) {
+            player.jump();
+        }
+    });
+    const SPEED = 64;
+    k.onKeyDown("left", () => {
+        player.move(-SPEED, 0);
+    });
+    k.onKeyDown("right", () => {
+        player.move(SPEED, 0);
+    });
+</script>

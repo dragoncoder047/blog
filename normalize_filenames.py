@@ -32,6 +32,8 @@ for file in files:
                 is_draft = True
             if lLine.startswith("title:"):
                 title = line[6:].strip()
+    if not date:
+        continue
     if is_draft:
         draft_dates[file] = (date, slugify(title))
     else:

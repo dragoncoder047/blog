@@ -56,7 +56,7 @@ In early October, the KAPLAY team announced that they would be hosting a game ja
 
 ![lajbel: Hey dragoncoder047! I'm searching for judges on our upcoming game jam. What do you think?]({attach}ka1/kajamjudgereq.png)
 
-I turned him down, mostly because I knew that I should be prioritizing my studies over judging a game jam and I wouldn't be able to commit to the time. Unfortunately, that meant that I would have more time to work on my game... and so I did that. I recruited a classmate from my calculus class to beta-test my game and it ballooned exponentially from there. I kept creating more and more additions to my game, and finding more things to fix in KAPLAY. It was so much that I actually am now the 5^th^ place developer by number of commits, after only the original developer (of Kaboom.js, KAPLAY's predecessor), and KAPLAY's development team. *(EDIT Aug. 11 - now I'm 4^th^!)*
+I turned her down, mostly because I knew that I should be prioritizing my studies over judging a game jam and I wouldn't be able to commit to the time. Unfortunately, that meant that I would have more time to work on my game... and so I did that. I recruited a classmate from my calculus class to alpha-test my game and it ballooned exponentially from there. I kept creating more and more additions to my game, and finding more things to fix in KAPLAY. It was so much that I actually am now the 5^th^ place developer by number of commits, after only the original developer (of Kaboom.js, KAPLAY's predecessor), and KAPLAY's development team. *(EDIT Aug. 11 - now I'm 4^th^!)*
 
 [![6 top developers to KAPLAY by number of commits]({attach}ka1/kcontr.png)](https://github.com/kaplayjs/kaplay/graphs/contributors)
 
@@ -66,7 +66,7 @@ I'd say it's been a productive 3 months.
 <!-- markdownlint-disable no-reversed-links -->
 
 <script async type="module">
-    import kaboom from "https://unpkg.com/kaplay@3001.0.0-alpha.18/dist/kaboom.mjs";
+    import kaplay from "https://unpkg.com/kaplay@3001.0.0-alpha.18/dist/kaplay.mjs";
     const canvas = document.getElementById("a");
     // Hack to make focus() not get called, since the focus
     // option doesn't seem to work.
@@ -75,7 +75,7 @@ I'd say it's been a productive 3 months.
             console.log("skipping focusing canvas:", this);
         }
     });
-    const k = kaboom({
+    const k = kaplay({
         crisp: true,
         background: "#000000",
         focus: false,

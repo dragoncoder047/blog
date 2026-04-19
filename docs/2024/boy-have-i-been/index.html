@@ -84,7 +84,9 @@
                         </li>
                         <li><a href="#">Projects</a>
                                 <ul>
-                                                            <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                                                            <li><a href="https://backolon.js.org/">Backolon</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
                         </li>
                         <li><a href="https://dragoncoder047.github.io/langton-music">Langton&rsquo;s Ant Music</a>
                         </li>
@@ -153,10 +155,13 @@
                     <a href="https://dragoncoder047.github.io/blog/2025/whats-in-a-game">What's in a game?</a>
                 </li>
                 <li>
-                    <a href="https://dragoncoder047.github.io/blog/2025/yes-i-deleted-everything">Yes, I deleted everything.</a>
+                    <a href="https://dragoncoder047.github.io/blog/2025/a-fresh-start">A Fresh Start</a>
                 </li>
                 <li>
-                    <a href="https://dragoncoder047.github.io/blog/2026/here-goes-nothing">Here Goes Nothing</a>
+                    <a href="https://dragoncoder047.github.io/blog/2026/i-just-cant-keep-my-mouth-shut">I Just Can't Keep My Mouth Shut</a>
+                </li>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2026/pattern-matching-postprocessing-and-a-buggy-bundler">Pattern-Matching, Postprocessing, and a Buggy Bundler</a>
                 </li>
         </ol>
     <p>Back in July, I had the following conversation with a friend over lunch:</p>
@@ -191,14 +196,14 @@
 <hr>
 <p>In early October, the KAPLAY team announced that they would be hosting a game jam in November, and then dropped a huge surprise in my lap: the main developer asked me to be a judge of the game jam.</p>
 <p><img alt="lajbel: Hey dragoncoder047! I'm searching for judges on our upcoming game jam. What do you think?" src="https://dragoncoder047.github.io/blog/2024/boy-have-i-been/ka1/kajamjudgereq.png"></p>
-<p>I turned him down, mostly because I knew that I should be prioritizing my studies over judging a game jam and I wouldn&rsquo;t be able to commit to the time. Unfortunately, that meant that I would have more time to work on my game&hellip; and so I did that. I recruited a classmate from my calculus class to beta-test my game and it ballooned exponentially from there. I kept creating more and more additions to my game, and finding more things to fix in KAPLAY. It was so much that I actually am now the 5<sup>th</sup> place developer by number of commits, after only the original developer (of Kaboom.js, KAPLAY&rsquo;s predecessor), and KAPLAY&rsquo;s development team. <em>(EDIT Aug. 11 - now I&rsquo;m 4<sup>th</sup>!)</em></p>
+<p>I turned her down, mostly because I knew that I should be prioritizing my studies over judging a game jam and I wouldn&rsquo;t be able to commit to the time. Unfortunately, that meant that I would have more time to work on my game&hellip; and so I did that. I recruited a classmate from my calculus class to alpha-test my game and it ballooned exponentially from there. I kept creating more and more additions to my game, and finding more things to fix in KAPLAY. It was so much that I actually am now the 5<sup>th</sup> place developer by number of commits, after only the original developer (of Kaboom.js, KAPLAY&rsquo;s predecessor), and KAPLAY&rsquo;s development team. <em>(EDIT Aug. 11 - now I&rsquo;m 4<sup>th</sup>!)</em></p>
 <p><a href="https://github.com/kaplayjs/kaplay/graphs/contributors"><img alt="6 top developers to KAPLAY by number of commits" src="https://dragoncoder047.github.io/blog/2024/boy-have-i-been/ka1/kcontr.png"></a></p>
 <p>I&rsquo;d say it&rsquo;s been a productive 3 months.</p>
 <!-- cSpell: ignore kaplay -->
 <!-- markdownlint-disable no-reversed-links -->
 
 <script async type="module">
-    import kaboom from "https://unpkg.com/kaplay@3001.0.0-alpha.18/dist/kaboom.mjs";
+    import kaplay from "https://unpkg.com/kaplay@3001.0.0-alpha.18/dist/kaplay.mjs";
     const canvas = document.getElementById("a");
     // Hack to make focus() not get called, since the focus
     // option doesn't seem to work.
@@ -207,7 +212,7 @@
             console.log("skipping focusing canvas:", this);
         }
     });
-    const k = kaboom({
+    const k = kaplay({
         crisp: true,
         background: "#000000",
         focus: false,
@@ -276,8 +281,8 @@
                 <li><a href="https://dragoncoder047.github.io/blog/2025/one-hell-of-a-physics-engine">One Hell of a Physics Engine</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/2025/so-far-ahead-yet-so-far-behind">So far ahead, yet so far behind</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/2023/in-search-of-a-brain">In Search of a Brain</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2026/pattern-matching-postprocessing-and-a-buggy-bundler">Pattern-Matching, Postprocessing, and a Buggy Bundler</a></li>
                 <li><a href="https://dragoncoder047.github.io/blog/2023/continuations-and-the-thunk-queue">Continuations and the thunk queue</a></li>
-                <li><a href="https://dragoncoder047.github.io/blog/2023/pickle-tokenizer">Pickle Tokenizer</a></li>
         </ul>
     <script src="https://giscus.app/client.js"
         data-repo="dragoncoder047/blog"

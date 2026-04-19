@@ -1,8 +1,9 @@
 #! /usr/bin/env python3
 import base64
-import zlib
-import schemascii
 import html.parser
+import zlib
+
+import schemascii
 from markdown.extensions import Extension
 from markdown.postprocessors import Postprocessor
 
@@ -100,6 +101,7 @@ MENUITEMS = (
     ("By tag", f"{SITEURL}/{TAGS_URL}"),
     ("Site root", "/"),
     ("Projects", "#", (
+        ("Backolon", "https://backolon.js.org/"),
         ("Armdroid", f"https://{AUTHOR}.github.io/armdroid"),
         ("Langton&rsquo;s Ant Music",
          f"https://{AUTHOR}.github.io/langton-music"),

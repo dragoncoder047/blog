@@ -1,11 +1,10 @@
-Title: Yes, I deleted everything.
+Title: A Fresh Start
 Date: 2025-10-03
+Modified: 2026-04-15
 Tags: programming, gamedev
 Series: aelith-game
 
-And I don't regret it for one second.
-
-In the previous post I detailed a (very long) series of thoughts I had during development of the platformer game I have been working on. That mental planning really enabled me to make headway on the game.
+In the previous post I detailed a (very long) series of thoughts I had during development of the puzzle platformer game I have been working on. That mental planning really enabled me to make headway on the game.
 
 Among other things, it's not called *Debugger* anymore. After finishing a complete draft of the game's plot, that title no longer fit. I'm not going to leak the story quite yet, but it is centered around an industrial complex called the *Aelith*, which is also now the title of the game.
 

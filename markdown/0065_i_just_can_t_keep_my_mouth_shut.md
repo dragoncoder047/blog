@@ -1,6 +1,7 @@
-Title: Here Goes Nothing
+Title: I Just Can't Keep My Mouth Shut
 Date: 2026-02-10
 Tags: gamedev
+Modified: 2026-04-15
 Series: aelith-game
 
 For some projects I kind of want to finish it and then publish the source code. A lot of other people feel the same way. Not having the entire internet watching your programming fumbles in real time is probably a good thing -- but keeping it private also feels like you're holding it hostage from your friends and any potential collaborators.

@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Pattern-Matching, Postprocessing, and a Buggy Bundler</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/blog/blogtheme.css" />
+                    <link rel="icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
+                    <link rel="apple-touch-icon" href="/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png" type="image/png" />
+                        <script src="/static/misc.js"></script>
+
+
+
+    
+
+
+        <meta name="tags" content="programming, javascript, language-design" />
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s blog" />
+    <meta property="og:title" content="Pattern-Matching, Postprocessing, and a Buggy Bundler" />
+    <meta property="og:description" content="Welp, I did it again. I made another programming language. It took over two months of late nights and coffee and it somehow felt like only two weeks. And I certainly could have been writing other blog posts about it in the meantime, but I honestly didn’t think it …" />
+    <meta property="og:image" content="/images/yazani/yazani_1_extracted_bg.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/blog/2026/pattern-matching-postprocessing-and-a-buggy-bundler" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s blog - Pattern-Matching, Postprocessing, and a Buggy Bundler" />
+    <meta name="twitter:description" content="Welp, I did it again. I made another programming language. It took over two months of late nights and coffee and it somehow felt like only two weeks. And I certainly could have been writing other blog posts about it in the meantime, but I honestly didn’t think it …" />
+    <meta name="twitter:image" content="/images/yazani/yazani_1_extracted_bg.png" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+        <!-- Katex -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.css" type="text/css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/mhchem.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.js"></script>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\begin{align}", right: "\\end{align}", display: true },
+                ]
+            }
+        );
+    });
+</script>        <!-- /Katex -->
+
+
+
+
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XR0F89CCGK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-XR0F89CCGK");
+    </script>
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="https://dragoncoder047.github.io/blog" class="flex-row"><div class="flex-row"><img src="/images/yazani/yazani_1_extracted_bg.png" style="max-height:10em" id="banner-image" /><div id="sitename-text"><h1>dragoncoder047&rsquo;s blog</h1><h2>random thoughts about nonrandom things</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/blog/">Home</a></li>
+                        <li><a href="https://dragoncoder047.github.io/blog/archives">Archives</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/blog/tags">By tag</a>
+                        </li>
+                        <li><a href="/">Site root</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://backolon.js.org/">Backolon</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton&rsquo;s Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/lynx">Lynx</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io/blog"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1><a href="https://dragoncoder047.github.io/blog/2026/pattern-matching-postprocessing-and-a-buggy-bundler" rel="bookmark" title="Permalink to this page">Pattern-Matching, Postprocessing, and a Buggy Bundler</a></h1>
+    
+    <div class="flex-row">
+            <span style="flex: 1">&larr; Previous:
+                <a href="https://dragoncoder047.github.io/blog/2026/i-just-cant-keep-my-mouth-shut">
+                    I Just Can't Keep My Mouth Shut
+                </a>
+            </span>
+    </div>
+    <div class="post-info">
+        Posted <time class="published" datetime="2026-04-18T00:00:00-04:00">Sat 18 April 2026</time>
+            <address>By
+                    <a href="https://dragoncoder047.github.io/blog/">dragoncoder047</a>
+            </address>
+            <div class="tags">
+                Tags:
+                    <a href="https://dragoncoder047.github.io/blog/tag/javascript">javascript</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/language-design">language-design</a>
+                    <a href="https://dragoncoder047.github.io/blog/tag/programming">programming</a>
+            </div>
+    </div>
+        <p><em>This post is part 7 of the aelith-game series:</em></p>
+        <ol class="series">
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2024/boy-have-i-been">Boy, Have I Been...</a>
+                </li>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2025/so-far-ahead-yet-so-far-behind">So far ahead, yet so far behind</a>
+                </li>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2025/one-hell-of-a-physics-engine">One Hell of a Physics Engine</a>
+                </li>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2025/whats-in-a-game">What's in a game?</a>
+                </li>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2025/a-fresh-start">A Fresh Start</a>
+                </li>
+                <li>
+                    <a href="https://dragoncoder047.github.io/blog/2026/i-just-cant-keep-my-mouth-shut">I Just Can't Keep My Mouth Shut</a>
+                </li>
+                <li class="active">
+                    <a href="https://dragoncoder047.github.io/blog/2026/pattern-matching-postprocessing-and-a-buggy-bundler">Pattern-Matching, Postprocessing, and a Buggy Bundler</a>
+                </li>
+        </ol>
+    <p>Welp, I did it again. I made another programming language. It took over two months of late nights and coffee and it somehow felt like only two weeks. And I certainly could have been writing other blog posts about it in the meantime, but I honestly didn&rsquo;t think it had been that long since my previous post. I guess it goes to show you what happens when you get the seed of a good idea and dedicate all your time to making it.</p>
+<p>Ultimately my goal is to finish my game, Aelith, but I can&rsquo;t do that if I don&rsquo;t have a way to implement anything. I&rsquo;ve done some more thinking about what I want to be able to do with Aelith&rsquo;s implementation, and first and foremost is supporting mods and addons, like Minecraft does.</p>
+<p>Minecraft is fairly easy to mod: Java Edition is written in Java, and Java has self-introspection and monkey-patching capabilities since it&rsquo;s a bytecode-compiled language - Java mods can, and do, just patch the bytecode in order to inject their functionality. Similarly, while Bedrock Edition is compiled to machine code from C++ and can&rsquo;t be directly self-modifying, Mojang did bake in a Javascript add-on API to hook into various game systems and change their behavior.</p>
+<p>In most cases I&rsquo;ve heard of, Bedrock&rsquo;s limited add-on API is, well, limiting, since you only have the ability to mod stuff that Mojang allows you to modify, whereas Java mods can patch basically any part of the game. I&rsquo;m torn on how to implement this for a couple of reasons. Aelith is written primarily in Javascript (transpiled from Typescript) since it is designed to run in a web browser. Javascript is formally specified by <a href="https://tc39.es">TC39</a>, and the spec doesn&rsquo;t specify any kind of introspection or self-modifying capabilities. All the myriad of Javascript engines in the major browsers take advantage of this, so Javascript winds up being more like Minecraft Bedrock. Mods can only access what I allow them to.</p>
+<p>However, there&rsquo;s <em>so many</em> good Minecraft Java mods (even just simple cosmetic or quality-of-life mods &ndash; I use almost 70 of them) and plenty of them are just impossible to recreate on Bedrock, because they interface with systems in the game that Mojang just hasn&rsquo;t yet added APIs for on Bedrock. These are the kind of mods that I want to support in Aelith - ones that add good features that I never even started to think about. I&rsquo;m going to be making Aelith to mostly fit my own preferences, but I&rsquo;m only one person and I&rsquo;m sure that if anyone else plays it, they&rsquo;ll have their own opinions and suggestions on what should be added. If it seems obvious enough when brought to my attention, I might just add it directly, but if it&rsquo;s a bit more involved, it should be easy to make a mod to add it.</p>
+<p>To that end, I&rsquo;ve created <a href="https://github.com/r47onfire/backolon">Backolon</a>. It&rsquo;s a stupidly simple little programming language that is mostly designed to act like Javascript minus most of the <a href="https://banana.laptrinh.org"><code>baNaNa</code> nonsense</a>. It&rsquo;s completely unoptimized and slow as hell, but what it lacks in speed it makes up for with a plethora of metaprogramming features - token-oriented pattern matching being the core mechanic upon which everything else is implemented.</p>
+<h2 id="a-very-difficult-beast-to-tame">A very difficult beast to tame</h2>
+<p>Backolon&rsquo;s extreme reliance on pattern-matching makes its implementation pretty easy to understand in concept. At least on surface level. When you really look at the internals, you&rsquo;ll find an extremely cursed and tangled web of interconnected modules that are so tightly bound to each other that fixing one thing will almost certainly break something else.</p>
+<p>As an example of how cursed that pattern-matching is, I recently tried, and failed, to add in-place augmented assignment operators. An augmented assignment operator is effectively a transformation that takes <code>x $= y</code> and rewrites it into <code>x = x $ y</code>, for all binary operators <code>$</code> &ndash; with the caveat that if <code>x</code> is a compond expression such as <code>(expensive function)-&gt;baz</code>, the <code>(expensive function)</code> is evaluated once and only its return value is indexed twice (once to access the initial value to be operated on along with <code>y</code>, the second to assign it).</p>
+<p>As one might expect from other languages that have augmented assignment operators, augmented assignment always has the same precedence as normal assignment, and this is what made adding it tricky. Every syntactic pattern in Backolon has a precedence - <code>x + y</code> (addition) has a precedence of 4, and <code>x = y</code> (assignment) has a precedence of 12, so it comes after addition, which is the expected behavior. The problem arises when I add <code>x += y</code> to also have a precedence of 12, because in Backolon (at least currently) the <code>+</code> and <code>=</code> are actually two separate tokens, and because the alphanumeric wildcards in the patterns can match any token, this happens:</p>
+<pre class="highlight"><code class="language-backolon">backolon:0&gt; foo := 0
+=&gt; 0
+backolon:1&gt; foo += 1
+repl://1:1:6: error: invalid name: "="
+1 | foo += 1
+  |      ^</code></pre>
+<p>What is going on here? Well, remember that <code>x + y</code> has a <em>higher</em> precedence than <code>x += y</code>. So Backolon tries to match <code>x + y</code> against the token sequence <code>foo</code> <code></code> <code>+</code> <code>=</code> <code></code> <code>1</code> first, and it actually matches - with <code>x</code> bound to the symbol <code>foo</code> and <code>y</code> bound to the operator <code>=</code>. (Whitespace in pattern definitions translates to matching zero or more whitespace in the actual input.) This gets rewritten into <code>(__add x =) 1</code>, which obviously doesn&rsquo;t make much sense since <code>=</code> isn&rsquo;t a valid variable name (as the error message says). But now that it&rsquo;s rewritten, there&rsquo;s no possibility of <code>x += y</code> ever having a chance to match. So we get that error.</p>
+<p>This could be solved easily if I made <code>+=</code> be its own token in the same way that <code>foo</code> isn&rsquo;t three tokens, but when I wrote the tokenizer I had the pipe dream that I would be able to write patterns to match any operator followed by <code>=</code> and thus I could write one pattern for all compound assignment operators and it would &ldquo;just work&rdquo;. However, I forgot about <code>&gt;=</code> and <code>&lt;=</code> which are not compound assignment, and so precedence would be a tricky problem either way. I tried adding compound˙</p>
+<h2 id="documentation-is-not-easy">Documentation is (not) easy</h2>
+<p>I eventually got fed up with adding compound operators and procrastinated fixing that by working on Backolon&rsquo;s website (<a href="https://backolon.js.org">https://backolon.js.org</a>). It&rsquo;s quite primitive right now, and I suck at website design in general so I vibe-coded the majority of the layout and styling of the landing page and then edited in my own text. The documentation page (<a href="https://backolon.js.org/docs/">https://backolon.js.org/docs/</a>) was a bit more of a challenge - I wanted the source for the documentation of Backolon&rsquo;s built-in syntax, functions, and variables, to be written next to their actual implementation in Backolon&rsquo;s source code, but I couldn&rsquo;t figure out how to do that for a while.</p>
+<p>I was already using <a href="https://typedoc.org">Typedoc</a> for documenting Backolon&rsquo;s Javascript API, and I found it has a JSON output. I figured that I would just be able to add some custom tags, write the Backolon documentation in the JSDoc comments near the implementation, postprocess the JSON, and then load the postprocessing output along with a little script that displays it in HTML.</p>
+<p>As I should have foreseen, it wasn&rsquo;t that easy. The first problem I encountered is that by default, Typedoc only keeps documentation comments that are attached to something that would make sense to document in a Javascript package - a variable export, a function declaration, an enum, a class, etc. The Backolon builtins are registered using a function <em>call</em> - and so Typedoc completely ignores those comments. I had to write a <a href="https://github.com/r47onfire/backolon/blob/8900a5e6fa24d50074186c07c915175151a2ffcc/scripts/backolon-comments.ts">fairly large Typedoc plugin</a> to re-walk the files&rsquo; ASTs and extract all of the comments, and then create dummy exports in order to attach them to something. And to add to the plugin&rsquo;s cursedness, I even had to directly import Typedoc&rsquo;s internals from my <code>node_modules</code> folder (usually a no-no) in order to parse the comment. Typedoc didn&rsquo;t export those functions since they didn&rsquo;t ever expect Typedoc to be used (or abused) the way I am doing.</p>
+<p>And that wasn&rsquo;t even the end of it. The <code>@param</code> tag - which is used to document a parameter to a function - can accept a type annotation after it in curly brackets, and I decided this was nifty and I would use it for the Backolon doc comments as well. Except once I convinced Typedoc to parse those comments and save them in the JSON, I was suddenly finding the type annotations on the <code>@param</code> tag&rsquo;s objects to be <code>undefined</code>. Not nonexistent - I <code>console.log()</code>&lsquo;ed the comment objects, and it clearly printed <code>typeAnnotation: undefined</code>. Why?</p>
+<p>Well, it wasn&rsquo;t exactly clear from Typedoc&rsquo;s documentation, so I started digging around in Typedoc&rsquo;s source code to find out, and it led me to <a href="https://github.com/TypeStrong/typedoc/blob/d743a1cbd19ed462d1e71aa39ad41b661b5794c8/src/lib/models/Comment.ts#L91-L95">this</a>. It turned out I had to add <code>@param</code> to a whitelist of tags to have their type annotations preserved in the JSON. To be fair, I should have expected this. Typedoc is intended for Typescript codebases, where the type of the parameter is already present in the function declaration itself, and so a type annotation in the comment is completely unnecessary. However, with the way I am abusing Typedoc, there&rsquo;s no function declaration with types to attach the comments to!</p>
+<p>Once I figured that out, it was pretty easy to put together the rest of the documentation page. After I realized that my Javascript that constructed the HTML for the page was literally just reading in a static JSON file and producing the same HTML each time, I moved that generation to the build step. I was even able to get rid of my stupid micro-framework <a href="https://github.com/dragoncoder047/vanilla">vanilla</a> for creating the HTML elements in the webpage - since it was happening (essentially) server-side now, I only needed to concatenate some strings (that just happen to be well-formed XML by the end of it) for the entirety of the documentation!</p>
+<h2 id="did-i-do-that">Did I do that?</h2>
+<p>Since the bundler I was using to build everything (<a href="https://esbuild.github.io">ESBuild</a>) couldn&rsquo;t bundle directly from HTML files, or at least would have required a plugin and thus more technical debt to do so, I switched to <a href="https://bun.com">Bun</a>. Bun can handle HTML as an entrypoint, but otherwise tries its best to be a drop-in ESBuild replacement. For the most part, that was true. But Murphy&rsquo;s law struck again, and I discovered not one, not two, but <a href="https://github.com/oven-sh/bun/issues?q=is%3Aissue%20author%3Adragoncoder047"><em>three</em> fairly major bugs in Bun</a>. Not in Backolon. In Bun. And one of them even involved Bun segfaulting.</p>
+<ol>
+<li>
+<p><a href="https://github.com/oven-sh/bun/issues/29243">Issue #29243: Bun doesn&rsquo;t allow top-level <code class="language-js highlight">await</code> in CommonJS output mode, even if it&rsquo;s unreachable and will eventually be removed by the minifier</a></p>
+<p>When Backolon starts up, it needs to load and execute the builtins file that contains the builtins defined in Backolon itself. In the compiled and minified bundle, it does this by embedding the pre-parsed AST in a <a href="https://www.npmjs.com/package/lz-string">heavily compressed</a> and serialized format, and then <a href="https://www.npmjs.com/package/resurrect-esm">resurrecting</a> it and running it from there.</p>
+<p>This is handled by a Bun bundler plugin, but when running the unit tests, Bun doesn&rsquo;t know anything about that plugin and can&rsquo;t load it. So I use a build-time constant to dead-code eliminate one of two branches - in the branch that activates in the bundle build, I just import the file (which activates the plugin) and I get the AST straight away; in the test-only branch, I read the file&rsquo;s contents explicitly, using <a href="https://bun.com/docs/runtime/file-io#reading-files-bun-file"><code class="language-js highlight">await Bun.file(...).text()</code></a>, and then parse it. As you might notice, that involves a top-level <code class="language-js highlight">await</code>.</p>
+<p>ES6 modules actually have no problem with top-level <code class="language-js highlight">await</code>, but I am using <a href="https://gitlab.com/gitlab-org/security-products/analyzers/fuzzers/jsfuzz">jsfuzz</a> to fuzz-test Backolon, and jsfuzz only accepts files to be fuzzed in CommonJS format, due to limitations in how it instruments the code to determine coverage (which it tries to maximize). CommonJS does not allow top-level <code class="language-js highlight">await</code>, but ESBuild had no problem dead-code eliminating it when I bundled Backolon in CommonJS format for the fuzzer. Bun refused to do that, despite its claims to be ESBuild compatible, and so I opened this bug and then added <a href="https://github.com/r47onfire/backolon/blob/3fac91bd2c4460588097635a7569fb8fd9eec007/scripts/build-for-fuzzer.ts#L13-L27">yet another cursed hack</a> to work around it.</p>
+</li>
+<li>
+<p><a href="https://github.com/oven-sh/bun/issues/29264">Issue #29264: Bun segfaults if there&rsquo;s both nonexistent and external modules in a build</a></p>
+<p>This was mostly an accidental discovery when I shuffled some files around in the website folder after I initially got Bun working. VSCode tries its best to automatically update imports so that they still point to the same files after you reorganize, but if you start moving too many files around too fast like I was doing, it can&rsquo;t keep up, and I wound up with an import that now pointed nowhere. I would have expected Bun to flag this error, but&hellip; it just crashed. And since there&rsquo;s so many interconnected components in my cursed mess of build scripts for Backolon&rsquo;s website, it was quite difficult to isolate the problem.</p>
+<p>I tracked it down to a combination of the broken import and <a href="https://github.com/r47onfire/backolon/blob/3fac91bd2c4460588097635a7569fb8fd9eec007/scripts/build-website.ts#L45-L56">this kludge</a> I used to forcibly prevent <a href="https://terminal.jcubic.pl">jquery.terminal</a> from importing jQuery twice by marking jquery.terminal&rsquo;s import as external. When the two things (nonexistent + external) combined, Bun got all mixed up and tried processing one after it had been deallocated and crashed.</p>
+<p>I guess this one was fairly important, because of these three, it&rsquo;s the only one that has had its associated PR merged so far.</p>
+</li>
+<li>
+<p><a href="https://github.com/oven-sh/bun/issues/29311">Issue #29311: Bun&rsquo;s minifier always expands scientific numbers, even when the scientific version is shorter</a></p>
+<p>This one I found totally by accident. I was absentmindedly admiring the minified code output and then scrolled down to the part where I defined the core syntax of Backolon and found two absurdly long strings of 100 zeros that I didn&rsquo;t write. Well, it turns out <a href="https://github.com/r47onfire/backolon/blob/3fac91bd2c4460588097635a7569fb8fd9eec007/src/stdlib/core.ts#L19">I did</a> - just not in that form. I just arbitrarily set the precedence of lambdas and implicit blocks at &mp;1 googol to give myself some headroom to insert other patterns in the precedence order, but even I was able to write them in the shortest format - <code class="language-js highlight">1e100</code> instead of <code class="language-js highlight">1<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0<wbr />0</code>. ESBuild can do that that too. But no, Bun wants it to be <em>exact</em>&hellip;</p>
+</li>
+</ol>
+<p>Maybe I should have expected all of these problems, too, because <a href="https://github.com/oven-sh/bun/pulls?q=is%3Apr+label%3Aclaude">Bun is almost entirely vibe coded now.</a>. And not just from a deluge of AI bros and OpenClaws eagerly wanting to fix bugs in Bun - no, <a href="https://bun.com/blog/bun-joins-anthropic">Bun is now maintained by a vibe coding company</a>. Great job ruining a good dev tool, guys&hellip;</p>
+<h2 id="at-least-i-have-a-goal">At least I have a goal</h2>
+<p>Backolon is still in its fledgling stage, and while I&rsquo;m going to be using it in Aelith, I still kind of want Backolon to be used elsewhere, by other people. I can&rsquo;t make anyone do that, though.</p>
+<p>What I can do is to make Backolon accessible to everyone. That&rsquo;s why I made <a href="https://backolon.js.org">a website for Backolon</a> where you can easily check the documentation (however terrible it is) and try out snippets in the online REPL. For discussing Backolon, I obtained <a href="https://discord.com/channels/530598289813536771/1485687416051335429">a channel for it</a> in the <a href="https://proglangdesign.net">proglangdesign.net</a> Discord server (which you may have to join explicitly before the channel link will work). There&rsquo;s also <a href="https://github.com/r47onfire/backolon">the Github repository</a> for filing bug reports and suggestions.</p>
+<p>And it goes without saying that Backolon will probably end up highly tailored to be used in Aelith, since that&rsquo;s its primary use case right now. Aelith also has a goal and game plan in mind, just like Backolon does, but they kind of depend on each other. So it wouldn&rsquo;t be out of the question for Backolon discussion to occur in the <a href="https://discord.gg/7yD8GekuDz">main Aelith Discord server</a> - if enough discussion occurs, I might create a dedicated channel for Backolon there as well. And if you&rsquo;re just interested in Aelith itself, there&rsquo;s never been a better time to join the server.</p>
+<p>Aelith sits in a strange place in terms of software projects. It&rsquo;s yet another thing that I&rsquo;ve gotten myself into, but it&rsquo;s something that I am not the only one interested in. All of my other projects are mostly tools that I can&rsquo;t find any use for myself, but Aelith is a game, and it&rsquo;s automatically useful because anyone can play it. That motivation has kept me working on it for close to two years now, and I hope I can continue to work on it for many more years into the future.</p>
+        <hr />
+        <p><strong>Related Posts</strong></p>
+        <ul>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/continuations-and-the-thunk-queue">Continuations and the thunk queue</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2023/pickle-tokenizer">Pickle Tokenizer</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2025/one-hell-of-a-physics-engine">One Hell of a Physics Engine</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2025/so-far-ahead-yet-so-far-behind">So far ahead, yet so far behind</a></li>
+                <li><a href="https://dragoncoder047.github.io/blog/2024/boy-have-i-been">Boy, Have I Been...</a></li>
+        </ul>
+    <script src="https://giscus.app/client.js"
+        data-repo="dragoncoder047/blog"
+        data-repo-id="R_kgDOHCL60w"
+        data-category="Post Comments"
+        data-category-id="DIC_kwDOHCL6084CRxCW"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+    ></script>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife.com Forums</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                                <li><a href="http://www.ulisp.com/">uLisp</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                                <li><a href="https://youtube.com/@dragoncoder047">dragoncoder047 on YouTube</a></li>
+                                <li><a href="https://instagram.com/dragoncoder047/">dragoncoder047 on Instagram</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

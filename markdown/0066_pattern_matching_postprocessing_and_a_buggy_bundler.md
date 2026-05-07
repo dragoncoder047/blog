@@ -34,7 +34,7 @@ repl://1:1:6: error: invalid name: "="
 
 What is going on here? Well, remember that `x + y` has a *higher* precedence than `x += y`. So Backolon tries to match `x + y` against the token sequence `foo` ` ` `+` `=` ` ` `1` first, and it actually matches - with `x` bound to the symbol `foo` and `y` bound to the operator `=`. (Whitespace in pattern definitions translates to matching zero or more whitespace in the actual input.) This gets rewritten into `(__add x =) 1`, which obviously doesn't make much sense since `=` isn't a valid variable name (as the error message says). But now that it's rewritten, there's no possibility of `x += y` ever having a chance to match. So we get that error.
 
-This could be solved easily if I made `+=` be its own token in the same way that `foo` isn't three tokens, but when I wrote the tokenizer I had the pipe dream that I would be able to write patterns to match any operator followed by `=` and thus I could write one pattern for all compound assignment operators and it would "just work". However, I forgot about `>=` and `<=` which are not compound assignment, and so precedence would be a tricky problem either way. I tried adding compound˙
+This could be solved easily if I made `+=` be its own token in the same way that `foo` isn't three tokens, but when I wrote the tokenizer I had the pipe dream that I would be able to write patterns to match any operator followed by `=` and thus I could write one pattern for all compound assignment operators and it would "just work". However, I forgot about `>=` and `<=` which are not compound assignment, and so precedence would be a tricky problem either way.
 
 ## Documentation is (not) easy
 

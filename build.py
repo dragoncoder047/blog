@@ -64,9 +64,7 @@ TIMEZONE = "America/New_York"
 
 DEFAULT_LANG = "en_US"
 
-FEED_RSS = "rss.xml"
-FEED_RSS_URL = SITEURL + "/" + FEED_RSS
-
+# maybe later...
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None

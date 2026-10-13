@@ -1,11 +1,27 @@
 #! /usr/bin/env python3
 import base64
 import html.parser
+import textwrap
 import zlib
 
+import patchy
 import schemascii
 from markdown.extensions import Extension
 from markdown.postprocessors import Postprocessor
+from pelican.generators import ArticlesGenerator
+
+# Pelican 4.12 stopped setting a default category when CATEGORY_SAVE_AS is
+# empty, but generate_drafts() still reads draft.category unconditionally.
+# Remove once https://github.com/getpelican/pelican/pull/3600 is released.
+# ref: https://github.com/getpelican/pelican/pull/3600#issuecomment-5223143475
+patchy.patch(
+    ArticlesGenerator.generate_drafts,
+    textwrap.dedent("""\
+    @@ -9,1 +9,1 @@
+    -            category=draft.category,
+    +            category=getattr(draft, "category", None),
+    """),
+)
 
 # PORT = 8080
 # BIND = "192.168.1.158"
@@ -48,7 +64,9 @@ TIMEZONE = "America/New_York"
 
 DEFAULT_LANG = "en_US"
 
-# maybe later...
+FEED_RSS = "rss.xml"
+FEED_RSS_URL = SITEURL + "/" + FEED_RSS
+
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
@@ -77,8 +95,8 @@ ARCHIVES_URL = "archives"
 ARCHIVES_SAVE_AS = "archives/index.html"
 
 # I don't use categories
-CATEGORY_URL = CATEGORY_SAVE_AS = ""
-CATEGORIES_SAVE_AS = ""
+CATEGORY_URL = CATEGORY_SAVE_AS = None
+CATEGORIES_SAVE_AS = None
 DISPLAY_CATEGORIES_ON_MENU = False
 USE_CATEGORIES = False
 
@@ -242,14 +260,14 @@ class SocialMagic(html.parser.HTMLParser):
         permalink = html.escape(f"https://www.instagram.com/p/{
             attrs["post"]}/?utm_source=ig_embed")
         # cSpell: ignore instgrm
-        return f"""<blockquote style="display:block;margin:auto"
-            class="instagram-media"{
-            " data-instgrm-captioned" if bool(attrs.get("caption", True))
-            else ""}
-    data-instgrm-permalink="{permalink}"
-    data-instgrm-version="14">
-    <a href="{permalink}">View this post on Instagram</a>
-    </blockquote>""".replace("\n", "")
+        return f"""<blockquote style="display:block;margin:auto" class="instagram-media"{
+            " data-instgrm-captioned" if bool(
+                attrs.get("caption", True)) else ""
+        } data-instgrm-permalink="{
+            permalink
+        }" data-instgrm-version="14"><a href="{
+            permalink
+        }">View this post on Instagram</a></blockquote>"""
         # this is missing the
         # <script async src="//www.instagram.com/embed.js"></script>
         # but that is detected and included automatically by
@@ -357,11 +375,9 @@ READ_MORE_LINK_FORMAT = '<a href="/blog/{url}">{text}</a>'
 
 
 if __name__ == "__main__":
-    import os
-    import shlex
-    os.system(f"""pelican {
-        shlex.quote(PATH)
-    } -o {
-        shlex.quote(OUTPUT_PATH)
-    } -s {
-        shlex.quote(__file__)}""")
+    import subprocess
+    subprocess.call([
+        "pelican",
+        PATH,
+        "-o", OUTPUT_PATH,
+        "-s", __file__])

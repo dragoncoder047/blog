@@ -1,4 +1,5 @@
 pelican
+patchy
 markdown==3.3.7
 pelican-seo
 pelican-share-post

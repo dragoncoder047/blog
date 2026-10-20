@@ -373,9 +373,22 @@ READ_MORE_LINK_FORMAT = '<a href="/blog/{url}">{text}</a>'
 
 
 if __name__ == "__main__":
+    # Build as usual
     import subprocess
     subprocess.call([
         "pelican",
         PATH,
         "-o", OUTPUT_PATH,
-        "-s", __file__])
+        "-s", __file__,
+    ])
+
+    # As of ???????? Github Pages stopped "inheriting" the 404 page
+    # so we need to copy it manually
+    import pathlib
+    import urllib.request
+    HERE = pathlib.Path(__file__).parent
+    (HERE / "docs/404.html").resolve().write_bytes(urllib.request.urlopen("https://dragoncoder047.github.io/404.html").read())
+
+    # Then copy the css (this is a kludge...)
+    (HERE / "docs/blogtheme.css").resolve().write_text((HERE / "blogtheme.css").resolve().read_text())
+

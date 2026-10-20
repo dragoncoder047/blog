@@ -2,8 +2,7 @@
 
 build: clean
 	./build.py
-	cp blogtheme.css docs/blogtheme.css
-# that was a KLUDGE!! why
+
 
 clean:
 	rm -rf docs/

@@ -1,21 +1,23 @@
 #! /usr/bin/env python3
 import base64
 import html.parser
+import re
 import textwrap
 import zlib
 
+import markdown.extensions
+import markdown.postprocessors
 import patchy
+import pelican.generators
+import pelican.plugins.signals
 import schemascii
-from markdown.extensions import Extension
-from markdown.postprocessors import Postprocessor
-from pelican.generators import ArticlesGenerator
 
 # Pelican 4.12 stopped setting a default category when CATEGORY_SAVE_AS is
 # empty, but generate_drafts() still reads draft.category unconditionally.
 # Remove once https://github.com/getpelican/pelican/pull/3600 is released.
 # ref: https://github.com/getpelican/pelican/pull/3600#issuecomment-5223143475
 patchy.patch(
-    ArticlesGenerator.generate_drafts,
+    pelican.generators.ArticlesGenerator.generate_drafts,
     textwrap.dedent("""\
     @@ -9,1 +9,1 @@
     -            category=draft.category,
@@ -139,6 +141,15 @@ THEME = "./pelicantheme"
 
 READERS = {"html": None}
 
+def first_image(content):
+    match = re.search(r"""<img[^>]+src=["\']([^"\']+)["\']""", content)
+    return match.group(1) if match else None
+
+@pelican.plugins.signals.generator_init.connect
+def filter(pelican):
+    pelican.env.filters["first_image"] = first_image
+    pelican.env.globals["has_first_image"] = True
+
 
 def lv_fence(source, language, css_class, options, md, **kwargs):
     return ('<div class="lifeviewer"><textarea>'
@@ -183,12 +194,12 @@ def schemascii_fence(source, lang, cls, opts, md, attrs, **kwargs):
         return f"<code style=\"color: red\">Schemascii error:\n{err!r}</code>"
 
 
-class SocialExtension(Extension):
+class SocialExtension(markdown.extensions.Extension):
     def extendMarkdown(self, md):
         md.postprocessors.register(SocialEmbed(md), "social", -1)
 
 
-class SocialEmbed(Postprocessor):
+class SocialEmbed(markdown.postprocessors.Postprocessor):
     def run(self, src: str):
         # cSpell: ignore insta
         if "<youtube" not in src and "<insta" not in src:

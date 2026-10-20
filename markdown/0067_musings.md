@@ -1,5 +1,5 @@
 Title: Musings
-Date: 2026-10-18
+Date: 2026-10-19
 Tags: AI, rant, programming
 
 About a month and a half ago, Meta released [Muse](https://muse.ai), which is an autonomous AI agent. It is available for free (at least right now) to anyone with a Meta account, and I already have one for Instagram and Threads, so I decided to try it out.
